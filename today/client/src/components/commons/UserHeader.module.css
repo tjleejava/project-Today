@@ -1,0 +1,18 @@
+.headergroup {
+  width: 22%;
+  margin-left: 75%;
+  margin-top: 3%;
+}
+
+.header {
+  width: 20px;
+  height: 20px;
+  margin-left: 20PX;
+  color: black;
+}
+.text {
+  font-weight: 800;
+  color: #844F15;
+  font-size: 1.1em;
+  margin-left: 20px;
+}

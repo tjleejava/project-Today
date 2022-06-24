@@ -1,7 +1,17 @@
+import UserHeader from "./UserHeader";
+import HeaderCSS from "./Header.module.css";
+
 function Header() {
 
     return (
-        <h1>리액트와 익스프레스 연동 연습</h1>
+        <div className={ HeaderCSS.headergroup }>
+            <div className={ HeaderCSS.area}>
+                <img src="/images/header/todaylogo.png" className={ HeaderCSS.logo }/>
+                {/* <UserHeader/> */}
+            </div>
+            {/* <hr/> */}
+            {/* <div className={ HeaderCSS.padding }></div> */}
+        </div>
     );
 }
 

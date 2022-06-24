@@ -1,0 +1,25 @@
+.area {
+  position: fixed;
+  top: 870px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: #A49A93;
+}
+
+.copyright {
+  position: relative;
+  font-size: 1em;
+  font-weight: 500;  
+  top: 20px;
+  left: 30px;
+}
+
+.qna{
+  position: relative;
+  font-size: 1.3em;
+  font-weight: 800;  
+  top: 20px;
+  left: 1350px;
+
+}

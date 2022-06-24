@@ -1,0 +1,31 @@
+
+.body {
+  padding-top: 50px;
+  padding-left: 80%;
+  z-index: 3;
+  position: relative;
+}
+
+
+.header {
+  width: 20px;
+  height: 20px;
+  margin-left: 20PX;
+  color: black;
+}
+.text {
+  font-weight: 800;
+  color: #844F15;
+  font-size: 1.1em;
+  margin-left: 20px;
+}
+
+hr {
+  position: fixed;
+  left:0;
+  top:89px;
+  width: 100%;
+  color: #844F15;
+  background-color: #844F15;
+  height: 1px;
+}

@@ -1,14 +1,17 @@
 import { NavLink } from 'react-router-dom';
+import NavbarCSS from './Navbar.module.css';
 
 function Navbar() {
 
     return (
         <div>
-            <ul>
-                <li><NavLink to="/">메인으로</NavLink></li>
-                <li><NavLink to="/menus">메뉴 목록 보기</NavLink></li>
-                <li><NavLink to="/menus2">메뉴 목록 보기2</NavLink></li>
-            </ul>
+            <div className={ NavbarCSS.body}>
+                <NavLink to="/"><img src="/images/header/heart.png" className={ NavbarCSS.header } /></NavLink>
+                <NavLink to="/menus"><img src="/images/header/bell.png" className={ NavbarCSS.header } /></NavLink>
+                <NavLink to="/menus2"><span className={ NavbarCSS.text }>마이페이지</span></NavLink>
+                <NavLink to="/menus2"><span className={ NavbarCSS.text }>로그아웃</span></NavLink>
+            </div>
+            <hr/>
         </div>
     );
 }

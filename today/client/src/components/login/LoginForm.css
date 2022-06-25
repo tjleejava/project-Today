@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto:wght@300&display=swap');
 .container {
   margin-top: 10vh;
-  display: flex;
+  display: grid;
   justify-content: center;
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 18px;
 }
 
 .login-header {
@@ -9,9 +13,72 @@
   height: 4vh;
   background-color: #E2DDD3;
   color: #844F15;
+  border-radius: 5px 5px 0px 0px;
+  text-align: center;
+  padding: 3px;
+  font-weight: 600;
+  border: solid;
+  border-color: #844F15;
+  border-width: 1px 1px 0px 1px;
 }
 
 .login-content {
-  border: solid 1px;
+  border: solid 1px #844F15;
+  border-radius: 0px 0px 5px 5px;
+  height: 25vh;
+  justify-content: center;
   
+}
+
+.id-input {
+  display: grid;
+  margin-top: 50px;
+  grid-template-columns: 20% 50%;
+}
+
+.pwd-input {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 20% 50%;
+}
+
+input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+label {
+  margin-left: 20px;
+}
+
+.login-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+  margin-right: 20px;
+}
+
+.loginBtn {
+  background-color: #C2A894;
+  border: none;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  font-size: 16px;
+}
+
+.sign-up {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+button {
+
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
 }

@@ -37,7 +37,7 @@ function RegistChallenge() {
           <input type="checkbox"/><label>비공개</label>
         </div>
         <label>챌린지 썸네일 업로드</label>
-        <div className={}></div>
+        <div></div>
       </div>
     </>
   );

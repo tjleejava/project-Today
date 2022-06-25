@@ -1,5 +1,38 @@
 .content {
-    flex-grow: 20;
+    flex-grow: 16;
     margin-left: 5rem;
     margin-top: 5rem;
+}
+
+.line {
+    width: 90%;
+    margin-right: 20%;
+}
+
+.memberTbl {
+    text-align: center;
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.header {
+    background-color: bisque;
+    width: 80vw;
+    height: 2rem;
+}
+
+.member {
+    height: 2rem;
+}
+
+.pagingArea {
+    text-align: center;
+    margin-right: 5%;
+}
+
+.pagingBtn {
+    outline: 0;
+    border: 0;
+    background-color: white;
+    font-size: 1rem;
 }

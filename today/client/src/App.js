@@ -6,6 +6,8 @@ import Menus from './pages/Menus';
 import Menus2 from './pages/Menus2';
 import AdminLayout from "./layouts/AdminLayout";
 import Login from './pages/login/Login';
+import Members from "./pages/admin/Members";
+import AdminMain from './pages/admin/AdminMain';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="registchallenge" element={ <RegistChallenge/> } />
         </Route>
         <Route path="/admin" element={ <AdminLayout/> } >
+          <Route index element={ <AdminMain/> } />
+          <Route path="members" element={ <Members/> } />
         </Route>
         <Route path="/login" element={ <Login/> }/>
       </Routes>

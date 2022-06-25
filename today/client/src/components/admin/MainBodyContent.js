@@ -1,4 +1,4 @@
-export default function BodyContent() {
+export default function MainBodyContent() {
 
     return (
         <>

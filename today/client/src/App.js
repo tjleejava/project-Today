@@ -7,6 +7,7 @@ import Menus2 from './pages/Menus2';
 import AdminLayout from "./layouts/AdminLayout";
 import Login from './pages/login/Login';
 import ChallengesList from './pages/ChallengeList';
+import MypageNavbar from './components/mypage/MypageNavbar';
 
 function App() {
   return (
@@ -18,6 +19,11 @@ function App() {
           <Route path="menus2" element={ <Menus2/>} />
           <Route path="registchallenge" element={ <RegistChallenge/> } />
           <Route path="challenges" element={ <ChallengesList/> }/> 
+          <Route path="mypage" element={ <MypageNavbar/> }>
+            {/* <Route index element={ <Mypage/> } /> */}
+            {/* <Route index element={ <Mypage/> } /> */}
+            {/* <Route index element={ <Mypage/> } /> */}
+          </Route>
         </Route>
         <Route path="/admin" element={ <AdminLayout/> } >
         </Route>

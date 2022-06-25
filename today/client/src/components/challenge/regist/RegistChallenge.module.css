@@ -68,3 +68,77 @@
   margin: 1%;
   cursor: pointer;
 }
+
+.imageinputarea {
+
+  margin-top: 1%;
+  margin-left: 1%;
+}
+
+.imageinputarea > label {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.imageinputarea > div {
+  border: 1px solid #ababab;
+  width: 500px;
+  height: 300px;
+}
+
+.imageinputbox {
+  text-align: center;
+}
+
+.imageinputbox > img {
+  width: 150px;
+  height: 150px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.imageinputbox > label {
+  font-size: 1.2em;
+}
+
+.imageinputbox > button {
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: #454CAD;
+  color: white;
+  margin-top: 5%;
+  cursor: pointer;
+}
+
+.descriptarea {
+  margin-left: 1%;
+}
+.descriptarea > label {
+  
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.descriptarea > textarea {
+  width: 30%;
+  height: 200px;
+}
+
+.registbtnarea {
+  text-align: right;
+  margin-right: 10%;
+  margin-bottom:  40px;
+}
+.registbtnarea > button {
+  border: none;
+  border-radius: 5px;
+  background-color: #E1DBD6;
+  font-weight: 600;
+  font-size: 1em;
+  width: 100px;
+  height: 40px;
+  margin: 1%;
+  cursor: pointer;
+}

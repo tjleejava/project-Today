@@ -6,6 +6,7 @@ import Menus from './pages/Menus';
 import Menus2 from './pages/Menus2';
 import AdminLayout from "./layouts/AdminLayout";
 import Login from './pages/login/Login';
+import ChallengesList from './pages/ChallengeList';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="menus" element={ <Menus/>} />
           <Route path="menus2" element={ <Menus2/>} />
           <Route path="registchallenge" element={ <RegistChallenge/> } />
+          <Route path="challenges" element={ <ChallengesList/> }/> 
         </Route>
         <Route path="/admin" element={ <AdminLayout/> } >
         </Route>

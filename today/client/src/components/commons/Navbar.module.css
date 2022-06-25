@@ -1,14 +1,10 @@
-
 .body {
-  border: 1px solid black;
   padding-top: 50px;
   margin-left: 50%;
   padding-left: 30%;
-  width: 50%;
   z-index: 3;
   position: relative;
 }
-
 
 .header {
   width: 20px;
@@ -16,6 +12,7 @@
   margin-left: 20PX;
   color: black;
 }
+
 .text {
   font-weight: 800;
   color: #844F15;

@@ -1,0 +1,17 @@
+.container {
+  margin-top: 10vh;
+  display: flex;
+  justify-content: center;
+}
+
+.login-header {
+  width: 30vw;
+  height: 4vh;
+  background-color: #E2DDD3;
+  color: #844F15;
+}
+
+.login-content {
+  border: solid 1px;
+  
+}

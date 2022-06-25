@@ -1,6 +1,6 @@
 function SignHeader() {
   return (
-    <img src={'/public/images/signUpHeader/signUpHeader.png'}/>
+    <img src={'/images/signUpHeader/signUpHeader.png'} width="100%" height="auto"/>
   )
 }
 

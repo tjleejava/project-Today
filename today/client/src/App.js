@@ -4,6 +4,7 @@ import Main from './pages/Main';
 import Menus from './pages/Menus';
 import Menus2 from './pages/Menus2';
 import AdminLayout from "./layouts/AdminLayout";
+import Login from './pages/login/Login';
 
 function App() {
   return (
@@ -15,8 +16,8 @@ function App() {
           <Route path="menus2" element={ <Menus2/>} />
         </Route>
         <Route path="/admin" element={ <AdminLayout/> } >
-
         </Route>
+        <Route path="/login" element={ <Login/> }/>
       </Routes>
     </BrowserRouter>
   );

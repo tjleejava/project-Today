@@ -8,8 +8,8 @@
   font-size: 18px;
 }
 
-.login-header {
-  width: 30vw;
+.signUp-header {
+  width: 50vw;
   height: 4vh;
   background-color: #E2DDD3;
   color: #844F15;
@@ -22,10 +22,10 @@
   border-width: 1px 1px 0px 1px;
 }
 
-.login-content {
+.signUp-content {
   border: solid 1px #844F15;
   border-radius: 0px 0px 5px 5px;
-  height: 25vh;
+  height: 35vh;
   justify-content: center;
   
 }
@@ -33,13 +33,19 @@
 .id-input {
   display: grid;
   margin-top: 50px;
-  grid-template-columns: 20% 50%;
+  grid-template-columns: 20% 40% 10% 10%;
 }
 
 .pwd-input {
   margin-top: 30px;
   display: grid;
   grid-template-columns: 20% 50%;
+}
+
+.nickname-input {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 20% 40% 10%;
 }
 
 input {
@@ -51,14 +57,14 @@ label {
   margin-left: 20px;
 }
 
-.login-btn {
+.signUp-btn {
   display: flex;
   justify-content: flex-end;
   margin-top: 30px;
   margin-right: 20px;
 }
 
-.loginBtn {
+.signUpBtn, .authBtn, .duplicateBtn, .backBtn {
   background-color: #C2A894;
   border: none;
   border-radius: 3px;
@@ -66,6 +72,7 @@ label {
   padding-right: 10px;
   color: white;
   font-size: 16px;
+  margin-right: 10px;
 }
 
 .sign-up {

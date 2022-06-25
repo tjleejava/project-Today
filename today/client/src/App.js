@@ -8,6 +8,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import Login from './pages/login/Login';
 import Members from "./pages/admin/Members";
 import AdminMain from './pages/admin/AdminMain';
+import SignUp from './pages/signup/SignUp';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="members" element={ <Members/> } />
         </Route>
         <Route path="/login" element={ <Login/> }/>
+        <Route path="/signup" element={<SignUp/>}/>
       </Routes>
     </BrowserRouter>
   );

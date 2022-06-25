@@ -1,4 +1,4 @@
-const menuQuery = require('../database/menu-query');
+const menuQuery = require('../database/menu/menu-query');
 const MenuDTO = require('../dto/menu-response-dto');
 
 exports.selectAllMenus = (connection) => {

@@ -1,5 +1,5 @@
 const HttpStatus = require('http-status');
-const MenuService = require('../services/menu-service');
+const MenuService = require('../../services/menu-service');
 
 exports.findAllMenus = async (req, res, next) => {
 

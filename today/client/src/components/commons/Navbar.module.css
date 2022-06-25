@@ -20,7 +20,13 @@
   margin-left: 20px;
 }
 
-hr {
+
+
+a {
+  text-decoration: none;
+}
+
+.area > hr {
   position: fixed;
   left:0;
   top:89px;
@@ -28,8 +34,4 @@ hr {
   color: #844F15;
   background-color: #844F15;
   height: 1px;
-}
-
-a {
-  text-decoration: none;
 }

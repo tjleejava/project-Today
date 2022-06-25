@@ -1,9 +1,9 @@
-// import Banner from "../components/mainpage/Banner";
-// import MainLayout from "../components/mainpage/MainLayout";
-// import MainRanking from "../components/mainpage/MainRanking";
-// import MainSearch from "../components/mainpage/MainSearch";
-// import MainUser from "../components/mainpage/MainUser";
-// import MainCSS from './Main.module.css';
+import Banner from "../components/mainpage/Banner";
+import MainLayout from "../components/mainpage/MainLayout";
+import MainRanking from "../components/mainpage/MainRanking";
+import MainSearch from "../components/mainpage/MainSearch";
+import MainUser from "../components/mainpage/MainUser";
+import MainCSS from './Main.module.css';
 import { Link } from 'react-router-dom';
 
 function Main() {

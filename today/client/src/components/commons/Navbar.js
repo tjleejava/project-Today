@@ -4,7 +4,7 @@ import NavbarCSS from './Navbar.module.css';
 function Navbar() {
 
     return (
-        <div>
+        <div className={ NavbarCSS.area}>
             <div className={ NavbarCSS.body}>
                 <NavLink to="/menus3"><img src="/images/header/heart.png" className={ NavbarCSS.header } /></NavLink>
                 <NavLink to="/menus"><img src="/images/header/bell.png" className={ NavbarCSS.header } /></NavLink>

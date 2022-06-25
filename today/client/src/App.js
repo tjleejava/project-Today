@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RegistChallenge from './components/challenge/regist/RegistChallenge';
-import Login from './components/commons/Login';
 import Layout from './layouts/Layout';
 import Main from './pages/Main';
 import Menus from './pages/Menus';

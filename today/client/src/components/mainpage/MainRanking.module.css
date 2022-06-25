@@ -1,11 +1,11 @@
 .area {
-  width: 30%;
+  width: 28%;
   border: 2px solid #ababab;
-  height: 400px;
-  margin-left: 4%;
+  height: 500px;
+  margin-left: 6%;
 }
 .labelarea {
-  margin-left: 10%;
+  margin-left: 8%;
 }
 .label1 {
   font-size: 1.5em;
@@ -15,12 +15,12 @@
 .label2 {
   font-size: 1.5em;
   font-weight: 800;
+  margin-left: 10px;
   color: #844F15;
 }
 
 .rankarea {
   border: 1px solid black;
   margin-top: 3%;
-
-  height: 80px;
+  height: 100px;
 }

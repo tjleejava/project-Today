@@ -1,6 +1,7 @@
 import MainUserCSS from './MainUser.module.css';
-
+import { NavLink } from 'react-router-dom';
 function MainUser() {
+
   return (
     <div className={ MainUserCSS.area }>
       <div className={ MainUserCSS.greeting}>
@@ -9,9 +10,12 @@ function MainUser() {
       <div className={ MainUserCSS.name }>
         <label>홍성원 님</label>
       </div>
+      
+    <NavLink to="/registchallenge">
       <div className={ MainUserCSS.openchl }>
         <button>챌린지 개설하기</button>
       </div>
+    </NavLink>
       
     </div>
   );

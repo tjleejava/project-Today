@@ -34,6 +34,15 @@ function RegistChallenge() {
             <input type="checkbox"/><label>주 3일 인증</label>
             <input type="checkbox"/><label>주 1일 인증</label>
           </div>
+          <div>
+          <input type="checkbox"/><label>월요일</label>
+          <input type="checkbox"/><label>화요일</label>
+          <input type="checkbox"/><label>수요일</label>
+          <input type="checkbox"/><label>목요일</label>
+          <input type="checkbox"/><label>금요일</label><br/>
+          <input type="checkbox"/><label>토요일</label>
+          <input type="checkbox"/><label>일요일</label>
+          </div>
         </div>
         <div className={ RegistChallengeCSS.timeinput}>
           <label className={ RegistChallengeCSS.subtitle }>인증 가능 시간</label><br/>
@@ -57,10 +66,57 @@ function RegistChallenge() {
             <input type="checkbox"/><label>4주</label>
           </div>
         </div>
-        <div>
+        <div className={ RegistChallengeCSS.checkinput}>
           <label className={ RegistChallengeCSS.subtitle }>모집 방식</label><br/>
-          <input type="checkbox"/><label>공개</label>
-          <input type="checkbox"/><label>비공개</label>
+          <div>
+            <input type="checkbox"/><label>공개</label>
+            <input type="checkbox"/><label>비공개</label>
+          </div>
+        </div>
+        <div className={ RegistChallengeCSS.imageinputarea }>
+          <label>챌린지 배너 업로드</label><br/>
+          <div className={ RegistChallengeCSS.imageinputbox }>
+            <img src="/images/registchallenge/download.png"></img><br></br>
+            <label>Select a file or drag here</label>
+            <br/>
+            <button>Select a file</button>
+          </div>
+        </div>
+        <div className={ RegistChallengeCSS.imageinputarea }>
+          <label>챌린지 썸네일 업로드</label><br/>
+          <div className={ RegistChallengeCSS.imageinputbox }>
+            <img src="/images/registchallenge/download.png"></img><br></br>
+            <label>Select a file or drag here</label>
+            <br/>
+            <button>Select a file</button>
+          </div>
+        </div>
+        <div className={ RegistChallengeCSS.imageinputarea }>
+          <label>좋은인증샷 예시 등록</label><br/>
+          <div className={ RegistChallengeCSS.imageinputbox }>
+            <img src="/images/registchallenge/download.png"></img><br></br>
+            <label>Select a file or drag here</label>
+            <br/>
+            <button>Select a file</button>
+          </div>
+        </div>
+        <div className={ RegistChallengeCSS.imageinputarea }>
+          <label>나쁜인증샷 예시 등록</label><br/>
+          <div className={ RegistChallengeCSS.imageinputbox }>
+            <img src="/images/registchallenge/download.png"></img><br></br>
+            <label>Select a file or drag here</label>
+            <br/>
+            <button>Select a file</button>
+          </div>
+        </div>
+        <br/>
+        <div className={ RegistChallengeCSS.descriptarea}>
+          <label>챌린지 소개</label><br/>
+          <textarea/>
+        </div>
+        <div className={ RegistChallengeCSS.registbtnarea }>
+          <button>등록하기</button>
+          <button>취소</button>
         </div>
       </div>
     </>

@@ -29,3 +29,7 @@ hr {
   background-color: #844F15;
   height: 1px;
 }
+
+a {
+  text-decoration: none;
+}

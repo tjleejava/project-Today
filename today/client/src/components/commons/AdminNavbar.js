@@ -4,7 +4,7 @@ import NavbarCSS from './AdminNavbar.module.css';
 function AdminNavbar() {
 
     return (
-        <div>
+        <div className={ NavbarCSS.area }>
             <div className={ NavbarCSS.body}>
                 <NavLink to="/admin/reports"><span className={ NavbarCSS.text }>신고 관리</span></NavLink>
                 <NavLink to="/admin/inquiries"><span className={ NavbarCSS.text }>문의 관리</span></NavLink>

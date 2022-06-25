@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import RegistChallenge from './components/challenge/regist/RegistChallenge';
+import Login from './components/commons/Login';
 import Layout from './layouts/Layout';
 import Main from './pages/Main';
 import Menus from './pages/Menus';
@@ -14,6 +16,7 @@ function App() {
           <Route index element={ <Main/> } />
           <Route path="menus" element={ <Menus/>} />
           <Route path="menus2" element={ <Menus2/>} />
+          <Route path="registchallenge" element={ <RegistChallenge/> } />
         </Route>
         <Route path="/admin" element={ <AdminLayout/> } >
         </Route>

@@ -1,0 +1,17 @@
+.area {
+  padding-top: 20px;
+}
+
+.toparea {
+  border: 1px solid red;
+  width: 100%;
+  height: 250px;
+  display: flex; 
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.botarea {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,27 @@
+.area {
+  width: 28%;
+  border: 2px solid #ababab;
+  height: 500px;
+  margin-left: 6%;
+}
+.labelarea {
+  margin-left: 8%;
+}
+.label1 {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.label2 {
+  font-size: 1.5em;
+  font-weight: 800;
+  margin-left: 10px;
+  color: #844F15;
+}
+
+.rankarea {
+  border: 1px solid black;
+  margin-top: 3%;
+
+  height: 100px;
+}

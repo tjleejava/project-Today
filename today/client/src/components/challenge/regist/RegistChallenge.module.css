@@ -2,4 +2,69 @@
   border: 1px solid limegreen;
   width: 90%;
   margin-left: 5%;
+  height: 760px;
+  overflow-y: scroll;
+}
+
+.area > hr {
+  height: 1px;
+  margin-top: 1%;
+  color: #844F15;
+  background-color: #844F15;
+}
+
+.textinput {
+  margin-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+.checkinput > div{
+  margin-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+.checkinput > div > label {
+  margin-right: 1%;
+}
+
+.timeinput > div{
+  margin-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+
+.title {
+  margin-top: 2%;
+  font-size: 1.3em;
+  font-weight: 900;
+  margin-left: 1%;
+}
+
+.subtitle {
+  font-size: 1em;
+  font-weight: 700;
+  margin-left: 1%;
+}
+
+.description {
+  font-size: 0.8em;
+  margin: 1%;
+  padding-top: 100px;
+  margin-top: 1%;
+}
+
+.btnarea > button {
+  border: none;
+  border-radius: 5px;
+  background-color: #CDCDCD;
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  width: 80px;
+  height: 35px;
+  margin: 1%;
+  cursor: pointer;
 }

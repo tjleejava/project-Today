@@ -10,9 +10,13 @@ import Members from "./pages/admin/Members";
 import AdminMain from './pages/admin/AdminMain';
 import SignUp from './pages/signup/SignUp';
 import ChallengesList from './pages/ChallengeList';
-import MypageNavbar from './components/mypage/MypageNavbar';
 import MemberDetail from './pages/admin/MemberDetail';
 import ChallengeDetail from './pages/challenge/open/ChallengeDetail';
+import MypageLayout from './layouts/MypageLayout';
+import Mypage from './pages/mypage/Mypage';
+import SignLayout from './layouts/SignLayout';
+import IdFind from './pages/idPwdFind/IdFind';
+import PwdFind from './pages/idPwdFind/PwdFind';
 
 function App() {
   return (
@@ -27,10 +31,8 @@ function App() {
             <Route index element={ <ChallengesList/> } />
             <Route path=":challengeNo" element={ <ChallengeDetail/> } />
           </Route> 
-          <Route path="mypage" element={ <MypageNavbar/> }>
-            {/* <Route index element={ <Mypage/> } /> */}
-            {/* <Route index element={ <Mypage/> } /> */}
-            {/* <Route index element={ <Mypage/> } /> */}
+          <Route path="mypage" element={ <MypageLayout/> }>
+              <Route index element={ <Mypage/> } />
           </Route>
         </Route>
         <Route path="/admin" element={ <AdminLayout/> } >
@@ -40,8 +42,13 @@ function App() {
             <Route path=":memberNo" element={ <MemberDetail/> } />
           </Route>
         </Route>
-        <Route path="/login" element={ <Login/> }/>
-        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/sign" element={ <SignLayout/> }>
+          <Route path="login" element={ <Login/> }/>
+          <Route path="signup" element={<SignUp/>}/>
+          <Route path="id" element={<IdFind/>}/>
+          <Route path="pwd" element={<PwdFind/>}/>
+        </Route>
+        
       </Routes>
     </BrowserRouter>
   );

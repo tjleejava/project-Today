@@ -1,7 +1,7 @@
 .area {
   border: 1px solid limegreen;
-  width: 90%;
-  margin-left: 5%;
+  width: 70%;
+  margin-left: 15%;
   height: 760px;
   overflow-y: scroll;
 }
@@ -27,6 +27,7 @@
 
 .checkinput > div > label {
   margin-right: 1%;
+  margin-left: 5px !important;
 }
 
 .timeinput > div{
@@ -52,14 +53,25 @@
 .description {
   font-size: 0.8em;
   margin: 1%;
-  padding-top: 100px;
   margin-top: 1%;
 }
 
-.btnarea > button {
+.defaultbtn {
   border: none;
   border-radius: 5px;
   background-color: #CDCDCD;
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  width: 80px;
+  height: 35px;
+  margin: 1%;
+  cursor: pointer;
+}
+.choosenbtn {
+  border: none;
+  border-radius: 5px;
+  background-color: #000000;
   color: white;
   font-weight: 600;
   font-size: 1em;

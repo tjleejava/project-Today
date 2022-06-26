@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './LoginForm.css';
+import LoginFormCSS from'./LoginFormCSS.module.css';
 import { Link } from 'react-router-dom';
 
 function LoginForm() {
@@ -22,25 +22,27 @@ function LoginForm() {
 
   return (
     <>
-      <div className="container">
-        <div className="login-header">오늘 하루</div>
-        <div className="login-content">
-          <div className="id-input">
+      <div className={LoginFormCSS.container}>
+        <div className={LoginFormCSS.header}>오늘 하루</div>
+        <div className={LoginFormCSS.content}>
+          <div className={LoginFormCSS.idInput}>
             <label>이메일</label>
             <input onChange={ onChangeHandler } name="id" type="text" value={id} placeholder='아이디 입력'/>
           </div>
-          <div className='pwd-input'>
+          <div className={LoginFormCSS.pwdInput}>
             <label>비밀번호</label>
             <input onChange={ onChangeHandler } name="password" type='password' value={password} placeholder='비밀번호 입력'/>
           </div>
-          <div className="login-btn">
-            <button className='loginBtn'>로그인</button>
+          <div className={LoginFormCSS.loginBtnArea}>
+            <button className={LoginFormCSS.loginBtn}>로그인</button>
           </div>
-          <div className="sign-up">
-            <Link to="/signup">
-              <button className="signUpBtn">회원가입</button>
+          <div className={LoginFormCSS.signUpArea}>
+            <Link to="/sign/signup">
+              <button className={LoginFormCSS.signUpBtn}>회원가입</button>
             </Link>
-            <button className="findIdBtn">아이디 찾기</button>
+            <Link to="/sign/id">
+              <button className={LoginFormCSS.findIdBtn}>아이디 찾기</button>
+            </Link>
           </div> 
         </div>
         

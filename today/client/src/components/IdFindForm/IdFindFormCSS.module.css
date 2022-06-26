@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto:wght@300&display=swap');
+
+.container {
+
+  margin-top: 10vh;
+  margin-left: 40vw;
+  font-size: 18px;
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.info {
+  color: #844F15;
+}
+
+.idFindEmailInput {
+  margin-left: 0px;
+  height: 35px;
+  width: 360px;
+}
+
+.idFindBtn {
+  color: #645f58;
+  background-color: #E2DDD3;
+  margin-top: 20px;
+  padding: 8px;
+  height: 35px;
+  width: 370px;
+  border-radius: 10px;
+}

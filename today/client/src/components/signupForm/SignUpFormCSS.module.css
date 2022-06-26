@@ -8,8 +8,8 @@
   font-size: 18px;
 }
 
-.login-header {
-  width: 30vw;
+.header {
+  width: 50vw;
   height: 4vh;
   background-color: #E2DDD3;
   color: #844F15;
@@ -22,43 +22,81 @@
   border-width: 1px 1px 0px 1px;
 }
 
-.login-content {
+.content {
   border: solid 1px #844F15;
   border-radius: 0px 0px 5px 5px;
-  height: 25vh;
+  height: 35vh;
   justify-content: center;
   
 }
 
-.id-input {
+.idInput {
   display: grid;
   margin-top: 50px;
-  grid-template-columns: 20% 50%;
+  grid-template-columns: 20% 40% 10% 10%;
 }
 
-.pwd-input {
+.pwdInput, .repwdInput {
   margin-top: 30px;
   display: grid;
   grid-template-columns: 20% 50%;
 }
 
-input {
+.nicknameInput {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 20% 40% 10%;
+}
+
+.idInput > input {
   width: 300px;
   margin-left: 30px;
 }
+
+.idInput > label {
+  margin-left: 20px;
+}
+
+.nicknameInput > input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+.nicknameInput > label {
+  margin-left: 20px;
+}
+
+.pwdInput > input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+.pwdInput > label {
+  margin-left: 20px;
+}
+
+.repwdInput > input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+.repwdInput > label {
+  margin-left: 20px;
+}
+
 
 label {
   margin-left: 20px;
 }
 
-.login-btn {
+.signUpBtnArea {
   display: flex;
   justify-content: flex-end;
   margin-top: 30px;
   margin-right: 20px;
 }
 
-.loginBtn {
+.signUpBtn, .authBtn, .duplicateBtn, .backBtn {
   background-color: #C2A894;
   border: none;
   border-radius: 3px;
@@ -66,6 +104,7 @@ label {
   padding-right: 10px;
   color: white;
   font-size: 16px;
+  margin-right: 10px;
 }
 
 .sign-up {

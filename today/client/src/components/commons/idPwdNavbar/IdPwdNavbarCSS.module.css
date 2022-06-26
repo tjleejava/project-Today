@@ -1,0 +1,12 @@
+.idFind , .pwdFind{
+  color: #844F15;
+}
+
+.container {
+  margin-top: 5vh;
+  margin-left: 5vw;
+}
+
+.pwdFind {
+  margin-left: 2vw;
+}

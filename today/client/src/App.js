@@ -11,6 +11,9 @@ import AdminMain from './pages/admin/AdminMain';
 import SignUp from './pages/signup/SignUp';
 import ChallengesList from './pages/ChallengeList';
 import MypageNavbar from './components/mypage/MypageNavbar';
+import SignLayout from './layouts/SignLayout';
+import IdFind from './pages/idPwdFind/IdFind';
+import PwdFind from './pages/idPwdFind/PwdFind';
 
 function App() {
   return (
@@ -32,8 +35,13 @@ function App() {
           <Route index element={ <AdminMain/> } />
           <Route path="members" element={ <Members/> } />
         </Route>
-        <Route path="/login" element={ <Login/> }/>
-        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/sign" element={ <SignLayout/> }>
+          <Route path="login" element={ <Login/> }/>
+          <Route path="signup" element={<SignUp/>}/>
+          <Route path="id" element={<IdFind/>}/>
+          <Route path="pwd" element={<PwdFind/>}/>
+        </Route>
+        
       </Routes>
     </BrowserRouter>
   );

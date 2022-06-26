@@ -42,7 +42,12 @@
   grid-template-columns: 20% 50%;
 }
 
-input {
+.idInput > input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+.pwdInput > input {
   width: 300px;
   margin-left: 30px;
 }

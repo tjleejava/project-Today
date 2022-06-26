@@ -9,7 +9,7 @@ import Login from './pages/login/Login';
 import Members from "./pages/admin/Members";
 import AdminMain from './pages/admin/AdminMain';
 import SignUp from './pages/signup/SignUp';
-import ChallengesList from './pages/ChallengeList';
+import ChallengesList from './pages/challenge/list/ChallengeList';
 import MemberDetail from './pages/admin/MemberDetail';
 import ChallengeDetail from './pages/challenge/open/ChallengeDetail';
 import MypageLayout from './layouts/MypageLayout';

@@ -1,5 +1,10 @@
-.categoryBtn > button {
-  margin: 5px;
+.categoryBtn {
+  margin-top: 5vh;
+  margin-left: 5vw;
+}
+
+.categoryBtn > input {
+  margin: 10px;
   border: none;
   width: 80px;
   height: 30px;
@@ -8,4 +13,6 @@
   color: white;
   cursor: pointer;
   font-weight: 400;
+  
+  
 }

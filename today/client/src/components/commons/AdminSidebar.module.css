@@ -1,9 +1,10 @@
 .area {
     /* border: solid 1px black; */
-    height: 75.6vh;
+    width: 150px;
+    height: 81vh;
     margin-left: -7.5px;
     margin-top: 21px;
-    flex-grow: 1;
+    flex-grow: 0;
     background-color: #F5F1EE;
 }
 

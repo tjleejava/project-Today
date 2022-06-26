@@ -1,0 +1,15 @@
+.memberTbl {
+    text-align: center;
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.header {
+    background-color: bisque;
+    width: 80vw;
+    height: 2rem;
+}
+
+.member {
+    height: 2rem;
+}

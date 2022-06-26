@@ -11,6 +11,7 @@ import AdminMain from './pages/admin/AdminMain';
 import SignUp from './pages/signup/SignUp';
 import ChallengesList from './pages/ChallengeList';
 import MypageNavbar from './components/mypage/MypageNavbar';
+import MemberDetail from './pages/admin/MemberDetail';
 
 function App() {
   return (
@@ -30,7 +31,10 @@ function App() {
         </Route>
         <Route path="/admin" element={ <AdminLayout/> } >
           <Route index element={ <AdminMain/> } />
-          <Route path="members" element={ <Members/> } />
+          <Route path="members">
+            <Route index element={ <Members/> } />
+            <Route path=":memberNo" element={ <MemberDetail/> } />
+          </Route>
         </Route>
         <Route path="/login" element={ <Login/> }/>
         <Route path="/signup" element={<SignUp/>}/>

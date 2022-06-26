@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import IdFindFormCSS from './IdFindFormCSS.module.css';
 
 function IdFindForm() {
@@ -10,7 +11,9 @@ function IdFindForm() {
         가입여부를 확인해드립니다.<br/>
       </pre>
       <input className={IdFindFormCSS.idFindEmailInput} placeholder="이메일 입력"/><br/>
-      <button className={IdFindFormCSS.idFindBtn}>확인</button>
+      <Link to="/sign/result">
+        <button className={IdFindFormCSS.idFindBtn}>확인</button>
+      </Link>
     </div>
   );
 };

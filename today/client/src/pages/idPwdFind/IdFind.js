@@ -1,5 +1,5 @@
 import IdPwdNavbar from '../../components/commons/idPwdNavbar/IdPwdNavbar';
-import IdFindForm from '../../components/IdFindForm/IdFindForm';
+import IdFindForm from '../../components/idFindForm/IdFindForm';
 
 function IdFind() {
   

@@ -14,6 +14,7 @@ import MypageNavbar from './components/mypage/MypageNavbar';
 import SignLayout from './layouts/SignLayout';
 import IdFind from './pages/idPwdFind/IdFind';
 import PwdFind from './pages/idPwdFind/PwdFind';
+import IdFindResult from './pages/idPwdFind/IdFindResult';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="login" element={ <Login/> }/>
           <Route path="signup" element={<SignUp/>}/>
           <Route path="id" element={<IdFind/>}/>
+          <Route path="result" element={<IdFindResult/>}/>
           <Route path="pwd" element={<PwdFind/>}/>
         </Route>
         

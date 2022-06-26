@@ -1,8 +1,10 @@
+import ChallengeCategoryBtn from '../components/challenge/challengeCategoryBtn/ChallengeCategoryBtn';
+
 function ChallengesList() {
 
   return (
     <>
-      <h1>챌린지 목록 페이지</h1>
+      <ChallengeCategoryBtn/>
     </>
   );
 }

@@ -1,0 +1,55 @@
+.content {
+    margin-top: 5rem;
+    flex-grow: 7;
+    margin-left: 10%
+}
+
+.profileArea {
+    display: flex;
+}
+
+.info {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.deleteBtn {
+    margin-top: 1rem;
+    background-color: orangered;
+    color: white;
+    border-radius: 10rem;
+}
+
+.penaltyHeader {
+    display: flex;
+    justify-items: center;
+    margin-top: 5rem;
+    justify-content: space-between;
+}
+
+.penaltyTitle {
+    font-weight: bold;
+    background-color: #EDE2BB;
+    padding-top: 3px;
+}
+
+.modifyBtn {
+    /* margin-left: 20rem; */
+    border-radius: 1rem;
+    background-color: #C2A894;
+    color: white;
+    height: 1.5rem;
+}
+
+.penaltyInfo {
+    margin-top: 2rem;
+}
+
+.penaltyType {
+    font-weight: bold;
+}
+
+.penaltyContent {
+    background-color: #F5F1EE;
+    padding: 10px;
+}

@@ -1,0 +1,39 @@
+.content {
+    margin-top: 3rem;
+    margin-left: 2rem;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #A49A93;
+}
+
+.host {
+    color: #A49A93;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 24rem;
+}
+
+.hostname {
+    color: #A49A93;
+    font-size: 1rem;
+    margin-left: 2rem;
+}
+
+.tabArea {
+    margin-top: 1.5rem;
+}
+
+.tab, .standard {
+    margin-right: 3rem;
+    font-size: 1.5rem;
+    color: #A49A93;
+    font-weight: bold;
+}
+
+a:active {
+    border-bottom: solid 3px #A49A93;
+    padding-bottom: 0.5rem;
+}

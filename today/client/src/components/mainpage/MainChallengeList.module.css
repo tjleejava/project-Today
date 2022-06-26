@@ -1,0 +1,7 @@
+.challengebox {
+  display: inline-block;
+  margin: 3%;
+  border: 1px solid peru;
+  width:300px;
+  height: 260px;
+}

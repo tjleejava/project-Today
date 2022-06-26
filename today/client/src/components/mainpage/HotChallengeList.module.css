@@ -1,6 +1,16 @@
-
 .rankarea {
   border: 1px solid black;
-  margin-top: 3%;
+  margin-top: 2%;
   height: 100px;
+ 
+}
+
+.rankbox {
+  display: inline-flex;
+}
+
+.imgarea {
+  padding-left: 10px;
+  width: 100px;
+  height: auto;
 }

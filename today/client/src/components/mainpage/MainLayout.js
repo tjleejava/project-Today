@@ -1,6 +1,12 @@
+import MainChallengeList from './MainChallengeList';
 import MainLayoutCSS from './MainLayout.module.css';
-
+import { useState } from 'react';
 function MainLayout() {
+
+  const [mainChallenges, setMainChallenges] = useState([
+    {},{},{}
+  ]);
+  
   return (
     <div className={ MainLayoutCSS.area }>
       <div className={ MainLayoutCSS.labelarea }>
@@ -16,9 +22,7 @@ function MainLayout() {
         <button>환경</button>
       </div>
       <div className={ MainLayoutCSS.boxarea }>
-        <div className={ MainLayoutCSS.challengebox }>d</div>
-        <div className={ MainLayoutCSS.challengebox }>d</div>
-        <div className={ MainLayoutCSS.challengebox }>d</div>
+        { mainChallenges.map(challenge => <MainChallengeList challenge={ challenge }/>) }
       </div>
     </div>
   );

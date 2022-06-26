@@ -33,7 +33,7 @@ function App() {
             <Route path=":challengeNo" element={ <ChallengeDetail/> } />
           </Route> 
           <Route path="mypage" element={ <MypageLayout/> }>
-              <Route index element={ <Mypage/> } />
+            <Route index element={ <Mypage/> } />
           </Route>
         </Route>
         <Route path="/admin" element={ <AdminLayout/> } >

@@ -10,7 +10,8 @@ import Members from "./pages/admin/Members";
 import AdminMain from './pages/admin/AdminMain';
 import SignUp from './pages/signup/SignUp';
 import ChallengesList from './pages/ChallengeList';
-import MypageNavbar from './components/mypage/MypageNavbar';
+import MypageLayout from './layouts/MypageLayout';
+import Mypage from './pages/mypage/Mypage';
 
 function App() {
   return (
@@ -22,10 +23,8 @@ function App() {
           <Route path="menus2" element={ <Menus2/>} />
           <Route path="registchallenge" element={ <RegistChallenge/> } />
           <Route path="challenges" element={ <ChallengesList/> }/> 
-          <Route path="mypage" element={ <MypageNavbar/> }>
-            {/* <Route index element={ <Mypage/> } /> */}
-            {/* <Route index element={ <Mypage/> } /> */}
-            {/* <Route index element={ <Mypage/> } /> */}
+          <Route path="mypage" element={ <MypageLayout/> }>
+              <Route index element={ <Mypage/> } />
           </Route>
         </Route>
         <Route path="/admin" element={ <AdminLayout/> } >

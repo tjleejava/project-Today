@@ -13,6 +13,6 @@ function PwdFindForm() {
       </div>
     </>
   );
-};
+}; 
 
 export default PwdFindForm;

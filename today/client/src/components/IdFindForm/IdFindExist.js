@@ -15,6 +15,6 @@ function IdFindExist() {
       </div>
     </>
   );
-};
+}; 
 
 export default IdFindExist;

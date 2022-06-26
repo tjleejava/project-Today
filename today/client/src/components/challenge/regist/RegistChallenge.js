@@ -1,8 +1,26 @@
 import RegistChallengeCSS from './RegistChallenge.module.css';
+import React, { useState } from 'react';
 
 
 function RegistChallenge() {
 
+  const [category, setCategory] = useState(1);
+  const [title, setTitle] = useState('타인에게 불괘감을 주는 제목을 작성할 경우 계정 패널티를 받을 수 있습니다.');
+  const categoryOnClickHandler = (e) => {
+    console.log('e : ', e);
+    console.log('e.target : ', e.target);
+    console.log('e.target.value', e.target.value);
+    setCategory(e.target.value);
+  }
+
+  const titleOnChangeHandler = (e) => {
+    setTitle(e.target.value);
+  }
+
+  const onClickHandler = () => {
+    
+  };      
+  
   return (
     <>
       <br/>
@@ -11,16 +29,17 @@ function RegistChallenge() {
         <label className={ RegistChallengeCSS.title }>챌린지 개설</label>
         <hr/>
         <div className={ RegistChallengeCSS.btnarea }>
-          <button>생활</button>
-          <button>운동</button>
-          <button>식습관</button>
-          <button>환경</button>
-          <button>마음챙김</button>
+          <button onClick={ categoryOnClickHandler } value='1' className={ category === '1'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>생활</button>
+          <button onClick={ categoryOnClickHandler } value='2' className={ category === '2'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>운동</button>
+          <button onClick={ categoryOnClickHandler } value='3' className={ category === '3'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>식습관</button>
+          <button onClick={ categoryOnClickHandler } value='4' className={ category === '4'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>환경</button>
+          <button onClick={ categoryOnClickHandler } value='5' className={ category === '5'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>마음챙김</button>
         </div>
         <div >
           <label className={ RegistChallengeCSS.subtitle }>챌린지 제목</label><br/>
           <label className={ RegistChallengeCSS.description }>타인에게 불괘감을 주는 제목을 작성할 경우 계정 패널티를 받을 수 있습니다.</label><br/>
-          <input className={ RegistChallengeCSS.textinput}/><br/>
+          <input className={ RegistChallengeCSS.textinput} value={ title} 
+            onChange={ titleOnChangeHandler } /><br/>
         </div>
         <div>
           <label className={ RegistChallengeCSS.subtitle }>인증방법 입력</label><br/>
@@ -35,14 +54,14 @@ function RegistChallenge() {
             <input type="checkbox"/><label>주 1일 인증</label>
           </div>
           <div>
-          <input type="checkbox"/><label>월요일</label>
-          <input type="checkbox"/><label>화요일</label>
-          <input type="checkbox"/><label>수요일</label>
-          <input type="checkbox"/><label>목요일</label>
-          <input type="checkbox"/><label>금요일</label><br/>
-          <input type="checkbox"/><label>토요일</label>
-          <input type="checkbox"/><label>일요일</label>
-          </div>
+            <input type="checkbox"/><label>월요일</label>
+            <input type="checkbox"/><label>화요일</label>
+            <input type="checkbox"/><label>수요일</label>
+            <input type="checkbox"/><label>목요일</label>
+            <input type="checkbox"/><label>금요일</label><br/>
+            <input type="checkbox"/><label>토요일</label>
+            <input type="checkbox"/><label>일요일</label>
+          </div> 
         </div>
         <div className={ RegistChallengeCSS.timeinput}>
           <label className={ RegistChallengeCSS.subtitle }>인증 가능 시간</label><br/>
@@ -115,7 +134,7 @@ function RegistChallenge() {
           <textarea/>
         </div>
         <div className={ RegistChallengeCSS.registbtnarea }>
-          <button>등록하기</button>
+          <button onClick={ onClickHandler }>등록하기</button>
           <button>취소</button>
         </div>
       </div>

@@ -26,7 +26,7 @@
 }
 
 .checkinput > div > label {
-  margin-right: 1%;
+  
 }
 
 .timeinput > div{
@@ -52,14 +52,25 @@
 .description {
   font-size: 0.8em;
   margin: 1%;
-  padding-top: 100px;
   margin-top: 1%;
 }
 
-.btnarea > button {
+.defaultbtn {
   border: none;
   border-radius: 5px;
   background-color: #CDCDCD;
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  width: 80px;
+  height: 35px;
+  margin: 1%;
+  cursor: pointer;
+}
+.choosenbtn {
+  border: none;
+  border-radius: 5px;
+  background-color: #000000;
   color: white;
   font-weight: 600;
   font-size: 1em;

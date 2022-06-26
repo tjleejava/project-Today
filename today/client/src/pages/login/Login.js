@@ -1,11 +1,11 @@
-import SignHeader from '../../components/commons/SignHeader';
-import LoginForm from '../../components/login/LoginForm';
+import LoginForm from '../../components/loginForm/LoginForm';
 
 function Login() {
   return (
   <>
-    <SignHeader/>
+    
     <LoginForm/>
+    
   </>
   );
 };

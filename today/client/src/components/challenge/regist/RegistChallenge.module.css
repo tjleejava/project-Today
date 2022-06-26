@@ -26,7 +26,8 @@
 }
 
 .checkinput > div > label {
-  
+  margin-right: 1%;
+  margin-left: 5px !important;
 }
 
 .timeinput > div{

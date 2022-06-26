@@ -22,7 +22,6 @@ function Main() {
             </div>
         </div>
         <br/>
-        <Link to="/login">로그인</Link>
         </>
     );
 }

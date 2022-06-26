@@ -11,12 +11,16 @@
 
 .info {
   color: #844F15;
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 .idFindEmailInput {
   margin-left: 0px;
   height: 35px;
   width: 360px;
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 .idFindBtn {
@@ -27,4 +31,8 @@
   height: 35px;
   width: 370px;
   border-radius: 10px;
+  border: none;
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
+  cursor: pointer;
 }

@@ -48,10 +48,42 @@
   grid-template-columns: 20% 40% 10%;
 }
 
-input {
+.idInput > input {
   width: 300px;
   margin-left: 30px;
 }
+
+.idInput > label {
+  margin-left: 20px;
+}
+
+.nicknameInput > input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+.nicknameInput > label {
+  margin-left: 20px;
+}
+
+.pwdInput > input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+.pwdInput > label {
+  margin-left: 20px;
+}
+
+.repwdInput > input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+.repwdInput > label {
+  margin-left: 20px;
+}
+
 
 label {
   margin-left: 20px;

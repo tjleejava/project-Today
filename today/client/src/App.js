@@ -18,6 +18,8 @@ import SignLayout from './layouts/SignLayout';
 import IdFind from './pages/idPwdFind/IdFind';
 import PwdFind from './pages/idPwdFind/PwdFind';
 import IdFindResult from './pages/idPwdFind/IdFindResult';
+import AuthList from './pages/auth/AuthList';
+import AuthDetail from './pages/auth/AuthDetail';
 
 function App() {
   return (
@@ -30,7 +32,12 @@ function App() {
           <Route path="registchallenge" element={ <RegistChallenge/> } />
           <Route path="challenges">
             <Route index element={ <ChallengesList/> } />
-            <Route path=":challengeNo" element={ <ChallengeDetail/> } />
+            <Route path=":challengeNo" >
+              <Route index  element={ <ChallengeDetail/> } />
+              <Route path="auth" />
+              <Route index element={ <AuthList/> } />
+              <Route path=":authNo" element={ <AuthDetail/> } />
+            </Route>
           </Route> 
           <Route path="mypage" element={ <MypageLayout/> }>
               <Route index element={ <Mypage/> } />

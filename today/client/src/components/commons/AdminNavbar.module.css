@@ -1,6 +1,44 @@
-.body {
+/* .body {
   padding-top: 50px;
   margin-left: 45%;
+  padding-left: 30%;
+  z-index: 3;
+  position: relative;
+}
+
+.header {
+  width: 20px;
+  height: 20px;
+  margin-left: 20PX;
+  color: black;
+}
+
+.text {
+  font-weight: 800;
+  color: #844F15;
+  font-size: 1.1em;
+  margin-left: 20px;
+}
+
+
+
+a {
+  text-decoration: none;
+}
+
+.area > hr {
+  position: fixed;
+  left:0;
+  top:89px;
+  width: 100%;
+  color: #844F15;
+  background-color: #844F15;
+  height: 1px;
+} */
+
+.body {
+  padding-top: 50px;
+  margin-left: 50%;
   padding-left: 30%;
   z-index: 3;
   position: relative;

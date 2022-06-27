@@ -24,6 +24,7 @@
 
 .tabArea {
     margin-top: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 .tab, .standard {
@@ -31,9 +32,79 @@
     font-size: 1.5rem;
     color: #A49A93;
     font-weight: bold;
+    border: 0;
+    outline: 0;
+    background-color: white;
+    cursor: pointer;
 }
 
-a:active {
+.standard {
     border-bottom: solid 3px #A49A93;
     padding-bottom: 0.5rem;
+}
+
+.infoArea {
+    margin-left: 7px;
+}
+
+.infoTitle {
+    color: #A49A93;
+    background-color: rgb(255, 228, 179);
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: inline
+}
+
+.infoContent {
+    margin-top: 1rem;
+}
+
+.infoSubArea, .infoImgArea {
+    margin-bottom: 0.5rem;
+}
+
+.infoSubTitle {
+    color: #A49A93;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    margin-right: 80px;
+}
+
+.infoSubContent {
+    color: #A49A93;
+}
+
+.infoImgArea, .authArea, .authCount {
+    display: flex;
+}
+
+.infoSubImgTitle {
+    color: #A49A93;
+    font-size: 1.2rem;
+    margin-right: 55px;
+}
+
+.authInfo {
+    margin-left: 5rem;
+}
+
+.authTitle {
+    font-size: 1.5rem;
+    color: #A49A93;
+}
+
+.authLink {
+    margin-left: 40rem;
+}
+
+.authCountType {
+    width: 20vw;
+    height: 10vh;
+    border: solid 1px #A49A93;
+    border-radius: 1rem;
+    margin-right: 3rem;
+    margin-top: 2rem;
+    padding: 10px;
+    font-size: 1.2rem;
+    color: #A49A93;
 }

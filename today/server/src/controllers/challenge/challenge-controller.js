@@ -9,9 +9,16 @@ exports.registChallenge = async (req, res, next) => {
     const registChallenge = new RegistChallengeDTO(req.body);
     console.log('controller registChallenge : ', registChallenge);
     const result = ChallengeService.registChallenge(registChallenge);
-    
 
-    return res.send(req.body);
+    console.log('controller result : ');
+    console.log(result);
+    console.log('controller result : ');
+    return res.send(
+        {
+            result: result,
+            url: 'http://localhost:3000'
+        }
+    );
 };
 
 exports.uploadFile = async (req, res, next) => {

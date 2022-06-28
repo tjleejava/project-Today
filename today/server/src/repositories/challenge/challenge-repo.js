@@ -21,15 +21,14 @@ exports.insertChallenge = (connection, registChallenge) => {
   });
 }
 
-exports.insertChallengeAttachment = (connection, registAttachment, challengeNo, type) => {
+exports.insertChallengeAttachment = (connection, inputFile) => {
 
-  const { originalName, savedName, savedPath } = registAttachment;
+  const { originalName, savedName, savedPath , challengeNo, type} = inputFile;
 
   return new Promise((resolve, reject) => {
 
-    console.log('type : ', type + 1);
     connection.query(challengeQuery.insertChallengeAttachment(),
-    [type + 1 ,originalName, savedName, savedPath, challengeNo], (err, result, fields) => {
+    [type ,originalName, savedName, savedPath, challengeNo], (err, result, fields) => {
       if(err) {
         reject(err);
       }
@@ -37,6 +36,22 @@ exports.insertChallengeAttachment = (connection, registAttachment, challengeNo, 
       resolve(result);
     });
   });
+};
 
+exports.insertChallengeFreqDay = (connection, authFreqDay) => {
 
+  console.log(authFreqDay);
+  const { dayNo, challengeNo } = authFreqDay;
+
+  return new Promise((resolve, reject) => {
+
+    connection.query(challengeQuery.insertChallengeFreqDay(),
+    [dayNo, challengeNo], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
+    });
+  });
 };

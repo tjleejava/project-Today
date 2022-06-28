@@ -39,3 +39,15 @@ exports.insertChallengeAttachment = () => {
       (?, ?, ?, ?, ?)
   `;
 };
+
+exports.insertChallengeFreqDay = () => {
+  return `
+      INSERT 
+        INTO TBL_CHALLENGE_AUTH_FREQUENCY 
+      (
+        DAY_NO, CHALLENGE_NO
+      ) 
+      VALUES
+      (?, ?)
+  `;
+};

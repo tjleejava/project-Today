@@ -1,5 +1,6 @@
 import RegistChallengeCSS from './RegistChallenge.module.css';
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import RegistImage from './RegistImage';
 import axios from 'axios';
@@ -8,6 +9,9 @@ import AuthDay from './AuthDay';
 
 function RegistChallenge() {
 
+  const navigate = useNavigate();
+
+  let url = '';
   const imageInput1 = useRef();
   const imageInput2 = useRef();
   const imageInput3 = useRef();
@@ -23,7 +27,7 @@ function RegistChallenge() {
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
   const [info, setInfo] = useState('');
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(2);
   const [authDay, setAuthDay] = useState({
     day0: false,
     day1: false,
@@ -67,6 +71,12 @@ function RegistChallenge() {
 
   const freqOnChangeHandler = (e) => {
     setFreq(e.target.value);
+    if(e.target.value == '1') {
+      for(let i = 0; i < 7; i++) {
+        authDay['day' + i] = true;
+        console.log('authDay : ', authDay);
+      }
+    }
   };
 
   const termOnChangeHandler = (e) => {
@@ -93,42 +103,97 @@ function RegistChallenge() {
     setInfo(e.target.value);
   };
 
+  const checkInputValue = () => {
+    
+    let result = false;
+    (category !== 1) 
+    && (title) 
+    && (description) 
+    && (freq !== 0) 
+    && (term) 
+    && (scope) 
+    && (startDate) 
+    && (startTime) 
+    && (endTime) 
+    && (info)
+    && checkAuthDay()
+    && ( result = true)
+
+    return result;
+  }
+
+  const checkAuthDay = () => {
+
+    switch(freq) {
+      case '1':
+        return (countAuthDay() === 7? true: false );
+      case '2':
+        return (countAuthDay() === 3? true: false );
+      case '3':
+        return (countAuthDay() === 1? true: false );
+    }
+
+    
+  }
+
+  const countAuthDay = () => {
+    let count = 0;
+
+    for(let i = 0; i < 7; i++) {
+      if(authDay['day' + i]) {
+        count++;
+      }
+    }
+    return count;
+  }
+
   const onClickHandler = async () => {
 
-      await axios.post('http://localhost:8888/challenges/upload', inputFile1)
-      .then(res => setFile1(res))
-        .catch(err => console.log(err));
-      await axios.post('http://localhost:8888/challenges/upload', inputFile2)
-        .then(res => setFile2(res)) 
-        .catch(err => console.log(err));
-      await axios.post('http://localhost:8888/challenges/upload', inputFile3)
-        .then(res => setFile3(res))  
-        .catch(err => console.log(err));
-      await axios.post('http://localhost:8888/challenges/upload', inputFile4)
-        .then(res => setFile4(res))
-        .catch(err => console.log(err));
+      const checkResult = await checkInputValue();
 
-      let data = {
-        category: category,
-        title: title,
-        description: description,
-        freq: freq,
-        term: term,
-        scope: scope,
-        startTime: startTime,
-        endTime: endTime,
-        startDate: startDate,
-        info: info,
-        file : [
-          file1.data, file2.data, file3.data, file4.data
-        ],
-        amount : amount
+      if(checkResult) {
+
+        await axios.post('http://localhost:8888/challenges/upload', inputFile1)
+        .then(res => setFile1(res))
+          .catch(err => console.log(err));
+        await axios.post('http://localhost:8888/challenges/upload', inputFile2)
+          .then(res => setFile2(res)) 
+          .catch(err => console.log(err));
+        await axios.post('http://localhost:8888/challenges/upload', inputFile3)
+          .then(res => setFile3(res))  
+          .catch(err => console.log(err));
+        await axios.post('http://localhost:8888/challenges/upload', inputFile4)
+          .then(res => setFile4(res))
+          .catch(err => console.log(err));
+
+        let data = {
+          category: category,
+          title: title,
+          description: description,
+          freq: freq,
+          term: term,
+          scope: scope,
+          startTime: startTime,
+          endTime: endTime,
+          startDate: startDate,
+          info: info,
+          file : [
+            file1.data, file2.data, file3.data, file4.data
+          ],
+          amount : amount,
+          authDay: authDay
+        }
+
+        await axios.post('http://localhost:8888/challenges', data)
+          .then(res => {
+            url = res.data.url;
+          }).catch( err => console.log(err)); 
+          
+        navigate('/');
+      } else {
+        alert('모든 정보를 입력하세요');
       }
 
-      await axios.post('http://localhost:8888/challenges', data)
-        .then(res => console.log)
-        .catch( err => console.log(err)); 
-        
   };      
   
   return (

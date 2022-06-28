@@ -14,13 +14,28 @@ exports.registChallenge = (registChallenge) => {
 
         const result = await ChallengeRepo.insertChallenge(connection, registChallenge);
 
+        
+        console.log('service result : ');
+        console.log(result);
         const challengeNo = result.insertId;
         console.log(registChallenge.file.length);
         for(let i = 0; i < registChallenge.file.length; i++) {
-            ChallengeRepo.insertChallengeAttachment(connection, registChallenge.file[i], challengeNo, i);
+            const inputFile = { ...registChallenge.file[i] };
+            inputFile.challengeNo = challengeNo;
+            inputFile.type= i + 1;
+            ChallengeRepo.insertChallengeAttachment(connection, inputFile);
         }
-        
-        console.log('challengeNo : ', challengeNo);
+        console.log('registChallenge.authDay : ', registChallenge.authDay);
+        console.log('registChallenge.authDay[0] : ', registChallenge.authDay['day' + 0]);
+        for(let i = 0; i < 7; i++) {
+            if(registChallenge.authDay['day' + i]) {
+                const authFreqDay = {
+                    dayNo: i,
+                    challengeNo: challengeNo
+                };
+                ChallengeRepo.insertChallengeFreqDay(connection, authFreqDay);
+            }
+        }
 
         
 

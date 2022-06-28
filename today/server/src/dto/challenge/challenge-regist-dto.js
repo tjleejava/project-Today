@@ -11,6 +11,7 @@ class RegistChallengeDTO {
   info;
   file;
   amount;
+  authDay;
 
   constructor(data) {
     this.category = data.category;
@@ -25,6 +26,7 @@ class RegistChallengeDTO {
     this.info = data.info;
     this.file = data.file;
     this.amount = data.amount;
+    this.authDay = data.authDay;
   }
 }
 

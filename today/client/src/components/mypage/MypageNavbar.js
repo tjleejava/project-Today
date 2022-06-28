@@ -16,7 +16,7 @@ function MypageNavbar() {
           <NavLink className={ MypageNavbarCSS.tab } to="">문의 내역</NavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink className={ MypageNavbarCSS.tab } to="">알림</NavLink>
+          <NavLink className={ MypageNavbarCSS.tab } to="alarm">알림</NavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
           <NavLink className={ MypageNavbarCSS.tab } to="">팔로잉 목록</NavLink>

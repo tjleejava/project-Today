@@ -1,0 +1,42 @@
+.imageinputarea {
+
+  margin-top: 1%;
+  margin-left: 1%;
+}
+
+.imageinputarea > label {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.imageinputarea > div {
+  border: 1px solid #ababab;
+  width: 500px;
+  height: 300px;
+}
+
+.imageinputbox {
+  text-align: center;
+}
+
+.imageinputbox > img {
+  max-width: 400px;
+  max-height: 170px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.imageinputbox > label {
+  font-size: 1.2em;
+}
+
+.imageinputbox > button {
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: #454CAD;
+  color: white;
+  margin-top: 10px;
+  cursor: pointer;
+}

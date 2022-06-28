@@ -25,10 +25,6 @@
   margin-bottom: 2%;
 }
 
-.checkinput > div > label {
-  margin-right: 1%;
-  margin-left: 5px !important;
-}
 
 .timeinput > div{
   margin-left: 1%;
@@ -81,49 +77,6 @@
   cursor: pointer;
 }
 
-.imageinputarea {
-
-  margin-top: 1%;
-  margin-left: 1%;
-}
-
-.imageinputarea > label {
-  font-size: 1em;
-  font-weight: 600;
-}
-
-.imageinputarea > div {
-  border: 1px solid #ababab;
-  width: 500px;
-  height: 300px;
-}
-
-.imageinputbox {
-  text-align: center;
-}
-
-.imageinputbox > img {
-  width: 150px;
-  height: 150px;
-  margin-top: 5%;
-  margin-bottom: 5%;
-}
-
-.imageinputbox > label {
-  font-size: 1.2em;
-}
-
-.imageinputbox > button {
-  width: 200px;
-  height: 40px;
-  border: none;
-  border-radius: 5px;
-  background-color: #454CAD;
-  color: white;
-  margin-top: 5%;
-  cursor: pointer;
-}
-
 .descriptarea {
   margin-left: 1%;
 }
@@ -152,5 +105,52 @@
   width: 100px;
   height: 40px;
   margin: 1%;
+  cursor: pointer;
+}
+
+
+
+
+
+.imageinputarea {
+
+  margin-top: 1%;
+  margin-left: 1%;
+}
+
+.imageinputarea > label {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.imageinputarea > div {
+  border: 1px solid #ababab;
+  width: 500px;
+  height: 300px;
+}
+
+.imageinputbox {
+  text-align: center;
+}
+
+.imageinputbox > img {
+  max-width: 400px;
+  max-height: 170px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.imageinputbox > label {
+  font-size: 1.2em;
+}
+
+.imageinputbox > button {
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: #454CAD;
+  color: white;
+  margin-top: 10px;
   cursor: pointer;
 }

@@ -14,6 +14,7 @@ import MemberDetail from './pages/admin/MemberDetail';
 import ChallengeDetail from './pages/challenge/open/ChallengeDetail';
 import MypageLayout from './layouts/MypageLayout';
 import Mypage from './pages/mypage/Mypage';
+import Alarm  from './pages/mypage/Alarm';
 import SignLayout from './layouts/SignLayout';
 import IdFind from './pages/idPwdFind/IdFind';
 import PwdFind from './pages/idPwdFind/PwdFind';
@@ -40,7 +41,8 @@ function App() {
             </Route>
           </Route> 
           <Route path="mypage" element={ <MypageLayout/> }>
-              <Route index element={ <Mypage/> } />
+            <Route index element={ <Mypage/> } />
+            <Route path="alarm" element={ <Alarm/> } />
           </Route>
         </Route>
         <Route path="/admin" element={ <AdminLayout/> } >

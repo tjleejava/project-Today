@@ -10,4 +10,4 @@ exports.findAllMenus = async (req, res, next) => {
         message: 'successfully found all menus',
         results: results
     });
-};
+}; 

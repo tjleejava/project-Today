@@ -1,66 +1,199 @@
 import RegistChallengeCSS from './RegistChallenge.module.css';
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import RegistImage from './RegistImage';
+import axios from 'axios';
+import JoinAmount from './JoinAmount';
+import AuthDay from './AuthDay';
 
 function RegistChallenge() {
 
-  const imageInput = useRef();
+  const navigate = useNavigate();
+
+  let url = '';
+  const imageInput1 = useRef();
+  const imageInput2 = useRef();
+  const imageInput3 = useRef();
+  const imageInput4 = useRef();
 
   const [category, setCategory] = useState(1);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [freq, setFreq] = useState('');
+  const [freq, setFreq] = useState('0');
   const [term, setTerm] = useState('');
   const [scope, setScope] = useState('');
-  const [bannerPath, setBannerPath] = useState('/images/registchallenge/download.png');
+  const [startDate, setStartDate] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [info, setInfo] = useState('');
+  const [amount, setAmount] = useState(2);
+  const [authDay, setAuthDay] = useState({
+    day0: false,
+    day1: false,
+    day2: false,
+    day3: false,
+    day4: false,
+    day5: false,
+    day6: false
+  });
+
+  
+  const [path1, setPath1] = useState('/images/registchallenge/download.png');
+  const [path2, setPath2] = useState('/images/registchallenge/download.png');
+  const [path3, setPath3] = useState('/images/registchallenge/download.png');
+  const [path4, setPath4] = useState('/images/registchallenge/download.png');
+
+  const [file1, setFile1] = useState();
+  const [file2, setFile2] = useState();
+  const [file3, setFile3] = useState();
+  const [file4, setFile4] = useState();
+
+  const [inputFile1, setInputFile1] = useState({});
+  const [inputFile2, setInputFile2] = useState({});
+  const [inputFile3, setInputFile3] = useState({});
+  const [inputFile4, setInputFile4] = useState({});
 
   const categoryOnClickHandler = (e) => {
     console.log('e : ', e);
     console.log('e.target : ', e.target);
     console.log('e.target.value', e.target.value);
     setCategory(e.target.value);
-  }
+  };
 
   const titleOnChangeHandler = (e) => {
     setTitle(e.target.value);
-  }
+  };
 
   const descriptionOnChangeHandler = (e) => {
     setDescription(e.target.value);
-  }
+  };
 
   const freqOnChangeHandler = (e) => {
     setFreq(e.target.value);
-  }
+    if(e.target.value == '1') {
+      for(let i = 0; i < 7; i++) {
+        authDay['day' + i] = true;
+        console.log('authDay : ', authDay);
+      }
+    }
+  };
 
   const termOnChangeHandler = (e) => {
     setTerm(e.target.value);
-  }
+  };
+
+  const startTimeChange = (e) => {
+    setStartTime(e.target.value);
+  };
+  
+  const endTimeChange = (e) => {
+    setEndTime(e.target.value);
+  };
+
+  const startDateChange = (e) => {
+    setStartDate(e.target.value);
+  };
 
   const scopeOnChangeHandler = (e) => {
     setScope(e.target.value);
+  };
+
+  const infoChangeHandler = (e) => {
+    setInfo(e.target.value);
+  };
+
+  const checkInputValue = () => {
+    
+    let result = false;
+    (category !== 1) 
+    && (title) 
+    && (description) 
+    && (freq !== 0) 
+    && (term) 
+    && (scope) 
+    && (startDate) 
+    && (startTime) 
+    && (endTime) 
+    && (info)
+    && checkAuthDay()
+    && ( result = true)
+
+    return result;
   }
 
+  const checkAuthDay = () => {
 
-  const onClickUpload = () => {
-    imageInput.current.click();
-  }
-
-  const bannerOnChange = (e) => {
-    setBannerPath(URL.createObjectURL(e.target.files[0]));
-  }
-
-  const onClickHandler = () => {
-    let data = {
-      category: category,
-      title: title,
-      description: description,
-      freq: freq,
-      term: term,
-      scope: scope
+    switch(freq) {
+      case '1':
+        return (countAuthDay() === 7? true: false );
+      case '2':
+        return (countAuthDay() === 3? true: false );
+      case '3':
+        return (countAuthDay() === 1? true: false );
     }
-    alert(data);
-    console.log(data);
+
+    
+  }
+
+  const countAuthDay = () => {
+    let count = 0;
+
+    for(let i = 0; i < 7; i++) {
+      if(authDay['day' + i]) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  const onClickHandler = async () => {
+
+      const checkResult = await checkInputValue();
+
+      if(checkResult) {
+
+        await axios.post('http://localhost:8888/challenges/upload', inputFile1)
+        .then(res => setFile1(res))
+          .catch(err => console.log(err));
+        await axios.post('http://localhost:8888/challenges/upload', inputFile2)
+          .then(res => setFile2(res)) 
+          .catch(err => console.log(err));
+        await axios.post('http://localhost:8888/challenges/upload', inputFile3)
+          .then(res => setFile3(res))  
+          .catch(err => console.log(err));
+        await axios.post('http://localhost:8888/challenges/upload', inputFile4)
+          .then(res => setFile4(res))
+          .catch(err => console.log(err));
+
+        let data = {
+          category: category,
+          title: title,
+          description: description,
+          freq: freq,
+          term: term,
+          scope: scope,
+          startTime: startTime,
+          endTime: endTime,
+          startDate: startDate,
+          info: info,
+          file : [
+            file1.data, file2.data, file3.data, file4.data
+          ],
+          amount : amount,
+          authDay: authDay
+        }
+
+        await axios.post('http://localhost:8888/challenges', data)
+          .then(res => {
+            url = res.data.url;
+          }).catch( err => console.log(err)); 
+          
+        navigate('/');
+      } else {
+        alert('모든 정보를 입력하세요');
+      }
+
   };      
   
   return (
@@ -90,6 +223,11 @@ function RegistChallenge() {
             onChange={ descriptionOnChangeHandler }/><br/>
         </div>
         <div className={ RegistChallengeCSS.checkinput}>
+          <label className={ RegistChallengeCSS.subtitle }>참여 인원수</label><br/>
+          <JoinAmount amount={ amount } setAmount={ setAmount }/>
+        </div>
+
+        <div className={ RegistChallengeCSS.checkinput}>
           <label className={ RegistChallengeCSS.subtitle }>인증 빈도</label><br/>
           <div>
             <input id="freq-1" type="radio" value='1' checked={freq === '1'} onChange={ freqOnChangeHandler } /><label for='freq-1'>매일 인증</label>
@@ -97,26 +235,20 @@ function RegistChallenge() {
             <input id="freq-3" type="radio" value='3' checked={freq === '3'} onChange={ freqOnChangeHandler } /><label for='freq-3'>주 1일 인증</label>
           </div>
           <div>
-            <input type="checkbox" value='0' id='day-0'/><label for='day-0'>월요일</label>
-            <input type="checkbox" value='1' id='day-1'/><label for='day-1'>화요일</label>
-            <input type="checkbox" value='2' id='day-2'/><label for='day-2'>수요일</label>
-            <input type="checkbox" value='3' id='day-3'/><label for='day-3'>목요일</label>
-            <input type="checkbox" value='4' id='day-4'/><label for='day-4'>금요일</label><br/>
-            <input type="checkbox" value='5' id='day-5'/><label for='day-5'>토요일</label>
-            <input type="checkbox" value='6' id='day-6'/><label for='day-6'>일요일</label>
+            <AuthDay freq={freq} authDay={ authDay } setAuthDay={ setAuthDay }/>
           </div> 
         </div>
         <div className={ RegistChallengeCSS.timeinput}>
           <label className={ RegistChallengeCSS.subtitle }>인증 가능 시간</label><br/>
           <div>
-            <label>시작 시간<input type="time"/></label>
-            <label>종료 시간<input type="time"/></label>
+            <label>시작 시간<input type="time" onChange={ startTimeChange } value={ startTime }/></label>
+            <label>종료 시간<input type="time" onChange={ endTimeChange } value={ endTime }/></label>
           </div>
         </div>
         <div className={ RegistChallengeCSS.timeinput}>
           <label className={ RegistChallengeCSS.subtitle }>챌린지 시작일</label><br/>
           <div>
-            <input type="date"/>
+            <input onChange={ startDateChange} valur={ startDate } type="date"/>
           </div>
         </div>
         <div className={ RegistChallengeCSS.checkinput}>
@@ -135,24 +267,16 @@ function RegistChallenge() {
             <input id='prvate' type="radio" value='prvate' checked={ scope === 'prvate' } onChange={ scopeOnChangeHandler }/><label for='prvate'>비공개</label>
           </div>
         </div>
-        <div className={ RegistChallengeCSS.imageinputarea }>
-          <label>챌린지 배너 업로드</label><br/>
-          <div className={ RegistChallengeCSS.imageinputbox }>
-            <img src={ bannerPath }></img><br></br>
-            <br/>
-            <button onClick={ onClickUpload }>Select a file</button>
-            <input 
-              type='file'
-              style={{ display:' none' }}
-              ref={imageInput}
-              onChange={ bannerOnChange }
-            />
-          </div>
-        </div>
+
+        <RegistImage title='챌린지 배너 업로드' imageInput={ imageInput1 } setInputFile={ setInputFile1 } setPath={ setPath1 } path={ path1 }/>
+        <RegistImage title='챌린지 썸네일 업로드' imageInput={ imageInput2 } setInputFile={ setInputFile2 } setPath={ setPath2 } path={ path2 }/>
+        <RegistImage title='좋은인증샷 예시 등록' imageInput={ imageInput3 } setInputFile={ setInputFile3 } setPath={ setPath3 } path={ path3 }/>
+        <RegistImage title='나쁜인증샷 예시 등록' imageInput={ imageInput4 } setInputFile={ setInputFile4 } setPath={ setPath4 } path={ path4 }/>
+
         <br/>
         <div className={ RegistChallengeCSS.descriptarea}>
           <label>챌린지 소개</label><br/>
-          <textarea/>
+          <textarea value={info} onChange={ infoChangeHandler }/>
         </div>
         <div className={ RegistChallengeCSS.registbtnarea }>
           <button onClick={ onClickHandler }>등록하기</button>
@@ -164,30 +288,3 @@ function RegistChallenge() {
 }
 
 export default RegistChallenge;
-
-
-
-{/* <div className={ RegistChallengeCSS.imageinputarea }>
-<label>챌린지 썸네일 업로드</label><br/>
-<div className={ RegistChallengeCSS.imageinputbox }>
-  <img src="/images/registchallenge/download.png"></img><br></br>
-  <br/>
-  <button>Select a file</button>
-</div>
-</div>
-<div className={ RegistChallengeCSS.imageinputarea }>
-<label>좋은인증샷 예시 등록</label><br/>
-<div className={ RegistChallengeCSS.imageinputbox }>
-  <img src="/images/registchallenge/download.png"></img><br></br>
-  <br/>
-  <button>Select a file</button>
-</div>
-</div>
-<div className={ RegistChallengeCSS.imageinputarea }>
-<label>나쁜인증샷 예시 등록</label><br/>
-<div className={ RegistChallengeCSS.imageinputbox }>
-  <img src="/images/registchallenge/download.png"></img><br></br>
-  <br/>
-  <button>Select a file</button>
-</div>
-</div> */}

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto:wght@300&display=swap');
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap : wrap;
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
+
+}
+
+.challengeContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.challengeContainer > img {
+  margin-left: 20px;
+  box-shadow: 5px 5px 5px rgb(204, 204, 204);
+  margin-top: 10px;
+  
+}
+
+.challengeContainer > span {
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.challengeInfo {
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.duration , .participant{
+  background-color: #E2DDD3;
+  border-radius: 7px;
+  padding: 3px
+}
+
+.participant {
+  margin-left: 15px;
+}

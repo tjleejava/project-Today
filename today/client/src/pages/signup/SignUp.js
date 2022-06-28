@@ -3,7 +3,9 @@ import SignUpForm from '../../components/signupForm/SignUpForm'
 function SignUp() {
   return (
   <>
+
     <SignUpForm/>
+
   </>
   );
 };

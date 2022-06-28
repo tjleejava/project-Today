@@ -4,21 +4,33 @@ import { Link } from 'react-router-dom';
 
 function LoginForm() {
 
-  const [form, setForm] = useState({
+  const [user, setUser] = useState({
     id: '',
     password: ''
   });
-  const { id, password } = form;
 
   const onChangeHandler = e => {
-    const changedForm = {
-      ...form,
+    setUser({
+      ...user,
       [e.target.name]: e.target.value
-    }
+    });
+  };
 
-    setForm(changedForm);
-  }
-  
+  const onClickHandler = (e) => {
+    fetch('http://localhost:8000/member/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user)
+    })
+    .then(response => response.json())
+    .then(json => {
+      sessionStorage.setItem('accessToken', json.accessToken);
+      localStorage.setItem('accessToken', json.accessToken);
+      window.cookieStore.get('accessToken')
+      .then(obj => obj.value)
+      .then(token => console.log('cookieStore accessToken: ' + token));
+    });
+  };
 
   return (
     <>
@@ -27,14 +39,14 @@ function LoginForm() {
         <div className={LoginFormCSS.content}>
           <div className={LoginFormCSS.idInput}>
             <label>이메일</label>
-            <input onChange={ onChangeHandler } name="id" type="text" value={id} placeholder='아이디 입력'/>
+            <input onChange={ onChangeHandler } name="id" type="text" value={user.id} placeholder='아이디 입력'/>
           </div>
           <div className={LoginFormCSS.pwdInput}>
             <label>비밀번호</label>
-            <input onChange={ onChangeHandler } name="password" type='password' value={password} placeholder='비밀번호 입력'/>
+            <input onChange={ onChangeHandler } name="password" type='password' value={user.password} placeholder='비밀번호 입력'/>
           </div>
           <div className={LoginFormCSS.loginBtnArea}>
-            <button className={LoginFormCSS.loginBtn}>로그인</button>
+            <button onClick={ onClickHandler } className={LoginFormCSS.loginBtn}>로그인</button>
           </div>
           <div className={LoginFormCSS.signUpArea}>
             <Link to="/sign/signup">

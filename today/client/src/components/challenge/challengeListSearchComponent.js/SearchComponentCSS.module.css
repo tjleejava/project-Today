@@ -1,0 +1,14 @@
+.searchContainer {
+  margin-top: 5vh;
+  display: flex;
+  justify-content: center;
+}
+
+.searchBtn {
+  font-size: 16px;
+  color: white;
+  background-color: #C2A894;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+}

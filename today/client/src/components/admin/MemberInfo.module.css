@@ -18,6 +18,9 @@
     background-color: orangered;
     color: white;
     border-radius: 10rem;
+    border: 0;
+    padding: .3rem;
+    cursor: pointer;
 }
 
 .penaltyHeader {
@@ -39,6 +42,9 @@
     background-color: #C2A894;
     color: white;
     height: 1.5rem;
+    /* padding: .5rem .5rem 1rem .5rem; */
+    border: 0;
+    cursor: pointer;
 }
 
 .penaltyInfo {

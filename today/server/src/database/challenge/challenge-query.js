@@ -1,15 +1,15 @@
-exports.selectAllMenus = () => {
-
+exports.selectChallengeByNo = () => {
   return `
       SELECT
-             A.MENU_CODE
-           , A.MENU_NAME
-           , A.MENU_PRICE
-           , A.CATEGORY_CODE
-           , A.ORDERABLE_STATUS
-        FROM TBL_MENU A
+      CHALLENGE_NO, 
+      CHALLENGE_NAME, CHALLENGE_START_DATE, CHALLENGE_TERM
+      , CHALLENGE_SCOPE, CHALLENGE_CATEGORY_NO, MEMBER_NO
+      , CHALLENGE_MAX_AMOUNT, CHALLENGE_STATUS_NO, CHALLENGE_AUTH_EXPLAN
+      , CHALLENGE_INFO
+      FROM TBL_CHALLENGE
+      WHERE CHALLENGE_NO = ?
   `;
-};
+}
 
 exports.insertChallenge = () => {
 

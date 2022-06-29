@@ -21,6 +21,7 @@ import PwdFind from './pages/idPwdFind/PwdFind';
 import IdFindResult from './pages/idPwdFind/IdFindResult';
 import AuthList from './pages/auth/AuthList';
 import AuthDetail from './pages/auth/AuthDetail';
+import ModifyChallengeCSS from './pages/challenge/modify/ModifyChallenge';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route path="auth" />
               <Route index element={ <AuthList/> } />
               <Route path=":authNo" element={ <AuthDetail/> } />
+              <Route path="modify" element={ <ModifyChallengeCSS/>}/>
             </Route>
           </Route> 
           <Route path="mypage" element={ <MypageLayout/> }>

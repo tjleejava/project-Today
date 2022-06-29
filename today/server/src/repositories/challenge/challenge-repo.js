@@ -1,6 +1,24 @@
 const challengeQuery = require('../../database/challenge/challenge-query');
 const ChallengeRegistDTO = require('../../dto/challenge/challenge-regist-dto');
+const ChallengeDTO = require('../../dto/challenge/challenge-dto');
+exports.selectChallengeByNo = (connection, challengeNo) => {
+  console.log('repo layer');
+  console.log('challengeNo : ', challengeNo);
+ 
+  return new Promise((resolve, reject) => {
+    connection.query(challengeQuery.selectChallengeByNo(), [challengeNo], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
 
+      const value = new ChallengeDTO(result);
+      console.log('repo layer print result : ');
+      console.log(value);
+      resolve(value);
+    });
+  });
+
+};
 
 exports.insertChallenge = (connection, registChallenge) => {
   const { title, startDate, term, scope, category, description, info, amount } = registChallenge;

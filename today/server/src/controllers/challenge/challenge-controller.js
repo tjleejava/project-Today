@@ -8,7 +8,7 @@ exports.registChallenge = async (req, res, next) => {
     console.log(req.body);
     const registChallenge = new RegistChallengeDTO(req.body);
     console.log('controller registChallenge : ', registChallenge);
-    const result = ChallengeService.registChallenge(registChallenge);
+    const result = await ChallengeService.registChallenge(registChallenge);
 
     console.log('controller result : ');
     console.log(result);
@@ -44,3 +44,20 @@ exports.uploadFile = async (req, res, next) => {
         }
     });
 };
+
+exports.findChallengeByNo = async (req, res, next) => {
+
+    const challengeNo = req.params.challengeNo;
+    const result = await ChallengeService.findChallengeByNo(challengeNo);
+
+    console.log('controller result : ');
+    console.log(result);
+    console.log('controller result : ');
+    
+    return res.send(
+        {
+            result: result,
+            url: 'http://localhost:3000'
+        }
+    );
+}

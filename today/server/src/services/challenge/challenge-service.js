@@ -1,6 +1,24 @@
 const getConnection = require('../../database/connection');
 const ChallengeRepo = require('../../repositories/challenge/challenge-repo');
 
+exports.findChallengeByNo = (challengeNo) => {
+
+    console.log(challengeNo);
+
+    return new Promise( async (resolve, reject) => {
+        
+    const connection = getConnection();
+
+    const result = await ChallengeRepo.selectChallengeByNo(connection, challengeNo);
+
+    console.log('service layer : ');
+    console.log(result);
+
+    connection.end();
+
+    resolve(result);
+    });
+};
 exports.registChallenge = (registChallenge) => {
 
     console.log('servie layer');

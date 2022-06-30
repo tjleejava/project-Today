@@ -1,6 +1,15 @@
 import ChallengeSideInfoCSS from './ChallengeSideInfo.module.css';
-
+import { useParams, useNavigate } from 'react-router-dom';
 export default function ChallengeSideInfo() {
+
+    const { challengeNo } = useParams();
+    const MODIFY = 'modify';
+    const navigate = useNavigate(); 
+
+    const modifyChallengeHandler = () => {
+        navigate(MODIFY);
+    }
+
 
     return (
         <div className={ ChallengeSideInfoCSS.sideInfoArea }>
@@ -28,7 +37,7 @@ export default function ChallengeSideInfo() {
             </div>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div className={ ChallengeSideInfoCSS.buttonArea }>
-                <button className={ ChallengeSideInfoCSS.modifyBtn }>챌린지 수정</button>
+                <button onClick={ modifyChallengeHandler } className={ ChallengeSideInfoCSS.modifyBtn }>챌린지 수정</button>
                 <button className={ ChallengeSideInfoCSS.deleteBtn }>챌린지 삭제</button>
             </div>
         </div>

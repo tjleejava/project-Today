@@ -1,0 +1,15 @@
+.content {
+    display: flex;
+    margin-left: 5rem;
+    margin-right: 7.8rem;
+}
+
+.titleArea {
+    margin-left: 5rem;
+    margin-right: 7.8rem;
+    margin-bottom: 2rem;
+}
+
+.title {
+    color: #844F15;
+}

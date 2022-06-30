@@ -3,7 +3,7 @@
     width: 150px;
     height: 81vh;
     margin-left: -7.5px;
-    margin-top: 21px;
+    /* margin-top: 5px; */
     flex-grow: 0;
     background-color: #F5F1EE;
 }

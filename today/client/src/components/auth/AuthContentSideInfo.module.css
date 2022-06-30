@@ -1,0 +1,32 @@
+.sideArea {
+    background-color: #F1E9DF;
+    flex-grow: 0;
+    width: 15vw;
+    height: 15vh;
+    padding: 1rem;
+}
+
+.date {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #844F15;
+    margin-bottom: 1rem;
+}
+
+.authStatusText {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.authStatus {
+    margin-bottom: 1rem;
+}
+
+.text {
+    color: #844F15;
+}
+
+.count {
+    color: #E09734;
+    font-weight: bold;
+}

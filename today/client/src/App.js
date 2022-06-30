@@ -4,10 +4,8 @@ import Layout from './layouts/Layout';
 import Main from './pages/Main';
 import Menus from './pages/Menus';
 import Menus2 from './pages/Menus2';
-import AdminLayout from "./layouts/AdminLayout";
 import Login from './pages/login/Login';
 import Members from "./pages/admin/Members";
-import AdminMain from './pages/admin/AdminMain';
 import SignUp from './pages/signup/SignUp';
 import ChallengesList from './pages/challenge/list/ChallengeList';
 import MemberDetail from './pages/admin/MemberDetail';
@@ -47,8 +45,8 @@ function App() {
             <Route path="alarm" element={ <Alarm/> } />
           </Route>
         </Route>
-        <Route path="/admin" element={ <AdminLayout/> } >
-          <Route index element={ <AdminMain/> } />
+        <Route path="/admin" element={ <Layout/> } >
+          <Route index element={ <Main/> } />
           <Route path="members">
             <Route index element={ <Members/> } />
             <Route path=":memberNo" element={ <MemberDetail/> } />

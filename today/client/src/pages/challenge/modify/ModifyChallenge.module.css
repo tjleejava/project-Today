@@ -68,3 +68,32 @@
   margin-top: 1%;
   margin-bottom: 2%;
 }
+
+
+
+.checkinput > div{
+  margin-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+
+
+
+.modifybtnarea {
+  text-align: right;
+  margin-right: 10%;
+  margin-bottom:  40px;
+}
+.modifybtnarea > button {
+  border: none;
+  border-radius: 5px;
+  background-color: #E1DBD6;
+  font-weight: 600;
+  font-size: 1em;
+  width: 100px;
+  height: 40px;
+  margin: 1%;
+  cursor: pointer;
+}
+

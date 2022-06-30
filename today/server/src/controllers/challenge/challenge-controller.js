@@ -37,7 +37,7 @@ exports.uploadFile = async (req, res, next) => {
             const data = {
                 originalName: myFile.name,
                 savedName: uidname,
-                savedPath: `${__dirname}/../../../public/images/challenge`
+                savedPath: `/images/challenge`
             }
             return res.send(data);
         }

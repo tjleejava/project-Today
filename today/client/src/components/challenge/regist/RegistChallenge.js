@@ -248,7 +248,7 @@ function RegistChallenge() {
         <div className={ RegistChallengeCSS.timeinput}>
           <label className={ RegistChallengeCSS.subtitle }>챌린지 시작일</label><br/>
           <div>
-            <input onChange={ startDateChange} valur={ startDate } type="date"/>
+            <input onChange={ startDateChange} value={ startDate } type="date"/>
           </div>
         </div>
         <div className={ RegistChallengeCSS.checkinput}>
@@ -264,7 +264,7 @@ function RegistChallenge() {
           <label className={ RegistChallengeCSS.subtitle }>모집 방식</label><br/>
           <div>
             <input id='public' type="radio" value='public' checked={ scope === 'public' } onChange={ scopeOnChangeHandler }/><label for='public'>공개</label>
-            <input id='prvate' type="radio" value='prvate' checked={ scope === 'prvate' } onChange={ scopeOnChangeHandler }/><label for='prvate'>비공개</label>
+            <input id='private' type="radio" value='private' checked={ scope === 'private' } onChange={ scopeOnChangeHandler }/><label for='private'>비공개</label>
           </div>
         </div>
 

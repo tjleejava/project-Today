@@ -23,6 +23,7 @@ const challengesReducer = handleActions(
             console.log(payload);
             payload.challengeInfo.challengeCategoryNo += '';
             payload.challengeInfo.challengeFrequency += '';
+            console.log(payload.challengeInfo.challengeStartDate);
             return payload;
         },
         [PUT_CHALLENGE_CATEGORY_NO]: (state, { payload }) => {

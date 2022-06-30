@@ -20,8 +20,9 @@ const actions = createActions({
 const challengesReducer = handleActions(
     {
         [GET_CHALLENGE]: (state, { payload }) => {
-            
+            console.log(payload);
             payload.challengeInfo.challengeCategoryNo += '';
+            payload.challengeInfo.challengeFrequency += '';
             return payload;
         },
         [PUT_CHALLENGE_CATEGORY_NO]: (state, { payload }) => {

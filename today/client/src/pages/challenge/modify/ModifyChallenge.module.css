@@ -42,6 +42,12 @@
   font-weight: 900;
   margin-left: 1%;
 }
+.subtitle {
+  font-size: 1em;
+  font-weight: 700;
+  margin-left: 1%;
+}
+
 /* 타이틀 하위 설명 */
 .description {
   font-size: 0.8em;
@@ -51,6 +57,13 @@
 
 /* input CSS */
 .textinput {
+  margin-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+
+.timeinput > div{
   margin-left: 1%;
   margin-top: 1%;
   margin-bottom: 2%;

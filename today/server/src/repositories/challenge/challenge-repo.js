@@ -61,11 +61,11 @@ exports.selectChallengeByNo = (connection, challengeNo) => {
 
 exports.insertChallenge = (connection, registChallenge) => {
 
-  const { title, startDate, term, scope, category, description, info, amount, freq } = registChallenge;
+  const { title, startDate, term, scope, category, description, info, amount, freq, startTime, endTime } = registChallenge;
 
   return new Promise((resolve, reject) => {
     connection.query(challengeQuery.insertChallenge(), 
-    [title, startDate, term, scope, category, 1, amount, 1, description, info, freq], (err, result, fields) => {
+    [title, startDate, term, scope, category, 1, amount, 1, description, info, freq, startTime, endTime], (err, result, fields) => {
 
       if(err) {
         reject(err);

@@ -1,10 +1,51 @@
 const challengeQuery = require('../../database/challenge/challenge-query');
 const ChallengeRegistDTO = require('../../dto/challenge/challenge-regist-dto');
+const AuthDayDTO = require('../../dto/challenge/challenge-auth-freq-dto');
 const ChallengeDTO = require('../../dto/challenge/challenge-dto');
+const AttachmentDTO = require('../../dto/challenge/challenge-attachment-dto');
+
+exports.selectAttachmentByChallengeNo = (connection, challengeNo) => {
+
+  return new Promise((resolve, reject) => {
+
+    connection.query(challengeQuery.selectAttachmentByChallengeNo(), [challengeNo], (err, result, fields) => {
+      if(err) {
+       
+        reject(err);
+      }
+      
+      let attachments = [];
+      for(let i = 0; i < result.length; i++) {
+        attachments.push(new AttachmentDTO(result[i]));
+      }
+
+      resolve(attachments);
+    });
+  });
+};
+
+exports.selectAuthDayByChallengeNo = (connection, challengeNo) => {
+
+  return new Promise((resolve, reject) => {
+
+    connection.query(challengeQuery.selectAuthDayByChallengeNo(), [challengeNo], (err, result, fields) => {
+      
+      if(err) {
+        reject(err);
+      }
+      let authDays = [];
+      for(let i = 0; i< result.length; i++) {
+        authDays.push(new AuthDayDTO(result[i]));
+      }
+
+      resolve(authDays);
+    });
+  });
+
+};
+
 exports.selectChallengeByNo = (connection, challengeNo) => {
-  console.log('repo layer');
-  console.log('challengeNo : ', challengeNo);
- 
+  
   return new Promise((resolve, reject) => {
     connection.query(challengeQuery.selectChallengeByNo(), [challengeNo], (err, result, fields) => {
       if(err) {
@@ -12,8 +53,6 @@ exports.selectChallengeByNo = (connection, challengeNo) => {
       }
 
       const value = new ChallengeDTO(result);
-      console.log('repo layer print result : ');
-      console.log(value);
       resolve(value);
     });
   });
@@ -21,19 +60,17 @@ exports.selectChallengeByNo = (connection, challengeNo) => {
 };
 
 exports.insertChallenge = (connection, registChallenge) => {
-  const { title, startDate, term, scope, category, description, info, amount } = registChallenge;
-  console.log('repo layer');
-  console.log('repo registChallenge : ', registChallenge);
+
+  const { title, startDate, term, scope, category, description, info, amount, freq } = registChallenge;
+
   return new Promise((resolve, reject) => {
     connection.query(challengeQuery.insertChallenge(), 
-    [title, startDate, term, scope, category, 1, amount, 1, description, info], (err, result, fields) => {
+    [title, startDate, term, scope, category, 1, amount, 1, description, info, freq], (err, result, fields) => {
 
       if(err) {
         reject(err);
       }
 
-      console.log('repo layer print result : ');
-      console.log(result);
       resolve(result);
     });
   });
@@ -58,7 +95,6 @@ exports.insertChallengeAttachment = (connection, inputFile) => {
 
 exports.insertChallengeFreqDay = (connection, authFreqDay) => {
 
-  console.log(authFreqDay);
   const { dayNo, challengeNo } = authFreqDay;
 
   return new Promise((resolve, reject) => {

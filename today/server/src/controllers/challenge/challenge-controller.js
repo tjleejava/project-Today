@@ -5,14 +5,9 @@ const RegistChallengeDTO = require('../../dto/challenge/challenge-regist-dto');
 
 exports.registChallenge = async (req, res, next) => {
 
-    console.log(req.body);
     const registChallenge = new RegistChallengeDTO(req.body);
-    console.log('controller registChallenge : ', registChallenge);
     const result = await ChallengeService.registChallenge(registChallenge);
 
-    console.log('controller result : ');
-    console.log(result);
-    console.log('controller result : ');
     return res.send(
         {
             result: result,
@@ -47,12 +42,14 @@ exports.uploadFile = async (req, res, next) => {
 
 exports.findChallengeByNo = async (req, res, next) => {
 
+    console.log('controller print start');
     const challengeNo = req.params.challengeNo;
+    
+    console.log('challengeNo: ' + challengeNo);
     const result = await ChallengeService.findChallengeByNo(challengeNo);
 
-    console.log('controller result : ');
-    console.log(result);
-    console.log('controller result : ');
+    console.log('result :' , result);
+    console.log('controller print end');
     
     return res.send(
         {

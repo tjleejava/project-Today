@@ -181,14 +181,15 @@ function RegistChallenge() {
             file1.data, file2.data, file3.data, file4.data
           ],
           amount : amount,
-          authDay: authDay
+          authDay: authDay,
+          
         }
 
         await axios.post('http://localhost:8888/challenges', data)
           .then(res => {
             url = res.data.url;
           }).catch( err => console.log(err)); 
-          
+        alert('챌린지를 등록했습니다!');
         navigate('/');
       } else {
         alert('모든 정보를 입력하세요');

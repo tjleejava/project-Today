@@ -5,5 +5,6 @@ const ChallengeController = require('../controllers/challenge/challenge-controll
 router.post('/', ChallengeController.registChallenge);
 router.post('/upload', ChallengeController.uploadFile);
 router.get('/test', ChallengeController.test);
+router.put('/test1', ChallengeController.test1);
 router.get('/:challengeNo', ChallengeController.findChallengeByNo);
 module.exports = router;

@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6515a50-7c62-4ca1-a0ac-4da66aa4700b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/today/client/src/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/modules/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today/client/src/components/challenge/regist/RegistChallenge.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/components/challenge/regist/RegistChallenge.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today/client/src/modules/ChallengesModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/modules/ChallengesModule.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/today/client/src/pages/challenge/modify/ModifyChallenge.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/pages/challenge/modify/ModifyChallenge.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/today/client/src/pages/challenge/modify/ModifyChallenge.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/pages/challenge/modify/ModifyChallenge.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/today/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/server/src/controllers/challenge/challenge-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/server/src/controllers/challenge/challenge-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/server/src/database/challenge/challenge-query.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/server/src/database/challenge/challenge-query.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/server/src/repositories/challenge/challenge-repo.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/server/src/repositories/challenge/challenge-repo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/server/src/services/challenge/challenge-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/server/src/services/challenge/challenge-service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +41,8 @@
       <option name="presentableId" value="Default" />
       <updated>1656590104917</updated>
       <workItem from="1656590106129" duration="95000" />
+      <workItem from="1656619559256" duration="4000" />
+      <workItem from="1656749131516" duration="1000" />
     </task>
     <servers />
   </component>

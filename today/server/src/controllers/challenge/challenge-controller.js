@@ -6,6 +6,9 @@ const RegistChallengeDTO = require('../../dto/challenge/challenge-regist-dto');
 exports.test = async (req, res, next) => {
     console.log(req.query);
 };
+exports.test1 = async (req, res, next) => {
+    console.log(req.query);
+};
 
 exports.registChallenge = async (req, res, next) => {
 

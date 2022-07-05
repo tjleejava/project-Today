@@ -1,16 +1,18 @@
 import axios from 'axios';
 import RegistQnaCSS from './RegistQna.module.css';
 import { useSelector, useDispatch } from 'react-redux';
+import { callPostInquiryAPI } from '../../apis/PlatformInquiryAPICalls';
 import { useNavigate } from 'react-router-dom';
-
+import getTime from '../../util/getTime';
 
 function RegistQna() {
   
   const POST_TITLE = 'platform/POST_TITLE';
   const POST_CONTENT = 'platform/POST_CONTENT';
+  const POST_DATE = 'platform/POST_DATE';
 
   const { registInfo } = useSelector(state => state.platformQnaReducer);
-  console.log(registInfo);
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,10 +20,16 @@ function RegistQna() {
     navigate('/mypage/qna');
   };
 
-  const summitHandler = () => {
-    axios.post('http://localhost:8888/inquiries')
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+  const summitHandler = async () => {
+    const date = getTime.getDateAndTime();
+
+    
+    await dispatch({type: POST_DATE, payload: date});
+    
+    const result = await dispatch(callPostInquiryAPI(registInfo));
+    
+    alert('문의가 등록되었습니다');
+    navigate('/mypage/qna');
   };
 
   const titleChangeHandler = (e) => {

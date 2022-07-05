@@ -16,11 +16,14 @@ app.use(express.static('public'));
 
 const menuRouter = require('./src/routes/menu-route');
 const memberRouter = require('./src/routes/member-route');
+const platformInquiryRouter =  require('./src/routes/platform-inquiries-route');
 
 const challengeRouter = require('./src/routes/challenge-route');
 app.use('/menus', menuRouter);
 app.use('/members', memberRouter);
 app.use('/challenges', challengeRouter);
+app.use('/challenges', challengeRouter);
+app.use('/inquiries', platformInquiryRouter);
 
 app.listen(PORT, () => console.log('listening on port 8888...'));
 

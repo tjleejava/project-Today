@@ -4,7 +4,7 @@ const ChallengeRepo = require('../../repositories/challenge/challenge-repo');
 exports.findChallengeByNo = (challengeNo) => {
 
 
-    return new Promise( async (resolve, reject) => {
+  return new Promise( async (resolve, reject) => {
         
     const connection = getConnection();
 
@@ -15,7 +15,7 @@ exports.findChallengeByNo = (challengeNo) => {
     connection.end();
 
     resolve({challengeInfo: challengeResults, authDayInfo: authDayResults, attachmentInfo: attachmentResults});
-    });
+  });
 };
 
 exports.modifyChallenge = (modifyInfo) => {

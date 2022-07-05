@@ -1,7 +1,17 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { callGetInquiriesAPI } from '../../apis/PlatformInquiryAPICalls';
 import UserQnaCSS from './UserQna.module.css';
 
 function UserQna() {
+
+  const dispatch = useDispatch();
+  const { inquiries } = useSelector(state => state.platformQnaReducer);
+  useEffect(
+    () => {dispatch(callGetInquiriesAPI())},
+    []
+  );
 
   const navigate = useNavigate();
 

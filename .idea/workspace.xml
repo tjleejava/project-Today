@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6515a50-7c62-4ca1-a0ac-4da66aa4700b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/client/src/components/challenge/regist/RegistChallenge.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/components/challenge/regist/RegistChallenge.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today/client/src/apis/MemberAPICalls.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/apis/MemberAPICalls.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today/client/src/components/challenge/modify/ModifyAttachments.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/components/challenge/modify/ModifyAttachments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today/client/src/components/mypage/MypageNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/components/mypage/MypageNavbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/today/client/src/modules/ChallengesModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/modules/ChallengesModule.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/today/client/src/pages/challenge/modify/ModifyChallenge.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/pages/challenge/modify/ModifyChallenge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/client/src/pages/challenge/modify/ModifyChallenge.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/pages/challenge/modify/ModifyChallenge.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today/server/src/controllers/challenge/challenge-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/server/src/controllers/challenge/challenge-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today/server/src/routes/challenge-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/server/src/routes/challenge-route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today/server/src/services/challenge/challenge-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/server/src/services/challenge/challenge-service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +47,7 @@
       <workItem from="1656590106129" duration="95000" />
       <workItem from="1656619559256" duration="4000" />
       <workItem from="1656749131516" duration="1000" />
+      <workItem from="1656923309205" duration="3000" />
     </task>
     <servers />
   </component>

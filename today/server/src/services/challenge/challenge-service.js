@@ -17,6 +17,20 @@ exports.findChallengeByNo = (challengeNo) => {
     resolve({challengeInfo: challengeResults, authDayInfo: authDayResults, attachmentInfo: attachmentResults});
     });
 };
+
+exports.modifyChallenge = (modifyInfo) => {
+
+
+    return new Promise( async (resolve, reject) => {
+        connection = getConnection();
+        console.log(modifyInfo.challengeInfo);
+        console.log(modifyInfo.attachmentInfo);
+        console.log(modifyInfo.modifyAttachment);
+
+        connection.end();
+    });
+};
+
 exports.registChallenge = (registChallenge) => {
 
     return new Promise( async (resolve, reject) => {

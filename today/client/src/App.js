@@ -20,6 +20,8 @@ import IdFindResult from './pages/idPwdFind/IdFindResult';
 import AuthList from './pages/auth/AuthList';
 import AuthDetail from './pages/auth/AuthDetail';
 import ModifyChallengeCSS from './pages/challenge/modify/ModifyChallenge';
+import UserQna from './pages/platformqna/UserQna';
+import RegistQna from './pages/platformqna/RegistQna';
 
 function App() {
   return (
@@ -43,6 +45,10 @@ function App() {
           <Route path="mypage" element={ <MypageLayout/> }>
             <Route index element={ <Mypage/> } />
             <Route path="alarm" element={ <Alarm/> } />
+            <Route path="qna">
+              <Route index element={ <UserQna/> } />
+              <Route path="regist" element={ <RegistQna/>}/>
+            </Route>
           </Route>
         </Route>
         <Route path="/admin" element={ <Layout/> } >

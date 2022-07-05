@@ -7,7 +7,19 @@ exports.test = async (req, res, next) => {
     console.log(req.query);
 };
 exports.test1 = async (req, res, next) => {
-    console.log(req.query);
+    console.log(req.body);
+};
+
+exports.modifyChallenge = async (req, res, next) => {
+
+    const result = await ChallengeService.modifyChallenge(req.body);
+
+    return res.send(
+        {
+            result: result,
+            url: 'http://localhost:3000'
+        }
+    );
 };
 
 exports.registChallenge = async (req, res, next) => {

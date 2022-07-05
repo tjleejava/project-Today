@@ -24,12 +24,14 @@ function ModifyChallenge() {
 
   
   const PUT_CHALLENGE_CATEGORY_NO = 'challenges/PUT_CHALLENGE_CATEGORY_NO';
+  const PUT_CHALLENGE_INFO = 'challenges/PUT_CHALLENGE_INFO';
+  const PUT_CHALLENGE_DESCRIPTION = 'challenges/PUT_CHALLENGE_DESCRIPTION';
+  const PUT_START_TIME = 'challenges/PUT_START_TIME';
+  const PUT_END_TIME = 'challenges/PUT_END_TIME';
   
   useEffect(
     () => {
-      console.log(1);
       dispatch(callGetChallengeInfoAPI(challengeNo));
-      console.log(2);
     },
     []
   );
@@ -38,23 +40,20 @@ function ModifyChallenge() {
     dispatch({type: PUT_CHALLENGE_CATEGORY_NO, payload: e.target.value});
   };
 
-  const descriptionOnChangeHandler = () => {
-    
+  const descriptionOnChangeHandler = (e) => {
+    dispatch({type: PUT_CHALLENGE_DESCRIPTION, payload: e.target.value});
   };
 
-  const test = () => {
-    axios.get('http://localhost:8888/challenges/test', {params : {time: time}});
+  const startTimeChangeHandler = (e) => {
+    dispatch({type: PUT_START_TIME, payload: e.target.value});
   };
   
-  const [time, setTime] = useState('');
-
-  const testHDL = (e) => {
-    console.log(e.target.value);
-    setTime(e.target.value);
+  const endTimeChangeHandler = (e) => {
+    dispatch({type: PUT_END_TIME, payload: e.target.value});
   };
-
-  const infoChangeHandler = () => {
-    
+  
+  const infoChangeHandler = (e) => {
+    dispatch({type: PUT_CHALLENGE_INFO, payload: e.target.value});
   };
 
   const modifyHandler = () => {
@@ -62,14 +61,17 @@ function ModifyChallenge() {
   };
 
   const test1 = () => {
-    axios.put('http://localhost:8888/challenges/test1', modifyAttachment)
+    axios.put('http://localhost:8888/challenges', {
+      challengeInfo: challengeInfo, 
+      authDayInfo: authDayInfo, 
+      attachmentInfo: attachmentInfo, 
+      modifyAttachment: modifyAttachment
+    })
           .then(res => console.log(res));
   }
   const scopeOnChangeHandler = (e) => { };
   return (
     <div>
-      <button onClick={test}>test</button>
-      <input type='date' onChange={testHDL} value={time}/>
       <br/>
       <br/>
       <div className={ ModifyChallengeCSS.btnarea }>
@@ -110,8 +112,8 @@ function ModifyChallenge() {
         <div className={ ModifyChallengeCSS.timeinput}>
           <label className={ ModifyChallengeCSS.subtitle }>인증 가능 시간</label><br/>
           <div>
-            <label>시작 시간<input type="time" value={ challengeInfo.startTime}/></label>
-            <label>종료 시간<input type="time" value={ challengeInfo.endTime}/></label>
+            <label>시작 시간<input type="time" onChange={ startTimeChangeHandler } value={ challengeInfo.startTime}/></label>
+            <label>종료 시간<input type="time" onChange={ endTimeChangeHandler } value={ challengeInfo.endTime}/></label>
           </div>
         </div>
 
@@ -143,10 +145,10 @@ function ModifyChallenge() {
           <textarea value={ challengeInfo.challengeInfo } onChange={ infoChangeHandler }/>
         </div>
         
-        <ModifyAttachments type={ 1 }inputFile={imageInput1} pathInfo={ attachmentInfo[0] } modifyFile={modifyAttachment} title='챌린지 배너 업로드'/>
-        <ModifyAttachments type={ 2 }inputFile={imageInput1} pathInfo={ attachmentInfo[1] } modifyFile={modifyAttachment} title='챌린지 배너 업로드'/>
-        <ModifyAttachments type={ 3 }inputFile={imageInput1} pathInfo={ attachmentInfo[2] } modifyFile={modifyAttachment} title='챌린지 배너 업로드'/>
-        <ModifyAttachments type={ 4 }inputFile={imageInput1} pathInfo={ attachmentInfo[3] } modifyFile={modifyAttachment} title='챌린지 배너 업로드'/>
+        <ModifyAttachments index={ 1 } inputFile={imageInput1} pathInfo={ attachmentInfo[0] } modifyFile={modifyAttachment} title='챌린지 배너 업로드1'/>
+        <ModifyAttachments index={ 2 } inputFile={imageInput2} pathInfo={ attachmentInfo[1] } modifyFile={modifyAttachment} title='챌린지 배너 업로드2'/>
+        <ModifyAttachments index={ 3 } inputFile={imageInput3} pathInfo={ attachmentInfo[2] } modifyFile={modifyAttachment} title='챌린지 배너 업로드3'/>
+        <ModifyAttachments index={ 4 } inputFile={imageInput4} pathInfo={ attachmentInfo[3] } modifyFile={modifyAttachment} title='챌린지 배너 업로드4'/>
 
         <button onClick={test1}>test1</button>
         <div className={ ModifyChallengeCSS.modifybtnarea }>

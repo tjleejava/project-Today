@@ -1,6 +1,7 @@
 import { Link, Outlet } from 'react-router-dom';
 import Footer from '../components/commons/Footer';
 import Header from '../components/commons/Header';
+import AdminHeader from '../components/commons/AdminHeader';
 import Navbar from '../components/commons/Navbar';
 
 
@@ -16,7 +17,13 @@ function Layout() {
             </div>
         );
     } else {
-        <Link to="login"/>
+        return (
+            <div>
+                <AdminHeader/>
+                <Outlet/>
+                <Footer/>
+            </div>
+        );
     }
 }
 

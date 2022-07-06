@@ -22,6 +22,7 @@ import AuthDetail from './pages/auth/AuthDetail';
 import ModifyChallengeCSS from './pages/challenge/modify/ModifyChallenge';
 import UserQna from './pages/platformqna/UserQna';
 import RegistQna from './pages/platformqna/RegistQna';
+import UserQnaDetail from './pages/platformqna/UserQnaDetail';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             <Route path="qna">
               <Route index element={ <UserQna/> } />
               <Route path="regist" element={ <RegistQna/>}/>
+              <Route path=":inquiryNo" element={ <UserQnaDetail/>}/>
             </Route>
           </Route>
         </Route>

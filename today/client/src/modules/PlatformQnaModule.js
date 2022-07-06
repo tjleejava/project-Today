@@ -7,6 +7,11 @@ const initialState = {
         content: '',
         date:'',
         memberNo: 0
+    },
+    inquiries: [],
+    inquiryInfo: {
+        inquiry: {},
+        reply: {}
     }
 };
 
@@ -16,6 +21,7 @@ export const POST_CONTENT = 'platform/POST_CONTENT';
 export const POST_DATE = 'platform/POST_DATE';
 export const POST_INQUIRY = 'platform/POST_INQUIRY';
 export const GET_INQUIRIES = 'platform/GET_INQUIRIES';
+export const GET_INQUIRY = 'platform/GET_INQUIRY';
 
 
 
@@ -24,7 +30,8 @@ const actions = createActions({
     [POST_CONTENT]: () => {},
     [POST_DATE]: () => {},
     [POST_INQUIRY]: () => {},
-    [GET_INQUIRIES]: () => {}
+    [GET_INQUIRIES]: () => {},
+    [GET_INQUIRY]: () => {}
     
 });
 
@@ -52,7 +59,13 @@ const platformQnaReducer = handleActions(
             return {...state};
         },
         [GET_INQUIRIES]: (state, { payload }) => {
-            console.log('payload : ', payload);
+            console.log('payload : ', payload.data);
+            state.inquiries = payload.data;
+
+            return {...state};
+        },
+        [GET_INQUIRY]: (state, { payload }) => {
+            state.inquiryInfo = payload.data;
 
             return {...state};
         }

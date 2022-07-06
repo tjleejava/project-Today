@@ -9,7 +9,10 @@ function UserQna() {
   const dispatch = useDispatch();
   const { inquiries } = useSelector(state => state.platformQnaReducer);
   useEffect(
-    () => {dispatch(callGetInquiriesAPI())},
+    () => {
+      const memberNo = 6;
+      dispatch(callGetInquiriesAPI(memberNo));
+    },
     []
   );
 
@@ -17,6 +20,11 @@ function UserQna() {
 
   const registqaHandler = () => {
     navigate('/mypage/qna/regist')
+  };
+
+  const inquiryOnClickHandler = (no) => {
+    navigate(`/mypage/qna/${no}`);
+    
   };
   return (
     <div className={ UserQnaCSS.area}>
@@ -32,27 +40,19 @@ function UserQna() {
             <th>문의 번호</th>
             <th>문의 제목</th>
             <th>답변 상태</th>
-            <th>문의 상태</th>
+            <th>문의 날짜</th>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-            </tr>
+            {
+              inquiries.map(inquiry =>
+                <tr onClick={ () => inquiryOnClickHandler(inquiry.platformInquiryNo) }  key={inquiry.platformInquiryNo}>
+                  <td>{inquiry.platformInquiryNo}</td>
+                  <td>{inquiry.platformInquiryTitle}</td>
+                  <td>{inquiry.replyYN}</td>
+                  <td>{inquiry.platformInquiryDate}</td>
+                </tr>
+                )
+            }
           </tbody>
         </table>
       </div>

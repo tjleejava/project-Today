@@ -11,3 +11,21 @@ exports.registInquiry = async (req, res, next) => {
     result
   );
 };
+
+exports.findInquiries = async(req, res, next) => {
+
+  const memberNo = req.query.memberNo;
+  const results = await InquiryService.findInquiries(memberNo);
+
+  res.status(HttpStatus.OK).send(results);
+};
+
+exports.findInquiry = async(req, res, next) => {
+
+  const inquiryNo = req.params.inquiryNo;
+
+  const result = await InquiryService.findInquiry(inquiryNo);
+
+  console.log(result);
+  res.status(HttpStatus.OK).send(result);
+}

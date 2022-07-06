@@ -29,3 +29,13 @@ exports.findInquiry = async(req, res, next) => {
   console.log(result);
   res.status(HttpStatus.OK).send(result);
 }
+
+exports.findAllInquiries = async(req, res, next) => {
+  const pageInfo = JSON.parse(req.query.pageInfo);
+  
+  const result = await InquiryService.findAllInquiries(pageInfo);
+
+  console.log('controller send result : ', result);
+  
+  res.status(HttpStatus.OK).send(result);
+};

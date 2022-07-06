@@ -62,3 +62,15 @@ exports.selectInquiryReply = (connection, inquiryNo) => {
     });
   });
 };
+
+exports.selectAllInquiries = (connection, pageInfo) => {
+
+  return new Promise((resolve, reject) => {
+    connection.query(InquiryQuery.selectAllInquiries(), [], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+      resolve(result);
+    });
+  });
+};

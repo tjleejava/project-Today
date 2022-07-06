@@ -1,4 +1,4 @@
-import { POST_INQUIRY,GET_INQUIRIES, GET_INQUIRY } from "../modules/PlatformQnaModule";
+import { POST_INQUIRY,GET_INQUIRIES, GET_INQUIRY,GET_INQUIRIES_ADMIN } from "../modules/PlatformQnaModule";
 import axios from 'axios';
 
 export function callPostInquiryAPI(registInfo) {
@@ -26,7 +26,6 @@ export function callGetInquiriesAPI(memberNo) {
                 .catch(err => console.log(err));
     dispatch({type: GET_INQUIRIES, payload: result});
   }
-
 };
 
 export function callGetInquiryAPI(inquiryNo) {
@@ -37,5 +36,17 @@ export function callGetInquiryAPI(inquiryNo) {
     const result = await axios.get(GET_INQUIRY_API_URL)
     .catch(err => console.log(err));
     dispatch({type: GET_INQUIRY, payload: result});
+  };
+};
+
+export function callAdminGetInquiriesAPI(pageInfo) {
+
+  let GET_INQUIRIES_API_URL = 'http://localhost:8888/inquiries/all';
+  return async function getInquiries(dispatch, getState) {
+    console.log(pageInfo);
+    console.log(typeof pageInfo );
+    const result = await axios.get(GET_INQUIRIES_API_URL, { params: { pageInfo: pageInfo}})
+    .catch(err => console.log(err));
+    dispatch({type: GET_INQUIRIES_ADMIN, payload: result});
   };
 };

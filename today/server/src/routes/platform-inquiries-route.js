@@ -4,6 +4,7 @@ const InquiryController = require('../controllers/platform-inquiry/platform-inqu
 
 router.post('/', InquiryController.registInquiry);
 router.get('/', InquiryController.findInquiries);
+router.get('/all', InquiryController.findAllInquiries);
 router.get('/:inquiryNo', InquiryController.findInquiry);
 
-module.exports = router;
+module.exports = router;``

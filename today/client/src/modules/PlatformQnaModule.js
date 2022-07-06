@@ -12,6 +12,13 @@ const initialState = {
     inquiryInfo: {
         inquiry: {},
         reply: {}
+    },
+    adminInquiriesPagingInfo: {
+        page: 1,
+        searchValue: '',
+        searchCondition: '',
+        totalItemsCount: 1,
+        pageItemCount: 10
     }
 };
 
@@ -22,6 +29,8 @@ export const POST_DATE = 'platform/POST_DATE';
 export const POST_INQUIRY = 'platform/POST_INQUIRY';
 export const GET_INQUIRIES = 'platform/GET_INQUIRIES';
 export const GET_INQUIRY = 'platform/GET_INQUIRY';
+export const GET_INQUIRIES_ADMIN = 'platform/GET_INQUIRIES_ADMIN';
+export const ADMIN_INQUIRIES_SEARCHVALUE = 'platform/ADMIN_INQUIRIES_SEARCHVALUE';
 
 
 
@@ -31,6 +40,8 @@ const actions = createActions({
     [POST_DATE]: () => {},
     [POST_INQUIRY]: () => {},
     [GET_INQUIRIES]: () => {},
+    [GET_INQUIRIES_ADMIN]: () => {},
+    [ADMIN_INQUIRIES_SEARCHVALUE]: () => {},
     [GET_INQUIRY]: () => {}
     
 });
@@ -66,6 +77,16 @@ const platformQnaReducer = handleActions(
         },
         [GET_INQUIRY]: (state, { payload }) => {
             state.inquiryInfo = payload.data;
+
+            return {...state};
+        },
+        [GET_INQUIRIES_ADMIN]: (state, { payload }) => {
+
+            console.log('payload : ', payload);
+
+        }, 
+        [ADMIN_INQUIRIES_SEARCHVALUE]: (state, { payload }) => {
+            state.adminInquiriesPagingInfo.searchValue = payload;
 
             return {...state};
         }

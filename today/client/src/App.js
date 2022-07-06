@@ -23,6 +23,7 @@ import ModifyChallengeCSS from './pages/challenge/modify/ModifyChallenge';
 import UserQna from './pages/platformqna/UserQna';
 import RegistQna from './pages/platformqna/RegistQna';
 import UserQnaDetail from './pages/platformqna/UserQnaDetail';
+import AdminInquiry from './pages/platformqna/AdminInquiry';
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
             <Route index element={ <Members/> } />
             <Route path=":memberNo" element={ <MemberDetail/> } />
           </Route>
+          <Route path="inquiries" element={ <AdminInquiry/> }/>
         </Route>
         <Route path="/sign" element={ <SignLayout/> }>
           <Route path="login" element={ <Login/> }/>

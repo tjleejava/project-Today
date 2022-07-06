@@ -49,3 +49,17 @@ exports.findInquiry = (inquiryNo) => {
 
   });
 };
+
+exports.findAllInquiries = (pageInfo) => {
+  
+  return new Promise( async (resolve, reject) => {
+
+    const connection = getConnection();
+
+    const result = await InquiryRepo.selectAllInquiries(connection, pageInfo);
+
+    connection.end();
+
+    resolve(result);
+  });
+};

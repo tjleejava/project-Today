@@ -7,7 +7,7 @@ import Navbar from '../components/commons/Navbar';
 
 function Layout() {
 
-    if(true) {
+    if(false) {
 
         return (
             <div>

@@ -103,3 +103,18 @@ exports.updateReply = () => {
        WHERE PLATFORM_INQUIRY_REPLY_NO = ?;
   `;
 };
+
+exports.insertReply = () => {
+  return `
+      INSERT 
+        INTO TBL_PLATFORM_INQUIRY_REPLY 
+      (
+        ADMIN_NO
+      , PLATFORM_INQUIRY_REPLY_CONTENT
+      , PLATFORM_INQUIRY_REPLY_DATE
+      , PLATFORM_INQUIRY_NO
+      ) 
+      VALUES
+      (1, ?, ?, ?);
+`;
+};

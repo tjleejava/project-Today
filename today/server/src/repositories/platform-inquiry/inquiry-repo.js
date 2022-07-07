@@ -115,3 +115,20 @@ exports.updateReply = (connection, reply) => {
     });
   });
 };
+
+exports.insertReply = (connection, replyInfo) => {
+  
+  const { replyDate, replyContent, inquiryNo } = replyInfo;
+  
+  return new Promise((resolve, reject) => {
+
+    connection.query(InquiryQuery.insertReply(), [replyContent, replyDate, inquiryNo], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
+    });
+    
+  });
+};

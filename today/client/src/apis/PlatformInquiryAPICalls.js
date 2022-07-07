@@ -49,7 +49,7 @@ export function callAdminGetInquiriesAPI(pageInfo) {
   };
 };
 
-export function callPostReplyAPI(reply) {
+export function callPutReplyAPI(reply) {
   let PUT_REPLY_API_URL = 'http://localhost:8888/inquiries/reply';
   
   return async function putReply(dispatch, getState) {
@@ -59,5 +59,19 @@ export function callPostReplyAPI(reply) {
 
     dispatch({type: PUT_REPLY, payload: result.data.result});
 
+  };
+};
+
+export function callPostReplyAPI(inquiryInfo) {
+
+  let POST_REPLY_API_URL = 'http://localhost:8888/inquiries/reply';
+
+  return async function postReply(dispatch, getState) {
+
+    console.log(inquiryInfo);
+    const result = await axios.post(POST_REPLY_API_URL, inquiryInfo)
+                              .catch(err => console.log(err));
+
+    
   };
 };

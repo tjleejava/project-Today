@@ -6,6 +6,7 @@ router.post('/', InquiryController.registInquiry);
 router.get('/', InquiryController.findInquiries);
 router.get('/all', InquiryController.findAllInquiries);
 router.put('/reply', InquiryController.modifyReply);
+router.post('/reply', InquiryController.registReply);
 router.get('/:inquiryNo', InquiryController.findInquiry);
 
 module.exports = router;``

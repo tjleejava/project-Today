@@ -48,3 +48,16 @@ exports.modifyReply = async(req, res, next) => {
     reply: reply
   })
 };
+
+exports.registReply = async(req, res, next) => {
+
+  const replyInfo = {
+    replyDate: req.body.reply.platfomrInquiryReplyDate,
+    replyContent: req.body.reply.platfomrInquiryReplyContent,
+    inquiryNo: req.body.inquiry.platformInquiryNo
+  };
+
+  const result = await InquiryService.registReply(replyInfo);
+
+  res.send(result);
+};

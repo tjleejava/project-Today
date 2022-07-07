@@ -11,7 +11,10 @@ const initialState = {
     inquiries: [],
     inquiryInfo: {
         inquiry: {},
-        reply: {}
+        reply: {
+            platfomrInquiryReplyContent:'',
+            platfomrInquiryReplyDate: ''
+        }
     },
     adminInquiriesPagingInfo: {
         page: 1,
@@ -33,7 +36,9 @@ export const GET_INQUIRIES_ADMIN = 'platform/GET_INQUIRIES_ADMIN';
 export const ADMIN_INQUIRIES_SEARCHVALUE = 'platform/ADMIN_INQUIRIES_SEARCHVALUE';
 export const ADMIN_INQUIRIES_PAGE_CHANGE = 'platform/ADMIN_INQUIRIES_PAGE_CHANGE';
 export const PUT_REPLY_CONTENT = 'platform/PUT_REPLY_CONTENT';
+export const POST_REPLY_DATE = 'platform/POST_REPLY_DATE';
 export const PUT_REPLY = 'platform/PUT_REPLY';
+export const DELETE_REPLY = 'platform/DELETE_REPLY';
 
 
 const actions = createActions({
@@ -46,8 +51,10 @@ const actions = createActions({
     [ADMIN_INQUIRIES_SEARCHVALUE]: () => {},
     [ADMIN_INQUIRIES_PAGE_CHANGE]: () => {},
     [PUT_REPLY_CONTENT]: () => {},
+    [POST_REPLY_DATE]: () => {},
     [PUT_REPLY]: () => {},
-    [GET_INQUIRY]: () => {}
+    [GET_INQUIRY]: () => {},
+    [DELETE_REPLY]: () => {}
     
 });
 
@@ -80,7 +87,7 @@ const platformQnaReducer = handleActions(
         },
         [GET_INQUIRY]: (state, { payload }) => {
             state.inquiryInfo = payload.data;
-
+            console.log(payload.data);
             return {...state};
         },
         [GET_INQUIRIES_ADMIN]: (state, { payload }) => {
@@ -107,10 +114,21 @@ const platformQnaReducer = handleActions(
             return {...state};
         },
         [PUT_REPLY]: (state, { payload }) => {
-            console.log('PUT_REPLY');
-            console.log(payload);
             state.inquiryInfo.reply = payload;
             
+            return {...state};
+        },
+        [POST_REPLY_DATE]: (state, { payload }) => {
+            state.inquiryInfo.reply.platfomrInquiryReplyDate = payload;
+
+            return {...state};
+        },
+        [DELETE_REPLY]: (state, { payload }) => {
+            state.inquiryInfo.reply = {
+                platfomrInquiryReplyContent:'',
+                platfomrInquiryReplyDate: ''
+            };
+
             return {...state};
         }
     },

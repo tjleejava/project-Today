@@ -1,9 +1,10 @@
-import { PUT_REPLY_CONTENT } from '../../modules/PlatformQnaModule';
+import { PUT_REPLY_CONTENT, POST_REPLY_DATE, DELETE_REPLY} from '../../modules/PlatformQnaModule';
 import AdminInquiryDetailCSS from './AdminInquiryDetail.module.css';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { callGetInquiryAPI, callPostReplyAPI } from '../../apis/PlatformInquiryAPICalls';
+import { callGetInquiryAPI, callPostReplyAPI, callPutReplyAPI } from '../../apis/PlatformInquiryAPICalls';
+import getTime from '../../util/getTime';
 
 function AdminInquiryDetail() {
 
@@ -12,8 +13,6 @@ function AdminInquiryDetail() {
   const { inquiryNo } = useParams();
   const navigate = useNavigate();
   
-  console.log('inquiry : ', inquiry);
-  console.log('reply : ', reply);
   const dispatch = useDispatch();
   useEffect(
     () => {
@@ -21,19 +20,27 @@ function AdminInquiryDetail() {
     },[]
   );
 
-  const backToListHandler = () => {
+  const backToListHandler = async () => {
+    await dispatch({type: DELETE_REPLY, payload: {}});
     navigate('/admin/inquiries');
   };
 
   const modifyReplyHandler = async () => {
-    await dispatch(callPostReplyAPI(reply));
+    await dispatch(callPutReplyAPI(reply));
 
     alert('답변이 수정되었습니다.');
 
   };
 
-  const registReplyHandler = () => {
+  const registReplyHandler = async () => {
 
+    const date = getTime.getDateAndTime();
+
+    await dispatch({type: POST_REPLY_DATE, payload: date});
+
+    await dispatch(callPostReplyAPI(inquiryInfo));
+
+    alert('답변이 등록되었습니다');
   };
 
   const replyOnchangeHandler = (e) => {
@@ -75,7 +82,7 @@ function AdminInquiryDetail() {
               <td>제목</td>
               <td colSpan='3'>{ inquiry.platformInquiryTitle }</td>
               <td>답변일자</td>
-              <td>{ inquiry.replyYN =='Y'? reply.platfomrInquiryReplyDate : console.log('no reply') }</td>
+              <td>{ inquiry.replyYN =='Y'? reply.platfomrInquiryReplyDate : null }</td>
             </tr>
             <tr style={ {height: "200px"}}>
               <td>내용</td>
@@ -86,7 +93,7 @@ function AdminInquiryDetail() {
               <td colSpan='5'>
                 { inquiry.replyYN =='Y'? 
                   <textarea style={{ width: "99%", height: "200px" }} onChange={ replyOnchangeHandler} value={reply.platfomrInquiryReplyContent}/> : 
-                  <textarea style={{ width: "99%", height: "200px" }} placeholder='답변을 등록해주세요' />
+                  <textarea onChange={ replyOnchangeHandler} value={reply.platfomrInquiryReplyContent} style={{ width: "99%", height: "200px" }} placeholder='답변을 등록해주세요' />
                 }
               </td>
             </tr>

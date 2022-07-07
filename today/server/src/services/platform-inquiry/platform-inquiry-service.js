@@ -82,3 +82,17 @@ exports.modifyReply = (reply) => {
     resolve(reply);
   });
 };
+
+exports.registReply = (replyInfo) => {
+
+  return new Promise( async (resolve, reject) => {
+
+    const connection = getConnection();
+
+    const result = await InquiryRepo.insertReply(connection, replyInfo);
+
+    connection.end();
+
+    resolve(result);
+  });
+};

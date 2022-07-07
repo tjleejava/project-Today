@@ -57,9 +57,28 @@ exports.findAllInquiries = (pageInfo) => {
     const connection = getConnection();
 
     const result = await InquiryRepo.selectAllInquiries(connection, pageInfo);
+    const countResult = await InquiryRepo.selectAllInquiriesCounts(connection);
+    
+    connection.end();
+
+    pageInfo.totalItemsCount = countResult;
+    
+    resolve({
+      inquiries: result,
+      adminInquiriesPagingInfo: pageInfo
+    });
+  });
+};
+
+exports.modifyReply = (reply) => {
+
+  return new Promise( async (resolve, reject) => {
+    const connection = getConnection();
+
+    const result = await InquiryRepo.updateReply(connection, reply);
 
     connection.end();
 
-    resolve(result);
+    resolve(reply);
   });
 };

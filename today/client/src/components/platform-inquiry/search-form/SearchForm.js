@@ -10,8 +10,13 @@ function SearchForm() {
   const {adminInquiriesPagingInfo} = useSelector(state => state.platformQnaReducer);
   const {page, searchValue, searchCondition, totalItemsCount, pageItemCount } = adminInquiriesPagingInfo;
   const dispatch = useDispatch();
-  const ADMIN_INQUIRIES_SEARCHVALUE = 'platform/ADMIN_INQUIRIES_SEARCHVALUE'
-  const handlePageChange = () => {};
+  const ADMIN_INQUIRIES_SEARCHVALUE = 'platform/ADMIN_INQUIRIES_SEARCHVALUE';
+  const ADMIN_INQUIRIES_PAGE_CHANGE = 'platform/ADMIN_INQUIRIES_PAGE_CHANGE';
+  const handlePageChange = async (e) => {
+    await dispatch({type: ADMIN_INQUIRIES_PAGE_CHANGE, payload: e});
+    
+    await dispatch(callAdminGetInquiriesAPI(adminInquiriesPagingInfo));
+  };
 
   const searchValueChangeHandler = (e) => {
     dispatch({type: ADMIN_INQUIRIES_SEARCHVALUE, payload: e.target.value});

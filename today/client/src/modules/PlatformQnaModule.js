@@ -31,7 +31,9 @@ export const GET_INQUIRIES = 'platform/GET_INQUIRIES';
 export const GET_INQUIRY = 'platform/GET_INQUIRY';
 export const GET_INQUIRIES_ADMIN = 'platform/GET_INQUIRIES_ADMIN';
 export const ADMIN_INQUIRIES_SEARCHVALUE = 'platform/ADMIN_INQUIRIES_SEARCHVALUE';
-
+export const ADMIN_INQUIRIES_PAGE_CHANGE = 'platform/ADMIN_INQUIRIES_PAGE_CHANGE';
+export const PUT_REPLY_CONTENT = 'platform/PUT_REPLY_CONTENT';
+export const PUT_REPLY = 'platform/PUT_REPLY';
 
 
 const actions = createActions({
@@ -42,6 +44,9 @@ const actions = createActions({
     [GET_INQUIRIES]: () => {},
     [GET_INQUIRIES_ADMIN]: () => {},
     [ADMIN_INQUIRIES_SEARCHVALUE]: () => {},
+    [ADMIN_INQUIRIES_PAGE_CHANGE]: () => {},
+    [PUT_REPLY_CONTENT]: () => {},
+    [PUT_REPLY]: () => {},
     [GET_INQUIRY]: () => {}
     
 });
@@ -65,12 +70,10 @@ const platformQnaReducer = handleActions(
             return {...state};
         },
         [POST_INQUIRY]: (state, { payload }) => {
-            console.log('payload');
 
             return {...state};
         },
         [GET_INQUIRIES]: (state, { payload }) => {
-            console.log('payload : ', payload.data);
             state.inquiries = payload.data;
 
             return {...state};
@@ -82,12 +85,32 @@ const platformQnaReducer = handleActions(
         },
         [GET_INQUIRIES_ADMIN]: (state, { payload }) => {
 
-            console.log('payload : ', payload);
+            console.log('payload : ', payload.data);
+            state.adminInquiriesPagingInfo = payload.data.adminInquiriesPagingInfo;
+            state.inquiries = payload.data.inquiries;
 
+            return {...state};
         }, 
         [ADMIN_INQUIRIES_SEARCHVALUE]: (state, { payload }) => {
             state.adminInquiriesPagingInfo.searchValue = payload;
 
+            return {...state};
+        },
+        [ADMIN_INQUIRIES_PAGE_CHANGE]: (state, { payload }) => {
+            state.adminInquiriesPagingInfo.page = payload;
+
+            return {...state};
+        },
+        [PUT_REPLY_CONTENT]: (state, { payload }) => {
+            state.inquiryInfo.reply.platfomrInquiryReplyContent = payload;
+
+            return {...state};
+        },
+        [PUT_REPLY]: (state, { payload }) => {
+            console.log('PUT_REPLY');
+            console.log(payload);
+            state.inquiryInfo.reply = payload;
+            
             return {...state};
         }
     },

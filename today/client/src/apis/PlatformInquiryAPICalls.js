@@ -1,4 +1,4 @@
-import { POST_INQUIRY,GET_INQUIRIES, GET_INQUIRY,GET_INQUIRIES_ADMIN } from "../modules/PlatformQnaModule";
+import { PUT_REPLY, POST_INQUIRY,GET_INQUIRIES, GET_INQUIRY,GET_INQUIRIES_ADMIN } from "../modules/PlatformQnaModule";
 import axios from 'axios';
 
 export function callPostInquiryAPI(registInfo) {
@@ -43,10 +43,21 @@ export function callAdminGetInquiriesAPI(pageInfo) {
 
   let GET_INQUIRIES_API_URL = 'http://localhost:8888/inquiries/all';
   return async function getInquiries(dispatch, getState) {
-    console.log(pageInfo);
-    console.log(typeof pageInfo );
     const result = await axios.get(GET_INQUIRIES_API_URL, { params: { pageInfo: pageInfo}})
     .catch(err => console.log(err));
     dispatch({type: GET_INQUIRIES_ADMIN, payload: result});
+  };
+};
+
+export function callPostReplyAPI(reply) {
+  let PUT_REPLY_API_URL = 'http://localhost:8888/inquiries/reply';
+  
+  return async function putReply(dispatch, getState) {
+    console.log(reply);
+    const result = await axios.put(PUT_REPLY_API_URL, reply)
+                            .catch(err => console.log(err));
+
+    dispatch({type: PUT_REPLY, payload: result.data.result});
+
   };
 };

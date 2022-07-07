@@ -35,7 +35,16 @@ exports.findAllInquiries = async(req, res, next) => {
   
   const result = await InquiryService.findAllInquiries(pageInfo);
 
-  console.log('controller send result : ', result);
-  
   res.status(HttpStatus.OK).send(result);
+};
+
+exports.modifyReply = async(req, res, next) => {
+  const reply = req.body;
+
+  const result = await InquiryService.modifyReply(reply);
+
+  res.send({
+    result: result,
+    reply: reply
+  })
 };

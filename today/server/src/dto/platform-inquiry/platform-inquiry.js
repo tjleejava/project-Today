@@ -1,7 +1,7 @@
 class PlatformInquiryDTO{
   platformInquiryNo;
   platformInquiryTitle;
-    ;
+  platformInquiryContent;
   platformInquiryDate;
   memberNo;
   nickname;

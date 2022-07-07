@@ -24,6 +24,7 @@ import UserQna from './pages/platformqna/UserQna';
 import RegistQna from './pages/platformqna/RegistQna';
 import UserQnaDetail from './pages/platformqna/UserQnaDetail';
 import AdminInquiry from './pages/platformqna/AdminInquiry';
+import AdminInquiryDetail from './pages/platformqna/AdminInquiryDetail';
 
 function App() {
   return (
@@ -60,7 +61,10 @@ function App() {
             <Route index element={ <Members/> } />
             <Route path=":memberNo" element={ <MemberDetail/> } />
           </Route>
-          <Route path="inquiries" element={ <AdminInquiry/> }/>
+          <Route path="inquiries">
+            <Route index  element={ <AdminInquiry/> }/>
+            <Route path=":inquiryNo" element={ <AdminInquiryDetail/> }/>
+          </Route>
         </Route>
         <Route path="/sign" element={ <SignLayout/> }>
           <Route path="login" element={ <Login/> }/>

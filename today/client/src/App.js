@@ -19,12 +19,16 @@ import PwdFind from './pages/idPwdFind/PwdFind';
 import IdFindResult from './pages/idPwdFind/IdFindResult';
 import AuthList from './pages/auth/AuthList';
 import AuthDetail from './pages/auth/AuthDetail';
-import ModifyChallengeCSS from './pages/challenge/modify/ModifyChallenge';
+import ModifyChallenge from './pages/challenge/modify/ModifyChallenge';
 import UserQna from './pages/platformqna/UserQna';
 import RegistQna from './pages/platformqna/RegistQna';
 import UserQnaDetail from './pages/platformqna/UserQnaDetail';
 import AdminInquiry from './pages/platformqna/AdminInquiry';
 import AdminInquiryDetail from './pages/platformqna/AdminInquiryDetail';
+import AdminReport from './pages/report/AdminReport';
+import AdminUserReport from './pages/report/AdminUserReport';
+import AdminChallengeReport from './pages/report/AdminChallengeReport';
+import ReportDetail from './components/report/ReportDetail';
 
 function App() {
   return (
@@ -39,10 +43,11 @@ function App() {
             <Route index element={ <ChallengesList/> } />
             <Route path=":challengeNo" >
               <Route index  element={ <ChallengeDetail/> } />
-              <Route path="auth" />
-              <Route index element={ <AuthList/> } />
-              <Route path=":authNo" element={ <AuthDetail/> } />
-              <Route path="modify" element={ <ModifyChallengeCSS/>}/>
+              <Route path="modify" element={ <ModifyChallenge/>}/>
+              <Route path="auth">
+                <Route index element={ <AuthList/> } />
+                <Route path=":authNo" element={ <AuthDetail/> } />
+              </Route>
             </Route>
           </Route> 
           <Route path="mypage" element={ <MypageLayout/> }>
@@ -64,6 +69,12 @@ function App() {
           <Route path="inquiries">
             <Route index  element={ <AdminInquiry/> }/>
             <Route path=":inquiryNo" element={ <AdminInquiryDetail/> }/>
+          </Route>
+          <Route path="reports">
+            <Route index element={ <AdminReport/>}/>
+            <Route path='user' element={ <AdminUserReport/>}/>
+            <Route path='challenge' element={ <AdminChallengeReport/>}/>
+            <Route path=':reportNo' element={ <ReportDetail/>}/>
           </Route>
         </Route>
         <Route path="/sign" element={ <SignLayout/> }>

@@ -1,13 +1,34 @@
 const HttpStatus = require('http-status');
-const MenuService = require('../services/menu-service');
+const ReportService = require('../../services/report/report-service');
 
-exports.findAllMenus = async (req, res, next) => {
+exports.findReport = async(req, res, next) => {
+    const reportNo = req.params.reportNo;
 
-    const results = await MenuService.findAllMenus();
+    let result = await ReportService.findReport(reportNo);
+    
+    res.send(result);
+};
 
-    res.status(HttpStatus.OK).json({
-        status: HttpStatus.OK,
-        message: 'successfully found all menus',
-        results: results
-    });
+exports.findReports = async (req, res, next) => {
+
+    const pageInfo = JSON.parse(req.query.pageInfo);
+    
+    const results = await ReportService.findReports(pageInfo);
+
+    res.send(results);
+
+};
+
+exports.registReport = async(req, res, next) => {
+
+    const result = await ReportService.registReport(req.body);
+    
+    res.send(result);
+};
+
+exports.checkChallengeReport = async(req, res, next) => {
+
+    const result = await ReportService.checkChallengeReport(JSON.parse(req.query.checkInfo));
+
+    res.send(result);
 };

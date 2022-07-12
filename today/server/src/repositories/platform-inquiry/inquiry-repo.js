@@ -66,11 +66,11 @@ exports.selectInquiryReply = (connection, inquiryNo) => {
 
 exports.selectAllInquiries = (connection, pageInfo) => {
 
-  const startRow = pageInfo.pageItemCount * (pageInfo.page - 1) + 1;
-  const endRow = pageInfo.pageItemCount * pageInfo.page;
+  const startRow = pageInfo.pageItemCount * (pageInfo.page - 1);
+  const pageItemCount = pageInfo.pageItemCount;
 
   return new Promise((resolve, reject) => {
-    connection.query(InquiryQuery.selectAllInquiries(), [startRow, endRow], (err, result, fields) => {
+    connection.query(InquiryQuery.selectAllInquiries(), [startRow, pageItemCount], (err, result, fields) => {
       if(err) {
         reject(err);
       }

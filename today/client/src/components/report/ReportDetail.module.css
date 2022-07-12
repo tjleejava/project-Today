@@ -1,0 +1,43 @@
+.area {
+  border: 1px solid black;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 3%;
+  height: 650px;
+  border-radius: 5px;
+}
+
+.detailArea {
+  border-right: 1px solid black;
+  display: inline-block;
+  width: 53%;
+  height: 650px;
+  vertical-align: top;
+}
+
+.answerArea {
+  display: inline-block;
+  width: 46%;
+  height: 640px;
+}
+
+.answerbox {
+  width: 90%;
+  height: 570px;
+}
+
+.btnarea {
+  width: 97%;
+  text-align: right;
+}
+
+.btnarea > button {
+  width: 100px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #A49A93;
+  color: white;
+  cursor: pointer;
+}

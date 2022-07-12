@@ -9,4 +9,4 @@ router.put('/reply', InquiryController.modifyReply);
 router.post('/reply', InquiryController.registReply);
 router.get('/:inquiryNo', InquiryController.findInquiry);
 
-module.exports = router;``
+module.exports = router;

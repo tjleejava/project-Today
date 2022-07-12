@@ -1,15 +1,21 @@
 import ChallengeSideInfoCSS from './ChallengeSideInfo.module.css';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import ChallengeReportModal from './ChallengeReportModal';
+import { useSelector } from 'react-redux';
+
 export default function ChallengeSideInfo() {
 
     const { challengeNo } = useParams();
     const MODIFY = 'modify';
     const navigate = useNavigate(); 
+    const [reportModalState , setReportModalState] = useState(false);
+
+    const { registInfo, isAlreadyReported } = useSelector(state => state.reportReducer)
 
     const modifyChallengeHandler = () => {
         navigate(MODIFY);
     }
-
 
     return (
         <div className={ ChallengeSideInfoCSS.sideInfoArea }>
@@ -35,11 +41,17 @@ export default function ChallengeSideInfo() {
             <div className={ ChallengeSideInfoCSS.content }>
                 <button className={ ChallengeSideInfoCSS.inviteBtn }>친구 초대하기</button>
             </div>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            {
+                isAlreadyReported ?
+                '이미 신고가 접수되었습니다' :
+                <button onClick={ () => setReportModalState(true)}>신고하기</button>
+            }
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div className={ ChallengeSideInfoCSS.buttonArea }>
                 <button onClick={ modifyChallengeHandler } className={ ChallengeSideInfoCSS.modifyBtn }>챌린지 수정</button>
                 <button className={ ChallengeSideInfoCSS.deleteBtn }>챌린지 삭제</button>
             </div>
+            <ChallengeReportModal reportModalState={reportModalState} setReportModalState={setReportModalState}/>
         </div>
     );
 }

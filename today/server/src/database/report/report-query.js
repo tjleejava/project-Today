@@ -23,6 +23,41 @@ exports.selectReport = () => {
   `;
 };
 
+exports.selectReportExamine = () => {
+
+  return `
+      SELECT 
+            REPORT_EXAMINE_HISTORY_NO
+          , REPORT_EXAMINE_DATE
+          , REPORT_NO
+          , REPORT_EXAMINE_CATEGORY
+          , PENALTY_DATE
+          , REFUSE_REASON 
+          , CHALLENGE_CANCEL_DATE
+       FROM TBL_REPORT_EXAMINE_HISTORY
+      WHERE REPORT_NO = ?
+      ORDER BY REPORT_EXAMINE_HISTORY_NO DESC
+      LIMIT 0 , 1
+  `;
+};
+
+exports.selectChallengeReportAccept = () => {
+
+  return `
+      SELECT 
+             A.PENALTY_DATE AS penaltyDate
+           , A.CHALLENGE_CANCEL_DATE AS challengeCancelDate
+        FROM TBL_REPORT_EXAMINE_HISTORY A
+       WHERE A.REPORT_NO IN (SELECT B.REPORT_NO 
+                               FROM TBL_REPORT B 
+                              WHERE B.CHALLENGE_NO = (SELECT A.CHALLENGE_NO
+                                                        FROM TBL_REPORT A
+                                                       WHERE A.REPORT_NO = ?
+                                                     )
+                            )
+  `;
+};
+
 exports.selectChallengeReportsCount = () => {
   
   return `
@@ -131,5 +166,128 @@ exports.selectChallengeReportbyNo = () => {
         FROM TBL_REPORT
        WHERE REPORTER_NO = ?
          AND CHALLENGE_NO = ?
+  `;
+};
+
+
+exports.insertRefuse = () => {
+  return `
+      INSERT 
+        INTO TBL_REPORT_EXAMINE_HISTORY 
+      (
+        REPORT_EXAMINE_DATE
+      , REPORT_NO
+      , REFUSE_REASON
+      , REPORT_EXAMINE_CATEGORY
+      ) 
+      VALUES(?, ?, ?, '거절')
+  `;
+};
+
+exports.updateChallengeStatus = () => {
+
+  return `
+      UPDATE
+             TBL_CHALLENGE
+         SET CHALLENGE_STATUS_NO = 5
+       WHERE CHALLENGE_NO = ?
+  `;
+};
+
+exports.selectParticipations = () => {
+
+  return `
+      SELECT
+             PARTICIPATION_NO
+           , MEMBER_NO
+           , CHALLENGE_NO
+           , PARTICIPATION_DATE
+           , PARTICIPATION_STATUS_NO
+        FROM TBL_PARTICIPATION
+       WHERE CHALLENGE_NO = ?
+  `;
+};
+
+exports.updateReportStatus = () => {
+
+  return `
+      UPDATE
+             TBL_REPORT
+         SET REPORT_STATUS = ?
+       WHERE REPORT_NO = ?
+  `;
+};
+
+exports.insertAlarm = () => {
+  return`
+      INSERT 
+        INTO TBL_ALARM 
+      (
+        ALARM_CATEGORY_NO
+      , MEMBER_NO
+      , ALARM_CONTENT
+      , ALARM_DATE
+      , CHECK_YN
+      ) 
+      VALUES(?, ?, ?, ?, 'N')
+
+  `;
+};
+
+exports.insertParticipationHistory = () => {
+
+  return `
+      INSERT
+        INTO TBL_PARTICIPATION_HISTORY 
+      (
+        PARTICIPATION_NO
+      , CATEGORY_NO
+      , HISTORY_DATE
+      ) 
+      VALUES(?, ?, ?);
+
+  `;
+
+};
+
+exports.selectHostNo = () => {
+
+  return`
+      SELECT
+             MEMBER_NO AS no
+        FROM TBL_CHALLENGE
+       WHERE CHALLENGE_NO = ?
+  `;
+};
+
+exports.insertExamineAccept = () => {
+
+  return `
+      INSERT 
+        INTO TBL_REPORT_EXAMINE_HISTORY 
+      (
+        REPORT_EXAMINE_DATE
+      , REPORT_NO
+      , REPORT_EXAMINE_CATEGORY
+      , PENALTY_DATE
+      , CHALLENGE_CANCEL_DATE
+      ) 
+      VALUES(?, ?, ?, ?, ?);  
+  `;
+};
+
+exports.insertUserPenalty = () => {
+
+  return `
+      INSERT 
+        INTO TBL_PENALTY 
+      (
+        PENALTY_DATE
+      , MEMBER_NO
+      , PENALTY_END_DATE
+      , PENALTY_CATEGORY
+      , REPORT_EXAMINE_HISTORY_NO
+      ) 
+      VALUES(?, ?, ?, ?, ?)
   `;
 };

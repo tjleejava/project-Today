@@ -1,6 +1,6 @@
 import ChallengeSideInfoCSS from './ChallengeSideInfo.module.css';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ChallengeReportModal from './ChallengeReportModal';
 import { useSelector } from 'react-redux';
 

@@ -1,6 +1,27 @@
 const HttpStatus = require('http-status');
 const ReportService = require('../../services/report/report-service');
 
+exports.registRefuse = async(req, res, next) => {
+    
+    const result = await ReportService.registRefuse(req.body);
+
+    res.send(result);
+};
+
+exports.registAccept = async(req, res, next) => {
+    const result = await ReportService.registAccept(req.body);
+
+    res.send(result);
+};
+
+exports.checkChallengeReportAccepted = async(req, res, next) => {
+    const reportNo = req.query.reportNo;
+    console.log(reportNo);
+    const result = await ReportService.checkChallengeReportAccepted(reportNo);
+
+    res.send(result);
+};
+
 exports.findReport = async(req, res, next) => {
     const reportNo = req.params.reportNo;
 

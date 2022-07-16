@@ -14,16 +14,18 @@ const initialState = {
     type: ''
   },
   reports: [],
-  report: {}
+  report: {},
+  examineInfo: {}
 };
 
 export const POST_CHALLENGE_REPORT = 'report/POST_CHALLENGE_REPORT';
 export const CHECK_REPORT_CATEGORY = 'report/CHECK_REPORT_CATEGORY';
 export const CHANGE_REPORT_CONTENT = 'report/CHANGE_REPORT_CONTENT';
 export const GET_CHECK_CHELLENGE_REPORT = 'report/GET_CHECK_CHELLENGE_REPORT';
-export const GET_CHALLENGE_REPORT = 'report/GET_CHECK_CHELLENGE_REPORT';
+export const GET_CHALLENGE_REPORT = 'report/GET_CHALLENGE_REPORT';
 export const PAGE_CHANGE = 'report/PAGE_CHANGE';
 export const GET_REPORT = 'report/GET_REPORT';
+export const POST_REPORT_REFUSE = 'report/POST_REPORT_REFUSE';
 
 const actions = createActions({
   [POST_CHALLENGE_REPORT]: () => {},
@@ -32,7 +34,8 @@ const actions = createActions({
   [GET_CHECK_CHELLENGE_REPORT]: () => {},
   [GET_CHALLENGE_REPORT]: () => {},
   [PAGE_CHANGE]: () => {},
-  [GET_REPORT]: () => {}
+  [GET_REPORT]: () => {},
+  [POST_REPORT_REFUSE]: () => {}
 });
 
 const reportReducer = handleActions(
@@ -53,8 +56,10 @@ const reportReducer = handleActions(
 
       return {...state};
     },
-    [GET_CHECK_CHELLENGE_REPORT]: (state, {payload}) => {
+    [GET_CHECK_CHELLENGE_REPORT]: (state, payload) => {
+      
       state.isAlreadyReported = payload;
+      
       return {...state};
     },
     [GET_CHALLENGE_REPORT]: (state, {payload}) => { 
@@ -70,9 +75,13 @@ const reportReducer = handleActions(
     },
     [GET_REPORT]: (state, {payload}) => {
 
-      state.report = payload;
+      state.report = payload.report;
+      state.examineInfo = payload.reportExamine;
 
-      console.log(state.report);
+      return {...state};
+    },
+    [POST_REPORT_REFUSE]: (state, payload) => {
+
       return {...state};
     }
   },initialState

@@ -1,5 +1,17 @@
 import axios from 'axios';
-import { GET_REPORT, GET_CHALLENGE_REPORT, POST_CHALLENGE_REPORT, GET_CHECK_CHELLENGE_REPORT } from '../modules/ReportModuls';
+import { POST_REPORT_REFUSE, GET_REPORT, GET_CHALLENGE_REPORT, POST_CHALLENGE_REPORT, GET_CHECK_CHELLENGE_REPORT } from '../modules/ReportModuls';
+
+export function callReportRefuseAPI(refuseInfo) {
+
+  const REFUSE_REPORT_URL = 'http://localhost:8888/reports/refuse';
+  return async function refuseReport(dispatch, getState) {
+
+    const result = await axios.post(REFUSE_REPORT_URL, refuseInfo).catch(err => console.log(err));
+
+    dispatch({type: POST_REPORT_REFUSE, payload: result});
+
+  };
+};
 
 export function callPostChallengeReportATI(registInfo) {
   const REGIST_REPORT_URL = 'http://localhost:8888/reports';
@@ -23,7 +35,7 @@ export function checkChallengeReportAPI(checkInfo) {
 
     const result = await axios.get(CHECK_CHALLENGE_REPORT_URL, { params: {checkInfo}}).catch(err => console.log(err));
 
-    dispatch({ type: GET_CHECK_CHELLENGE_REPORT, payload: result.data[0].COUNT != 0 ? true: false })
+    dispatch({ type: GET_CHECK_CHELLENGE_REPORT, payload: result.data[0].COUNT })
   };
 };
 

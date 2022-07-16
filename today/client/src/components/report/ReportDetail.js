@@ -1,26 +1,26 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ReportDetailCSS from './ReportDetail.module.css';
 import { getReportAPI } from '../../apis/ReportAPICalls';
 import UserReportDetail from '../../pages/report/UserReportDetail';
 import ChallengeReportDetail from '../../pages/report/ChallengeReportDetail';
+import ChallengeReportExamineRefuseModal from '../../pages/report/ChallengeReportExamineRefuseModal';
+import ExamineRefuse from './ExamineRefuse';
+import ExamineAcceptModal from '../../pages/report/ExamineAcceptModal';
+import ReportExamineArea from './ReportExamineArea';
+import ExamineAccept from './ExamineAccept';
 
 function ReportDetail() {
+  
+  const [acceptModalState, setAcceptModalState] = useState(false);
+
+  const [refuseModalState, setRefuseModalState] = useState(false);
 
   const dispatch = useDispatch();
-  const { report } = useSelector(state => state.reportReducer);
-  const navigate = useNavigate();
+  const { report, examineInfo } = useSelector(state => state.reportReducer);
   const {reportNo} = useParams();
 
-  const backToListHandler = () => {
-    
-    if(report.categoryType === '챌린지') {
-      navigate('../challenge');
-    } else {
-      navigate('../user');
-    }
-  };
 
   useEffect(
     () => {
@@ -38,14 +38,20 @@ function ReportDetail() {
         }
       </div>
       <div className={ ReportDetailCSS.answerArea}>
-        <div className={ ReportDetailCSS.answerbox }>
-        </div>
-        <div className={ ReportDetailCSS.btnarea }>
-          <button>승인</button>
-          <button>거절</button>
-          <button onClick={ backToListHandler }>뒤로가기</button>
-        </div>
+        {
+          Object.keys(examineInfo).length === 0 ? 
+          <ReportExamineArea setAcceptModalState={setAcceptModalState} setRefuseModalState={setRefuseModalState} category={ report.categoryType }/>
+          : 
+          (
+            examineInfo.reportExamineCategory === '거절' ? 
+            <ExamineRefuse category={ report.categoryType } examineInfo={examineInfo}/> : 
+            <ExamineAccept category={ report.categoryType } examineInfo={examineInfo}/>
+          )
+        }
+        
       </div>
+      <ExamineAcceptModal modalState={acceptModalState} setModalState={setAcceptModalState} />
+      <ChallengeReportExamineRefuseModal refuseModalState={refuseModalState} setRefuseModalState={setRefuseModalState}/>
     </div>
   );
 };

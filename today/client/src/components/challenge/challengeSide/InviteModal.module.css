@@ -29,10 +29,17 @@
   height: 300px;
 }
 
-.outputbox {
-  border: 1px solid black;
+.notExistbox {
   text-align: center;
-  height: 200px;
+  padding-top: 130px;
+}
+
+.existsbox {
+  border: 1px solid black;
+}
+
+.notExistbox > label {
+  font-size: 1.2em;
 }
 
 .btnarea {

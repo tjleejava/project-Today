@@ -6,12 +6,16 @@ import {checkUserEmailAPI} from '../../../apis/InviteAPICalls';
 
 function InviteModal() {
 
-  const { isInviteModalOpen, inviteEmail, isExists, inviteInfo } = useSelector(state => state.inviteReducer);
+  const { isInviteModalOpen, inviteEmail, isExists, inviteInfo , isCheck} = useSelector(state => state.inviteReducer);
 
   const dispatch = useDispatch();
 
   const onClickHandler = () => {
     dispatch(checkUserEmailAPI(inviteEmail));
+  };
+
+  const inviteHandler = () => {
+
   };
 
   const modalCloseHandler = () => {
@@ -56,15 +60,22 @@ function InviteModal() {
       <div className={InviteModalCSS.outputarea}>
         {
           isExists ?
-          '존재':
-          <div className={ InviteModalCSS.outputbox}>
-            안존재
+          <div className={ InviteModalCSS.existsbox}>
+            <label>ID : </label><label>{inviteInfo.memberId}</label>
+          </div>  :
+          <div className={ InviteModalCSS.notExistbox}>
+            <div>
+              { isCheck? 
+                <label>해당 회원은 존재하지 않습니다.</label>:
+                <label>초대할 회원을 검색하세요.</label>
+              }
+            </div>
           </div>
-
         }
       </div>
       <div className={ InviteModalCSS.btnarea}>
-        <button>뒤로가기</button>
+        { isExists? <button onClick={ inviteHandler }>초대하기</button>: null}
+        <button onClick={modalCloseHandler}>뒤로가기</button>
       </div>
     </Modal>
   );

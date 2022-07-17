@@ -106,13 +106,13 @@ exports.checkEmailExist = async (req, res, next) => {
     res.status(HttpStatus.OK).json({
       status: HttpStatus.OK,
       isExists: true,
-      results: result
+      memberInfo: result
     })
   } else{
     res.status(HttpStatus.OK).json({
       status: HttpStatus.OK,
       isExists: false,
-      results: result
+      memberInfo: result
     });
   }
 };

@@ -5,7 +5,8 @@ const initialState = {
     isInviteModalOpen: false,
     inviteEmail: '',
     isExists: false,
-    inviteInfo: {}
+    inviteInfo: {},
+    isCheck: false
 };
 
 /* 액션 */
@@ -25,13 +26,17 @@ const inviteReducer = handleActions(
     {
         [CHANGE_INVITE_MODAL]: (state, { payload }) => {
             state.isInviteModalOpen = payload;
+            state.isCheck = false;
+            state.inviteEmail = '';
             return {...state};
         },
         [GET_USER_EMAIL] : (state, { payload }) => {
 
             state.isExists = payload.isExists;
-            state.inviteInfo = payload.inviteInfo;
+            state.isCheck = true;
+            state.inviteInfo = payload.memberInfo;
 
+            console.log(state.inviteInfo);
             return {...state};
         },
         [SET_UESR_EMAIL]: (state, { payload }) => {

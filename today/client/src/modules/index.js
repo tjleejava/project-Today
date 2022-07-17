@@ -2,9 +2,11 @@ import { combineReducers } from 'redux';
 import menuReducer from './MenuModule';
 import memberReducer from './MemberModule';
 import challengesReducer from './ChallengesModule';
+import challengeReducer from './ChallengeDetailModule';
 import platformQnaReducer from './PlatformQnaModule';
 import reportReducer from './ReportModuls';
 import reportExamineReducer from './ReportExamineModule';
+import mainpageReducer from './MainpageModule';
 
 const rootReducer = combineReducers({
     menuReducer,
@@ -12,7 +14,8 @@ const rootReducer = combineReducers({
     challengesReducer,
     platformQnaReducer,
     reportReducer,
-    reportExamineReducer
+    reportExamineReducer,
+    mainpageReducer
 });
 
 export default rootReducer;

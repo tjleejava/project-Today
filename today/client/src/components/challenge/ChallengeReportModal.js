@@ -10,7 +10,8 @@ function ChallengeReportModal({reportModalState, setReportModalState}) {
 
   const CHECK_REPORT_CATEGORY = 'report/CHECK_REPORT_CATEGORY';
   const CHANGE_REPORT_CONTENT = 'report/CHANGE_REPORT_CONTENT';
-  const reporterNo = 3;
+  //보류
+  const reporterNo = 5;
 
   const { registInfo, isAlreadyReported } = useSelector(state => state.reportReducer)
   const { challengeNo } = useParams();

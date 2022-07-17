@@ -1,6 +1,6 @@
 import UserSideCSS from './UserSide.module.css';
 import { useSelector } from 'react-redux';
-function UserSide() {
+function UserSide({setReportModalState, isAlreadyReported}) {
   const { challengeInfo, isPartIn } = useSelector(state => state.challengesReducer);
 
   return (
@@ -19,10 +19,15 @@ function UserSide() {
           <button className={ UserSideCSS.authBtn }>챌린지 참여</button>
       </div>
       }
-      <div className={ UserSideCSS.reportArea}>
-        <img src='/images/siren.png'/>
-        신고하기
-      </div>
+      { 
+        isAlreadyReported ?
+        '이미 신고가 접수되었습니다' :
+        <div onClick={ () => setReportModalState(true)} className={ UserSideCSS.reportArea}>
+          <img src='/images/siren.png'/>
+          신고하기
+        </div>
+      }
+      
     </div>
   );
 };

@@ -190,6 +190,7 @@ exports.findId = (email) => {
 
 };
 
+
 exports.checkEmail = (email) => {
 
   return new Promise( async (resolve, reject) => {
@@ -203,4 +204,12 @@ exports.checkEmail = (email) => {
   });
 };
 
+exports.findMemberByNo = (memberNo) => {
+  return new Promise((resolve, reject) => {
 
+    const connection = getConnection();
+
+    MemberRepository.selectMemberByNo(connection, memberNo);
+
+  })
+};

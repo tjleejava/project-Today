@@ -77,3 +77,9 @@ exports.resetPassword = () => {
   
 }
 
+exports.selectMemberByNo = () => {
+  // return `
+  //   SELECT
+  // `
+}
+

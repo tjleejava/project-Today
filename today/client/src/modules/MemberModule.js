@@ -10,6 +10,7 @@ const initialState =
     isDisabled: true,
     resultNo: 3,
     isResetSuccess: false,
+    isIdExist: true
   }
 ;
 
@@ -21,6 +22,7 @@ export const CHECK_AUTH_NUMBER  = 'members/CHECK_AUTH_NUMBER';
 export const GET_ISDISABLED = 'members/GET_ISDISABLED';
 export const CHECK_ID = 'members/CHECK_ID';
 export const RESET_PWD = 'members/RESET_PWD';
+export const RESET_PWD_ID_EXIST = 'members/RESET_PWD_ID_EXIST';
 
 const actions = createActions({
     [POST_MEMBER]: () => {},
@@ -29,7 +31,8 @@ const actions = createActions({
     [CHECK_AUTH_NUMBER]: () => {},
     [GET_ISDISABLED]: () => {},
     [CHECK_ID]: () => {},
-    [RESET_PWD]: () => {}
+    [RESET_PWD]: () => {},
+    [RESET_PWD_ID_EXIST]: () => {}
 });
 
 /* reducer 연습 */
@@ -90,6 +93,12 @@ const memberReducer = handleActions(
         },
         [RESET_PWD]: (state, {payload}) => {
           state.isResetSuccess = payload;
+          let newState = {...state};
+
+          return newState;
+        },
+        [RESET_PWD_ID_EXIST]: (state, {payload}) => {
+          state.isIdExist = payload;
           let newState = {...state};
 
           return newState;

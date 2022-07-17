@@ -109,4 +109,16 @@ exports.insertToken = (connection, tokenData) => {
       resolve(results);
     })
   })
+};
+
+exports.selectMemberByNo = (connection, memberNo) => {
+
+  return new Promise((resolve, reject) => {
+    connection.query(memberQuery.selectMemberByNo(), [memberNo],
+    (err, results, fields) => {
+      if(err) {
+        reject(err);
+      }
+    })
+  })
 }

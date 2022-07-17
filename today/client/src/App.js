@@ -29,6 +29,8 @@ import AdminReport from './pages/report/AdminReport';
 import AdminUserReport from './pages/report/AdminUserReport';
 import AdminChallengeReport from './pages/report/AdminChallengeReport';
 import ReportDetail from './components/report/ReportDetail';
+import Challenges from './pages/mypage/Challenges';
+
 
 function App() {
   return (
@@ -53,11 +55,15 @@ function App() {
           <Route path="mypage" element={ <MypageLayout/> }>
             <Route index element={ <Mypage/> } />
             <Route path="alarm" element={ <Alarm/> } />
+<<<<<<< HEAD
             <Route path="qna">
               <Route index element={ <UserQna/> } />
               <Route path="regist" element={ <RegistQna/>}/>
               <Route path=":inquiryNo" element={ <UserQnaDetail/>}/>
             </Route>
+=======
+            {/* <Route path="challenges" element={<Challenges/>}/> */}
+>>>>>>> feature/member/page
           </Route>
         </Route>
         <Route path="/admin" element={ <Layout/> } >

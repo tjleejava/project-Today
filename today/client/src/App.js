@@ -81,7 +81,7 @@ function App() {
           <Route path="login" element={ <Login/> }/>
           <Route path="signup" element={<SignUp/>}/>
           <Route path="id" element={<IdFind/>}/>
-          <Route path="result" element={<IdFindResult/>}/>
+          <Route path="result/:resultNo" element={<IdFindResult/>}/>
           <Route path="pwd" element={<PwdFind/>}/>
         </Route>
         

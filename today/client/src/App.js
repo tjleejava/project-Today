@@ -2,8 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RegistChallenge from './components/challenge/regist/RegistChallenge';
 import Layout from './layouts/Layout';
 import Main from './pages/Main';
-import Menus from './pages/Menus';
-import Menus2 from './pages/Menus2';
 import Login from './pages/login/Login';
 import Members from "./pages/admin/Members";
 import SignUp from './pages/signup/SignUp';
@@ -30,6 +28,8 @@ import AdminUserReport from './pages/report/AdminUserReport';
 import AdminChallengeReport from './pages/report/AdminChallengeReport';
 import ReportDetail from './components/report/ReportDetail';
 import Challenges from './pages/mypage/Challenges';
+import Following from './pages/mypage/Following';
+import Invite from './pages/mypage/Invite';
 
 
 function App() {
@@ -38,8 +38,6 @@ function App() {
       <Routes>
         <Route path="/" element={ <Layout/>} >
           <Route index element={ <Main/> } />
-          <Route path="menus" element={ <Menus/>} />
-          <Route path="menus2" element={ <Menus2/>} />
           <Route path="registchallenge" element={ <RegistChallenge/> } />
           <Route path="challenges">
             <Route index element={ <ChallengesList/> } />
@@ -55,6 +53,8 @@ function App() {
           <Route path="mypage" element={ <MypageLayout/> }>
             <Route index element={ <Mypage/> } />
             <Route path="alarm" element={ <Alarm/> } />
+            <Route path="following" element={ <Following/> } />
+            <Route path="invites" element={ <Invite/> } />
             <Route path="qna">
               <Route index element={ <UserQna/> } />
               <Route path="regist" element={ <RegistQna/>}/>

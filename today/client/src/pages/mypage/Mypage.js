@@ -1,5 +1,6 @@
 import MyPageCSS from './MyPageCSS.module.css';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { mypageInfoAPI } from '../../apis/MypageAPICalls'
 import jwt_decode from "jwt-decode";
@@ -9,17 +10,23 @@ function Mypage() {
   
   const cookies = new Cookies();
   const mypageState = useSelector(state => state.mypageReducer);
-
+  const navigate = useNavigate();
   useEffect(() => {
     
     const token = cookies.get('token');
     console.log(token);
-    const decoded = jwt_decode(token);
-    console.log(decoded);
-    const memberNo = decoded.no;
-    console.log(memberNo);
+    if(token) {
+      const decoded = jwt_decode(token);
+      console.log(decoded);
+      const memberNo = decoded.no;
+      console.log(memberNo);
 
-    mypageInfoAPI(memberNo);
+      mypageInfoAPI(memberNo);
+    }
+    else {
+      alert('로그인 후 이용 가능합니다');
+      navigate('/sign/login');
+    }
   })
 
   return (

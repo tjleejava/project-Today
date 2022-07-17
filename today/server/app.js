@@ -22,12 +22,14 @@ const memberRouter = require('./src/routes/member-route');
 const platformInquiryRouter =  require('./src/routes/platform-inquiries-route');
 const challengeRouter = require('./src/routes/challenge-route');
 const reportRouter = require('./src/routes/report-route');
+const inviteRouter = require('./src/routes/invite-route');
 
 app.use('/menus', menuRouter);
 app.use('/members', memberRouter);
 app.use('/challenges', challengeRouter);
 app.use('/inquiries', platformInquiryRouter);
 app.use('/reports', reportRouter);
+app.use('/invites', inviteRouter);
 app.get('/logout',(req,res)=>{
   console.log("logout", req.query.token)
   console.log("Cookies : ", req.cookies)
@@ -35,7 +37,8 @@ app.get('/logout',(req,res)=>{
 });
 app.get('/',(req, res) => {
   console.log("Cookies : ", req.cookies);
-})
+});
+
 
 app.listen(PORT, () => console.log('listening on port 8888...'));
 

@@ -1,8 +1,11 @@
 .titlearea {
 }
+.titlearea > hr {
+  margin-bottom: 3%;
+}
 
 .inputarea {
-  height: 50px;
+  height: 60px;
   width: 99%;
 }
 .inputarea > input {
@@ -26,7 +29,7 @@
 
 .outputarea {
   font-weight: 99%;
-  height: 300px;
+  height: 270px;
 }
 
 .notExistbox {
@@ -35,7 +38,17 @@
 }
 
 .existsbox {
-  border: 1px solid black;
+}
+
+.existscontent {
+  margin-left: 24%;
+  padding-top: 10%;
+}
+
+.existscontent > label {
+  font-size: 1.1em;
+  width: 20px;
+  
 }
 
 .notExistbox > label {

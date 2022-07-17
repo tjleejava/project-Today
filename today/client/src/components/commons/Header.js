@@ -27,7 +27,7 @@ function Header() {
             <div className={ HeaderCSS.area}>
                 <img onClick={ goMainHandler }src="/images/header/todaylogo.png" className={ HeaderCSS.logo }/>
                 <div className={ HeaderCSS.body}>
-                    <NavLink to="/menus3"><img src="/images/header/heart.png" className={ HeaderCSS.header } /></NavLink>
+                    <NavLink to="/mypage/following"><img src="/images/header/heart.png" className={ HeaderCSS.header } /></NavLink>
                     <NavLink to="/mypage/alarm"><img src="/images/header/bell.png" className={ HeaderCSS.header } /></NavLink>
                     <NavLink to="/mypage"><span className={ HeaderCSS.text }>마이페이지</span></NavLink>
                     {(getCookie('token') != undefined && getCookie('token')!= null)?

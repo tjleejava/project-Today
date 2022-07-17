@@ -19,6 +19,10 @@ function UserSide({setReportModalState, isAlreadyReported}) {
           <button className={ UserSideCSS.authBtn }>챌린지 참여</button>
       </div>
       }
+      
+      <div className={ UserSideCSS.content }>
+          <button className={ UserSideCSS.authBtn }>챌린지 팔로우</button>
+      </div>
       { 
         isAlreadyReported ?
         '이미 신고가 접수되었습니다' :

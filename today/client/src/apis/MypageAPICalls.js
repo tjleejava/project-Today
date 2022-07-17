@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-export async function mypageInfoAPI(memberNo) {
+export function mypageInfoAPI(memberNo) {
 
-  return axios.get('http://localhost:8888/members', {params: {memberNo: memberNo}})
-  .then((res) => console.log(res))
+  return async function myPageInfo(dispatch, getState) {
+
+    const result = await axios.get('http://localhost:8888/members', {params: {memberNo: memberNo}})
+                              .then((res) => console.log(res));
+                              
+};
 }

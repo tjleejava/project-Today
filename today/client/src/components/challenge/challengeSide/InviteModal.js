@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import InviteModalCSS from './InviteModal.module.css';
 import Modal from 'react-modal';
 import {CHANGE_INVITE_MODAL, SET_UESR_EMAIL} from '../../../modules/InviteModule';
-import {checkUserEmailAPI} from '../../../apis/InviteAPICalls';
+import {checkUserEmailAPI, postInviteAPI} from '../../../apis/InviteAPICalls';
+import getTime from '../../../util/getTime';
 
 function InviteModal() {
 
-  const { isInviteModalOpen, inviteEmail, isExists, inviteInfo , isCheck} = useSelector(state => state.inviteReducer);
+  const { isInviteModalOpen, inviteEmail, isExists, inviteInfo , isCheck, isInviteSuccess}  = useSelector(state => state.inviteReducer);
+  const {challengeInfo} = useSelector(state => state.challengesReducer);
 
   const dispatch = useDispatch();
 
@@ -14,8 +16,9 @@ function InviteModal() {
     dispatch(checkUserEmailAPI(inviteEmail));
   };
 
-  const inviteHandler = () => {
-
+  const inviteHandler =  () => {
+    dispatch(postInviteAPI({memberNo: inviteInfo.memberNo, challengeInfo: challengeInfo, date: getTime.getDateAndTime()}));
+    dispatch({type: CHANGE_INVITE_MODAL, payload: !isInviteModalOpen});
   };
 
   const modalCloseHandler = () => {
@@ -61,7 +64,10 @@ function InviteModal() {
         {
           isExists ?
           <div className={ InviteModalCSS.existsbox}>
-            <label>ID : </label><label>{inviteInfo.memberId}</label>
+            <div className={ InviteModalCSS.existscontent}>
+              <label>아이디 : </label><label>{inviteInfo.memberId}</label><br/><br/><br/>
+              <label>닉네임 : </label><label>{inviteInfo.nickname}</label>
+            </div>
           </div>  :
           <div className={ InviteModalCSS.notExistbox}>
             <div>
@@ -77,6 +83,8 @@ function InviteModal() {
         { isExists? <button onClick={ inviteHandler }>초대하기</button>: null}
         <button onClick={modalCloseHandler}>뒤로가기</button>
       </div>
+      
+      {isInviteSuccess == 0 ? alert('초대를 전송했습니다.'): isInviteSuccess == 1? alert('해당 회원에게 이미 초대를 보냈습니다.'): null}
     </Modal>
   );
 };

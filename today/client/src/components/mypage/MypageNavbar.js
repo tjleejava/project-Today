@@ -16,13 +16,13 @@ function MypageNavbar() {
           <NavLink className={ MypageNavbarCSS.tab } to="qna">문의 내역</NavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink className={ MypageNavbarCSS.tab } to="alarm">알림</NavLink>
+          <NavLink className={ MypageNavbarCSS.tab } to="/mypage/alarm">알림</NavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink className={ MypageNavbarCSS.tab } to="">팔로잉 목록</NavLink>
+          <NavLink className={ MypageNavbarCSS.tab } to="/mypage/following">팔로잉 목록</NavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink className={ MypageNavbarCSS.tab } to="">초대 내역</NavLink>
+          <NavLink className={ MypageNavbarCSS.tab } to="/mypage/invites">초대 내역</NavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
           <NavLink className={ MypageNavbarCSS.tab } to="">비밀번호 변경</NavLink>

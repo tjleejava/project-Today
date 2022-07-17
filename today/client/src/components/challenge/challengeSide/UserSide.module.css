@@ -1,0 +1,94 @@
+.sideInfoArea {
+  /* border: solid 1px black; */
+  width: 15vw;
+  margin-left: 5rem;
+  margin-top: 3rem;
+  height: 65vh;
+  padding: 1rem;
+}
+
+.content {
+  margin-bottom: 1rem;
+}
+
+.challengerCount {
+  color: #A49A93;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.challengerCountInfo, .text {
+  color: #A49A93;
+}
+
+.challengeProgress, .context1 {
+  color: #E09734;
+  font-weight: bold;
+}
+
+.challengeProgress, .text, .context1, .context2 {
+  font-size: 1.2rem;
+}
+
+.authBtn {
+  background-color: white;
+  width: 12rem;
+  font-size: 1.2rem;
+  border: solid 0.5px #A49A93;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.3rem;
+}
+
+.context2 {
+  color: #844F15;
+  font-weight: bold;
+}
+
+.inviteBtn {
+  background-color: #C2A894;
+  color: white;
+  width: 12rem;
+  font-size: 1.2rem;
+  border: solid 0.5px #A49A93;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.3rem;
+}
+
+.buttonArea {
+  display:flex;
+  justify-content: space-between;
+  width: 13rem;
+}
+
+.modifyBtn, .deleteBtn {
+  border: 0;
+  outline: 0;
+  width: 6rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  padding: 0.3rem;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.modifyBtn {
+  background-color: #C2A894;
+}
+
+.deleteBtn {
+  background-color: orangered;
+}
+
+.reportArea {
+  cursor: pointer;
+  width: 100px;
+  margin-top: 3rem;
+  margin-left: 5rem;
+}
+.reportArea > img {
+  width: 20px;
+  height: 20px;
+}

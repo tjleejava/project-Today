@@ -74,7 +74,7 @@
     color: #A49A93;
 }
 
-.infoImgArea, .authArea, .authCount {
+.authArea, .authCount {
     display: flex;
 }
 
@@ -107,4 +107,23 @@
     padding: 10px;
     font-size: 1.2rem;
     color: #A49A93;
+}
+
+.banner {
+    width: 1310px;
+    height: 220px;
+}
+
+.infoImgArea {
+    margin-top: 10px;
+    display: flex;
+}
+
+.infoImgArea > img {
+    padding-right: 20%;
+}
+
+.infoExample {
+    width: 160px;
+    height: 120px;
 }

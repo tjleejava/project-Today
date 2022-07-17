@@ -1,12 +1,16 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import HeaderCSS from "./Header.module.css";
 
 function Header() {
 
+    const navigate = useNavigate();
+    const goMainHandler = () => {
+        navigate('/');
+    };
     return (
         <div className={ HeaderCSS.headergroup }>
             <div className={ HeaderCSS.area}>
-                <NavLink to="/"><img src="/images/header/todaylogo.png" className={ HeaderCSS.logo }/></NavLink>
+                <img onClick={ goMainHandler }src="/images/header/todaylogo.png" className={ HeaderCSS.logo }/>
                 <div className={ HeaderCSS.body}>
                     <NavLink to="/menus3"><img src="/images/header/heart.png" className={ HeaderCSS.header } /></NavLink>
                     <NavLink to="/mypage/alarm"><img src="/images/header/bell.png" className={ HeaderCSS.header } /></NavLink>

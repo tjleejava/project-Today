@@ -1,16 +1,26 @@
 .rankarea {
-  border: 1px solid black;
   margin-top: 2%;
   height: 100px;
- 
+  cursor: pointer;
 }
 
 .rankbox {
   display: inline-flex;
 }
 
+.contentarea {
+ margin-left: 20px;
+}
+.contentarea > label {
+  
+  cursor: pointer;
+}
+.title {
+  font-size: 1.1em;
+
+}
 .imgarea {
   padding-left: 10px;
-  width: 100px;
-  height: auto;
+  width: 150px;
+  height: 100px;
 }

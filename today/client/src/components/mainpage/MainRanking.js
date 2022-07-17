@@ -1,39 +1,19 @@
 import MainRankingCSS from './MainRanking.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import HotChallengeList from './HotChallengeList';
+import {getRankingsAPI} from '../../apis/MainpageAPICalls';
 
 function MainRanking() {
-  const [rankinglist, setRankinglist] = useState([
-    {
-      path: '/images/header/todaylogo.png',
-      title: '1번챌린지 제목',
-      startDate: '2022-06-20',
-      endDate: '2022-07-10',
-      categoryName: '생활습관'
-    },
-    {
-      path: '/images/header/todaylogo.png',
-      title: '2번챌린지 제목',
-      startDate: '2022-06-20',
-      endDate: '2022-07-10',
-      categoryName: '생활습관'
-    },
-    {
-      path: '/images/header/todaylogo.png',
-      title: '3번챌린지 제목',
-      startDate: '2022-06-20',
-      endDate: '2022-07-10',
-      categoryName: '생활습관'
-    },
-    {
-      path: '/images/header/todaylogo.png',
-      title: '4번챌린지 제목',
-      startDate: '2022-06-20',
-      endDate: '2022-07-10',
-      categoryName: '생활습관'
-    }
-  ]);
+  const {rankinglist} = useSelector(state => state.mainpageReducer);
 
+  const dispatch = useDispatch();
+
+  useEffect(
+    () => {
+      dispatch(getRankingsAPI());
+    },[]
+  );
   
   return (
     <div className={ MainRankingCSS.area } >

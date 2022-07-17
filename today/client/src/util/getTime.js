@@ -30,3 +30,12 @@ exports.getPenaltyDate = (penaltyDate) => {
 
     return date;
 };
+exports.getPassedDate = (startDate) => {
+
+  let date1 = new Date().getTime();
+  
+  let date2 = new Date(startDate).getTime();
+  const passedDate = Math.floor((date1 - date2) / 1000 / 60 / 60 / 24) + 1 ;
+  
+  return passedDate;
+};

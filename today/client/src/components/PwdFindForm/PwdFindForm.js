@@ -19,8 +19,12 @@ function PwdFindForm() {
       if(window.confirm('비밀번호 초기화가 완료되었습니다.')) {
         navigate(`/sign/login`);
       };
-    } 
-  },[members.isResetSuccess])
+    } else if(members.isIdExist == false) {
+      if(window.confirm('아이디가 존재하지 않습니다.')) {
+        window.location.replace("/sign/pwd")
+      };
+    }
+  },[members.isResetSuccess, members.isIdExist])
 
   const onChangeHandler = e => {
     setUser({

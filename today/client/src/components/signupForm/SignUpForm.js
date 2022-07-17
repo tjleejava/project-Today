@@ -18,7 +18,7 @@ function SignUpForm() {
     if(members.isDuplicate === false && members.isSendEmailSuccess == false) {
       alert('사용 가능합니다')
     }
-    if(members.isDuplicate === true && members.authNumber == 0) {
+    if(members.isDuplicate === true && members.authNumber != 0) {
       alert('중복되는 이메일입니다.')
     }
 

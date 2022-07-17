@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { POST_MEMBER, GET_EMAIL, CHECK_AUTH_NUMBER, CHECK_ID, RESET_PWD } from '../modules/MemberModule';
+import { POST_MEMBER, GET_EMAIL, CHECK_AUTH_NUMBER, CHECK_ID, RESET_PWD, RESET_PWD_ID_EXIST } from '../modules/MemberModule';
 
 export async function loginAPI(id, password) {
 
@@ -94,7 +94,7 @@ export function sendEmailAPI(email) {
       console.log(`authNumber : ${authNumber}`);
       // return authNumber;
   
-      if(authNumber > 0) {
+      if(authNumber != 0) {
         console.log('동작되니')
         dispatch({type: CHECK_AUTH_NUMBER, payload: authNumber });
       }
@@ -115,13 +115,15 @@ export function resetPwdAPI(email) {
 
     axios.post('http://localhost:8888/members/reset-pwd', data)
     .then((result) => {
-      console.log(result)
+      console.log(`resetPwd api Result ${JSON.stringify(result)}`)
       const status = parseInt(result.status);
       console.log(status);
       if(status === 200) {
         dispatch({type: RESET_PWD, payload: true})
+      } else if(status === 204) {
+        dispatch({type: RESET_PWD_ID_EXIST, payload: false})
       }
-      console.log(`resetPwd controller Result ${JSON.stringify(result)}`)
+      // console.log(`resetPwd api Result ${JSON.stringify(result)}`)
     })
   }
 }

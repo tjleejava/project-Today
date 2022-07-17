@@ -11,13 +11,15 @@ function Mypage() {
   const mypageState = useSelector(state => state.mypageReducer);
 
   useEffect(() => {
-    // mypageInfoAPI();
+    
     const token = cookies.get('token');
     console.log(token);
     const decoded = jwt_decode(token);
     console.log(decoded);
     const memberNo = decoded.no;
     console.log(memberNo);
+
+    mypageInfoAPI(memberNo);
   })
 
   return (

@@ -7,7 +7,9 @@ const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth');
 
 router.post('/login', MemberController.login);
 
-router.get('/logout', MemberController.logout)
+router.get('/logout', MemberController.logout);
+
+router.get('/', MemberController.findMemberByNo);
 
 router.post('/', MemberController.registMember);
 

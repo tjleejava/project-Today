@@ -188,3 +188,13 @@ exports.findId = (email) => {
 
   });
 };
+
+exports.findMemberByNo = (memberNo) => {
+  return new Promise((resolve, reject) => {
+
+    const connection = getConnection();
+
+    MemberRepository.selectMemberByNo(connection, memberNo);
+
+  })
+}

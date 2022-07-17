@@ -213,6 +213,22 @@ exports.findId = async (req, res, next) => {
     });
   }
   
-
-  
 };
+
+exports.findMemberByNo = async (req, res, next) => {
+  console.log('controller')
+  
+  const memberNo = req.query.memberNo;
+  console.log(memberNo);
+
+  MemberService.findMemberByNo(memberNo);
+
+  return res.status(HttpStatus.OK)
+            .send(
+              {
+                status: HttpStatus.OK,
+                message: '확인용',
+                response: {
+                }
+              })
+}

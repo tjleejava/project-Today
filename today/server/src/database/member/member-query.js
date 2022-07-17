@@ -57,5 +57,10 @@ exports.resetPassword = () => {
        SET MEMBER_PWD = ?
      WHERE MEMBER_ID = ?
   `
-  
+}
+
+exports.selectMemberByNo = () => {
+  // return `
+  //   SELECT
+  // `
 }

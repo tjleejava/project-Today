@@ -14,7 +14,7 @@ const initialState = {
     presentTab: '1',
     partCount: 0,
     isPartIn: false,
-    isHost: false
+    isHost: false,
 };
 
 /* 액션 */
@@ -51,6 +51,7 @@ const challengesReducer = handleActions(
             state.challengeInfo = payload.challengeInfo;
             state.authDayInfo = payload.authDayInfo;
             state.attachmentInfo = payload.attachmentInfo;
+            
             return {...state};
         },
         [PUT_CHALLENGE_CATEGORY_NO]: (state, { payload }) => {

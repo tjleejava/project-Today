@@ -24,7 +24,7 @@ export default function ChallengeSideInfo({challengeNo}) {
 
     //보류
     const isAdmin = false;
-    const memberNo = 4;
+    const memberNo = 3;
     
     // const isAdmin = true;
     // const memberNo = 1;

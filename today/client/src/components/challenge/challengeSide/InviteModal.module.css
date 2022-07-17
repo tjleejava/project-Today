@@ -1,0 +1,53 @@
+.titlearea {
+}
+
+.inputarea {
+  height: 50px;
+  width: 99%;
+}
+.inputarea > input {
+  margin-left: 5%;
+  width: 30%;
+  height: 23px;
+  font-size: 1em;
+}
+.inputarea > button {
+  margin-left: 3%;
+  height: 30px;
+  width: 70px;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #A49A93;
+  cursor: pointer;
+}
+
+
+.outputarea {
+  font-weight: 99%;
+  height: 300px;
+}
+
+.outputbox {
+  border: 1px solid black;
+  text-align: center;
+  height: 200px;
+}
+
+.btnarea {
+  text-align: right;
+  height: 60px;
+}
+.btnarea > button {
+  margin-right: 3%;
+  height: 34px;
+  width: 100px;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #A49A93;
+  cursor: pointer;
+
+}

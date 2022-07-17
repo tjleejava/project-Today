@@ -1,14 +1,22 @@
 import HostSideCSS from './HostSide.module.css';
 import { useNavigate } from 'react-router-dom';
+import InviteModal from './InviteModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { CHANGE_INVITE_MODAL } from '../../../modules/InviteModule';
 
 function HostSide() {
 
-  const MODIFY = 'modify';
   const navigate = useNavigate(); 
+  const {isInviteModalOpen} = useSelector(state => state.inviteReducer);
+  const dispatch = useDispatch();
   
   const modifyChallengeHandler = () => {
-      navigate(MODIFY);
+      navigate('modify');
   }
+
+  const inviteHandler = () => {
+    dispatch({type: CHANGE_INVITE_MODAL, payload: !isInviteModalOpen});
+  };
 
   return (
     <div>
@@ -24,13 +32,14 @@ function HostSide() {
       </div>
       <br/>
       <div className={ HostSideCSS.content }>
-          <button className={ HostSideCSS.inviteBtn }>친구 초대하기</button>
+          <button onClick={ inviteHandler } className={ HostSideCSS.inviteBtn }>초대하기</button>
       </div>
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       <div className={ HostSideCSS.buttonArea }>
           <button onClick={ modifyChallengeHandler } className={ HostSideCSS.modifyBtn }>챌린지 수정</button>
           <button className={ HostSideCSS.deleteBtn }>챌린지 삭제</button>
       </div>
+      <InviteModal/>
     </div>
   );
 };

@@ -27,3 +27,22 @@ exports.selectId = () => {
      WHERE  MEMBER_ID = ?
   `;
 };
+
+
+
+exports.selectById = () => {
+
+  return`
+      SELECT 
+             MEMBER_NO
+           , MEMBER_ID
+           , MEMBER_PWD
+           , WITHDRAWAL_YN
+           , NICKNAME
+           , ENROLL_DATE
+           , WITHDRAWAL_DATE
+           , MEMBER_ROLE 
+        FROM TBL_MEMBER
+       WHERE MEMBER_ID = ?
+  `;
+};

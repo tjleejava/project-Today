@@ -56,4 +56,6 @@ router.get('/idcheck', MemberController.findId);
 
 router.get('/email', MemberController.sendEmail);
 
+router.get('/checkEmail', MemberController.checkEmailExist);
+
 module.exports = router;

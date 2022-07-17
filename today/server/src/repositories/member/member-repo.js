@@ -1,4 +1,5 @@
 const memberQuery = require('../../database/member/member-query');
+const MemberDTO = require('../../dto/member/member-dto');
 
 exports.insertMember = (connection, data) => {
 
@@ -45,4 +46,31 @@ exports.selectId = (connection, data) => {
       resolve(results.length);
     })
   })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exports.selectById = (connection, data) => {
+
+  return new Promise((resolve, reject) => {
+
+    connection.query(memberQuery.selectById(), [data.email], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result.length == 0? null: new MemberDTO(result));
+    });
+  });
 }

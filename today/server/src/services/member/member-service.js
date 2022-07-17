@@ -38,3 +38,27 @@ exports.findId = (email) => {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+exports.checkEmail = (email) => {
+
+  return new Promise( async (resolve, reject) => {
+
+    const connection = getConnection();
+
+    const result = await MemberRepository.selectById(connection, email);
+    connection.end();
+
+    resolve(result);
+  });
+};

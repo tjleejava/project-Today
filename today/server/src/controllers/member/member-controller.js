@@ -87,3 +87,32 @@ exports.findId = async (req, res, next) => {
 
   
 };
+
+
+
+
+
+
+
+
+
+
+
+exports.checkEmailExist = async (req, res, next) => {
+  const result = await MemberService.checkEmail(req.query);
+
+  console.log(result);
+  if(result != null) {
+    res.status(HttpStatus.OK).json({
+      status: HttpStatus.OK,
+      isExists: true,
+      results: result
+    })
+  } else{
+    res.status(HttpStatus.OK).json({
+      status: HttpStatus.OK,
+      isExists: false,
+      results: result
+    });
+  }
+};

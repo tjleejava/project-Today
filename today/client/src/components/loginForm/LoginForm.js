@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import LoginFormCSS from'./LoginFormCSS.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { loginAPI } from '../../apis/MemberAPICalls';
+import { setCookie, getCookie} from '../../cookies/cookie';
 
 function LoginForm() {
 
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     id: '',
     password: ''
@@ -16,20 +19,26 @@ function LoginForm() {
     });
   };
 
-  const onClickHandler = (e) => {
-    fetch('http://localhost:8000/member/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(user)
+  const onClickHandler = async(e) => {
+    const id = user.id;
+    const password = user.password;
+
+    await loginAPI(id, password)
+    .then((res) => {
+      console.log(res);
+      const generatedToken = res.data.token
+      if(generatedToken != undefined && generatedToken != null) {
+        setCookie('token', generatedToken, {
+          path:"/",
+            secure:true,
+            sameSite:'none',
+        })
+        navigate('/');
+      } else {
+        alert('이메일과 비밀번호를 확인해 주세요.')
+      }
     })
-    .then(response => response.json())
-    .then(json => {
-      sessionStorage.setItem('accessToken', json.accessToken);
-      localStorage.setItem('accessToken', json.accessToken);
-      window.cookieStore.get('accessToken')
-      .then(obj => obj.value)
-      .then(token => console.log('cookieStore accessToken: ' + token));
-    });
+    
   };
 
   return (

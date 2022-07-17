@@ -3,13 +3,6 @@ const uuid = require('react-uuid');
 const ChallengeService = require('../../services/challenge/challenge-service');
 const RegistChallengeDTO = require('../../dto/challenge/challenge-regist-dto');
 
-exports.test = async (req, res, next) => {
-    console.log(req.query);
-};
-exports.test1 = async (req, res, next) => {
-    console.log(req.body);
-};
-
 exports.modifyChallenge = async (req, res, next) => {
 
     const result = await ChallengeService.modifyChallenge(req.body);
@@ -59,17 +52,27 @@ exports.uploadFile = async (req, res, next) => {
     });
 };
 
+exports.findRankings = async (req, res, next) => {
+
+    const results = await ChallengeService.findRankings();
+
+    res.send(results);
+};
+
+exports.checkChallengeAuthByMemberNo = async (req, res, next) => {
+
+    console.log(JSON.parse(req.query.authInfo));
+    const result = await ChallengeService.checkChallengeAuthByMemberNo(JSON.parse(req.query.authInfo));
+
+    console.log(result);
+    res.send(result);
+};
+
 exports.findChallengeByNo = async (req, res, next) => {
 
-    console.log('controller print start');
     const challengeNo = req.params.challengeNo;
     
-    console.log('challengeNo: ' + challengeNo);
     const result = await ChallengeService.findChallengeByNo(challengeNo);
-
-    console.log('result :' , result);
-    console.log('controller print end');
-    
     return res.send(
         {
             result: result,
@@ -77,3 +80,12 @@ exports.findChallengeByNo = async (req, res, next) => {
         }
     );
 }
+
+exports.findByCategoryNo = async (req, res, next) => {
+
+    const categoryNo = req.params.categoryNo;
+    
+    const results = await ChallengeService.findByCategoryNo(categoryNo);
+
+    res.send(results);
+};

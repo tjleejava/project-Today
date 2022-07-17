@@ -1,11 +1,22 @@
 import MainChallengeList from './MainChallengeList';
 import MainLayoutCSS from './MainLayout.module.css';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMainLayoutChallengeListAPI } from '../../apis/MainpageAPICalls';
 function MainLayout() {
 
-  const [mainChallenges, setMainChallenges] = useState([
-    {},{},{}
-  ]);
+  const { challenges } = useSelector(state => state.mainpageReducer);
+  console.log(challenges);
+  const dispatch = useDispatch();
+
+  useEffect(
+    () => {
+      dispatch(getMainLayoutChallengeListAPI(1));    
+    },[]
+  );
+  const onClickHandler = (type) => {
+    dispatch(getMainLayoutChallengeListAPI(type));    
+  }
   
   return (
     <div className={ MainLayoutCSS.area }>
@@ -15,14 +26,14 @@ function MainLayout() {
       </div>
       <br/>
       <div className={ MainLayoutCSS.btnarea }>
-        <button>생활</button>
-        <button>운동</button>
-        <button>식습관</button>
-        <button>마음챙김</button>
-        <button>환경</button>
+        <button onClick={ () => onClickHandler(1) }>생활</button>
+        <button onClick={ () => onClickHandler(2) }>운동</button>
+        <button onClick={ () => onClickHandler(3) }>식습관</button>
+        <button onClick={ () => onClickHandler(4) }>환경</button>
+        <button onClick={ () => onClickHandler(5) }>마음챙김</button>
       </div>
       <div className={ MainLayoutCSS.boxarea }>
-        { mainChallenges.map(challenge => <MainChallengeList challenge={ challenge }/>) }
+        { challenges.map(challenge => <MainChallengeList challenge={ challenge } key={challenge.challengeNo}/> ) }
       </div>
     </div>
   );

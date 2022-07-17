@@ -19,7 +19,7 @@ import PwdFind from './pages/idPwdFind/PwdFind';
 import IdFindResult from './pages/idPwdFind/IdFindResult';
 import AuthList from './pages/auth/AuthList';
 import AuthDetail from './pages/auth/AuthDetail';
-import ModifyChallengeCSS from './pages/challenge/modify/ModifyChallenge';
+import ModifyChallenge from './pages/challenge/modify/ModifyChallenge';
 import UserQna from './pages/platformqna/UserQna';
 import RegistQna from './pages/platformqna/RegistQna';
 import UserQnaDetail from './pages/platformqna/UserQnaDetail';
@@ -42,7 +42,7 @@ function App() {
               <Route path="auth" />
               <Route index element={ <AuthList/> } />
               <Route path=":authNo" element={ <AuthDetail/> } />
-              <Route path="modify" element={ <ModifyChallengeCSS/>}/>
+              <Route path="modify" element={ <ModifyChallenge/>}/>
             </Route>
           </Route> 
           <Route path="mypage" element={ <MypageLayout/> }>

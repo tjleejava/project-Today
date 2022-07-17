@@ -12,13 +12,15 @@
    margin-left: 40%;
 }
 
-.area > button {
+.btn {
   border: none;
   border-radius: 5px;
-  background-color: #E2D0C1;
+  background-color: #C2A894;
   font-weight: 500;
   width: 76px;
   height: 36px;
   margin-left: 20px;
   cursor: pointer;
+  color: white;
+  font-weight: 700;
 }

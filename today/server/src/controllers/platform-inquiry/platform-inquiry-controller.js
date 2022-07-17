@@ -6,7 +6,6 @@ exports.registInquiry = async (req, res, next) => {
 
   const result = await InquiryService.registInquiry(new RegistPlatformInquiryDTO(req.body));
 
-  console.log(req.body);
   res.status(HttpStatus.OK).send(
     result
   );
@@ -26,7 +25,6 @@ exports.findInquiry = async(req, res, next) => {
 
   const result = await InquiryService.findInquiry(inquiryNo);
 
-  console.log(result);
   res.status(HttpStatus.OK).send(result);
 }
 

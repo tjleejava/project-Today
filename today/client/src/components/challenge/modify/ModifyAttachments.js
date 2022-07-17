@@ -16,7 +16,6 @@ function ModifyAttachments({index, inputFile,  pathInfo, title, modifyFile}) {
     
     formData.append('file', inputFile);
     
-    console.log('ModifyAttachments index : ', index);
     dispatch({type: MODIFY_ATTACHMENT, payload: { index: index, path: URL.createObjectURL(e.target.files[0]), formData: formData }});
   }
   return (

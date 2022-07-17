@@ -6,7 +6,7 @@ function MainSearch() {
     <div className={ MainSearchCSS.area}>
       <input/>
       <NavLink to ='/challenges'>
-        <button>검색</button> 
+        <button className={ MainSearchCSS.btn}>검색</button> 
       </NavLink>
     </div>
   );

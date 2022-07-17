@@ -1,8 +1,26 @@
 import ChallengeSideInfoCSS from './ChallengeSideInfo.module.css';
 import { useParams, useNavigate } from 'react-router-dom';
-export default function ChallengeSideInfo() {
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { checkChallengeAuthByMemberNoAPI } from '../../apis/ChallengeAPICalls';
+import {SET_CHALLENGE_HOST_OR_NOT} from '../../modules/ChallengesModule';
 
-    const { challengeNo } = useParams();
+export default function ChallengeSideInfo({challengeInfo, challengeNo}) {
+
+    const { challengeStatus } = challengeInfo;
+    const dispatch = useDispatch();
+
+    useEffect(
+        () => {
+            const memberNo = 2;
+             dispatch(checkChallengeAuthByMemberNoAPI({memberNo: memberNo, challengeNo: challengeNo}));
+            
+            const isHost = challengeInfo.memberNo == memberNo ? true : false;
+            dispatch({type: SET_CHALLENGE_HOST_OR_NOT, payload: isHost});
+            
+        },[]
+    );
+
     const MODIFY = 'modify';
     const navigate = useNavigate(); 
 

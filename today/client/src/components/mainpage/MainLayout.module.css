@@ -2,7 +2,7 @@
   width: 70%;
   height: 410px;
   position: fixed;
-  top: 450px;
+  top: 430px;
 }
 
 .labelarea {
@@ -34,13 +34,10 @@
 
 .boxarea {
   text-align: center;
-  
+  display: flex;
+  flex-direction: row;
 }
 
 .challengebox {
-  display: inline-block;
-  margin: 3%;
   border: 1px solid peru;
-  width:300px;
-  height: 260px;
 }

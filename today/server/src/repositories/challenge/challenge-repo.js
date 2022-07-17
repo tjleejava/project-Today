@@ -3,6 +3,7 @@ const ChallengeRegistDTO = require('../../dto/challenge/challenge-regist-dto');
 const AuthDayDTO = require('../../dto/challenge/challenge-auth-freq-dto');
 const ChallengeDTO = require('../../dto/challenge/challenge-dto');
 const AttachmentDTO = require('../../dto/challenge/challenge-attachment-dto');
+const RankingDTO = require('../../dto/challenge/ranking-dto');
 
 exports.selectAttachmentByChallengeNo = (connection, challengeNo) => {
 
@@ -43,6 +44,37 @@ exports.selectAuthDayByChallengeNo = (connection, challengeNo) => {
   });
 
 };
+
+exports.selectParticipationByMemberNo = (connection, authInfo) => {
+
+  const {memberNo, challengeNo} = authInfo;
+
+  return new Promise((resolve, reject) => {
+
+    connection.query(challengeQuery.selectParticipationByMemberNo(), [memberNo, challengeNo], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
+    });
+  });
+};
+
+exports.selectParticipationCount = (connection, challengeNo) => {
+
+  return new Promise((resolve, reject) => {
+
+    connection.query(challengeQuery.selectParticipationCount(), [challengeNo], (err, result, fields) => {
+
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
+    });
+  });
+}
 
 exports.selectChallengeByNo = (connection, challengeNo) => {
   
@@ -106,6 +138,44 @@ exports.insertChallengeFreqDay = (connection, authFreqDay) => {
       }
 
       resolve(result);
+    });
+  });
+};
+
+exports.selectRankings = (connection) => {
+
+  return new Promise( async (resolve, reject) => {
+
+    connection.query(challengeQuery.selectRankings(), [], (err, results, fields) => {
+
+      if(err) {
+        reject(err);
+      }
+
+      let rankings = [];
+      for(let i = 0; i< results.length; i++) {
+        rankings.push(new RankingDTO(results[i]));
+      }
+
+      resolve(rankings);
+    });
+  });
+};
+
+exports.selectByCategoryNo = (connection, categoryNo) => {
+
+  return new Promise( async (resolve, reject) => {
+
+    connection.query(challengeQuery.selectByCategoryNo(), [categoryNo], (err, results, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      let challenges = [];
+      for(let i = 0; i< results.length; i++) {
+        challenges.push(new RankingDTO(results[i]));
+      }
+      resolve(challenges);
     });
   });
 };

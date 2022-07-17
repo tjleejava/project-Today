@@ -1,7 +1,26 @@
 .challengebox {
   display: inline-block;
   margin: 3%;
-  border: 1px solid peru;
-  width:300px;
-  height: 260px;
+  margin-left: 4%;
+  width:350px;
+  height: 300px;
+  box-shadow: 1px 1px 1px 1px rgb(235, 222, 210);
+  cursor: pointer;
+}
+
+.imgbox {
+  width: 350px;
+  height: 235px;
+  cursor: pointer;
+}
+
+.titlebox {
+  border: 1px solid rgb(250, 230, 209);
+  margin-top: 4%;
+  width: 80%;
+  margin-left: 10%;
+  height: 22px;
+  background-color: rgb(240, 232, 225);
+  border-radius: 5px;
+  cursor: pointer;
 }

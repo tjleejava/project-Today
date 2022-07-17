@@ -18,16 +18,49 @@ exports.findChallengeByNo = (challengeNo) => {
   });
 };
 
+exports.checkChallengeAuthByMemberNo = (authInfo) => {
+
+    const {memberNo, challengeNo} = authInfo;
+    return new Promise( async (resolve, reject) => {
+        const connection = getConnection();
+
+        // 참여자인지 확인
+        const checkParticipation = await ChallengeRepo.selectParticipationByMemberNo(connection, authInfo);
+
+        const selectParticipationCount = await ChallengeRepo.selectParticipationCount(connection, challengeNo);
+
+        let partCount = 0;
+        for(let i = 0; i < selectParticipationCount.length; i++) {
+            if(selectParticipationCount[i].count == 1) {
+                partCount++;
+            }
+        }
+
+        connection.end();
+
+        resolve({ partCount: partCount, isPartIn: checkParticipation[0].count });
+    });
+};
+
 exports.modifyChallenge = (modifyInfo) => {
 
 
     return new Promise( async (resolve, reject) => {
-        connection = getConnection();
-        console.log(modifyInfo.challengeInfo);
-        console.log(modifyInfo.attachmentInfo);
-        console.log(modifyInfo.modifyAttachment);
+        const connection = getConnection();
 
         connection.end();
+    });
+};
+
+exports.findRankings = () => {
+
+    return new Promise( async (resolve, reject) => {
+        const connection = getConnection();
+
+        const results = await ChallengeRepo.selectRankings(connection);
+        connection.end();
+
+        resolve(results);
     });
 };
 
@@ -62,5 +95,19 @@ exports.registChallenge = (registChallenge) => {
         connection.end();
 
         resolve(result);
+    });
+};
+
+exports.findByCategoryNo = (categoryNo) => {
+
+    return new Promise( async (resolve, reject) => {
+
+        const connection = getConnection();
+
+        const results = ChallengeRepo.selectByCategoryNo(connection, categoryNo);
+
+        connection.end();
+
+        resolve(results);
     });
 };

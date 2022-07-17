@@ -10,7 +10,11 @@ const initialState = {
         attachment2: {  },
         attachment3: {  },
         attachment4: {  }
-    }
+    },
+    presentTab: '1',
+    partCount: 0,
+    isPartIn: false,
+    isHost: false
 };
 
 /* 액션 */
@@ -21,6 +25,9 @@ export const PUT_CHALLENGE_INFO = 'challenges/PUT_CHALLENGE_INFO';
 export const PUT_CHALLENGE_DESCRIPTION = 'challenges/PUT_CHALLENGE_DESCRIPTION';
 export const PUT_START_TIME = 'challenges/PUT_START_TIME';
 export const PUT_END_TIME = 'challenges/PUT_END_TIME';
+export const CHANGE_CHALLENGE_DETAIL_PRESENTTAB = 'challenges/CHANGE_CHALLENGE_DETAIL_PRESENTTAB';
+export const GET_CHALLENGE_AUTH_BY_MEMBER = 'challenges/GET_CHALLENGE_AUTH_BY_MEMBER';
+export const SET_CHALLENGE_HOST_OR_NOT = 'challenges/SET_CHALLENGE_HOST_OR_NOT';
 
 const actions = createActions({
     [GET_CHALLENGE]: () => {},
@@ -29,7 +36,10 @@ const actions = createActions({
     [PUT_CHALLENGE_INFO]: () => {},
     [PUT_CHALLENGE_DESCRIPTION]: () => {},
     [PUT_START_TIME]: () => {},
-    [PUT_END_TIME]: () => {}
+    [PUT_END_TIME]: () => {},
+    [GET_CHALLENGE_AUTH_BY_MEMBER]: () => {},
+    [CHANGE_CHALLENGE_DETAIL_PRESENTTAB]: () => {},
+    [SET_CHALLENGE_HOST_OR_NOT]: () => {}
 
 });
 
@@ -37,11 +47,11 @@ const actions = createActions({
 const challengesReducer = handleActions(
     {
         [GET_CHALLENGE]: (state, { payload }) => {
-            payload.challengeInfo.challengeCategoryNo += '';
-            payload.challengeInfo.challengeFrequency += '';
-            payload.modifyAttachment = [{}];
-            // console.log('getChallenge state : ', state);
-            return payload;
+
+            state.challengeInfo = payload.challengeInfo;
+            state.authDayInfo = payload.authDayInfo;
+            state.attachmentInfo = payload.attachmentInfo;
+            return {...state};
         },
         [PUT_CHALLENGE_CATEGORY_NO]: (state, { payload }) => {
             state.challengeInfo.challengeCategoryNo = payload
@@ -50,17 +60,13 @@ const challengesReducer = handleActions(
         },
         [MODIFY_ATTACHMENT]: (state, { payload }) => {
 
-            // console.log('state : ', state);
-            // console.log('payload : ', payload);
-            console.log('payload : ',payload);
             const index = payload.index;
             const attachment = {
                 path: payload.path,
                 type: index,
                 formData: payload.formData
             }
-            // console.log(typeof attachment1);    
-            // console.log(attachment1);    
+
             state.modifyAttachment[index - 1] = attachment;
             return {...state};
         },
@@ -83,6 +89,26 @@ const challengesReducer = handleActions(
         [PUT_END_TIME]: (state, {payload }) => {
             state.challengeInfo.endTime = payload;
 
+            return {...state};
+        },
+        [CHANGE_CHALLENGE_DETAIL_PRESENTTAB]: (state, {payload }) => {
+            state.presentTab = payload;
+
+            return {...state};
+        },
+        [GET_CHALLENGE_AUTH_BY_MEMBER]: (state, {payload }) => {
+
+            state.isPartIn = (payload.isPartIn > 1? false: true);
+            state.partCount = payload.partCount;
+
+            console.log(state);
+            return {...state};
+        },
+        [SET_CHALLENGE_HOST_OR_NOT]: (state, {payload }) => {
+
+            state.isHost = payload;
+
+            console.log(state);
             return {...state};
         }
     },

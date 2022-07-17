@@ -11,8 +11,6 @@ import axios from 'axios';
 
 export default function ChallengeContent({challengeInfo, authDayInfo, attachmentInfo, presentTab, challengeNo}) {
 
-    
-
     const dispatch = useDispatch();
     
     const [value, setValue] = useState(new Date());

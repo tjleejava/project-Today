@@ -15,6 +15,7 @@ export default function ChallengeDetail() {
     const dispatch = useDispatch();
     useEffect(
         () => {
+            console.log(challengeNo);
             dispatch(callGetChallengeInfoAPI(challengeNo));
         },[]
     );

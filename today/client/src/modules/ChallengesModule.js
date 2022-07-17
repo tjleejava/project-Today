@@ -98,18 +98,15 @@ const challengesReducer = handleActions(
         },
         [GET_CHALLENGE_AUTH_BY_MEMBER]: (state, {payload }) => {
 
-            state.isPartIn = (payload.isPartIn > 1? false: true);
+            state.isPartIn = (payload.isPartIn == 1? true: false);
             state.partCount = payload.partCount;
-
-            console.log(state);
-            return {...state};
+            return state;
         },
         [SET_CHALLENGE_HOST_OR_NOT]: (state, {payload }) => {
 
             state.isHost = payload;
 
-            console.log(state);
-            return {...state};
+            return state;
         }
     },
     initialState

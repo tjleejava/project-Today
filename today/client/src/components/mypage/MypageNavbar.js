@@ -7,7 +7,7 @@ function MypageNavbar() {
     <div className={ MypageNavbarCSS.area }>
       <div><br/><br/><br/></div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink className={ MypageNavbarCSS.tab } to="">챌린지 내역</NavLink>
+          <NavLink className={ MypageNavbarCSS.tab } to="/mypage/challenges">챌린지 내역</NavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
           <NavLink className={ MypageNavbarCSS.tab } to="">패널티 내역</NavLink>

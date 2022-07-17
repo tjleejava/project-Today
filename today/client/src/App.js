@@ -20,6 +20,7 @@ import IdFindResult from './pages/idPwdFind/IdFindResult';
 import AuthList from './pages/auth/AuthList';
 import AuthDetail from './pages/auth/AuthDetail';
 import ModifyChallengeCSS from './pages/challenge/modify/ModifyChallenge';
+import Challenges from './pages/mypage/Challenges';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="mypage" element={ <MypageLayout/> }>
             <Route index element={ <Mypage/> } />
             <Route path="alarm" element={ <Alarm/> } />
+            {/* <Route path="challenges" element={<Challenges/>}/> */}
           </Route>
         </Route>
         <Route path="/admin" element={ <Layout/> } >

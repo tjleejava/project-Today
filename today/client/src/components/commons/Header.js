@@ -3,10 +3,8 @@ import HeaderCSS from "./Header.module.css";
 import { Cookies } from 'react-cookie';
 import { setCookie, getCookie} from '../../cookies/cookie';
 import { logoutAPI } from '../../apis/MemberAPICalls';
-import { Link, useNavigate } from 'react-router-dom';
 
 function Header() {
-
 
     const navigate = useNavigate();
     const goMainHandler = () => {
@@ -16,7 +14,7 @@ function Header() {
     const cookies = new Cookies();
 
     console.log(getCookie('token'));
-		const token = getCookie('token');
+	const token = getCookie('token');
 
     const onClickHandler = async (e) => {
 			await logoutAPI(token);

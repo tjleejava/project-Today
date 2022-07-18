@@ -3,6 +3,7 @@ import menuReducer from './MenuModule';
 import memberReducer from './MemberModule';
 import challengesReducer from './ChallengesModule';
 import challengelistReducer from './ChallengeListModule';
+import challengeRegistReducer from './ChallengeRegistModule';
 import inviteReducer from './InviteModule';
 import platformQnaReducer from './PlatformQnaModule';
 import reportReducer from './ReportModuls';
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     memberReducer,
     challengesReducer,
     challengelistReducer,
+    challengeRegistReducer,
     inviteReducer,
     platformQnaReducer,
     reportReducer,

@@ -1,14 +1,25 @@
 import RegistChallengeCSS from './RegistChallenge.module.css';
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import {SET_TITLE, SET_CATEGORY, SET_FREQ, SET_TERM, SET_SCOPE, SET_START_DATE
+  , SET_START_TIME, SET_END_TIME, SET_INFO
+  , SET_AMOUNT, SET_AUTHDAY, SET_DESCRIPTION
+  , SET_PATH} from '../../../modules/ChallengeRegistModule';
 import RegistImage from './RegistImage';
 import axios from 'axios';
 import JoinAmount from './JoinAmount';
 import AuthDay from './AuthDay';
+import { useDispatch, useSelector } from 'react-redux';
 
 function RegistChallenge() {
 
+  const dispatch = useDispatch();
+  const { registInfo } = useSelector(state => state.challengeRegistReducer);
+  const {category, title, amount, description, term, scope
+    , info, startDate, startTime, endTime, path, inputFiles
+    // , freq
+    // , authDay
+  } = registInfo;
   const navigate = useNavigate();
 
   let url = '';
@@ -16,18 +27,13 @@ function RegistChallenge() {
   const imageInput2 = useRef();
   const imageInput3 = useRef();
   const imageInput4 = useRef();
+  
+  const index0 = useRef(0);
+  const index1 = useRef(1);
+  const index2 = useRef(2);
+  const index3 = useRef(3);
 
-  const [category, setCategory] = useState(1);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
   const [freq, setFreq] = useState('0');
-  const [term, setTerm] = useState('');
-  const [scope, setScope] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
-  const [info, setInfo] = useState('');
-  const [amount, setAmount] = useState(2);
   const [authDay, setAuthDay] = useState({
     day0: false,
     day1: false,
@@ -37,12 +43,6 @@ function RegistChallenge() {
     day5: false,
     day6: false
   });
-
-  
-  const [path1, setPath1] = useState('/images/registchallenge/download.png');
-  const [path2, setPath2] = useState('/images/registchallenge/download.png');
-  const [path3, setPath3] = useState('/images/registchallenge/download.png');
-  const [path4, setPath4] = useState('/images/registchallenge/download.png');
 
   const [file1, setFile1] = useState();
   const [file2, setFile2] = useState();
@@ -54,20 +54,6 @@ function RegistChallenge() {
   const [inputFile3, setInputFile3] = useState({});
   const [inputFile4, setInputFile4] = useState({});
 
-  const categoryOnClickHandler = (e) => {
-    console.log('e : ', e);
-    console.log('e.target : ', e.target);
-    console.log('e.target.value', e.target.value);
-    setCategory(e.target.value);
-  };
-
-  const titleOnChangeHandler = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const descriptionOnChangeHandler = (e) => {
-    setDescription(e.target.value);
-  };
 
   const freqOnChangeHandler = (e) => {
     setFreq(e.target.value);
@@ -77,30 +63,6 @@ function RegistChallenge() {
         console.log('authDay : ', authDay);
       }
     }
-  };
-
-  const termOnChangeHandler = (e) => {
-    setTerm(e.target.value);
-  };
-
-  const startTimeChange = (e) => {
-    setStartTime(e.target.value);
-  };
-  
-  const endTimeChange = (e) => {
-    setEndTime(e.target.value);
-  };
-
-  const startDateChange = (e) => {
-    setStartDate(e.target.value);
-  };
-
-  const scopeOnChangeHandler = (e) => {
-    setScope(e.target.value);
-  };
-
-  const infoChangeHandler = (e) => {
-    setInfo(e.target.value);
   };
 
   const checkInputValue = () => {
@@ -117,7 +79,7 @@ function RegistChallenge() {
     && (endTime) 
     && (info)
     && checkAuthDay()
-    && ( result = true)
+    && ( result = true )
 
     return result;
   }
@@ -132,9 +94,7 @@ function RegistChallenge() {
       case '3':
         return (countAuthDay() === 1? true: false );
     }
-
-    
-  }
+  };
 
   const countAuthDay = () => {
     let count = 0;
@@ -205,27 +165,27 @@ function RegistChallenge() {
         <label className={ RegistChallengeCSS.title }>챌린지 개설</label>
         <hr/>
         <div className={ RegistChallengeCSS.btnarea }>
-          <button onClick={ categoryOnClickHandler } value='1' className={ category === '1'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>생활</button>
-          <button onClick={ categoryOnClickHandler } value='2' className={ category === '2'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>운동</button>
-          <button onClick={ categoryOnClickHandler } value='3' className={ category === '3'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>식습관</button>
-          <button onClick={ categoryOnClickHandler } value='4' className={ category === '4'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>환경</button>
-          <button onClick={ categoryOnClickHandler } value='5' className={ category === '5'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>마음챙김</button>
+          <button onClick={ e => dispatch({type: SET_CATEGORY, payload: e.target.value}) } value='1' className={ category === '1'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>생활</button>
+          <button onClick={ e => dispatch({type: SET_CATEGORY, payload: e.target.value}) } value='2' className={ category === '2'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>운동</button>
+          <button onClick={ e => dispatch({type: SET_CATEGORY, payload: e.target.value}) } value='3' className={ category === '3'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>식습관</button>
+          <button onClick={ e => dispatch({type: SET_CATEGORY, payload: e.target.value}) } value='4' className={ category === '4'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>환경</button>
+          <button onClick={ e => dispatch({type: SET_CATEGORY, payload: e.target.value}) } value='5' className={ category === '5'? RegistChallengeCSS.choosenbtn: RegistChallengeCSS.defaultbtn }>마음챙김</button>
         </div>
         <div >
           <label className={ RegistChallengeCSS.subtitle }>챌린지 제목</label><br/>
           <label className={ RegistChallengeCSS.description }>타인에게 불괘감을 주는 제목을 작성할 경우 계정 패널티를 받을 수 있습니다.</label><br/>
           <input className={ RegistChallengeCSS.textinput} value={ title } 
-            onChange={ titleOnChangeHandler } /><br/>
+            onChange={ e => dispatch({type: SET_TITLE, payload: e.target.value}) } /><br/>
         </div>
         <div>
           <label className={ RegistChallengeCSS.subtitle }>인증방법 입력</label><br/>
           <label className={ RegistChallengeCSS.description }>실천여부를 알 수 있도록 구체적으로 적어주세요.</label><br/>
           <input className={ RegistChallengeCSS.textinput} value={ description } 
-            onChange={ descriptionOnChangeHandler }/><br/>
+            onChange={ e => dispatch({type: SET_DESCRIPTION, payload: e.target.value }) }/><br/>
         </div>
         <div className={ RegistChallengeCSS.checkinput}>
           <label className={ RegistChallengeCSS.subtitle }>참여 인원수</label><br/>
-          <JoinAmount amount={ amount } setAmount={ setAmount }/>
+          <JoinAmount amount={ amount }/>
         </div>
 
         <div className={ RegistChallengeCSS.checkinput}>
@@ -242,42 +202,42 @@ function RegistChallenge() {
         <div className={ RegistChallengeCSS.timeinput}>
           <label className={ RegistChallengeCSS.subtitle }>인증 가능 시간</label><br/>
           <div>
-            <label>시작 시간<input type="time" onChange={ startTimeChange } value={ startTime }/></label>
-            <label>종료 시간<input type="time" onChange={ endTimeChange } value={ endTime }/></label>
+            <label>시작 시간<input type="time" onChange={ e => dispatch({type:SET_START_TIME, payload: e.target.value}) } value={ startTime }/></label>
+            <label>종료 시간<input type="time" onChange={ e => dispatch({type:SET_END_TIME, payload: e.target.value}) } value={ endTime }/></label>
           </div>
         </div>
         <div className={ RegistChallengeCSS.timeinput}>
           <label className={ RegistChallengeCSS.subtitle }>챌린지 시작일</label><br/>
           <div>
-            <input onChange={ startDateChange} value={ startDate } type="date"/>
+            <input onChange={  e => dispatch({type:SET_START_DATE, payload: e.target.value}) } value={ startDate } type="date"/>
           </div>
         </div>
         <div className={ RegistChallengeCSS.checkinput}>
           <label className={ RegistChallengeCSS.subtitle }>챌린지 기간</label><br/>
           <div>
-            <input type="radio" id='term-0' value='0' checked={ term === '0' } onChange={ termOnChangeHandler }/><label for='term-0'>1주</label>
-            <input type="radio" id='term-1' value='1' checked={ term === '1' } onChange={ termOnChangeHandler }/><label for='term-1'>2주</label>
-            <input type="radio" id='term-2' value='2' checked={ term === '2' } onChange={ termOnChangeHandler }/><label for='term-2'>3주</label>
-            <input type="radio" id='term-3' value='3' checked={ term === '3' } onChange={ termOnChangeHandler }/><label for='term-3'>4주</label>
+            <input type="radio" id='term-0' value='0' checked={ term === '0' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label for='term-0'>1주</label>
+            <input type="radio" id='term-1' value='1' checked={ term === '1' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label for='term-1'>2주</label>
+            <input type="radio" id='term-2' value='2' checked={ term === '2' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label for='term-2'>3주</label>
+            <input type="radio" id='term-3' value='3' checked={ term === '3' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label for='term-3'>4주</label>
           </div>
         </div>
         <div className={ RegistChallengeCSS.checkinput}>
           <label className={ RegistChallengeCSS.subtitle }>모집 방식</label><br/>
           <div>
-            <input id='public' type="radio" value='public' checked={ scope === 'public' } onChange={ scopeOnChangeHandler }/><label for='public'>공개</label>
-            <input id='private' type="radio" value='private' checked={ scope === 'private' } onChange={ scopeOnChangeHandler }/><label for='private'>비공개</label>
+            <input id='public' type="radio" value='public' checked={ scope === 'public' } onChange={ e => dispatch({type: SET_SCOPE, payload: e.target.value}) }/><label for='public'>공개</label>
+            <input id='private' type="radio" value='private' checked={ scope === 'private' } onChange={ e => dispatch({type: SET_SCOPE, payload: e.target.value}) }/><label for='private'>비공개</label>
           </div>
         </div>
 
-        <RegistImage title='챌린지 배너 업로드' imageInput={ imageInput1 } setInputFile={ setInputFile1 } setPath={ setPath1 } path={ path1 }/>
-        <RegistImage title='챌린지 썸네일 업로드' imageInput={ imageInput2 } setInputFile={ setInputFile2 } setPath={ setPath2 } path={ path2 }/>
-        <RegistImage title='좋은인증샷 예시 등록' imageInput={ imageInput3 } setInputFile={ setInputFile3 } setPath={ setPath3 } path={ path3 }/>
-        <RegistImage title='나쁜인증샷 예시 등록' imageInput={ imageInput4 } setInputFile={ setInputFile4 } setPath={ setPath4 } path={ path4 }/>
+        <RegistImage title='챌린지 배너 업로드' imageInput={ imageInput1 } path={ path[0] } index={index0}/>
+        <RegistImage title='챌린지 썸네일 업로드' imageInput={ imageInput2 } path={ path[1] } index={index1}/>
+        <RegistImage title='좋은인증샷 예시 등록' imageInput={ imageInput3 } path={ path[2] } index={index2}/>
+        <RegistImage title='나쁜인증샷 예시 등록' imageInput={ imageInput4 } path={ path[3] } index={index3}/>
 
         <br/>
         <div className={ RegistChallengeCSS.descriptarea}>
           <label>챌린지 소개</label><br/>
-          <textarea value={info} onChange={ infoChangeHandler }/>
+          <textarea value={info} onChange={ (e) => dispatch({type: SET_INFO, payload: e.target.value})}/>
         </div>
         <div className={ RegistChallengeCSS.registbtnarea }>
           <button onClick={ onClickHandler }>등록하기</button>

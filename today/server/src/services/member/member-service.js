@@ -209,7 +209,7 @@ exports.findMemberByNo = (memberNo) => {
 
     const connection = getConnection();
 
-    MemberRepository.selectMemberByNo(connection, memberNo);
+    MemberRepository.selectEngagingChallengeByNo(connection, memberNo);
 
   })
 };

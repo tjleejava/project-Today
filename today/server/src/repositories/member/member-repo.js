@@ -111,14 +111,16 @@ exports.insertToken = (connection, tokenData) => {
   })
 };
 
-exports.selectMemberByNo = (connection, memberNo) => {
+exports.selectEngagingChallengeByNo = (connection, memberNo) => {
 
   return new Promise((resolve, reject) => {
-    connection.query(memberQuery.selectMemberByNo(), [memberNo],
+    connection.query(memberQuery.selectParticipationChallengeNoByNo(), [memberNo],
     (err, results, fields) => {
       if(err) {
         reject(err);
       }
+      console.log('여긴 repo이다.')
+      console.log(results);
     })
   })
 }

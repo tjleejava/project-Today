@@ -1,6 +1,20 @@
 import MainUserCSS from './MainUser.module.css';
 import { NavLink } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
+import {Cookies} from 'react-cookie'
+
 function MainUser() {
+
+  const cookies = new Cookies();
+  let isAdmin = false;
+  const token = cookies.get('token');
+  let decoded;
+  console.log(token);
+  if(token) {
+    decoded = jwt_decode(token);
+    
+  }
+  console.log(decoded.nickname);;
 
   return (
     <div className={ MainUserCSS.area }>
@@ -8,7 +22,7 @@ function MainUser() {
         <label>어서오세요</label>
       </div>
       <div className={ MainUserCSS.name }>
-        <label>홍성원 님</label>
+        { token? <label>{decoded.nickname} 님</label> : null }
       </div>
       
     <NavLink to="/registchallenge">

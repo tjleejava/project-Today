@@ -3,7 +3,7 @@ const ChallengeRegistDTO = require('../../dto/challenge/challenge-regist-dto');
 const AuthDayDTO = require('../../dto/challenge/challenge-auth-freq-dto');
 const ChallengeDTO = require('../../dto/challenge/challenge-dto');
 const AttachmentDTO = require('../../dto/challenge/challenge-attachment-dto');
-const RankingDTO = require('../../dto/challenge/ranking-dto');
+const ChallengeListDTO = require('../../dto/challenge/ranking-dto');
 
 exports.selectAttachmentByChallengeNo = (connection, challengeNo) => {
 
@@ -154,7 +154,7 @@ exports.selectRankings = (connection) => {
 
       let rankings = [];
       for(let i = 0; i< results.length; i++) {
-        rankings.push(new RankingDTO(results[i]));
+        rankings.push(new ChallengeListDTO(results[i]));
       }
 
       resolve(rankings);
@@ -173,9 +173,158 @@ exports.selectByCategoryNo = (connection, categoryNo) => {
 
       let challenges = [];
       for(let i = 0; i< results.length; i++) {
-        challenges.push(new RankingDTO(results[i]));
+        challenges.push(new ChallengeListDTO(results[i]));
       }
       resolve(challenges);
     });
   });
+};
+
+exports.selectAllChallengeCount = (connection) => {
+
+  return new Promise( async (resolve, reject) => {
+
+    connection.query(challengeQuery.selectAllChallengeCount(), [], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+      console.log(result[0].count);
+      resolve(result[0].count);
+    });
+  });
+};
+
+exports.selectAllChallengeCountBySearchValue = (connection, searchValue) => {
+
+  return new Promise( async (resolve, reject) => {
+
+    connection.query(challengeQuery.selectAllChallengeCountBySearchValue(), ['%' + searchValue + '%'], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result[0].count);
+    });
+  });
+};
+
+exports.selectChallengeCount =(connection, category) => {
+  return new Promise( async (resolve, reject) => {
+
+    connection.query(challengeQuery.selectChallengeCount(), [parseInt(category)], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result[0].count);
+    });
+  });
+};
+
+exports.selectChallengeCountBySearchValue = (connection, pageInfo) => {
+
+  const {searchValue, category} = pageInfo;
+  return new Promise( async (resolve, reject) => {
+
+    connection.query(challengeQuery.selectChallengeCountBySearchValue()
+                    , [parseInt(category), '%' + searchValue + '%']
+                    , (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result[0].count);
+    });
+  });
+};
+
+exports.selectAllChallenge = (connection, pageInfo) => {
+  const startRow =  pageInfo.pageItemCount * (pageInfo.page - 1);
+  const pageItemCount = pageInfo.pageItemCount;
+
+  return new Promise( async (resolve, reject) => {
+
+    connection.query(challengeQuery.selectAllChallenge(), [startRow, pageItemCount], (err, results, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      let challenges = [];
+      for(let i = 0; i< results.length; i++) {
+        challenges.push(new ChallengeListDTO(results[i]));
+      }
+
+      resolve(challenges);
+    });
+  });
+};
+
+exports.selectAllChallengeBySearchValue = (connection, pageInfo) => {
+
+  const {pageItemCount, searchValue} = pageInfo;
+  const startRow =  pageItemCount * (pageInfo.page - 1);
+
+  return new Promise( async (resolve, reject) => {
+
+    connection.query(challengeQuery.selectAllChallengeBySearchValue()
+                    ,['%' + searchValue + '%', startRow, pageItemCount]
+                    ,(err, results, fields) => {
+      if(err) {
+        reject(eerr);
+      }
+
+      let challenges = [];
+      for(let i = 0; i< results.length; i++) {
+        challenges.push(new ChallengeListDTO(results[i]));
+      }
+
+      resolve(challenges);
+    });
+  });
+};
+
+exports.selectChallenge = (connection, pageInfo) => {
+  
+  const {pageItemCount, category} = pageInfo;
+  const startRow =  pageItemCount * (pageInfo.page - 1);
+
+  return new Promise( async (resolve, reject) => {
+
+    connection.query(challengeQuery.selectChallenge(), [parseInt(category), startRow, pageItemCount], (err, results, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      let challenges = [];
+      for(let i = 0; i< results.length; i++) {
+        challenges.push(new ChallengeListDTO(results[i]));
+      }
+
+      resolve(challenges);
+    });
+  }); 
+};
+
+exports.selectChallengeBySearchValue = (connection, pageInfo) => {
+  
+  const {pageItemCount, searchValue, category} = pageInfo;
+  const startRow =  pageItemCount * (pageInfo.page - 1);
+
+  return new Promise( async (resolve, reject) => {
+
+    connection.query(challengeQuery.selectChallengeBySearchValue()
+                    , [parseInt(category), '%' + searchValue + '%', startRow, pageItemCount]
+                    , (err, results, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      let challenges = [];
+      for(let i = 0; i< results.length; i++) {
+        challenges.push(new ChallengeListDTO(results[i]));
+      }
+
+      resolve(challenges);
+    });
+  }); 
 };

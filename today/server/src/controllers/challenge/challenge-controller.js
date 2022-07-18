@@ -3,6 +3,12 @@ const uuid = require('react-uuid');
 const ChallengeService = require('../../services/challenge/challenge-service');
 const RegistChallengeDTO = require('../../dto/challenge/challenge-regist-dto');
 
+exports.findChallenges = async (req, res, next) => {
+    const results = await ChallengeService.findChallenges(JSON.parse(req.query.pageInfo));
+    console.log(results);
+    res.send(results);
+};
+
 exports.modifyChallenge = async (req, res, next) => {
 
     const result = await ChallengeService.modifyChallenge(req.body);

@@ -14,7 +14,7 @@ const initialState = {
     presentTab: '1',
     partCount: 0,
     isPartIn: false,
-    isHost: false,
+    isHost: false
 };
 
 /* 액션 */

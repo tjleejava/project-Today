@@ -1,25 +1,45 @@
 import SearchComponentCSS from './SearchComponentCSS.module.css';
 import Pagination from 'react-js-pagination';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import {SET_SEARCH_VALUE, SET_CATEGORY, SET_PAGE} from '../../../modules/ChallengeListModule';
+import {getChallengeList} from '../../../apis/ChallengeAPICalls';
 
 function SearchComponent() {
 
-  const [page, setPage] = useState(1);
-  const handlePageChange = page => setPage(page);
+  const dispatch = useDispatch();
+  
+  const {pageInfo} = useSelector(state => state.challengelistReducer);
+  const {page, totalItemCount, pageItemCount, searchValue} = pageInfo;
+  
+  const handlePageChange = (page) => {
 
+    dispatch({type: SET_PAGE, payload: page});
+    dispatch(getChallengeList(pageInfo));
+  };
+  const searchValueChangeHandler = (e) => {
+    dispatch({type: SET_SEARCH_VALUE, payload: e.target.value});
+  }
+
+  useEffect(
+    () => {
+      dispatch({type: SET_CATEGORY, payload: '0'});
+      dispatch(getChallengeList(pageInfo));
+    },[]
+  );
   return (
     <>
     <div className={SearchComponentCSS.searchContainer}>
-      <input placeholder='검색어를 입력하시오'/>
-      <button className={SearchComponentCSS.searchBtn}>검색</button>
+      <input onChange={ searchValueChangeHandler } value={searchValue} placeholder='검색어를 입력하시오'/>
+      <button className={SearchComponentCSS.searchBtn} onClick={ () =>  dispatch(getChallengeList(pageInfo))}>검색</button>
     </div>
     <div>
     <PaginationBox>
                 <Pagination
                     activePage={page}
-                    itemsCountPerPage={10}
-                    totalItemsCount={300}
+                    itemsCountPerPage={pageItemCount}
+                    totalItemsCount={totalItemCount}
                     pageRangeDisplayed={5}
                     prevPageText="<"
                     nextPageText=">"

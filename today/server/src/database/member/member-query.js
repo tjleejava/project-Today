@@ -77,9 +77,14 @@ exports.resetPassword = () => {
   
 }
 
-exports.selectMemberByNo = () => {
-  // return `
-  //   SELECT
-  // `
+exports.selectParticipationChallengeNoByNo = () => {
+  return `
+    SELECT PARTICIPATION_NO
+         , CHALLENGE_NO
+         , PARTICIPATION_DATE
+      FROM tbl_participation
+     WHERE MEMBER_NO = ?
+       AND PARTICIPATION_STATUS_NO = 1
+  `
 }
 

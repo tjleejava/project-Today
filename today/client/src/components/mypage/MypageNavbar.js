@@ -1,5 +1,5 @@
 import MypageNavbarCSS from './MypageNavbar.module.css';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from './NavbarElements';
 
 function MypageNavbar() {
 
@@ -35,3 +35,6 @@ function MypageNavbar() {
 }
 
 export default MypageNavbar;
+
+
+

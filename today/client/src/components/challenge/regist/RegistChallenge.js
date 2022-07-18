@@ -1,85 +1,41 @@
 import RegistChallengeCSS from './RegistChallenge.module.css';
-import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {SET_TITLE, SET_CATEGORY, SET_FREQ, SET_TERM, SET_SCOPE, SET_START_DATE
-  , SET_START_TIME, SET_END_TIME, SET_INFO
-  , SET_AMOUNT, SET_AUTHDAY, SET_DESCRIPTION
-  , SET_PATH} from '../../../modules/ChallengeRegistModule';
 import RegistImage from './RegistImage';
-import axios from 'axios';
 import JoinAmount from './JoinAmount';
 import AuthDay from './AuthDay';
+import jwt_decode from "jwt-decode";
+import {Cookies} from 'react-cookie'
+import { useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { registChallengeAPI, registChallengeImagesAPI } from '../../../apis/ChallengeAPICalls';
+import { SET_PAGE,SET_TITLE, SET_CATEGORY, SET_FREQ, SET_TERM, SET_SCOPE, SET_START_DATE, SET_START_TIME
+, SET_END_TIME, SET_INFO, SET_DESCRIPTION, SET_MEMBER_NO, SET_FILE_INFO} from '../../../modules/ChallengeRegistModule';
 
 function RegistChallenge() {
-
+  
+  const cookies = new Cookies();
   const dispatch = useDispatch();
-  const { registInfo } = useSelector(state => state.challengeRegistReducer);
-  const {category, title, amount, description, term, scope
-    , info, startDate, startTime, endTime, path, inputFiles
-    // , freq
-    // , authDay
-  } = registInfo;
+  const { registInfo, isRegistSucceses } = useSelector(state => state.challengeRegistReducer);
+  const { category, title, amount, description, term, scope, info, fileCheck
+    , startDate, startTime, endTime, path, inputFiles, authDay, freq } = registInfo;
   const navigate = useNavigate();
 
-  let url = '';
+
   const imageInput1 = useRef();
   const imageInput2 = useRef();
   const imageInput3 = useRef();
   const imageInput4 = useRef();
-  
+
   const index0 = useRef(0);
   const index1 = useRef(1);
   const index2 = useRef(2);
   const index3 = useRef(3);
 
-  const [freq, setFreq] = useState('0');
-  const [authDay, setAuthDay] = useState({
-    day0: false,
-    day1: false,
-    day2: false,
-    day3: false,
-    day4: false,
-    day5: false,
-    day6: false
-  });
-
-  const [file1, setFile1] = useState();
-  const [file2, setFile2] = useState();
-  const [file3, setFile3] = useState();
-  const [file4, setFile4] = useState();
-
-  const [inputFile1, setInputFile1] = useState({});
-  const [inputFile2, setInputFile2] = useState({});
-  const [inputFile3, setInputFile3] = useState({});
-  const [inputFile4, setInputFile4] = useState({});
-
-
-  const freqOnChangeHandler = (e) => {
-    setFreq(e.target.value);
-    if(e.target.value == '1') {
-      for(let i = 0; i < 7; i++) {
-        authDay['day' + i] = true;
-        console.log('authDay : ', authDay);
-      }
-    }
-  };
-
   const checkInputValue = () => {
-    
     let result = false;
-    (category !== 1) 
-    && (title) 
-    && (description) 
-    && (freq !== 0) 
-    && (term) 
-    && (scope) 
-    && (startDate) 
-    && (startTime) 
-    && (endTime) 
-    && (info)
-    && checkAuthDay()
-    && ( result = true )
+
+    fileCheck[0] && fileCheck[1] && fileCheck[2] && fileCheck[3] && (description) && (freq !== 0) && (term) && (startDate) && 
+    (scope) && (startTime) && (endTime) && (info) && checkAuthDay() && (title) && (category !== 0) && ( result = true ) 
 
     return result;
   }
@@ -87,12 +43,9 @@ function RegistChallenge() {
   const checkAuthDay = () => {
 
     switch(freq) {
-      case '1':
-        return (countAuthDay() === 7? true: false );
-      case '2':
-        return (countAuthDay() === 3? true: false );
-      case '3':
-        return (countAuthDay() === 1? true: false );
+      case '1': return (countAuthDay() === 7? true: false );
+      case '2': return (countAuthDay() === 3? true: false );
+      case '3': return (countAuthDay() === 1? true: false );
     }
   };
 
@@ -108,55 +61,47 @@ function RegistChallenge() {
   }
 
   const onClickHandler = async () => {
-
-      const checkResult = await checkInputValue();
+      const checkResult = checkInputValue();
 
       if(checkResult) {
+        for(let i = 0; i < inputFiles.length; i++) {
 
-        await axios.post('http://localhost:8888/challenges/upload', inputFile1)
-        .then(res => setFile1(res))
-          .catch(err => console.log(err));
-        await axios.post('http://localhost:8888/challenges/upload', inputFile2)
-          .then(res => setFile2(res)) 
-          .catch(err => console.log(err));
-        await axios.post('http://localhost:8888/challenges/upload', inputFile3)
-          .then(res => setFile3(res))  
-          .catch(err => console.log(err));
-        await axios.post('http://localhost:8888/challenges/upload', inputFile4)
-          .then(res => setFile4(res))
-          .catch(err => console.log(err));
-
-        let data = {
-          category: category,
-          title: title,
-          description: description,
-          freq: freq,
-          term: term,
-          scope: scope,
-          startTime: startTime,
-          endTime: endTime,
-          startDate: startDate,
-          info: info,
-          file : [
-            file1.data, file2.data, file3.data, file4.data
-          ],
-          amount : amount,
-          authDay: authDay,
-          
+         const result = await registChallengeImagesAPI({inputFile: inputFiles[i], index: i});
+         await dispatch({type: SET_FILE_INFO, payload: {data: result, index: i}});
         }
 
-        await axios.post('http://localhost:8888/challenges', data)
-          .then(res => {
-            url = res.data.url;
-          }).catch( err => console.log(err)); 
-        alert('챌린지를 등록했습니다!');
-        navigate('/');
+        await dispatch(registChallengeAPI(registInfo));
+        
       } else {
         alert('모든 정보를 입력하세요');
       }
-
   };      
-  
+
+  useEffect(
+    () => {
+      const token = cookies.get('token');
+      if(token) {
+      const decoded = jwt_decode(token);
+      dispatch({type: SET_MEMBER_NO, payload: decoded.no});
+
+      if(isRegistSucceses != 0) {
+      
+      }
+    }
+    },[]
+  );
+
+  useEffect(
+    () => {
+      if(isRegistSucceses != 0) {
+        alert('챌린지 등록에 성공했습니다');
+        window.location.replace(`/challenges/${isRegistSucceses}`); 
+
+      }
+      
+    },[isRegistSucceses]
+  );
+
   return (
     <>
       <br/>
@@ -191,12 +136,12 @@ function RegistChallenge() {
         <div className={ RegistChallengeCSS.checkinput}>
           <label className={ RegistChallengeCSS.subtitle }>인증 빈도</label><br/>
           <div>
-            <input id="freq-1" type="radio" value='1' checked={freq === '1'} onChange={ freqOnChangeHandler } /><label for='freq-1'>매일 인증</label>
-            <input id="freq-2" type="radio" value='2' checked={freq === '2'} onChange={ freqOnChangeHandler } /><label for='freq-2'>주 3일 인증</label>
-            <input id="freq-3" type="radio" value='3' checked={freq === '3'} onChange={ freqOnChangeHandler } /><label for='freq-3'>주 1일 인증</label>
+            <input id="freq-1" type="radio" value='1' checked={freq === '1'} onChange={ (e) => dispatch({type: SET_FREQ, payload: e.target.value}) } /><label htmlFor='freq-1'>매일 인증</label>
+            <input id="freq-2" type="radio" value='2' checked={freq === '2'} onChange={ (e) => dispatch({type: SET_FREQ, payload: e.target.value}) } /><label htmlFor='freq-2'>주 3일 인증</label>
+            <input id="freq-3" type="radio" value='3' checked={freq === '3'} onChange={ (e) => dispatch({type: SET_FREQ, payload: e.target.value}) } /><label htmlFor='freq-3'>주 1일 인증</label>
           </div>
           <div>
-            <AuthDay freq={freq} authDay={ authDay } setAuthDay={ setAuthDay }/>
+            <AuthDay freq={freq}/>
           </div> 
         </div>
         <div className={ RegistChallengeCSS.timeinput}>
@@ -215,24 +160,24 @@ function RegistChallenge() {
         <div className={ RegistChallengeCSS.checkinput}>
           <label className={ RegistChallengeCSS.subtitle }>챌린지 기간</label><br/>
           <div>
-            <input type="radio" id='term-0' value='0' checked={ term === '0' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label for='term-0'>1주</label>
-            <input type="radio" id='term-1' value='1' checked={ term === '1' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label for='term-1'>2주</label>
-            <input type="radio" id='term-2' value='2' checked={ term === '2' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label for='term-2'>3주</label>
-            <input type="radio" id='term-3' value='3' checked={ term === '3' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label for='term-3'>4주</label>
+            <input type="radio" id='term-1' value='1' checked={ term === '1' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label htmlFor='term-1'>1주</label>
+            <input type="radio" id='term-2' value='2' checked={ term === '2' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label htmlFor='term-2'>2주</label>
+            <input type="radio" id='term-3' value='3' checked={ term === '3' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label htmlFor='term-3'>3주</label>
+            <input type="radio" id='term-4' value='4' checked={ term === '4' } onChange={ e => dispatch({type: SET_TERM, payload: e.target.value }) }/><label htmlFor='term-4'>4주</label>
           </div>
         </div>
         <div className={ RegistChallengeCSS.checkinput}>
           <label className={ RegistChallengeCSS.subtitle }>모집 방식</label><br/>
           <div>
-            <input id='public' type="radio" value='public' checked={ scope === 'public' } onChange={ e => dispatch({type: SET_SCOPE, payload: e.target.value}) }/><label for='public'>공개</label>
-            <input id='private' type="radio" value='private' checked={ scope === 'private' } onChange={ e => dispatch({type: SET_SCOPE, payload: e.target.value}) }/><label for='private'>비공개</label>
+            <input id='public' type="radio" value='public' checked={ scope === 'public' } onChange={ e => dispatch({type: SET_SCOPE, payload: e.target.value}) }/><label htmlFor='public'>공개</label>
+            <input id='private' type="radio" value='private' checked={ scope === 'private' } onChange={ e => dispatch({type: SET_SCOPE, payload: e.target.value}) }/><label htmlFor='private'>비공개</label>
           </div>
         </div>
 
-        <RegistImage title='챌린지 배너 업로드' imageInput={ imageInput1 } path={ path[0] } index={index0}/>
-        <RegistImage title='챌린지 썸네일 업로드' imageInput={ imageInput2 } path={ path[1] } index={index1}/>
-        <RegistImage title='좋은인증샷 예시 등록' imageInput={ imageInput3 } path={ path[2] } index={index2}/>
-        <RegistImage title='나쁜인증샷 예시 등록' imageInput={ imageInput4 } path={ path[3] } index={index3}/>
+        <RegistImage title='챌린지 배너 업로드' imageInput={ imageInput1 } index={index0}/>
+        <RegistImage title='챌린지 썸네일 업로드' imageInput={ imageInput2 } index={index1}/>
+        <RegistImage title='좋은인증샷 예시 등록' imageInput={ imageInput3 } index={index2}/>
+        <RegistImage title='나쁜인증샷 예시 등록' imageInput={ imageInput4 } index={index3}/>
 
         <br/>
         <div className={ RegistChallengeCSS.descriptarea}>

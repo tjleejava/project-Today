@@ -103,26 +103,29 @@ exports.findRankings = () => {
     });
 };
 
-exports.registChallenge = (registChallenge) => {
-
+exports.registChallenge = (registInfo) => {
+    const {authDay, fileInfos} = registInfo;
+    
+    console.log(authDay)
+    console.log(fileInfos);
     return new Promise( async (resolve, reject) => {
 
         const connection = getConnection();
         connection.connect();
 
-        const result = await ChallengeRepo.insertChallenge(connection, registChallenge);
-
+        const result = await ChallengeRepo.insertChallenge(connection, registInfo);
         const challengeNo = result.insertId;
 
-        for(let i = 0; i < registChallenge.file.length; i++) {
-            const inputFile = { ...registChallenge.file[i] };
-            inputFile.challengeNo = challengeNo;
-            inputFile.type= i + 1;
-            ChallengeRepo.insertChallengeAttachment(connection, inputFile);
+        for(let i = 0; i < fileInfos.length; i++) {
+            
+            fileInfos[i].challengeNo = challengeNo;
+            fileInfos[i].type= i + 1;
+            console.log('fileInfos[i] : ', fileInfos[i]);
+            ChallengeRepo.insertChallengeAttachment(connection, fileInfos[i]);
         }
 
         for(let i = 0; i < 7; i++) {
-            if(registChallenge.authDay['day' + i]) {
+            if(authDay['day' + i]) {
                 const authFreqDay = {
                     dayNo: i,
                     challengeNo: challengeNo

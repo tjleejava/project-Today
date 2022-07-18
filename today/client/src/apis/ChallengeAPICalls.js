@@ -1,6 +1,7 @@
 import { GET_CHALLENGE, GET_CHALLENGE_AUTH_BY_MEMBER } from "../modules/ChallengesModule";
 import { GET_CHALLENGE_LIST } from '../modules/ChallengeListModule';
 import axios from 'axios';
+import { POST_CHALLENGE, SET_FILE_INFO } from "../modules/ChallengeRegistModule";
 
 export function callGetChallengeInfoAPI(challengeNo) {
     
@@ -38,3 +39,25 @@ export function getChallengeList(pageInfo) {
         dispatch({type: GET_CHALLENGE_LIST, payload: results.data});
     };
 }
+
+export function registChallengeAPI(registInfo) {
+    const POST_CHALLENGE_URL = 'http://localhost:8888/challenges';
+
+    return async function registChallenge(dispatch, getState) {
+
+        const result = await axios.post(POST_CHALLENGE_URL, registInfo)
+                                    .catch(err => console.log(err));
+        console.log(result);
+        dispatch({type: POST_CHALLENGE, payload: result.data.result});
+    };
+};
+
+export async function registChallengeImagesAPI({inputFile}) {
+
+    const POST_CHALLENGE_IMAGE_URL = 'http://localhost:8888/challenges/upload';
+
+    const result = await axios.post(POST_CHALLENGE_IMAGE_URL, inputFile).catch(err => console.log(err));
+    
+    return result.data;
+};
+

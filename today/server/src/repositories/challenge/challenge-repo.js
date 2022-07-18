@@ -91,13 +91,13 @@ exports.selectChallengeByNo = (connection, challengeNo) => {
 
 };
 
-exports.insertChallenge = (connection, registChallenge) => {
-
-  const { title, startDate, term, scope, category, description, info, amount, freq, startTime, endTime } = registChallenge;
+exports.insertChallenge = (connection, registInfo) => {
+  
+  const { title, startDate, term, scope, category,memberNo, description, info, amount, freq, startTime, endTime } = registInfo;
 
   return new Promise((resolve, reject) => {
     connection.query(challengeQuery.insertChallenge(), 
-    [title, startDate, term, scope, category, 1, amount, 1, description, info, freq, startTime, endTime], (err, result, fields) => {
+    [title, startDate, term, scope, category, memberNo, amount, 1, description, info, freq, startTime, endTime], (err, result, fields) => {
 
       if(err) {
         reject(err);
@@ -166,11 +166,13 @@ exports.selectByCategoryNo = (connection, categoryNo) => {
 
   return new Promise( async (resolve, reject) => {
 
+    
     connection.query(challengeQuery.selectByCategoryNo(), [categoryNo], (err, results, fields) => {
       if(err) {
         reject(err);
       }
-
+      console.log(categoryNo);
+      console.log(results);
       let challenges = [];
       for(let i = 0; i< results.length; i++) {
         challenges.push(new ChallengeListDTO(results[i]));

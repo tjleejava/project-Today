@@ -13,14 +13,14 @@ function Header() {
 
     const cookies = new Cookies();
 
-    console.log(getCookie('token'));
 	const token = getCookie('token');
+
 
     const onClickHandler = async (e) => {
 			await logoutAPI(token);
 			// navigate('/');
 
-    };
+    };  
     
     return (
         <div className={ HeaderCSS.headergroup }>

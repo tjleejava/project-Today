@@ -3,7 +3,7 @@
   margin-left: 5vw;
 }
 
-.categoryBtn > input {
+.basic {
   margin: 10px;
   border: none;
   width: 80px;
@@ -13,6 +13,16 @@
   color: white;
   cursor: pointer;
   font-weight: 400;
-  
-  
+}
+
+.selected {
+  margin: 10px;
+  border: none;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+  font-weight: 400;
 }

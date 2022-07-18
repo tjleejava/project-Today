@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ChallengeController = require('../controllers/challenge/challenge-controller');
 
+router.get('/', ChallengeController.findChallenges);
 router.post('/', ChallengeController.registChallenge);
 router.put('/',ChallengeController.modifyChallenge)
 router.post('/upload', ChallengeController.uploadFile);

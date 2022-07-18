@@ -1,6 +1,45 @@
 const getConnection = require('../../database/connection');
 const ChallengeRepo = require('../../repositories/challenge/challenge-repo');
 
+exports.findChallenges = (pageInfo) => {
+
+    const { searchValue, category } = pageInfo;
+    console.log(pageInfo);
+    let challenges;
+    return new Promise(async (resolve, reject) => {
+        const connection = getConnection();
+        let totalCounts = 0;
+
+        if(category == '0') {
+            if(searchValue == '') {
+                totalCounts = await ChallengeRepo.selectAllChallengeCount(connection);
+                challenges = await ChallengeRepo.selectAllChallenge(connection, pageInfo);
+            } else {
+                totalCounts = await ChallengeRepo.selectAllChallengeCountBySearchValue(connection, searchValue);
+                challenges = await ChallengeRepo.selectAllChallengeBySearchValue(connection, pageInfo);
+            }
+        } else {
+            if(searchValue == '') {
+                totalCounts = await ChallengeRepo.selectChallengeCount(connection, category);
+                challenges = await ChallengeRepo.selectChallenge(connection, pageInfo);
+            } else {
+                totalCounts = await ChallengeRepo.selectChallengeCountBySearchValue(connection, pageInfo);
+                challenges = await ChallengeRepo.selectChallengeBySearchValue(connection, pageInfo);
+            }
+        }
+        
+        connection.end();
+
+        
+        resolve(
+            {
+                challenges: challenges, 
+                pageInfo: {...pageInfo,totalItemCount: totalCounts}
+            }
+        );
+    });
+};
+
 exports.findChallengeByNo = (challengeNo) => {
 
 

@@ -1,6 +1,45 @@
 const getConnection = require('../../database/connection');
 const ChallengeRepo = require('../../repositories/challenge/challenge-repo');
 
+exports.findChallenges = (pageInfo) => {
+
+    const { searchValue, category } = pageInfo;
+    console.log(pageInfo);
+    let challenges;
+    return new Promise(async (resolve, reject) => {
+        const connection = getConnection();
+        let totalCounts = 0;
+
+        if(category == '0') {
+            if(searchValue == '') {
+                totalCounts = await ChallengeRepo.selectAllChallengeCount(connection);
+                challenges = await ChallengeRepo.selectAllChallenge(connection, pageInfo);
+            } else {
+                totalCounts = await ChallengeRepo.selectAllChallengeCountBySearchValue(connection, searchValue);
+                challenges = await ChallengeRepo.selectAllChallengeBySearchValue(connection, pageInfo);
+            }
+        } else {
+            if(searchValue == '') {
+                totalCounts = await ChallengeRepo.selectChallengeCount(connection, category);
+                challenges = await ChallengeRepo.selectChallenge(connection, pageInfo);
+            } else {
+                totalCounts = await ChallengeRepo.selectChallengeCountBySearchValue(connection, pageInfo);
+                challenges = await ChallengeRepo.selectChallengeBySearchValue(connection, pageInfo);
+            }
+        }
+        
+        connection.end();
+
+        
+        resolve(
+            {
+                challenges: challenges, 
+                pageInfo: {...pageInfo,totalItemCount: totalCounts}
+            }
+        );
+    });
+};
+
 exports.findChallengeByNo = (challengeNo) => {
 
 
@@ -64,26 +103,29 @@ exports.findRankings = () => {
     });
 };
 
-exports.registChallenge = (registChallenge) => {
-
+exports.registChallenge = (registInfo) => {
+    const {authDay, fileInfos} = registInfo;
+    
+    console.log(authDay)
+    console.log(fileInfos);
     return new Promise( async (resolve, reject) => {
 
         const connection = getConnection();
         connection.connect();
 
-        const result = await ChallengeRepo.insertChallenge(connection, registChallenge);
-
+        const result = await ChallengeRepo.insertChallenge(connection, registInfo);
         const challengeNo = result.insertId;
 
-        for(let i = 0; i < registChallenge.file.length; i++) {
-            const inputFile = { ...registChallenge.file[i] };
-            inputFile.challengeNo = challengeNo;
-            inputFile.type= i + 1;
-            ChallengeRepo.insertChallengeAttachment(connection, inputFile);
+        for(let i = 0; i < fileInfos.length; i++) {
+            
+            fileInfos[i].challengeNo = challengeNo;
+            fileInfos[i].type= i + 1;
+            console.log('fileInfos[i] : ', fileInfos[i]);
+            ChallengeRepo.insertChallengeAttachment(connection, fileInfos[i]);
         }
 
         for(let i = 0; i < 7; i++) {
-            if(registChallenge.authDay['day' + i]) {
+            if(authDay['day' + i]) {
                 const authFreqDay = {
                     dayNo: i,
                     challengeNo: challengeNo

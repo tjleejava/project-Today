@@ -3,6 +3,12 @@ const uuid = require('react-uuid');
 const ChallengeService = require('../../services/challenge/challenge-service');
 const RegistChallengeDTO = require('../../dto/challenge/challenge-regist-dto');
 
+exports.findChallenges = async (req, res, next) => {
+    const results = await ChallengeService.findChallenges(JSON.parse(req.query.pageInfo));
+    console.log(results);
+    res.send(results);
+};
+
 exports.modifyChallenge = async (req, res, next) => {
 
     const result = await ChallengeService.modifyChallenge(req.body);
@@ -17,11 +23,10 @@ exports.modifyChallenge = async (req, res, next) => {
 
 exports.registChallenge = async (req, res, next) => {
 
-    const registChallenge = new RegistChallengeDTO(req.body);
-    const result = await ChallengeService.registChallenge(registChallenge);
+    const result = await ChallengeService.registChallenge(req.body);
 
     return res.send(
-        {
+        {   
             result: result,
             url: 'http://localhost:3000'
         }
@@ -29,7 +34,7 @@ exports.registChallenge = async (req, res, next) => {
 };
 
 exports.uploadFile = async (req, res, next) => {
-  
+
     if( !req.files ) {
         return res.status(500).send({ msg: "file is not found" });
     } 
@@ -86,6 +91,6 @@ exports.findByCategoryNo = async (req, res, next) => {
     const categoryNo = req.params.categoryNo;
     
     const results = await ChallengeService.findByCategoryNo(categoryNo);
-
+    
     res.send(results);
 };

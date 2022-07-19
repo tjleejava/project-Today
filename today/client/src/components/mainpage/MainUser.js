@@ -14,7 +14,6 @@ function MainUser() {
     decoded = jwt_decode(token);
     
   }
-  console.log(decoded.nickname);;
 
   return (
     <div className={ MainUserCSS.area }>

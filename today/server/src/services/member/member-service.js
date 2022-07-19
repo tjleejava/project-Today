@@ -205,11 +205,16 @@ exports.checkEmail = (email) => {
 };
 
 exports.findMemberByNo = (memberNo) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(async(resolve, reject) => {
 
     const connection = getConnection();
 
-    MemberRepository.selectEngagingChallengeByNo(connection, memberNo);
+    const participationResult = await MemberRepository.selectChallengeByMemberNo(connection, memberNo);
+    console.log('service')
+    resolve(participationResult);
+    
+    
 
+    
   })
 };

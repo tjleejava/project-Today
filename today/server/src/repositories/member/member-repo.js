@@ -1,6 +1,8 @@
 const memberQuery = require('../../database/member/member-query');
+const ChallengeArrayDTO = require('../../dto/challenge/challengeArray-dto');
 const MemberDTO1 = require('../../dto/member/member-dto');
-const MemberDTO = require('../../dto/member/member-response-dto')
+const MemberDTO = require('../../dto/member/member-response-dto');
+const ParticipationDTO = require('../../dto/participation/participation-dto');
 
 
 exports.selectMemberById = async(connection, id) => {
@@ -111,16 +113,30 @@ exports.insertToken = (connection, tokenData) => {
   })
 };
 
-exports.selectEngagingChallengeByNo = (connection, memberNo) => {
+exports.selectChallengeByMemberNo = (connection, memberNo) => {
 
   return new Promise((resolve, reject) => {
-    connection.query(memberQuery.selectParticipationChallengeNoByNo(), [memberNo],
+    connection.query(memberQuery.selectChallengeByMemberNo(), [memberNo],
     (err, results, fields) => {
       if(err) {
         reject(err);
       }
-      console.log('여긴 repo이다.')
+      console.log('REPO')
       console.log(results);
+      const challengeInfoArray = [];
+      if(results !== undefined) {
+        for(i = 0; i < results.length; i++) {
+          const challenge = new ChallengeArrayDTO(results[i]);
+          challengeInfoArray.push(challenge);
+        }
+        console.log('챌린지 정보 확인')
+        console.log(challengeInfoArray);
+        resolve(challengeInfoArray);
+      }else if(results === undefined){
+        console.log('일치하는 결과가 없습니다.')
+        resolve(null);
+      }
+      
     })
   })
 }

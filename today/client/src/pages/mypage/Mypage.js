@@ -2,8 +2,8 @@ import MyPageCSS from './MyPageCSS.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { mypageInfoAPI } from '../../apis/MypageAPICalls'
 import jwt_decode from "jwt-decode";
+import { mypageInfoAPI } from '../../apis/MypageAPICalls'
 import {Cookies} from 'react-cookie'
 
 function Mypage() {
@@ -20,7 +20,6 @@ function Mypage() {
       console.log(decoded);
       const memberNo = decoded.no;
       console.log(memberNo);
-
       mypageInfoAPI(memberNo);
     }
     else {

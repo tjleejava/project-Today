@@ -1,0 +1,44 @@
+.area {
+  width: 80%;
+  margin-left: 5%;
+}
+
+.header {
+  margin: 3%;
+}
+
+.header > label {
+  font-size: 1.3em;
+  font-weight: 800;
+  padding-right: 85%;
+}
+.header > button {
+  border-radius: 5px;
+  border: none;
+  font-size: 1.2em;
+  background-color: #C2A894;
+  color: white;
+  cursor: pointer;
+}
+
+.tablearea {
+  margin: 3%;
+  height: 500px;
+}
+
+.tablehead {
+  height: 60px;
+  font-size: 1.1em;
+  font-weight: 800;
+  background-color: aquamarine;
+}
+
+.tabledata {
+  height: 40px;
+  font-size: 1.1em;
+}
+
+
+.pagingarea {
+  text-align: center;
+}

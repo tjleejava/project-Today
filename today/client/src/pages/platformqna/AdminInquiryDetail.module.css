@@ -1,0 +1,36 @@
+.area {
+}
+
+.tablearea {
+}
+
+.tablearea > table {
+  margin-left: 10%;
+  width: 80%;
+  text-align: center;
+}
+.tablearea > table > tbody > tr > td {
+  
+  border: 1px solid black;
+}
+
+.btnarea {
+  text-align: right;
+}
+.btnarea > button {
+  margin-right: 1%;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  background-color: #C2A894;
+  color: white;
+  font-weight: 800;
+  border: none;
+  border-radius: 5px;
+  width: 90px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.replybtn {
+  margin-right: 10% !important;
+}

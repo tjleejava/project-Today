@@ -1,0 +1,45 @@
+.modalarea {
+  width: 90%;
+  margin-left: 5%;
+}
+.modalarea > h1 {
+  color: #A49A93;
+  font-weight: 800;
+}
+.modalarea > hr {
+  border: 0;
+  height: 2px;
+  background: #C1A78A; 
+}
+
+.modalarea > label {
+  color: #ababab;
+  font-size: 0.8em;
+}
+
+.contentArea {
+  height: 340px;
+}
+
+.contentArea > textarea {
+  margin-top: 2%;
+  width: 99%;
+  height: 250px;
+  font-size: 1.2em;
+}
+
+.modalBtnArea {
+  width: 100%;
+  text-align: right;
+}
+
+.modalBtnArea > button {
+  margin-right: 10px;
+  height: 30px;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #A49A93;
+  cursor: pointer;
+}

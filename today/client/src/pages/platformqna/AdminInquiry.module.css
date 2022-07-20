@@ -1,0 +1,21 @@
+.area {
+  width: 80%;
+  height: 700px;
+  padding: 50px;
+  margin-left: 7%;
+}
+
+.head {
+  height: 120px;
+}
+.body {
+  height: 430px;
+}
+
+
+.tablehead {
+  height: 60px;
+  font-size: 1.1em;
+  font-weight: 800;
+  background-color: aquamarine;
+}

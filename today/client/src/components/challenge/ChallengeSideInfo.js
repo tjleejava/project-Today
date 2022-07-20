@@ -1,45 +1,94 @@
 import ChallengeSideInfoCSS from './ChallengeSideInfo.module.css';
 import { useParams, useNavigate } from 'react-router-dom';
-export default function ChallengeSideInfo() {
+import { useEffect, useState } from 'react';
+import ChallengeReportModal from './ChallengeReportModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkChallengeAuthByMemberNoAPI,callGetChallengeInfoAPI} from '../../apis/ChallengeAPICalls';
+import {SET_CHALLENGE_HOST_OR_NOT} from '../../modules/ChallengesModule';
+import AdminSide from './challengeSide/AdminSide';
+import HostSide from './challengeSide/HostSide';
+import UserSide from './challengeSide/UserSide';
+import getTime from '../../util/getTime';
+import jwt_decode from "jwt-decode";
+import {Cookies} from 'react-cookie'
 
-    const { challengeNo } = useParams();
+export default function ChallengeSideInfo({challengeNo}) {
+
+    const cookies = new Cookies();
+
+    let isAdmin = false;
+    let memberNo = 3;
+    const token = cookies.get('token');
+    if(token) {
+        const decoded = jwt_decode(token);
+        memberNo = decoded.no;
+        isAdmin = decoded.memberRole == 'ROLE_ADMIN' ? true : false;
+    } 
+
     const MODIFY = 'modify';
     const navigate = useNavigate(); 
+    const [reportModalState , setReportModalState] = useState(false);
 
-    const modifyChallengeHandler = () => {
-        navigate(MODIFY);
-    }
+    const { registInfo, isAlreadyReported } = useSelector(state => state.reportReducer);
+    const { isHost, partCount, challengeInfo} = useSelector(state => state.challengesReducer);
 
+
+    const dispatch = useDispatch();
+
+    const passedDate = getTime.getPassedDate(challengeInfo.challengeStartDate);
+    useEffect(
+            () => {
+                dispatch(callGetChallengeInfoAPI(challengeNo));
+            },[]
+        );
+
+    useEffect(  
+        () => {
+            dispatch(checkChallengeAuthByMemberNoAPI({memberNo: memberNo, challengeNo: challengeNo}));
+            const isHost = challengeInfo.memberNo == memberNo ? true : false;
+            dispatch({type: SET_CHALLENGE_HOST_OR_NOT, payload: isHost});
+            
+        },[challengeInfo]
+    );
 
     return (
         <div className={ ChallengeSideInfoCSS.sideInfoArea }>
             <div className={ ChallengeSideInfoCSS.content }>
                 <label className={ ChallengeSideInfoCSS.challengerCount }>참여인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <span className={ ChallengeSideInfoCSS.challengerCountInfo }><span>6명&nbsp;&nbsp;</span><span>/</span><span>&nbsp;&nbsp;10명</span></span>
+
+                <span className={ ChallengeSideInfoCSS.challengerCountInfo }><span>{partCount}&nbsp;&nbsp;</span><span>/</span><span>&nbsp;&nbsp;{challengeInfo.challengeMaxAmount}</span></span>
             </div>
-            <div className={ ChallengeSideInfoCSS.content }>
-                <span className={ ChallengeSideInfoCSS.challengeProgress }>0&nbsp;&nbsp;</span>
-                <span className={ ChallengeSideInfoCSS.text }>일 째 진행중</span>
-            </div>
-            <div className={ ChallengeSideInfoCSS.content }>
-                <div className={ ChallengeSideInfoCSS.context1 }>힘내세요!</div>
-            </div>
-            <div className={ ChallengeSideInfoCSS.content }>
-                <button className={ ChallengeSideInfoCSS.authBtn }>챌린지 인증하기</button>
-            </div>
-            <div className={ ChallengeSideInfoCSS.content }>
-                <div className={ ChallengeSideInfoCSS.context2 }><span>미확인된 인증이&nbsp;</span><span className={ ChallengeSideInfoCSS.context1 }>4</span><span>&nbsp;개 입니다!</span></div>
-                <button className={ ChallengeSideInfoCSS.authBtn }>인증 현황</button>
-            </div>
-            <br/>
-            <div className={ ChallengeSideInfoCSS.content }>
-                <button className={ ChallengeSideInfoCSS.inviteBtn }>친구 초대하기</button>
-            </div>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            <div className={ ChallengeSideInfoCSS.buttonArea }>
-                <button onClick={ modifyChallengeHandler } className={ ChallengeSideInfoCSS.modifyBtn }>챌린지 수정</button>
-                <button className={ ChallengeSideInfoCSS.deleteBtn }>챌린지 삭제</button>
-            </div>
+            {
+                challengeInfo.challengeStatusNo === 2
+                &&
+                (<div className={ ChallengeSideInfoCSS.content }>
+                    <span className={ ChallengeSideInfoCSS.challengeProgress }>{passedDate}&nbsp;&nbsp;</span>
+                    <span className={ ChallengeSideInfoCSS.text }>일 째 진행중</span>
+                </div>)  
+            }
+            {   challengeInfo.challengeStatusNo === 1 &&   
+                <div className={ ChallengeSideInfoCSS.content }>
+                    <span className={ ChallengeSideInfoCSS.challengeProgress }>{challengeInfo.challengeStartDate}&nbsp;&nbsp;</span>
+                    <span className={ ChallengeSideInfoCSS.text }>일 시작 예정</span>
+                </div>
+            }
+
+            {
+                isAdmin ?
+                <AdminSide/> : 
+                (
+                    token?
+                    (
+                        isHost?
+                        <HostSide/>:
+                        <div>
+                            <UserSide isAlreadyReported={isAlreadyReported} setReportModalState={setReportModalState}/>
+                        </div>
+                    ) :
+                    null
+                )
+            }
+            <ChallengeReportModal reportModalState={reportModalState} setReportModalState={setReportModalState}/>        
         </div>
     );
 }

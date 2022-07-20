@@ -1,0 +1,73 @@
+.titlearea {
+}
+.titlearea > hr {
+  margin-bottom: 3%;
+}
+
+.inputarea {
+  height: 60px;
+  width: 99%;
+}
+.inputarea > input {
+  margin-left: 5%;
+  width: 30%;
+  height: 23px;
+  font-size: 1em;
+}
+.inputarea > button {
+  margin-left: 3%;
+  height: 30px;
+  width: 70px;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #A49A93;
+  cursor: pointer;
+}
+
+
+.outputarea {
+  font-weight: 99%;
+  height: 270px;
+}
+
+.notExistbox {
+  text-align: center;
+  padding-top: 130px;
+}
+
+.existsbox {
+}
+
+.existscontent {
+  margin-left: 24%;
+  padding-top: 10%;
+}
+
+.existscontent > label {
+  font-size: 1.1em;
+  width: 20px;
+  
+}
+
+.notExistbox > label {
+  font-size: 1.2em;
+}
+
+.btnarea {
+  text-align: right;
+  height: 60px;
+}
+.btnarea > button {
+  margin-right: 3%;
+  height: 34px;
+  width: 100px;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #A49A93;
+  cursor: pointer;
+
+}

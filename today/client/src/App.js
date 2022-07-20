@@ -2,8 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RegistChallenge from './components/challenge/regist/RegistChallenge';
 import Layout from './layouts/Layout';
 import Main from './pages/Main';
-import Menus from './pages/Menus';
-import Menus2 from './pages/Menus2';
 import Login from './pages/login/Login';
 import Members from "./pages/admin/Members";
 import SignUp from './pages/signup/SignUp';
@@ -19,7 +17,20 @@ import PwdFind from './pages/idPwdFind/PwdFind';
 import IdFindResult from './pages/idPwdFind/IdFindResult';
 import AuthList from './pages/auth/AuthList';
 import AuthDetail from './pages/auth/AuthDetail';
-import ModifyChallengeCSS from './pages/challenge/modify/ModifyChallenge';
+import ModifyChallenge from './pages/challenge/modify/ModifyChallenge';
+import UserQna from './pages/platformqna/UserQna';
+import RegistQna from './pages/platformqna/RegistQna';
+import UserQnaDetail from './pages/platformqna/UserQnaDetail';
+import AdminInquiry from './pages/platformqna/AdminInquiry';
+import AdminInquiryDetail from './pages/platformqna/AdminInquiryDetail';
+import AdminReport from './pages/report/AdminReport';
+import AdminUserReport from './pages/report/AdminUserReport';
+import AdminChallengeReport from './pages/report/AdminChallengeReport';
+import ReportDetail from './components/report/ReportDetail';
+import Challenges from './pages/mypage/Challenges';
+import Following from './pages/mypage/Following';
+import Invite from './pages/mypage/Invite';
+
 
 function App() {
   return (
@@ -27,22 +38,29 @@ function App() {
       <Routes>
         <Route path="/" element={ <Layout/>} >
           <Route index element={ <Main/> } />
-          <Route path="menus" element={ <Menus/>} />
-          <Route path="menus2" element={ <Menus2/>} />
           <Route path="registchallenge" element={ <RegistChallenge/> } />
           <Route path="challenges">
             <Route index element={ <ChallengesList/> } />
             <Route path=":challengeNo" >
               <Route index  element={ <ChallengeDetail/> } />
-              <Route path="auth" />
-              <Route index element={ <AuthList/> } />
-              <Route path=":authNo" element={ <AuthDetail/> } />
-              <Route path="modify" element={ <ModifyChallengeCSS/>}/>
+              <Route path="modify" element={ <ModifyChallenge/>}/>
+              <Route path="auth">
+                <Route index element={ <AuthList/> } />
+                <Route path=":authNo" element={ <AuthDetail/> } />
+              </Route>
             </Route>
           </Route> 
           <Route path="mypage" element={ <MypageLayout/> }>
             <Route index element={ <Mypage/> } />
             <Route path="alarm" element={ <Alarm/> } />
+            <Route path="following" element={ <Following/> } />
+            <Route path="invites" element={ <Invite/> } />
+            <Route path="qna">
+              <Route index element={ <UserQna/> } />
+              <Route path="regist" element={ <RegistQna/>}/>
+              <Route path=":inquiryNo" element={ <UserQnaDetail/>}/>
+            </Route>
+            {/* <Route path="challenges" element={<Challenges/>}/> */}
           </Route>
         </Route>
         <Route path="/admin" element={ <Layout/> } >
@@ -51,12 +69,22 @@ function App() {
             <Route index element={ <Members/> } />
             <Route path=":memberNo" element={ <MemberDetail/> } />
           </Route>
+          <Route path="inquiries">
+            <Route index  element={ <AdminInquiry/> }/>
+            <Route path=":inquiryNo" element={ <AdminInquiryDetail/> }/>
+          </Route>
+          <Route path="reports">
+            <Route index element={ <AdminReport/>}/>
+            <Route path='user' element={ <AdminUserReport/>}/>
+            <Route path='challenge' element={ <AdminChallengeReport/>}/>
+            <Route path=':reportNo' element={ <ReportDetail/>}/>
+          </Route>
         </Route>
         <Route path="/sign" element={ <SignLayout/> }>
           <Route path="login" element={ <Login/> }/>
           <Route path="signup" element={<SignUp/>}/>
           <Route path="id" element={<IdFind/>}/>
-          <Route path="result" element={<IdFindResult/>}/>
+          <Route path="result/:resultNo" element={<IdFindResult/>}/>
           <Route path="pwd" element={<PwdFind/>}/>
         </Route>
         

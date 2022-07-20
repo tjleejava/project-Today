@@ -1,6 +1,9 @@
 .area {
-  border: 1px solid black;
   width: 70%;
-  height: 250px;
-  
+  height: 230px;
+  background-color: antiquewhite;  
+}
+.area > img {
+  width: 100%;
+  height: 230px;
 }

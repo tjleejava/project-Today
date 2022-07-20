@@ -5,3 +5,7 @@
 .navbar {
   width: 150px;
 }
+
+.outlet {
+  flex-direction: column;
+}

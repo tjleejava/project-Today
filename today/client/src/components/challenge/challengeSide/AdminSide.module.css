@@ -1,0 +1,12 @@
+.authBtn {
+  background-color: white;
+  width: 12rem;
+  font-size: 1.2rem;
+  border: solid 0.5px #A49A93;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.3rem;
+}
+.content {
+  margin-bottom: 1rem;
+}

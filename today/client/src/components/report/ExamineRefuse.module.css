@@ -1,0 +1,31 @@
+
+.answerbox {
+  width: 100%;
+  height: 570px;
+}
+
+.answerarea {
+  padding-left: 18%;
+  padding-top: 25%;
+}
+.answerarea > label {
+  font-size: 1.1em;
+  display:inline-block; 
+  width:200px;
+}
+
+.btnarea {
+  width: 97%;
+  text-align: right;
+}
+
+.btnarea > button {
+  width: 100px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #A49A93;
+  color: white;
+  cursor: pointer;
+}

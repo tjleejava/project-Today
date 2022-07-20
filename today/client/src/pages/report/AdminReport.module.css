@@ -1,0 +1,27 @@
+.titlearea {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
+.selectarea {
+  text-align: center;
+  padding-top: 12%;
+}
+
+.selectbox {
+  display: inline-block;
+  border: 1px solid black;
+  margin: 2%;
+  width: 300px;
+  height: 120px;
+  text-align : center;
+  line-height : 120px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.selectarea > label {
+  font-size: 1.5em;
+  font-weight: 550;
+}

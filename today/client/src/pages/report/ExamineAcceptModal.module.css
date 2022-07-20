@@ -1,0 +1,65 @@
+.modalarea {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.contentarea {
+  width: 100%;
+  height: 400px;
+}
+
+.challengeCancelArea {
+
+}
+
+.challengeCancelArea > p {
+  font-size: 0.9em;
+}
+
+.challengeCancelArea > input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.challengeCancelArea > label {
+  font-size: 1.1em;
+  padding-left: 10px;
+}
+
+.penaltyArea > p {
+  font-size: 0.9em;
+}
+
+.penaltyArea > input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.penaltyArea > label {
+  font-size: 1.1em;
+  padding-left: 10px;
+}
+
+.penaltyDate {
+  padding: 35px;
+}
+
+.penaltyDate > input {
+  width: 50px;
+}
+
+.modalBtnArea {
+  width: 100%;
+  text-align: right;
+}
+
+.modalBtnArea > button {
+  margin-right: 10px;
+  height: 30px;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #A49A93;
+  cursor: pointer;
+}

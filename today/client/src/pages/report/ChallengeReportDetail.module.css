@@ -1,0 +1,49 @@
+.area {
+  width: 80%;
+  margin: 10%;
+}
+.title {
+  font-size: 1.8em;
+  font-weight: 800;
+  color: #C1A78A;
+}
+.title > hr {
+  height: 1px;
+  color: #C1A78A;
+  background-color: #C1A78A;
+  margin-bottom: 5%;
+}
+
+.contentarea {
+  height: 410px;
+}
+.subtitle {
+  font-size: 1.1em;
+  
+}
+
+.subtitlearea {
+  width: 40%;
+  height: 50px;
+  display: inline-block;
+}
+
+.databox {
+  width: 50%;
+  display: inline-block;
+  font-size: 1.1em;
+}
+
+.areabtn {
+  text-align: right;
+}
+
+.areabtn > button {
+  width: 130px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  background-color: #A49A93;
+  color: white;
+  cursor: pointer;
+}

@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { callGetChallengeInfoAPI } from '../../../apis/ChallengeAPICalls';
+import ModifyAttachments from '../../../components/challenge/modify/ModifyAttachments';
 import JoinAmount from '../../../components/challenge/regist/JoinAmount';
 import AuthDay from './AuthDay';
 import ModifyChallengeCSS from './ModifyChallenge.module.css';
@@ -11,11 +12,22 @@ function ModifyChallenge() {
     
   const { challengeNo } = useParams();
     
-  const { challengeInfo, authDayInfo, attachmentInfo } =  useSelector(state => state.challengesReducer);
+  const { challengeInfo, authDayInfo, attachmentInfo, modifyAttachment } =  useSelector(state => state.challengesReducer);
   const navigate = useNavigate(); 
 
   const dispatch = useDispatch();
+  
+  const imageInput1 = useRef();
+  const imageInput2 = useRef();
+  const imageInput3 = useRef();
+  const imageInput4 = useRef();
+
+  
   const PUT_CHALLENGE_CATEGORY_NO = 'challenges/PUT_CHALLENGE_CATEGORY_NO';
+  const PUT_CHALLENGE_INFO = 'challenges/PUT_CHALLENGE_INFO';
+  const PUT_CHALLENGE_DESCRIPTION = 'challenges/PUT_CHALLENGE_DESCRIPTION';
+  const PUT_START_TIME = 'challenges/PUT_START_TIME';
+  const PUT_END_TIME = 'challenges/PUT_END_TIME';
   
   useEffect(
     () => {
@@ -28,30 +40,38 @@ function ModifyChallenge() {
     dispatch({type: PUT_CHALLENGE_CATEGORY_NO, payload: e.target.value});
   };
 
-  const descriptionOnChangeHandler = () => {
-    
+  const descriptionOnChangeHandler = (e) => {
+    dispatch({type: PUT_CHALLENGE_DESCRIPTION, payload: e.target.value});
   };
 
-  const test = () => {
-    axios.get('http://localhost:8888/challenges/test', {params : {time: time}});
+  const startTimeChangeHandler = (e) => {
+    dispatch({type: PUT_START_TIME, payload: e.target.value});
   };
   
-  const [time, setTime] = useState('');
-
-  const testHDL = (e) => {
-    console.log(e.target.value);
-    setTime(e.target.value);
+  const endTimeChangeHandler = (e) => {
+    dispatch({type: PUT_END_TIME, payload: e.target.value});
+  };
+  
+  const infoChangeHandler = (e) => {
+    dispatch({type: PUT_CHALLENGE_INFO, payload: e.target.value});
   };
 
-  const infoChangeHandler = () => {
-    
+  const modifyHandler = () => {
+
   };
 
+  const test1 = () => {
+    axios.put('http://localhost:8888/challenges', {
+      challengeInfo: challengeInfo, 
+      authDayInfo: authDayInfo, 
+      attachmentInfo: attachmentInfo, 
+      modifyAttachment: modifyAttachment
+    })
+          .then(res => console.log(res));
+  }
   const scopeOnChangeHandler = (e) => { };
   return (
     <div>
-      <button onClick={test}>test</button>
-      <input type='date' onChange={testHDL} value={time}/>
       <br/>
       <br/>
       <div className={ ModifyChallengeCSS.btnarea }>
@@ -92,14 +112,10 @@ function ModifyChallenge() {
         <div className={ ModifyChallengeCSS.timeinput}>
           <label className={ ModifyChallengeCSS.subtitle }>인증 가능 시간</label><br/>
           <div>
-            <label>시작 시간<input type="time" value={ challengeInfo.startTime}/></label>
-            <label>종료 시간<input type="time" value={ challengeInfo.endTime}/></label>
+            <label>시작 시간<input type="time" onChange={ startTimeChangeHandler } value={ challengeInfo.startTime}/></label>
+            <label>종료 시간<input type="time" onChange={ endTimeChangeHandler } value={ challengeInfo.endTime}/></label>
           </div>
         </div>
-        
-
-
-
 
 
         <div className={ ModifyChallengeCSS.timeinput}>
@@ -128,11 +144,17 @@ function ModifyChallenge() {
           <label>챌린지 소개</label><br/>
           <textarea value={ challengeInfo.challengeInfo } onChange={ infoChangeHandler }/>
         </div>
+        
+        <ModifyAttachments index={ 1 } inputFile={imageInput1} pathInfo={ attachmentInfo[0] } modifyFile={modifyAttachment} title='챌린지 배너 업로드1'/>
+        <ModifyAttachments index={ 2 } inputFile={imageInput2} pathInfo={ attachmentInfo[1] } modifyFile={modifyAttachment} title='챌린지 배너 업로드2'/>
+        <ModifyAttachments index={ 3 } inputFile={imageInput3} pathInfo={ attachmentInfo[2] } modifyFile={modifyAttachment} title='챌린지 배너 업로드3'/>
+        <ModifyAttachments index={ 4 } inputFile={imageInput4} pathInfo={ attachmentInfo[3] } modifyFile={modifyAttachment} title='챌린지 배너 업로드4'/>
+
+        <button onClick={test1}>test1</button>
         <div className={ ModifyChallengeCSS.modifybtnarea }>
-          <button>등록하기</button>
+          <button onClick={ modifyHandler }>수정하기</button>
           <button>취소</button>
-        <img src='https://mblogthumb-phinf.pstatic.net/MjAxOTEyMjBfMTcx/MDAxNTc2ODQ5NzQzNzMy.jeiWoPWi-b4U7nOkGz1YtxDpBiZVx_SKO919TqMzNUEg.2lPmxdZ1faVcnbXRoKDn5HCdDPwk0ozQWTqoJUXNFpcg.JPEG.insasori/%EC%BA%A1%EC%B2%98.JPG%EC%8B%AC%EC%A0%84%EC%95%88%EC%A4%91%EC%8B%9D%EC%9D%98_%EB%B0%B1%EB%A1%9D%EB%8F%84.JPG?type=w800'/>
-        <img src='../../../../../server/public/images/challenge/dbaeb1e-6715-4e7a-6e26-8022aa5b6e6c.png'/>
+          
         </div>
         <br/>
         <br/>
@@ -143,9 +165,6 @@ function ModifyChallenge() {
         <br/>
         <br/>
         <br/>
-
-
-
 
 
     </div>

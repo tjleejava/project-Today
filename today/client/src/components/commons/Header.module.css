@@ -18,7 +18,7 @@
   display: flex;
   width: 159px;
   height: 100px;
-  
+  cursor: pointer;
 }
 
 .body {
@@ -41,4 +41,13 @@
   margin-left: 20px;
 }
 
+.btnText {
+  border: 0;
+  box-shadow: white;
+  background-color: white;
+  font-weight: 800;
+  color: #844F15;
+  font-size: 1.1em;
+  cursor: pointer;
+}
 

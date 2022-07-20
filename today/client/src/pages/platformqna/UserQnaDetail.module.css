@@ -1,0 +1,57 @@
+.area {
+  width: 70%;
+  margin-left: 10%;
+  padding: 40px;
+  height: 500px;
+}
+.contentarea{
+  height: 400px;
+}
+.head {
+  margin-bottom: 50px;
+}
+
+.row {
+  height: 50px;
+}
+.contenntrow {
+  margin-top: 1px;
+}
+
+.title, .content ,.inquirycontent {
+  display: inline-flex;
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+.title {
+  width: 25%;
+}
+.content {
+  width: 25%;
+}
+.inquirycontent {
+  width: 75%;
+  height: 100px;
+  margin-bottom: 1px;
+}
+.btnarea {
+  text-align: right;
+}
+.btnarea > button {
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: antiquewhite;
+  color: rgb(65, 63, 63);
+  font-weight: 700;
+}
+
+.noreplyarea {
+  height: 150px;
+  text-align: center;
+  padding-top: 100px;
+  font-size: 1.2em;
+  font-weight: 650;
+}

@@ -1,0 +1,50 @@
+.area {
+ width: 70%;
+ margin-left: 10%;
+ padding: 100px;
+}
+
+.head {
+  margin-bottom: 50px;
+}
+
+.body {
+}
+
+.title, .content {
+  padding: 50px;
+}
+
+.title > label, .content > label {
+  font-size: 1.2em;
+  font-weight: 600;
+  display:inline-block;
+  width: 300px;
+}
+.title > input {
+  width: 600px;
+  height: 30px;
+  font-size: 1em;
+}
+.content > textarea {
+  vertical-align: top;
+  width: 600px;
+  font-size: 1em;
+  height: 200px;
+}
+
+.btnarea {
+  width: 70%;
+  text-align: right;
+}
+
+.btnarea > button {
+  margin-right: 3%;
+  height: 36px;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #A49A93;
+  cursor: pointer;
+}

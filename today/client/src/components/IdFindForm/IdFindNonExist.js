@@ -1,11 +1,11 @@
 import IdFindNonExistCSS from './IdFindNonExistCSS.module.css';
 import { Link } from 'react-router-dom';
 
-function IdFindNonExist() {
+function IdFindNonExist(id) {
   return(
     <>
       <div className={IdFindNonExistCSS.container}>
-        <h3 className={IdFindNonExistCSS.email}>abcd@gmail.com</h3>
+        <h3 className={IdFindNonExistCSS.email}>{id.props}</h3>
         <pre className={IdFindNonExistCSS.info}>  
         오늘하루에 등록되어 있지 않은 계정입니다.<br/>
       </pre>

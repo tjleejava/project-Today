@@ -1,0 +1,31 @@
+.titlearea {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
+.dataarea {
+  width: 90%;
+  height: 500px;
+  margin-left: 5%;
+}
+
+.datatable {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 2%;
+  text-align: center;
+}
+
+
+
+.tablehead {
+  height: 60px;
+  font-size: 1.1em;
+  font-weight: 800;
+  background-color: aquamarine;
+}
+
+.tabledata {
+  height: 33px;
+}

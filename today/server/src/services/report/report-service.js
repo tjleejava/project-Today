@@ -44,6 +44,7 @@ exports.registAccept = (acceptInfo) => {
 
       // 조회내역 for문 돌리면서 이력테이블에 insert ( status = 5(취소)로)
       for(let i = 0; i < participations.length; i++) {
+        ReportRepo.updatePariticipationStatus(connection, {no: participations[i].participationNo, statusNo: 5});
         ReportRepo.insertParticipationHistory(connection, {no: participations[i].participationNo, date: date, categoryNo: 5});
         
       // 알림에 추가

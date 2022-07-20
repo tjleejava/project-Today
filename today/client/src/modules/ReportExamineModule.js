@@ -47,8 +47,12 @@ const reportExamineReducer = handleActions(
       return {...state};
     },
     [CHECK_CHALLENGE_REPORT_ACCEPTED]: (state, { payload }) => {
+      
+      console.log(payload);
       state.checkChallengeReportAccepted.penaltyDate = parseInt(payload.penaltyDate);
       state.checkChallengeReportAccepted.challengeCancelDate = payload.challengeCancelDate;
+      
+      console.log(state.checkChallengeReportAccepted);
 
       return {...state};
     }

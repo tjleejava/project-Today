@@ -3,9 +3,8 @@ import Modal from 'react-modal';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ACCEPT_CHALLENGE_PENALTY_DATE, ACCEPT_CHALLENGE_HOST, ACCEPT_CHALLENGE_CHALLENGE_CANCEL } from '../../modules/ReportExamineModule';
-import { registChallengeReportAccept, checkReportExamineAlreadyAcceptedAPI } from '../../apis/ReportExamineAPICalls';
+import { registChallengeReportAccept } from '../../apis/ReportExamineAPICalls';
 import getTime from '../../util/getTime';
-import { useEffect } from 'react';
 
 function ExamineAcceptModal({modalState, setModalState}) {
 
@@ -14,12 +13,7 @@ function ExamineAcceptModal({modalState, setModalState}) {
   const { reportNo } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
-  useEffect(
-    () => {
-      dispatch(checkReportExamineAlreadyAcceptedAPI(reportNo));
-    },[]
-  );
+
 
   const reportAcceptHandler = async () => {
 

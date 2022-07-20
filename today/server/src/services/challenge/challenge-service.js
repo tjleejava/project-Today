@@ -45,7 +45,6 @@ exports.findChallengeByNo = (challengeNo) => {
   return new Promise( async (resolve, reject) => {
         
     const connection = getConnection();
-    console.log('findChallengeByNo service , challengeNo : ', challengeNo);
     const challengeResults = await ChallengeRepo.selectChallengeByNo(connection, challengeNo);
     const authDayResults = await ChallengeRepo.selectAuthDayByChallengeNo(connection, challengeNo);
     const attachmentResults = await ChallengeRepo.selectAttachmentByChallengeNo(connection, challengeNo);

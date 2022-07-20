@@ -208,6 +208,18 @@ exports.insertAlarm = (connection, insertInfo) => {
   });
 };
 
+exports.updatePariticipationStatus = (connection, {no, statusNo}) => {
+  return new Promise((resolve, reject) => {
+    connection.query(ReportQuery.updatePariticipationStatus(), [statusNo, no], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
+    });
+  });
+};
+
 exports.insertParticipationHistory = (connection, historyInfo) => {
   
   return new Promise((resolve, reject) => {

@@ -26,7 +26,7 @@ function RegistQna() {
     
     await dispatch({type: POST_DATE, payload: date});
     
-    const result = await dispatch(callPostInquiryAPI(registInfo));
+    await dispatch(callPostInquiryAPI(registInfo));
     
     alert('문의가 등록되었습니다');
     navigate('/mypage/qna');

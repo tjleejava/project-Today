@@ -13,18 +13,18 @@ export function callPostInquiryAPI(registInfo) {
     }
 };
 
-export function callGetInquiriesAPI(memberNo) {
+export function callGetInquiriesAPI({memberNo, pageInfo}) {
 
   let GET_INQUIRIES_API_URL = 'http://localhost:8888/inquiries';
 
   return async function getInquiries(dispatch, getState) {
 
     let result;
-    console.log('memberNo : ', memberNo);
-    await axios.get(GET_INQUIRIES_API_URL,{ params: {memberNo : memberNo} })
+    await axios.get(GET_INQUIRIES_API_URL,{ params: {memberNo : memberNo, pageInfo: pageInfo} })
                 .then(res => result = res)
                 .catch(err => console.log(err));
-    dispatch({type: GET_INQUIRIES, payload: result});
+
+    dispatch({type: GET_INQUIRIES, payload: result.data});
   }
 };
 

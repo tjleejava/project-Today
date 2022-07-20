@@ -1,11 +1,17 @@
 import ChallengeListCSS from './ChallengeList.module.css';
+import {useNavigate} from 'react-router-dom';
 
 function ChallengeList({challenge}) {
 
-  const { currentAmount, maxAmount, challengeTitle, savedPath, savedName, startDate, statusName} = challenge;
-  console.log(challenge);
+  const navigate = useNavigate();
+  const { challengeNo,currentAmount, maxAmount, challengeTitle, savedPath, savedName, startDate, statusName} = challenge;
+  
+  const onClickHandler = () => {
+    navigate(`/challenges/${challengeNo}`);
+  };
+
   return (
-    <div className={ChallengeListCSS.challengeContainer}>
+    <div className={ChallengeListCSS.challengeContainer} onClick={ onClickHandler }>
       <img src={ 'http://localhost:8888' + savedPath + '/'+ savedName + '.png'} width="300px" height="180px"/>
       <div className={ChallengeListCSS.challengeTitleArea}> 
         <div className={ChallengeListCSS.challengeStatus}>

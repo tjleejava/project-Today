@@ -20,16 +20,73 @@ function UserQnaDetail() {
     navigate('/mypage/qna');
   };
 
+  /*
+  className={UserQnaDetailCSS.
+  */
   return (
-    <div>
-      { inquiry.platformInquiryNo }<br/>
-      { inquiry.platformInquiryTitle }<br/>
-      { inquiry.platformInquiryContent }<br/>
-      { inquiry.platformInquiryDate }<br/>
-      { inquiry.nickname }<br/>
-      { reply.platfomrInquiryReplyContent }<br/>
-      { reply.platfomrInquiryReplyDate }<br/>
-      <button onClick={ backHandler }>뒤로가기</button>
+    <div className={UserQnaDetailCSS.area}>
+      <div className={UserQnaDetailCSS.head}>
+        <h1>플랫폼 문의 상세내용</h1>
+        <hr/>
+      </div>
+      <div className={UserQnaDetailCSS.contentarea}>
+        <div  className={UserQnaDetailCSS.row}>
+          <div className={UserQnaDetailCSS.title}>
+            문의 번호 
+          </div>
+          <div className={UserQnaDetailCSS.content}>
+            { inquiry.platformInquiryNo }
+          </div>
+          <div className={UserQnaDetailCSS.title}>
+            문의 작성일
+          </div>
+          <div className={UserQnaDetailCSS.content}>
+          { inquiry.platformInquiryDate }
+          </div>
+        </div>
+        <div  className={UserQnaDetailCSS.row}>
+          <div className={UserQnaDetailCSS.title}>
+            제목 
+          </div>
+          <div className={UserQnaDetailCSS.content}>
+            { inquiry.platformInquiryTitle }
+          </div>
+        </div>
+        <div  className={UserQnaDetailCSS.contenntrow}>
+          <div className={UserQnaDetailCSS.title}>
+          문의 내용
+          </div>
+          <div className={UserQnaDetailCSS.inquirycontent}>
+            { inquiry.platformInquiryContent }
+          </div>
+        </div>
+        {
+          reply.platfomrInquiryReplyDate? 
+            <div  className={UserQnaDetailCSS.row}>
+              <div className={UserQnaDetailCSS.title}>
+                답변 작성일
+              </div>
+              <div className={UserQnaDetailCSS.content}>
+                { reply.platfomrInquiryReplyDate }
+              </div>
+              <br/><br/><br/>
+              <div className={UserQnaDetailCSS.title}>
+                답변 내용
+              </div>
+              <div className={UserQnaDetailCSS.inquirycontent}>
+                
+                { reply.platfomrInquiryReplyContent }
+              </div>
+            </div>
+          :
+          <div className={UserQnaDetailCSS.noreplyarea}>
+            '등록된 답변이 없습니다'
+          </div>
+        }
+      </div>
+      <div className={UserQnaDetailCSS.btnarea}>
+        <button onClick={ backHandler }>뒤로가기</button>
+      </div>
     </div>   
   );
 };

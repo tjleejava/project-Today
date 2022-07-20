@@ -18,18 +18,36 @@ exports.insertInquiry = (connection, registInfo) => {
   });
 };
 
-exports.selectInquiries = (connection, memberNo) => {
-  
+exports.selectInquiriesCount = (connection, memberNo) => {
+
   return new Promise((resolve, reject) => {
 
-    connection.query(InquiryQuery.selectInquiries(), [memberNo], (err, result, fields) => {
+    connection.query(InquiryQuery.selectInquiriesCount(), [memberNo], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result[0].count);
+    });
+  });
+
+};
+
+exports.selectInquiries = (connection, {memberNo, pageInfo}) => {
+  
+  pageInfo = JSON.parse(pageInfo);
+  const startRow =  pageInfo.pageItemCount * (pageInfo.page - 1);
+  const {pageItemCount} = pageInfo;
+
+  return new Promise((resolve, reject) => {
+
+    connection.query(InquiryQuery.selectInquiries(), [memberNo, startRow, pageItemCount], (err, result, fields) => {
       if(err) {
         reject(err);
       }
       const inquiries = [];
       for(let i = 0; i < result.length; i++) {
         result[i].PLATFORM_INQUIRY_REPLY_NO === null ? result[i].PLATFORM_INQUIRY_REPLY_NO = 'N': result[i].PLATFORM_INQUIRY_REPLY_NO = 'Y';
-        console.log(result[i].PLATFORM_INQUIRY_REPLY_NO);
         inquiries.push(new InquiryDTO(result[i]));
       }
       resolve(inquiries);
@@ -45,7 +63,7 @@ exports.selectInquiry = (connection, inquiryNo) => {
         reject(err);
       }
 
-      result[0].PLATFORM_INQUIRY_REPLY_NO === null ? result[0].PLATFORM_INQUIRY_REPLY_NO = 'N': result[0].PLATFORM_INQUIRY_REPLY_NO = 'Y';
+      result[0] && result[0].PLATFORM_INQUIRY_REPLY_NO === null ? result[0].PLATFORM_INQUIRY_REPLY_NO = 'N': result[0].PLATFORM_INQUIRY_REPLY_NO = 'Y';
 
       resolve(new InquiryDTO(result[0]));
     });

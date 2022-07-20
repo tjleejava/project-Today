@@ -22,10 +22,22 @@
 }
 
 .tablearea {
-  border: 1px solid black;
   margin: 3%;
   height: 500px;
 }
+
+.tablehead {
+  height: 60px;
+  font-size: 1.1em;
+  font-weight: 800;
+  background-color: aquamarine;
+}
+
+.tabledata {
+  height: 40px;
+  font-size: 1.1em;
+}
+
 
 .pagingarea {
   text-align: center;

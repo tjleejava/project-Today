@@ -115,6 +115,20 @@ exports.insertChallengeFreqDay = () => {
   `;
 };
 
+exports.insertParticipation = () => {
+  return `
+  INSERT 
+    INTO TBL_PARTICIPATION 
+  (
+    MEMBER_NO
+  , CHALLENGE_NO
+  , PARTICIPATION_DATE
+  , PARTICIPATION_STATUS_NO
+  ) 
+  VALUES(?, ?, ?, 1)
+  `;
+};
+
 exports.selectRankings = () => {
   return`
       SELECT 

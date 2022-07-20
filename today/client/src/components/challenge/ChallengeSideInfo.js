@@ -9,8 +9,21 @@ import AdminSide from './challengeSide/AdminSide';
 import HostSide from './challengeSide/HostSide';
 import UserSide from './challengeSide/UserSide';
 import getTime from '../../util/getTime';
+import jwt_decode from "jwt-decode";
+import {Cookies} from 'react-cookie'
 
 export default function ChallengeSideInfo({challengeNo}) {
+
+    const cookies = new Cookies();
+
+    let isAdmin = false;
+    let memberNo = 3;
+    const token = cookies.get('token');
+    if(token) {
+        const decoded = jwt_decode(token);
+        memberNo = decoded.no;
+        isAdmin = decoded.memberRole == 'ROLE_ADMIN' ? true : false;
+    } 
 
     const MODIFY = 'modify';
     const navigate = useNavigate(); 
@@ -21,13 +34,6 @@ export default function ChallengeSideInfo({challengeNo}) {
 
 
     const dispatch = useDispatch();
-
-    //보류
-    const isAdmin = false;
-    const memberNo = 3;
-    
-    // const isAdmin = true;
-    // const memberNo = 1;
 
     const passedDate = getTime.getPassedDate(challengeInfo.challengeStartDate);
     useEffect(
@@ -42,7 +48,6 @@ export default function ChallengeSideInfo({challengeNo}) {
             const isHost = challengeInfo.memberNo == memberNo ? true : false;
             dispatch({type: SET_CHALLENGE_HOST_OR_NOT, payload: isHost});
             
-            
         },[challengeInfo]
     );
 
@@ -55,11 +60,13 @@ export default function ChallengeSideInfo({challengeNo}) {
             </div>
             {
                 challengeInfo.challengeStatusNo === 2
-                ?
-                <div className={ ChallengeSideInfoCSS.content }>
+                &&
+                (<div className={ ChallengeSideInfoCSS.content }>
                     <span className={ ChallengeSideInfoCSS.challengeProgress }>{passedDate}&nbsp;&nbsp;</span>
                     <span className={ ChallengeSideInfoCSS.text }>일 째 진행중</span>
-                </div> : 
+                </div>)  
+            }
+            {   challengeInfo.challengeStatusNo === 1 &&   
                 <div className={ ChallengeSideInfoCSS.content }>
                     <span className={ ChallengeSideInfoCSS.challengeProgress }>{challengeInfo.challengeStartDate}&nbsp;&nbsp;</span>
                     <span className={ ChallengeSideInfoCSS.text }>일 시작 예정</span>
@@ -70,11 +77,15 @@ export default function ChallengeSideInfo({challengeNo}) {
                 isAdmin ?
                 <AdminSide/> : 
                 (
-                    isHost?
-                    <HostSide/>:
-                    <div>
-                        <UserSide isAlreadyReported={isAlreadyReported} setReportModalState={setReportModalState}/>
-                    </div>
+                    token?
+                    (
+                        isHost?
+                        <HostSide/>:
+                        <div>
+                            <UserSide isAlreadyReported={isAlreadyReported} setReportModalState={setReportModalState}/>
+                        </div>
+                    ) :
+                    null
                 )
             }
             <ChallengeReportModal reportModalState={reportModalState} setReportModalState={setReportModalState}/>        

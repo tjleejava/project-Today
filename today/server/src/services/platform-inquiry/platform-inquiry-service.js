@@ -16,17 +16,18 @@ exports.registInquiry = (registInfo) => {
   });
 };
 
-exports.findInquiries = (memberNo) => {
+exports.findInquiries = (findInfo) => {
 
   return new Promise( async (resolve, reject) => {
 
     const connection = getConnection();
 
-    const result = await InquiryRepo.selectInquiries(connection, memberNo);
+    const countResult = await InquiryRepo.selectInquiriesCount(connection, findInfo.memberNo);
+    const result = await InquiryRepo.selectInquiries(connection, findInfo);
 
     connection.end();
 
-    resolve(result);
+    resolve({inquiries: result, count: countResult});
   });
 };
 

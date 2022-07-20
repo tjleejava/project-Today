@@ -46,6 +46,7 @@
   background-color: antiquewhite;
   color: rgb(65, 63, 63);
   font-weight: 700;
+  cursor: pointer;
 }
 
 .noreplyarea {

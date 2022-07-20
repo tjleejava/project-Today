@@ -1,3 +1,5 @@
+import InviteCSS from './Invite.module.css';
+
 function Invite() {
 
   return (

@@ -29,19 +29,20 @@ exports.insertMember = (connection, data) => {
   });
 };
 
-exports.selectId = (connection, email) => {
+exports.selectId = (connection, data) => {
 
-  console.log(email);
+  console.log(data);
   
   return new Promise((resolve, reject) => {
-    connection.query(memberQuery.selectId(), [email], (err, results, fields) => {
+    connection.query(memberQuery.selectId(), [data.email], (err, results, fields) => {
 
       if(err) {
         reject(err);
       }
 
-      console.log('아아아아아', results);
-      resolve(results);
+      console.log('아아아아아', results.length);
+    
+      resolve(results.length);
     })
   })
 }

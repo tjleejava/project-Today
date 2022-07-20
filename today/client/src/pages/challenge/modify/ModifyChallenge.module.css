@@ -1,3 +1,99 @@
 .area {
-
+  border: 1px solid limegreen;
+  width: 70%;
+  margin-left: 15%;
+  height: 760px;
+  overflow-y: scroll;
 }
+
+/* 카테고리 버튼 CSS */
+.defaultbtn {
+  border: none;
+  border-radius: 5px;
+  background-color: #CDCDCD;
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  width: 80px;
+  height: 35px;
+  margin: 1%;
+  cursor: pointer;
+}
+.choosenbtn {
+  border: none;
+  border-radius: 5px;
+  background-color: #000000;
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  width: 80px;
+  height: 35px;
+  margin: 1%;
+  cursor: pointer;
+}
+
+
+
+
+/* 타이틀 라벨 CSS */
+.title {
+  margin-top: 2%;
+  font-size: 1.3em;
+  font-weight: 900;
+  margin-left: 1%;
+}
+.subtitle {
+  font-size: 1em;
+  font-weight: 700;
+  margin-left: 1%;
+}
+
+/* 타이틀 하위 설명 */
+.description {
+  font-size: 0.8em;
+  margin: 1%;
+  margin-top: 1%;
+}
+
+/* input CSS */
+.textinput {
+  margin-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+
+.timeinput > div{
+  margin-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+
+
+.checkinput > div{
+  margin-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+
+
+
+.modifybtnarea {
+  text-align: right;
+  margin-right: 10%;
+  margin-bottom:  40px;
+}
+.modifybtnarea > button {
+  border: none;
+  border-radius: 5px;
+  background-color: #E1DBD6;
+  font-weight: 600;
+  font-size: 1em;
+  width: 100px;
+  height: 40px;
+  margin: 1%;
+  cursor: pointer;
+}
+

@@ -12,6 +12,8 @@ class RegistChallengeDTO {
   file;
   amount;
   authDay;
+  startTime;
+  endTime;
 
   constructor(data) {
     this.category = data.category;
@@ -27,6 +29,8 @@ class RegistChallengeDTO {
     this.file = data.file;
     this.amount = data.amount;
     this.authDay = data.authDay;
+    this.startTime = data.startTime;
+    this.endTime = data.endTime;
   }
 }
 

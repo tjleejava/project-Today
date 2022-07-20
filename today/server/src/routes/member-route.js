@@ -54,4 +54,6 @@ router.post('/', MemberController.registMember);
 
 router.get('/idcheck', MemberController.findId);
 
+router.get('/email', MemberController.sendEmail);
+
 module.exports = router;

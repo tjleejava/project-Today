@@ -25,7 +25,7 @@
 .content {
   border: solid 1px #844F15;
   border-radius: 0px 0px 5px 5px;
-  height: 35vh;
+  height: 40vh;
   justify-content: center;
   
 }
@@ -42,7 +42,7 @@
   grid-template-columns: 20% 50%;
 }
 
-.nicknameInput {
+.nicknameInput, .authInput {
   margin-top: 30px;
   display: grid;
   grid-template-columns: 20% 40% 10%;
@@ -54,6 +54,15 @@
 }
 
 .idInput > label {
+  margin-left: 20px;
+}
+
+.authInput > input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+.authInput > label {
   margin-left: 20px;
 }
 
@@ -91,7 +100,32 @@
   margin-right: 20px;
 }
 
-.signUpBtn, .authBtn, .duplicateBtn, .backBtn {
+.signUpBtn, .duplicateBtn, .backBtn {
+  background-color: #C2A894;
+  border: none;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.emailAuthBtn {
+  background-color: #C2A894;
+  border: none;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+.authBtn {
   background-color: #C2A894;
   border: none;
   border-radius: 3px;

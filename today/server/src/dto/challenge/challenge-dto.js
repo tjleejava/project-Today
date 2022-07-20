@@ -11,6 +11,9 @@ class ChallengeDTO {
     challengeStatusNo;
     challengeAuthExplan;
     challengeInfo;
+    challengeFrequency;
+    startTime;
+    endTime;
 
     constructor(data) {
 
@@ -25,6 +28,10 @@ class ChallengeDTO {
         this.challengeStatusNo = data[0].CHALLENGE_STATUS_NO;
         this.challengeAuthExplan = data[0].CHALLENGE_AUTH_EXPLAN;
         this.challengeInfo = data[0].CHALLENGE_INFO;
+        this.challengeFrequency = data[0].CHALLENGE_FREQUENCY;
+        this.startTime = data[0].CHALLENGE_START_TIME;
+        this.endTime = data[0].CHALLENGE_END_TIME;
     }
 }
+
 module.exports = ChallengeDTO;

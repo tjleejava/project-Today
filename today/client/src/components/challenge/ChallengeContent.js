@@ -36,9 +36,9 @@ export default function ChallengeContent({challengeInfo, authDayInfo, attachment
 
     return (
         <div className={ ChallengeContentCSS.content }>
-            <span className={ ChallengeContentCSS.title }>{challengeInfo.challengeName}</span>
+            <label className={ ChallengeContentCSS.title }>{challengeInfo.challengeName}</label>
             <label className={ ChallengeContentCSS.host }>개설자 </label>
-            <span className={ ChallengeContentCSS.hostname }>{challengeInfo.nickname}</span>
+            <label className={ ChallengeContentCSS.hostname }>{challengeInfo.nickname}</label>
             <br/>
             {   attachmentInfo[0] && attachmentInfo[0].hasOwnProperty('savedPath')
                 ?<img src={ 'http://localhost:8888' + attachmentInfo[0].savedPath + '/'+ attachmentInfo[0].savedName + '.png' } className={ ChallengeContentCSS.banner }/>

@@ -1,5 +1,5 @@
 .content {
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-left: 2rem;
 }
 
@@ -7,19 +7,27 @@
     font-size: 3rem;
     font-weight: bold;
     color: #A49A93;
+    width: 900px;
+    display: inline-block;
 }
 
 .host {
     color: #A49A93;
     font-size: 1rem;
     font-weight: bold;
-    margin-left: 24rem;
+    width: 100px;
+    margin-left: 2rem;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .hostname {
+    vertical-align: top;
+    width: 150px;
     color: #A49A93;
     font-size: 1rem;
     margin-left: 2rem;
+    display: inline-block;
 }
 
 .tabArea {
@@ -79,6 +87,6 @@
 }
 
 .banner {
-    width: 1310px;
-    height: 220px;
+    width: 1300px;
+    height: 150px;
 }

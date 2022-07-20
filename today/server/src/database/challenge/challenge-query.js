@@ -304,3 +304,33 @@ exports.selectChallengeBySearchValue = () => {
 
   `;
 };
+
+exports.insertParticipateMemberInChallenge = () => {
+  return `
+    INSERT
+      INTO tbl_participation
+    (
+      MEMBER_NO
+    , CHALLENGE_NO
+    , PARTICIPATION_DATE
+    , PARTICIPATION_STATUS_NO
+    )
+    VALUES
+    (
+      ?
+    , ?
+    , NOW()
+    , 1
+    )
+  `
+}
+
+exports.findChallengeParticipation = () => {
+  return `
+    SELECT
+           PARTICIPATION_NO
+      FROM tbl_participation
+     WHERE MEMBER_NO = ?
+       AND CHALLENGE_NO = ?
+  `
+}

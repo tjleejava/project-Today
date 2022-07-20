@@ -1,5 +1,6 @@
 const getConnection = require('../../database/connection');
 const ChallengeRepo = require('../../repositories/challenge/challenge-repo');
+const HttpStatus = require('http-status');
 
 exports.findChallenges = (pageInfo) => {
 
@@ -153,3 +154,37 @@ exports.findByCategoryNo = (categoryNo) => {
         resolve(results);
     });
 };
+
+exports.participateChallenge = (data) => {
+    const NOT_PARTICIPATE = null;
+    console.log('서비스')
+    return new Promise( async (resolve, reject) => {
+        const connection = getConnection();
+        await ChallengeRepo.findChallengeParticipation(connection, data)
+        .then(async(res) => {
+            if(res === NOT_PARTICIPATE) {
+                console.log('동작하니')
+                const insertResult = await ChallengeRepo.insertParticipateMemberInChallenge(connection, data)
+                console.log(insertResult);
+                const returnData = {
+                    status: HttpStatus.CREATED,
+                    message: '참여 성공',
+                    response: insertResult
+                }
+                resolve(returnData);
+            } else {
+                const returnData = {
+                    status: HttpStatus.ACCEPTED,
+                    message: '이미 참여하고 있습니다.',
+                    response: res
+                  }
+                resolve(returnData);
+            }
+        });
+        
+
+        connection.end();
+
+        
+    })
+}

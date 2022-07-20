@@ -330,3 +330,38 @@ exports.selectChallengeBySearchValue = (connection, pageInfo) => {
     });
   }); 
 };
+
+exports.findChallengeParticipation = (connection, data) => {
+  console.log('find Participation')
+  return new Promise( async (resolve, reject) => {
+    connection.query(challengeQuery.findChallengeParticipation()
+    , [data.memberNo, data.challengeNo], (err, results, fields) => {
+      if(err) {
+        reject(err);
+      }
+      console.log('findChallengeParticipation 조회결과')
+      console.log(results[0]);
+      if(results[0] === undefined) {
+        const NOT_PARTICIPATE = null;
+        resolve(NOT_PARTICIPATE);
+      } else {
+        resolve(results)
+      }
+    })
+  })
+  
+}
+
+exports.insertParticipateMemberInChallenge = (connection, data) => {
+  console.log('repo')
+  return new Promise( async (resolve, reject) => {
+    connection.query(challengeQuery.insertParticipateMemberInChallenge()
+    , [data.memberNo, data.challengeNo], (err, results, fields) => {
+      if(err) {
+        reject(err);
+      }
+      console.log(results);
+      resolve(results);
+    })
+  })
+}

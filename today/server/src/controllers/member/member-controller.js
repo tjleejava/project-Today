@@ -200,13 +200,13 @@ exports.findId = async (req, res, next) => {
   const results = await MemberService.findId(email);
 
   if(results === 0) {
-    res.status(HttpStatus.OK).json({
+    return res.status(HttpStatus.OK).json({
       status: HttpStatus.OK,
       message: '사용가능하다',
       results: results
     })
   } else{
-    res.status(HttpStatus.OK).json({
+    return res.status(HttpStatus.OK).json({
       status: HttpStatus.OK,
       message: '중복됐다',
       results: results
@@ -221,15 +221,14 @@ exports.findMemberByNo = async (req, res, next) => {
   const memberNo = req.query.memberNo;
   console.log(memberNo);
 
-  MemberService.findMemberByNo(memberNo);
+  const result = await MemberService.findMemberByNo(memberNo);
 
   return res.status(HttpStatus.OK)
-            .send(
+            .json(
               {
                 status: HttpStatus.OK,
-                message: '확인용',
-                response: {
-                }
+                message: '프로필 조회 성공',
+                response: result
               })
 };
 

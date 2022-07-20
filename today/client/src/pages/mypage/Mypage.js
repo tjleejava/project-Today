@@ -5,14 +5,17 @@ import { useEffect } from 'react';
 import jwt_decode from "jwt-decode";
 import { mypageInfoAPI } from '../../apis/MypageAPICalls'
 import {Cookies} from 'react-cookie'
+import { CHALLENGE_INFO } from '../../modules/MypageModule'
 
 function Mypage() {
-  
+  const dispatch = useDispatch();
   const cookies = new Cookies();
-  const mypageState = useSelector(state => state.mypageReducer);
+  const mypage = useSelector(state => state.mypageReducer);
   const navigate = useNavigate();
+
+
   useEffect(() => {
-    
+    console.log(mypage)
     const token = cookies.get('token');
     console.log(token);
     if(token) {
@@ -20,13 +23,23 @@ function Mypage() {
       console.log(decoded);
       const memberNo = decoded.no;
       console.log(memberNo);
-      mypageInfoAPI(memberNo);
+      mypageInfoAPI(memberNo)
+      .then((res) => {
+        console.log('프론트')
+        console.log(res)
+        const challengeInfo = res.data.response;
+        console.log(challengeInfo)
+        dispatch({type: CHALLENGE_INFO, payload: challengeInfo});
+        
+      });
     }
     else {
       alert('로그인 후 이용 가능합니다');
       navigate('/sign/login');
     }
-  })
+    
+  },[]
+  )
 
   return (
     <>
@@ -44,9 +57,11 @@ function Mypage() {
           <div className={MyPageCSS.challengeNumBox}>
             <div className={MyPageCSS.engagingBox}>
               <h4>참가중</h4>
+              <h4>{mypage.challengeNum}</h4>
             </div>
             <div className={MyPageCSS.completeBox}>
               <h4>완료</h4>
+              <h4></h4>
             </div>
             <div className={MyPageCSS.openBox}>
               <h4>개설</h4>

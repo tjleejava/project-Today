@@ -94,3 +94,14 @@ exports.findByCategoryNo = async (req, res, next) => {
     
     res.send(results);
 };
+
+exports.participateChallenge = async (req, res) => {
+    console.log(req.body);
+    const data = req.body;
+
+    const result = await ChallengeService.participateChallenge(data);
+    console.log('controller 받은 result');
+    console.log(result);
+    return res.send(result);
+
+}

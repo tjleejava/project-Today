@@ -10,4 +10,5 @@ router.get('/rankings', ChallengeController.findRankings);
 router.get('/checkAuth', ChallengeController.checkChallengeAuthByMemberNo);
 router.get('/category/:categoryNo', ChallengeController.findByCategoryNo);
 router.get('/:challengeNo', ChallengeController.findChallengeByNo);
+router.post('/:challengeNo', ChallengeController.participateChallenge);
 module.exports = router;

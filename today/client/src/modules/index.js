@@ -9,6 +9,7 @@ import platformQnaReducer from './PlatformQnaModule';
 import reportReducer from './ReportModuls';
 import reportExamineReducer from './ReportExamineModule';
 import mainpageReducer from './MainpageModule';
+import mypageReducer from './MypageModule';
 
 const rootReducer = combineReducers({
     menuReducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     platformQnaReducer,
     reportReducer,
     reportExamineReducer,
-    mainpageReducer
+    mainpageReducer,
+    mypageReducer
 });
 
 export default rootReducer;

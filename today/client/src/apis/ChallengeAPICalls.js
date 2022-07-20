@@ -61,3 +61,20 @@ export async function registChallengeImagesAPI({inputFile}) {
     return result.data;
 };
 
+export async function participatingChallengeAPI(memberNo, challengeNo) {
+
+    const data = {
+        memberNo: memberNo,
+        challengeNo: challengeNo
+    }
+
+    return new Promise(async(resolve, reject) => {
+        console.log('challengeAPI 호출');
+        const url = 'http://localhost:8888/challenges/' + challengeNo ;
+
+        const result = await axios.post(url, data);
+        console.log(result);
+        resolve(result);
+    })
+}
+

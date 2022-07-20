@@ -210,11 +210,9 @@ exports.findMemberByNo = (memberNo) => {
     const connection = getConnection();
 
     const participationResult = await MemberRepository.selectChallengeByMemberNo(connection, memberNo);
+    const completedResult = await MemberRepository.selectCompletedChallengeByMemberNo(connection, memberNo);
     console.log('service')
     resolve(participationResult);
-    
-    
-
     
   })
 };

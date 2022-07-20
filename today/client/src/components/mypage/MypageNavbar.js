@@ -1,11 +1,14 @@
 import MypageNavbarCSS from './MypageNavbar.module.css';
-import {NavLink} from './NavbarElements';
+import {NavLink} from './mypageNavbarElements';
 
 function MypageNavbar() {
 
   return (
     <div className={ MypageNavbarCSS.area }>
       <div><br/><br/><br/></div>
+      <div className={ MypageNavbarCSS.tabArea }>
+      <NavLink className={ MypageNavbarCSS.tab } to="">프로필</NavLink>
+      </div>
       <div className={ MypageNavbarCSS.tabArea }>
           <NavLink className={ MypageNavbarCSS.tab } to="/mypage/challenges">챌린지 내역</NavLink>
       </div>

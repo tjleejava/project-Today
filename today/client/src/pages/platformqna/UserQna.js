@@ -77,13 +77,13 @@ function UserQna() {
             {
               inquiries.map(inquiry =>
                 <tr 
-                className={ UserQnaCSS.tabledata }
-                onClick={ () => inquiryOnClickHandler(inquiry.platformInquiryNo) }  
-                key={inquiry.platformInquiryNo}
-                onMouseOver={ () => onMouseOverHandler(inquiry.platformInquiryNo)}
-                onMouseOut={ () => onMouseOutHandler(inquiry.platformInquiryNo)}
-                id={inquiry.platformInquiryNo}
-              >
+                  className={ UserQnaCSS.tabledata }
+                  onClick={ () => inquiryOnClickHandler(inquiry.platformInquiryNo) }  
+                  key={inquiry.platformInquiryNo}
+                  onMouseOver={ () => onMouseOverHandler(inquiry.platformInquiryNo)}
+                  onMouseOut={ () => onMouseOutHandler(inquiry.platformInquiryNo)}
+                  id={inquiry.platformInquiryNo}
+                >
                   <td>{inquiry.platformInquiryNo}</td>
                   <td>{inquiry.platformInquiryTitle}</td>
                   <td>{inquiry.replyYN == 'Y'? '답변완료': '대기중'}</td>

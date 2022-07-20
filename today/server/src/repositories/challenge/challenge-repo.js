@@ -337,7 +337,7 @@ exports.selectChallengeBySearchValue = (connection, pageInfo) => {
       for(let i = 0; i< results.length; i++) {
         challenges.push(new ChallengeListDTO(results[i]));
       }
-
+      
       resolve(challenges);
     });
   }); 

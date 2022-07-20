@@ -93,3 +93,11 @@ exports.findByCategoryNo = async (req, res, next) => {
     
     res.send(results);
 };
+
+exports.removeChallenge = async (req, res, next) => {
+    const removeInfo = JSON.parse(req.query.removeInfo);
+
+    const result = await ChallengeService.removeChallenge(removeInfo);
+
+    res.send(result);
+};

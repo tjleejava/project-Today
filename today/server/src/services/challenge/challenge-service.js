@@ -150,3 +150,30 @@ exports.findByCategoryNo = (categoryNo) => {
         resolve(results);
     });
 };
+
+exports.removeChallenge = ({challengeNo, date}) => {
+
+    return new Promise( async (resolve, reject,) => {
+
+        const connection = getConnection();
+
+        //챌린지 상태 변경
+        const challengeStatusResult = await ChallengeRepo.deleteChallengeByAdmin(connection, challengeNo);
+
+        //챌린지 참여인원 조회
+        const participations = await ChallengeRepo.selectParticipations(connection, challengeNo);
+
+        for(let i = 0; i < participations.length; i++) {
+            //챌린지 참여인원 상태 변경
+            //챌린지 참여인원 이력 추가
+            ChallengeRepo.updateParticipationStatus(connection, {no: participations[i].participationNo, statusNo: 5});
+            ChallengeRepo.insertParticipationHistory(connection, {no: participations[i].participationNo, date: date, categoryNo: 5});
+            //알림에 추가
+            ChallengeRepo.insertAlarm(connection, {memberNo: participations[i].memberNo, categoryNo: 4, content: '관리자에 의해 챌린지가 취소되었습니다', date: date});
+        }
+
+        connection.end();
+
+        resolve(challengeStatusResult);
+    });
+};

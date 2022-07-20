@@ -30,7 +30,7 @@ export default function ChallengeSideInfo({challengeNo}) {
     const [reportModalState , setReportModalState] = useState(false);
 
     const { registInfo, isAlreadyReported } = useSelector(state => state.reportReducer);
-    const { isHost, partCount, challengeInfo} = useSelector(state => state.challengesReducer);
+    const { isHost, partCount, challengeInfo } = useSelector(state => state.challengesReducer);
 
 
     const dispatch = useDispatch();

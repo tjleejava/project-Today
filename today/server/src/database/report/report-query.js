@@ -231,7 +231,6 @@ exports.insertAlarm = () => {
       , CHECK_YN
       ) 
       VALUES(?, ?, ?, ?, 'N')
-
   `;
 };
 

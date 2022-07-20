@@ -61,3 +61,11 @@ export async function registChallengeImagesAPI({inputFile}) {
     return result.data;
 };
 
+
+export async function removeChallengeAPI(challengeNo) {
+    const DELETE_CHALLENGE_URL = 'http://localhost:8888/challenges';
+    
+    const result = await axios.delete(DELETE_CHALLENGE_URL, {params : {removeInfo: challengeNo}}).catch(err => console.log(err));
+
+    return result;
+}

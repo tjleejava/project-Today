@@ -5,6 +5,7 @@ const ChallengeController = require('../controllers/challenge/challenge-controll
 router.get('/', ChallengeController.findChallenges);
 router.post('/', ChallengeController.registChallenge);
 router.put('/',ChallengeController.modifyChallenge)
+router.delete('/',ChallengeController.removeChallenge)
 router.post('/upload', ChallengeController.uploadFile);
 router.get('/rankings', ChallengeController.findRankings);
 router.get('/checkAuth', ChallengeController.checkChallengeAuthByMemberNo);

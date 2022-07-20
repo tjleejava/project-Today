@@ -48,7 +48,7 @@ exports.registAccept = (acceptInfo) => {
         ReportRepo.insertParticipationHistory(connection, {no: participations[i].participationNo, date: date, categoryNo: 5});
         
       // 알림에 추가
-        ReportRepo.insertAlarm(connection, {memberNo: participations[i].memberNo, categoryNo: 4, content: '챌린지가 취소되었습니다', date: date});
+        ReportRepo.insertAlarm(connection, {memberNo: participations[i].memberNo, categoryNo: 4, content: '관리자에 의해 챌린지가 취소되었습니다', date: date});
       }
     }
 

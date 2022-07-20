@@ -9,7 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { registChallengeAPI, registChallengeImagesAPI } from '../../../apis/ChallengeAPICalls';
 import { SET_PAGE,SET_TITLE, SET_CATEGORY, SET_FREQ, SET_TERM, SET_SCOPE, SET_START_DATE, SET_START_TIME
-, SET_END_TIME, SET_INFO, SET_DESCRIPTION, SET_MEMBER_NO, SET_FILE_INFO} from '../../../modules/ChallengeRegistModule';
+, SET_END_TIME, SET_INFO, SET_DESCRIPTION, SET_MEMBER_NO, SET_FILE_INFO, SET_REGIST_TIME} from '../../../modules/ChallengeRegistModule';
+import getTime from '../../../util/getTime';
 
 function RegistChallenge() {
   
@@ -17,7 +18,7 @@ function RegistChallenge() {
   const dispatch = useDispatch();
   const { registInfo, isRegistSucceses } = useSelector(state => state.challengeRegistReducer);
   const { category, title, amount, description, term, scope, info, fileCheck
-    , startDate, startTime, endTime, path, inputFiles, authDay, freq } = registInfo;
+    , startDate, startTime, endTime, path, inputFiles, authDay, freq, registTime } = registInfo;
   const navigate = useNavigate();
 
 
@@ -64,6 +65,7 @@ function RegistChallenge() {
       const checkResult = checkInputValue();
 
       if(checkResult) {
+        await dispatch({type: SET_REGIST_TIME, payload: getTime.getDateAndTime()});
         for(let i = 0; i < inputFiles.length; i++) {
 
          const result = await registChallengeImagesAPI({inputFile: inputFiles[i], index: i});
@@ -73,7 +75,7 @@ function RegistChallenge() {
         await dispatch(registChallengeAPI(registInfo));
         
       } else {
-        alert('모든 정보를 입력하세요');
+        alert('입력 정보를 확인하세요');
       }
   };      
 

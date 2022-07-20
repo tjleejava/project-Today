@@ -5,7 +5,7 @@ const initialState = {
   pageInfo: {
     page: 1,
     totalItemCount: 1, 
-    pageItemCount: 1,
+    pageItemCount: 10,
     searchValue: '',
     category: '0'
   },

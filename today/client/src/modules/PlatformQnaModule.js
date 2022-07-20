@@ -9,6 +9,11 @@ const initialState = {
         memberNo: 0
     },
     inquiries: [],
+    pageInfo: {
+      page: 1,
+      totalItemCount: 1, 
+      pageItemCount: 10
+    },
     inquiryInfo: {
         inquiry: {},
         reply: {
@@ -39,6 +44,8 @@ export const PUT_REPLY_CONTENT = 'platform/PUT_REPLY_CONTENT';
 export const POST_REPLY_DATE = 'platform/POST_REPLY_DATE';
 export const PUT_REPLY = 'platform/PUT_REPLY';
 export const DELETE_REPLY = 'platform/DELETE_REPLY';
+export const SET_PAGE = 'platform/SET_PAGE';
+export const SET_MEMBER_NO = 'platform/SET_MEMBER_NO';
 
 
 const actions = createActions({
@@ -54,7 +61,9 @@ const actions = createActions({
     [POST_REPLY_DATE]: () => {},
     [PUT_REPLY]: () => {},
     [GET_INQUIRY]: () => {},
-    [DELETE_REPLY]: () => {}
+    [DELETE_REPLY]: () => {},
+    [SET_PAGE]: () => {}, 
+    [SET_MEMBER_NO]: () => {}
     
 });
 
@@ -64,6 +73,11 @@ const platformQnaReducer = handleActions(
         [POST_TITLE]: (state, { payload }) => {
             state.registInfo.title = payload;
             
+            return {...state};
+        },
+        [SET_MEMBER_NO]: (state, { payload }) => {
+            state.registInfo.memberNo = payload;
+
             return {...state};
         },
         [POST_CONTENT]: (state, {payload}) => {
@@ -81,18 +95,17 @@ const platformQnaReducer = handleActions(
             return {...state};
         },
         [GET_INQUIRIES]: (state, { payload }) => {
-            state.inquiries = payload.data;
+            state.inquiries = payload.inquiries;
+            state.pageInfo.totalItemCount = payload.count;
 
             return {...state};
         },
         [GET_INQUIRY]: (state, { payload }) => {
             state.inquiryInfo = payload.data;
-            console.log(payload.data);
             return {...state};
         },
         [GET_INQUIRIES_ADMIN]: (state, { payload }) => {
 
-            console.log('payload : ', payload.data);
             state.adminInquiriesPagingInfo = payload.data.adminInquiriesPagingInfo;
             state.inquiries = payload.data.inquiries;
 
@@ -128,6 +141,11 @@ const platformQnaReducer = handleActions(
                 platfomrInquiryReplyContent:'',
                 platfomrInquiryReplyDate: ''
             };
+
+            return {...state};
+        },
+        [SET_PAGE]: (state, {payload}) => {
+            state.pageInfo.page = payload;
 
             return {...state};
         }

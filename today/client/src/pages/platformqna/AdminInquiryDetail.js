@@ -33,14 +33,18 @@ function AdminInquiryDetail() {
   };
 
   const registReplyHandler = async () => {
+    
+    if(!reply.platfomrInquiryReplyContent) {
+      alert('답변을 입력하세요');
+    } else {
 
-    const date = getTime.getDateAndTime();
-
-    await dispatch({type: POST_REPLY_DATE, payload: date});
-
-    await dispatch(callPostReplyAPI(inquiryInfo));
-
-    alert('답변이 등록되었습니다');
+      const date = getTime.getDateAndTime();
+  
+      await dispatch({type: POST_REPLY_DATE, payload: date});
+      await dispatch(callPostReplyAPI(inquiryInfo));
+  
+      alert('답변이 등록되었습니다');
+    }
   };
 
   const replyOnchangeHandler = (e) => {

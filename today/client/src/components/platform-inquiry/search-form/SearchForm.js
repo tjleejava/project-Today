@@ -28,7 +28,7 @@ function SearchForm() {
   );
   return (
     <div>
-      <div className={SearchForm.searchContainer}>
+      {/* <div className={SearchForm.searchContainer}>
         <select>
           <option value='1'>1</option>
           <option value='2'>2</option>
@@ -36,7 +36,7 @@ function SearchForm() {
         </select>
         <input onChange={ searchValueChangeHandler} value={searchValue} placeholder='검색어를 입력하시오'/>
         <button className={SearchForm.searchBtn}>검색</button>
-      </div>
+      </div> */}
       <PaginationBox>
         <Pagination
             activePage={page}

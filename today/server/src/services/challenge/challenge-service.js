@@ -105,10 +105,8 @@ exports.findRankings = () => {
 };
 
 exports.registChallenge = (registInfo) => {
-    const {authDay, fileInfos} = registInfo;
+    const {authDay, fileInfos, memberNo} = registInfo;
     
-    console.log(authDay)
-    console.log(fileInfos);
     return new Promise( async (resolve, reject) => {
 
         const connection = getConnection();
@@ -134,6 +132,8 @@ exports.registChallenge = (registInfo) => {
                 ChallengeRepo.insertChallengeFreqDay(connection, authFreqDay);
             }
         }
+        
+        ChallengeRepo.insertParticipation(connection, registInfo, challengeNo);
 
         connection.end();
 

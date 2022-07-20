@@ -2,6 +2,7 @@ import { createActions, handleActions } from 'redux-actions';
 
 const initialState = {
   registInfo: {
+      registTime: '',
       memberNo: 0,
       category: 0,  
       title: '',  
@@ -42,6 +43,7 @@ const initialState = {
   isRegistSucceses: 0
 };
 
+export const SET_REGIST_TIME = 'challengeRegist/SET_REGIST_TIME';
 export const SET_TITLE = 'challengeRegist/SET_TITLE';
 export const SET_CATEGORY = 'challengeRegist/SET_CATEGORY';
 export const SET_DESCRIPTION = 'challengeRegist/SET_DESCRIPTION';
@@ -65,6 +67,7 @@ export const POST_CHALLENGE = 'challengeRegist/POST_CHALLENGE';
 
 
 const actions = createActions({
+  [SET_REGIST_TIME]: () => {},
   [SET_TITLE]: () => {},
   [SET_CATEGORY]: () => {},
   [SET_DESCRIPTION]: () => {},
@@ -89,6 +92,11 @@ const actions = createActions({
 
 const challengeRegistReducer = handleActions(
   {
+    [SET_REGIST_TIME] : (state, {payload}) => {
+      state.registInfo.registTime = payload;
+
+      return {...state};
+    },
     [SET_TITLE] : (state, { payload }) => {
 
       state.registInfo.title = payload

@@ -142,6 +142,21 @@ exports.insertChallengeFreqDay = (connection, authFreqDay) => {
   });
 };
 
+exports.insertParticipation = (connection, registInfo, challengeNo) => {
+
+  const { registTime, memberNo } = registInfo;
+  return new Promise( async (resolve, reject) => {
+
+    connection.query(challengeQuery.insertParticipation(), [memberNo, challengeNo, registTime], (err, result, fields) => {
+
+      if(err) {
+        reject(err);
+      }
+      resolve(result);
+    });
+  });
+};
+
 exports.selectRankings = (connection) => {
 
   return new Promise( async (resolve, reject) => {

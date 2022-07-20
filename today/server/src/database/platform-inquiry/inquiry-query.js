@@ -14,6 +14,15 @@ exports.insertInquiry = () => {
   `;
 };
 
+exports.selectInquiriesCount = () => {
+  return `
+      SELECT
+             COUNT(*) AS count
+        FROM  TBL_PLATFORM_INQUIRY
+       WHERE MEMBER_NO = ?
+  `;
+};
+
 exports.selectInquiries = () => {
 
   return `
@@ -29,6 +38,7 @@ exports.selectInquiries = () => {
         LEFT JOIN TBL_PLATFORM_INQUIRY_REPLY B ON (A.PLATFORM_INQUIRY_NO = B.PLATFORM_INQUIRY_NO) 
        WHERE A.MEMBER_NO = ?
        ORDER BY A.PLATFORM_INQUIRY_NO DESC
+       LIMIT ?,?
   `;
 };
 

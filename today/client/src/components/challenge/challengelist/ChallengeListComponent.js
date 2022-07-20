@@ -8,7 +8,7 @@ function ChallengeListComponent() {
 
   return(
     <div className={ChallengeListComponentCSS.container}>
-      {challenges.map( challenge => <ChallengeList challenge={challenge}/>)}
+      {challenges.map( challenge => <ChallengeList challenge={challenge} key={challenge.challengeNo}/> )}
     </div>
   )
 }

@@ -451,3 +451,4 @@ exports.insertAlarm = (connection, { memberNo, categoryNo, content, date }) => {
     });
   });
 };
+

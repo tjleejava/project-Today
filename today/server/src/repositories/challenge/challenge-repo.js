@@ -343,10 +343,10 @@ exports.selectChallengeBySearchValue = (connection, pageInfo) => {
   }); 
 };
 
-exports.deleteChallengeByAdmin = (connection, challengeNo) => {
+exports.deleteChallengeByAdmin = (connection, challengeNo, categoryNo) => {
 
   return new Promise( async (resolve, reject) => {
-    connection.query(challengeQuery.deleteChallengeByAdmin(), [challengeNo], (err, result, fields) => {
+    connection.query(challengeQuery.deleteChallengeByAdmin(), [categoryNo, challengeNo], (err, result, fields) => {
       if(err) {
         reject(err);
       }

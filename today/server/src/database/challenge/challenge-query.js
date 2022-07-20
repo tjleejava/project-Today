@@ -323,7 +323,7 @@ exports.deleteChallengeByAdmin = () => {
   return `
       UPDATE
              TBL_CHALLENGE
-         SET CHALLENGE_STATUS_NO = 5
+         SET CHALLENGE_STATUS_NO = ?
        WHERE CHALLENGE_NO = ?
   `;
 };

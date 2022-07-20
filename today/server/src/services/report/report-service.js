@@ -44,10 +44,11 @@ exports.registAccept = (acceptInfo) => {
 
       // 조회내역 for문 돌리면서 이력테이블에 insert ( status = 5(취소)로)
       for(let i = 0; i < participations.length; i++) {
+        ReportRepo.updatePariticipationStatus(connection, {no: participations[i].participationNo, statusNo: 5});
         ReportRepo.insertParticipationHistory(connection, {no: participations[i].participationNo, date: date, categoryNo: 5});
         
       // 알림에 추가
-        ReportRepo.insertAlarm(connection, {memberNo: participations[i].memberNo, categoryNo: 4, content: '챌린지가 취소되었습니다', date: date});
+        ReportRepo.insertAlarm(connection, {memberNo: participations[i].memberNo, categoryNo: 4, content: '관리자에 의해 챌린지가 취소되었습니다', date: date});
       }
     }
 
@@ -83,7 +84,6 @@ exports.checkChallengeReportAccepted = (reportNo) => {
 
     const result = await ReportRepo.selectChallengeReportAccept(connection, reportNo);
 
-    console.log(result);
     connection.end();
 
     resolve(result);
@@ -98,7 +98,6 @@ exports.findReport = (reportNo) => {
     const report = await ReportRepo.selectReport(connection, reportNo);
     const reportExamine = await ReportRepo.selectReportExamine(connection, reportNo);
 
-    console.log(reportExamine);
     connection.end();
     resolve({report: report, reportExamine: reportExamine});
   });
@@ -149,7 +148,7 @@ exports.checkChallengeReport = (checkInfo) => {
     const connection = getConnection();
 
     const result = await ReportRepo.selectChallengeReport(connection, checkInfo);
-    
+
     connection.end();
 
     resolve(result);

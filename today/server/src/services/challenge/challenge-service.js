@@ -5,7 +5,6 @@ const HttpStatus = require('http-status');
 exports.findChallenges = (pageInfo) => {
 
     const { searchValue, category } = pageInfo;
-    console.log(pageInfo);
     let challenges;
     return new Promise(async (resolve, reject) => {
         const connection = getConnection();
@@ -47,7 +46,6 @@ exports.findChallengeByNo = (challengeNo) => {
   return new Promise( async (resolve, reject) => {
         
     const connection = getConnection();
-
     const challengeResults = await ChallengeRepo.selectChallengeByNo(connection, challengeNo);
     const authDayResults = await ChallengeRepo.selectAuthDayByChallengeNo(connection, challengeNo);
     const attachmentResults = await ChallengeRepo.selectAttachmentByChallengeNo(connection, challengeNo);
@@ -119,7 +117,6 @@ exports.registChallenge = (registInfo) => {
             
             fileInfos[i].challengeNo = challengeNo;
             fileInfos[i].type= i + 1;
-            console.log('fileInfos[i] : ', fileInfos[i]);
             ChallengeRepo.insertChallengeAttachment(connection, fileInfos[i]);
         }
 
@@ -188,3 +185,32 @@ exports.participateChallenge = (data) => {
         
     })
 }
+
+exports.removeChallenge = ({challengeNo, date, categoryNo}) => {
+
+    return new Promise( async (resolve, reject,) => {
+
+        const connection = getConnection();
+
+        //챌린지 상태 변경
+        const challengeStatusResult = await ChallengeRepo.deleteChallengeByAdmin(connection, challengeNo, categoryNo);
+
+        //챌린지 참여인원 조회
+        const participations = await ChallengeRepo.selectParticipations(connection, challengeNo);
+
+        for(let i = 0; i < participations.length; i++) {
+            //챌린지 참여인원 상태 변경
+            //챌린지 참여인원 이력 추가
+            ChallengeRepo.updateParticipationStatus(connection, {no: participations[i].participationNo, statusNo: categoryNo});
+            ChallengeRepo.insertParticipationHistory(connection, {no: participations[i].participationNo, date: date, categoryNo: categoryNo});
+            //알림에 추가
+            let content = (categoryNo == 5) ? '관리자' : '개설자';
+            content += '에 의해 챌린지가 취소되었습니다.';
+            ChallengeRepo.insertAlarm(connection, {memberNo: participations[i].memberNo, categoryNo: 4, content: content, date: date});
+        }
+
+        connection.end();
+
+        resolve(challengeStatusResult);
+    });
+};

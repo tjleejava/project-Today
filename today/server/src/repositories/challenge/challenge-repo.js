@@ -4,6 +4,7 @@ const AuthDayDTO = require('../../dto/challenge/challenge-auth-freq-dto');
 const ChallengeDTO = require('../../dto/challenge/challenge-dto');
 const AttachmentDTO = require('../../dto/challenge/challenge-attachment-dto');
 const ChallengeListDTO = require('../../dto/challenge/ranking-dto');
+const ParticipationDTO = require('../../dto/report/participation-dto');
 
 exports.selectAttachmentByChallengeNo = (connection, challengeNo) => {
 
@@ -83,7 +84,6 @@ exports.selectChallengeByNo = (connection, challengeNo) => {
       if(err) {
         reject(err);
       }
-      console.log(result);
       const value = new ChallengeDTO(result);
       resolve(value);
     });
@@ -186,8 +186,6 @@ exports.selectByCategoryNo = (connection, categoryNo) => {
       if(err) {
         reject(err);
       }
-      console.log(categoryNo);
-      console.log(results);
       let challenges = [];
       for(let i = 0; i< results.length; i++) {
         challenges.push(new ChallengeListDTO(results[i]));
@@ -205,7 +203,6 @@ exports.selectAllChallengeCount = (connection) => {
       if(err) {
         reject(err);
       }
-      console.log(result[0].count);
       resolve(result[0].count);
     });
   });
@@ -380,3 +377,77 @@ exports.insertParticipateMemberInChallenge = (connection, data) => {
     })
   })
 }
+
+exports.deleteChallengeByAdmin = (connection, challengeNo, categoryNo) => {
+
+  return new Promise( async (resolve, reject) => {
+    connection.query(challengeQuery.deleteChallengeByAdmin(), [categoryNo, challengeNo], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
+    });
+  });
+};
+
+exports.selectParticipations = (connection, challengeNo) => {
+
+  return new Promise(async (resolve, reject) => {
+
+    connection.query(challengeQuery.selectParticipations(), [challengeNo], (err, results, fields) => {
+      if(err) {
+        reject(err);
+      }
+      const participations = [];
+      for(let i = 0; i < results.length; i++) {
+        participations.push(new ParticipationDTO(results[i]));
+      }
+
+      resolve(participations);
+    });
+  });
+};
+
+exports.updateParticipationStatus = (connection, {no, statusNo}) => {
+  
+  return new Promise(async (resolve, reject) => {
+    connection.query(challengeQuery.updateParticipationStatus(), [statusNo, no], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
+    });
+  });
+};
+
+exports.insertParticipationHistory = (connection, {no, categoryNo, date}) => {
+  
+  return new Promise((resolve, reject) => {
+
+    connection.query(challengeQuery.insertParticipationHistory(), [no, categoryNo, date], (err, result, fields) => {
+
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
+    });
+  });
+};
+
+
+exports.insertAlarm = (connection, { memberNo, categoryNo, content, date }) => {
+
+  return new Promise((resolve, reject) => {
+
+    connection.query(challengeQuery.insertAlarm(), [categoryNo, memberNo, content, date], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(err);
+    });
+  });
+};

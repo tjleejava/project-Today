@@ -5,7 +5,6 @@ exports.insertInquiry = (connection, registInfo) => {
 
   const { platformInquiryTitle, platformInquiryContent, platformInquiryDate, memberNo} = registInfo;
 
-  console.log('registInfo : ', registInfo);
   return new Promise((resolve, reject) => {
 
     connection.query(InquiryQuery.insertInquiry(), [platformInquiryTitle, platformInquiryContent, platformInquiryDate, memberNo], (err, result, fields) => {

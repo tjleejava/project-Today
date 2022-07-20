@@ -348,3 +348,63 @@ exports.findChallengeParticipation = () => {
        AND CHALLENGE_NO = ?
   `
 }
+
+exports.deleteChallengeByAdmin = () => {
+  return `
+      UPDATE
+             TBL_CHALLENGE
+         SET CHALLENGE_STATUS_NO = ?
+       WHERE CHALLENGE_NO = ?
+  `;
+};
+
+exports.selectParticipations = () => {
+  return `
+  SELECT
+         PARTICIPATION_NO
+       , MEMBER_NO
+       , CHALLENGE_NO
+       , PARTICIPATION_DATE
+       , PARTICIPATION_STATUS_NO
+    FROM TBL_PARTICIPATION
+   WHERE CHALLENGE_NO = ?
+  `;
+};
+
+exports.updateParticipationStatus = () => {
+  return `
+      UPDATE
+             TBL_PARTICIPATION
+         SET PARTICIPATION_STATUS_NO = ?
+       WHERE PARTICIPATION_NO = ?
+  `;
+};
+
+exports.insertParticipationHistory = () => {
+
+  return `
+      INSERT
+        INTO TBL_PARTICIPATION_HISTORY 
+      (
+        PARTICIPATION_NO
+      , CATEGORY_NO
+      , HISTORY_DATE
+      ) 
+      VALUES(?, ?, ?);
+  `;
+};
+
+exports.insertAlarm = () => {
+  return`
+      INSERT 
+        INTO TBL_ALARM 
+      (
+        ALARM_CATEGORY_NO
+      , MEMBER_NO
+      , ALARM_CONTENT
+      , ALARM_DATE
+      , CHECK_YN
+      ) 
+      VALUES(?, ?, ?, ?, 'N')
+  `;
+};

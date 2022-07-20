@@ -10,7 +10,6 @@ exports.registInvite = (registInfo) => {
     let alarmResult = null;
     const checkResult = await InviteRepo.selectInviteByMemberNo(connection, registInfo);
     
-    console.log(checkResult);
     if(checkResult == 0) {
       //초대 내역에 추가
        inviteResult = await InviteRepo.insertInvite(connection, registInfo);

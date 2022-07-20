@@ -3,16 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import InviteModal from './InviteModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { CHANGE_INVITE_MODAL } from '../../../modules/InviteModule';
+import ChallengeRemoveModal from '../remove/ChallengeRemoveModal';
+import { SET_MODAL_STATUS } from '../../../modules/ChallengeRemoveModule';
 
 function HostSide() {
 
   const navigate = useNavigate(); 
-  const {isInviteModalOpen} = useSelector(state => state.inviteReducer);
   const dispatch = useDispatch();
+
+  const {isInviteModalOpen} = useSelector(state => state.inviteReducer);
+  const { isModalOpen } = useSelector(state => state.challengeRemoveReducer);
   
   const modifyChallengeHandler = () => {
       navigate('modify');
   }
+
+  
+  const deleteModalStatusChange = () => {
+    dispatch({type: SET_MODAL_STATUS, payload: !isModalOpen});
+  };
 
   const inviteHandler = () => {
     dispatch({type: CHANGE_INVITE_MODAL, payload: !isInviteModalOpen});
@@ -37,9 +46,10 @@ function HostSide() {
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       <div className={ HostSideCSS.buttonArea }>
           <button onClick={ modifyChallengeHandler } className={ HostSideCSS.modifyBtn }>챌린지 수정</button>
-          <button className={ HostSideCSS.deleteBtn }>챌린지 삭제</button>
+          <button onClick={ deleteModalStatusChange }className={ HostSideCSS.deleteBtn }>챌린지 삭제</button>
       </div>
       <InviteModal/>
+      <ChallengeRemoveModal removeCategory={ 4 }/>
     </div>
   );
 };

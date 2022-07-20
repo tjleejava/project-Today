@@ -15,11 +15,27 @@ exports.registAccept = async(req, res, next) => {
 };
 
 exports.checkChallengeReportAccepted = async(req, res, next) => {
+
     const reportNo = req.query.reportNo;
-    console.log(reportNo);
     const result = await ReportService.checkChallengeReportAccepted(reportNo);
 
-    res.send(result);
+    if(result[0]) {
+        res.status(HttpStatus.OK)
+        .send({
+            result: false,
+            response: result,
+            message: '해당 신고는 이미 처리되었습니다.',
+            status: HttpStatus.OK
+        });
+    } else {
+        res.status(HttpStatus.OK)
+        .send({
+            result: true,
+            response: result,
+            message: '해당 신고의 승인내역이 없습니다.',
+            status: HttpStatus.OK
+        });
+    }
 };
 
 exports.findReport = async(req, res, next) => {
@@ -51,5 +67,6 @@ exports.checkChallengeReport = async(req, res, next) => {
 
     const result = await ReportService.checkChallengeReport(JSON.parse(req.query.checkInfo));
 
-    res.send(result);
-};
+    console.log(result);
+    res.send({result: result});
+}; 

@@ -5,13 +5,22 @@ import ChallengeReportModalCSS from './ChallengeReportModal.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import getTime from '../../util/getTime';
 import { callPostChallengeReportATI, checkChallengeReportAPI } from '../../apis/ReportAPICalls';
+import jwt_decode from "jwt-decode";
+import {Cookies} from 'react-cookie'
+import { SET_REPORT_REGIST_INFO } from '../../modules/ReportModuls';
 
 function ChallengeReportModal({reportModalState, setReportModalState}) {
 
+  const cookies = new Cookies();
+  const token = cookies.get('token');
+  let reporterNo = 0;
+  if(token) {
+      const decoded = jwt_decode(token);
+      reporterNo = decoded.no;
+  }
   const CHECK_REPORT_CATEGORY = 'report/CHECK_REPORT_CATEGORY';
   const CHANGE_REPORT_CONTENT = 'report/CHANGE_REPORT_CONTENT';
   //보류
-  const reporterNo = 5;
 
   const { registInfo, isAlreadyReported } = useSelector(state => state.reportReducer)
   const { challengeNo } = useParams();
@@ -21,7 +30,7 @@ function ChallengeReportModal({reportModalState, setReportModalState}) {
   useEffect(
     () => {
       dispatch(checkChallengeReportAPI({
-        reporterNo: reporterNo,
+        memberNo: reporterNo,
         challengeNo: challengeNo
       }));
     },[]
@@ -39,6 +48,7 @@ function ChallengeReportModal({reportModalState, setReportModalState}) {
 
     alert('신고가 접수되었습니다');
     setReportModalState(false);
+    dispatch({type: SET_REPORT_REGIST_INFO, payload:{}});
   };
 
   const reportCategoryChangeHandler = (e) => {

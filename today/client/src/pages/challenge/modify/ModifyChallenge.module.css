@@ -1,9 +1,11 @@
 .area {
-  border: 1px solid limegreen;
   width: 70%;
   margin-left: 15%;
   height: 760px;
   overflow-y: scroll;
+}
+.head > label {
+  color: #919191;
 }
 
 /* 카테고리 버튼 CSS */
@@ -43,9 +45,11 @@
   margin-left: 1%;
 }
 .subtitle {
-  font-size: 1em;
+  font-size: 1.3em;
   font-weight: 700;
   margin-left: 1%;
+  margin-top: 20px;
+  display: inline-block;
 }
 
 /* 타이틀 하위 설명 */
@@ -60,6 +64,19 @@
   margin-left: 1%;
   margin-top: 1%;
   margin-bottom: 2%;
+  width: 400px;
+  height: 30px;
+  font-size: 1em;
+}
+.authDescription {
+  margin-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+  width: 700px;
+  height: 100px;
+  font-size: 1.3em;
+  vertical-align: top;
+
 }
 
 

@@ -58,7 +58,7 @@ export async function registChallengeImagesAPI({inputFile}) {
 
     const result = await axios.post(POST_CHALLENGE_IMAGE_URL, inputFile).catch(err => console.log(err));
     
-    return result.data;
+    return result;
 };
 
 export async function participatingChallengeAPI(memberNo, challengeNo) {
@@ -82,6 +82,15 @@ export async function removeChallengeAPI(challengeNo) {
     const DELETE_CHALLENGE_URL = 'http://localhost:8888/challenges';
     
     const result = await axios.delete(DELETE_CHALLENGE_URL, {params : {removeInfo: challengeNo}}).catch(err => console.log(err));
+
+    return result;
+}
+
+export async function modifyChallengeAPI(modifyInfo) {
+    const MODIFY_CHALLENGE_URL = 'http://localhost:8888/challenges';
+
+    const result = await axios.put(MODIFY_CHALLENGE_URL, modifyInfo)
+                            .catch(err => console.log(err));
 
     return result;
 }

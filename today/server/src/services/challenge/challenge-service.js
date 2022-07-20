@@ -1,3 +1,4 @@
+const fs = require('fs');
 const getConnection = require('../../database/connection');
 const ChallengeRepo = require('../../repositories/challenge/challenge-repo');
 const HttpStatus = require('http-status');
@@ -82,11 +83,42 @@ exports.checkChallengeAuthByMemberNo = (authInfo) => {
 
 exports.modifyChallenge = (modifyInfo) => {
 
-
+    const {challenge, attachments} = modifyInfo;
     return new Promise( async (resolve, reject) => {
         const connection = getConnection();
 
+        //챌린지 정보 수정
+        const modifyResult = await ChallengeRepo.modifyChallenge(connection, challenge);
+
+        //챌린지 사진정보 수정
+        for(let i = 0; i < attachments.length; i++) {
+
+            if(attachments[i].type) {
+
+                //수정된 기존 파일 삭제
+                const attachmentInfo = await ChallengeRepo.selectChallengeAtachment(connection, {challengeNo: challenge.challengeNo, typeNo: attachments[i].type });
+
+                const {savedName, savedPath} = attachmentInfo;
+
+                fs.unlink(`${__dirname}/../../../public/${savedPath}/${savedName}.png`, err => {
+                    console.log(err);
+                });
+
+                //새로운 업로드 파일정보로 기존 경로 수정
+                ChallengeRepo.updateChallengeAttachment(
+                    connection, 
+                    {
+                        challengeNo: challenge.challengeNo,
+                        typeNo: attachments[i].type,
+                        fileInfo: attachments[i].fileInfo
+                    }
+                );
+            }
+        }
+        
         connection.end();
+
+        resolve(modifyResult);
     });
 };
 

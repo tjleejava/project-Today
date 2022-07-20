@@ -1,4 +1,7 @@
 .area {
+  display: inline-flex;
+  width: 48%;
+  align-items: center;
   
 }
 

@@ -45,6 +45,7 @@ export const POST_REPLY_DATE = 'platform/POST_REPLY_DATE';
 export const PUT_REPLY = 'platform/PUT_REPLY';
 export const DELETE_REPLY = 'platform/DELETE_REPLY';
 export const SET_PAGE = 'platform/SET_PAGE';
+export const SET_MEMBER_NO = 'platform/SET_MEMBER_NO';
 
 
 const actions = createActions({
@@ -61,7 +62,8 @@ const actions = createActions({
     [PUT_REPLY]: () => {},
     [GET_INQUIRY]: () => {},
     [DELETE_REPLY]: () => {},
-    [SET_PAGE]: () => {}
+    [SET_PAGE]: () => {}, 
+    [SET_MEMBER_NO]: () => {}
     
 });
 
@@ -71,6 +73,11 @@ const platformQnaReducer = handleActions(
         [POST_TITLE]: (state, { payload }) => {
             state.registInfo.title = payload;
             
+            return {...state};
+        },
+        [SET_MEMBER_NO]: (state, { payload }) => {
+            state.registInfo.memberNo = payload;
+
             return {...state};
         },
         [POST_CONTENT]: (state, {payload}) => {

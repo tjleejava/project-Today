@@ -3,9 +3,9 @@ const InquiryDTO = require('../../dto/platform-inquiry/platform-inquiry');
 const ReplyDTO = require('../../dto/platform-inquiry/platform-inquiry-reply');
 exports.insertInquiry = (connection, registInfo) => {
 
-  const memberNo = 6;
-  const { platformInquiryTitle, platformInquiryContent, platformInquiryDate} = registInfo;
+  const { platformInquiryTitle, platformInquiryContent, platformInquiryDate, memberNo} = registInfo;
 
+  console.log('registInfo : ', registInfo);
   return new Promise((resolve, reject) => {
 
     connection.query(InquiryQuery.insertInquiry(), [platformInquiryTitle, platformInquiryContent, platformInquiryDate, memberNo], (err, result, fields) => {

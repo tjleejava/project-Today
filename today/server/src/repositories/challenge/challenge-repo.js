@@ -83,7 +83,6 @@ exports.selectChallengeByNo = (connection, challengeNo) => {
       if(err) {
         reject(err);
       }
-      console.log(result);
       const value = new ChallengeDTO(result);
       resolve(value);
     });
@@ -186,8 +185,6 @@ exports.selectByCategoryNo = (connection, categoryNo) => {
       if(err) {
         reject(err);
       }
-      console.log(categoryNo);
-      console.log(results);
       let challenges = [];
       for(let i = 0; i< results.length; i++) {
         challenges.push(new ChallengeListDTO(results[i]));
@@ -205,7 +202,6 @@ exports.selectAllChallengeCount = (connection) => {
       if(err) {
         reject(err);
       }
-      console.log(result[0].count);
       resolve(result[0].count);
     });
   });

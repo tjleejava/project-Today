@@ -83,7 +83,6 @@ exports.checkChallengeReportAccepted = (reportNo) => {
 
     const result = await ReportRepo.selectChallengeReportAccept(connection, reportNo);
 
-    console.log(result);
     connection.end();
 
     resolve(result);
@@ -98,7 +97,6 @@ exports.findReport = (reportNo) => {
     const report = await ReportRepo.selectReport(connection, reportNo);
     const reportExamine = await ReportRepo.selectReportExamine(connection, reportNo);
 
-    console.log(reportExamine);
     connection.end();
     resolve({report: report, reportExamine: reportExamine});
   });
@@ -149,7 +147,7 @@ exports.checkChallengeReport = (checkInfo) => {
     const connection = getConnection();
 
     const result = await ReportRepo.selectChallengeReport(connection, checkInfo);
-    
+
     connection.end();
 
     resolve(result);

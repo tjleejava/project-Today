@@ -4,7 +4,6 @@ const ChallengeRepo = require('../../repositories/challenge/challenge-repo');
 exports.findChallenges = (pageInfo) => {
 
     const { searchValue, category } = pageInfo;
-    console.log(pageInfo);
     let challenges;
     return new Promise(async (resolve, reject) => {
         const connection = getConnection();
@@ -46,7 +45,7 @@ exports.findChallengeByNo = (challengeNo) => {
   return new Promise( async (resolve, reject) => {
         
     const connection = getConnection();
-
+    console.log('findChallengeByNo service , challengeNo : ', challengeNo);
     const challengeResults = await ChallengeRepo.selectChallengeByNo(connection, challengeNo);
     const authDayResults = await ChallengeRepo.selectAuthDayByChallengeNo(connection, challengeNo);
     const attachmentResults = await ChallengeRepo.selectAttachmentByChallengeNo(connection, challengeNo);
@@ -118,7 +117,6 @@ exports.registChallenge = (registInfo) => {
             
             fileInfos[i].challengeNo = challengeNo;
             fileInfos[i].type= i + 1;
-            console.log('fileInfos[i] : ', fileInfos[i]);
             ChallengeRepo.insertChallengeAttachment(connection, fileInfos[i]);
         }
 

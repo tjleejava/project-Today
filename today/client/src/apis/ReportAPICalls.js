@@ -35,7 +35,7 @@ export function checkChallengeReportAPI(checkInfo) {
 
     const result = await axios.get(CHECK_CHALLENGE_REPORT_URL, { params: {checkInfo}}).catch(err => console.log(err));
 
-    dispatch({ type: GET_CHECK_CHELLENGE_REPORT, payload: result.data[0].COUNT })
+    dispatch({ type: GET_CHECK_CHELLENGE_REPORT, payload: result.data.result })
   };
 };
 

@@ -4,8 +4,9 @@ const ChallengeService = require('../../services/challenge/challenge-service');
 const RegistChallengeDTO = require('../../dto/challenge/challenge-regist-dto');
 
 exports.findChallenges = async (req, res, next) => {
+
     const results = await ChallengeService.findChallenges(JSON.parse(req.query.pageInfo));
-    console.log(results);
+
     res.send(results);
 };
 
@@ -66,10 +67,8 @@ exports.findRankings = async (req, res, next) => {
 
 exports.checkChallengeAuthByMemberNo = async (req, res, next) => {
 
-    console.log(JSON.parse(req.query.authInfo));
     const result = await ChallengeService.checkChallengeAuthByMemberNo(JSON.parse(req.query.authInfo));
 
-    console.log(result);
     res.send(result);
 };
 

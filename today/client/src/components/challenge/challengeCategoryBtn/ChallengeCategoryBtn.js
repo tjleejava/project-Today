@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import ChallengeCategoryBtnCSS from './ChallengeCategoryBtnCSS.module.css';
-import {SET_CATEGORY, SET_SEARCH_VALUE } from '../../../modules/ChallengeListModule';
+import {SET_CATEGORY, SET_PAGE, SET_SEARCH_VALUE } from '../../../modules/ChallengeListModule';
 import {getChallengeList} from '../../../apis/ChallengeAPICalls';
 
 function ChallengeCategoryBtn() {
@@ -12,6 +12,7 @@ function ChallengeCategoryBtn() {
   const onClickHandler = (category) => {
       dispatch({type: SET_SEARCH_VALUE, payload: ''});
       dispatch({type: SET_CATEGORY, payload: category});
+      dispatch({type: SET_PAGE, payload: 1});
       
     dispatch(getChallengeList(pageInfo));
   };

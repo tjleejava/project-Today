@@ -15,8 +15,8 @@ exports.registAccept = async(req, res, next) => {
 };
 
 exports.checkChallengeReportAccepted = async(req, res, next) => {
+
     const reportNo = req.query.reportNo;
-    console.log(reportNo);
     const result = await ReportService.checkChallengeReportAccepted(reportNo);
 
     res.send(result);
@@ -51,5 +51,6 @@ exports.checkChallengeReport = async(req, res, next) => {
 
     const result = await ReportService.checkChallengeReport(JSON.parse(req.query.checkInfo));
 
-    res.send(result);
-};
+    console.log(result);
+    res.send({result: result});
+}; 

@@ -17,7 +17,7 @@ export default function ChallengeSideInfo({challengeNo}) {
     const cookies = new Cookies();
 
     let isAdmin = false;
-    let memberNo = 3;
+    let memberNo = 0;
     const token = cookies.get('token');
     if(token) {
         const decoded = jwt_decode(token);

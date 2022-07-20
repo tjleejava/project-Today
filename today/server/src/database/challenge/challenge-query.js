@@ -408,3 +408,45 @@ exports.insertAlarm = () => {
       VALUES(?, ?, ?, ?, 'N')
   `;
 };
+
+exports.modifyChallenge = () => {
+  
+  return `
+      UPDATE 
+             TBL_CHALLENGE
+         SET CHALLENGE_AUTH_EXPLAN = ?
+           , CHALLENGE_INFO = ?
+           , CHALLENGE_START_TIME = ?
+           , CHALLENGE_END_TIME = ?
+       WHERE CHALLENGE_NO = ?
+  `;
+};
+
+exports.updateChallengeAttachment = () => {
+
+  return `
+      UPDATE
+             TBL_CHALLENGE_ATTACHMENT
+         SET ORIGINAL_NAME = ?
+           , SAVED_NAME = ?
+           , SAVED_PATH = ?
+       WHERE CHALLENGE_NO = ?
+         AND FILE_TYPE_NO = ?
+  `;
+};
+
+exports.selectChallengeAtachment = () => {
+
+  return `
+      SELECT 
+             FILE_NO
+           , FILE_TYPE_NO
+           , ORIGINAL_NAME
+           , SAVED_NAME
+           , SAVED_PATH
+           , CHALLENGE_NO 
+        FROM TBL_CHALLENGE_ATTACHMENT
+       WHERE CHALLENGE_NO = ?
+         AND FILE_TYPE_NO = ?
+  `;
+};

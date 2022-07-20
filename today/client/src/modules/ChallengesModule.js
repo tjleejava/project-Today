@@ -5,12 +5,7 @@ const initialState = {
     attachmentInfo: {},
     challengeInfo: {},
     authDayInfo: {},
-    modifyAttachment: { 
-        attachment1: {  },
-        attachment2: {  },
-        attachment3: {  },
-        attachment4: {  }
-    },
+    modifyAttachment: [{}, {}, {}, {}],
     presentTab: '1',
     partCount: 0,
     isPartIn: false,
@@ -21,6 +16,7 @@ const initialState = {
 export const GET_CHALLENGE = 'challenges/GET_CHALLENGE';
 export const PUT_CHALLENGE_CATEGORY_NO = 'challenges/PUT_CHALLENGE_CATEGORY_NO';
 export const MODIFY_ATTACHMENT = 'challenges/MODIFY_ATTACHMENT';
+export const SET_MODIFY_ATTACHMENT = 'challenges/SET_MODIFY_ATTACHMENT';
 export const PUT_CHALLENGE_INFO = 'challenges/PUT_CHALLENGE_INFO';
 export const PUT_CHALLENGE_DESCRIPTION = 'challenges/PUT_CHALLENGE_DESCRIPTION';
 export const PUT_START_TIME = 'challenges/PUT_START_TIME';
@@ -33,6 +29,7 @@ const actions = createActions({
     [GET_CHALLENGE]: () => {},
     [PUT_CHALLENGE_CATEGORY_NO]: () => {},
     [MODIFY_ATTACHMENT]: () => {},
+    [SET_MODIFY_ATTACHMENT]: () => {},
     [PUT_CHALLENGE_INFO]: () => {},
     [PUT_CHALLENGE_DESCRIPTION]: () => {},
     [PUT_START_TIME]: () => {},
@@ -69,6 +66,14 @@ const challengesReducer = handleActions(
             }
 
             state.modifyAttachment[index - 1] = attachment;
+            return {...state};
+        },
+        [SET_MODIFY_ATTACHMENT]: (state, { payload }) => {
+
+            if(payload.data) {
+                state.modifyAttachment[payload.index].fileInfo = payload.data.data;
+            }
+
             return {...state};
         },
         [PUT_CHALLENGE_INFO]: (state, { payload }) => {

@@ -182,13 +182,7 @@ exports.resetPassword = async (req, res, next) => {
     }
   });
   
-  console.log(email, randomPassword)
-
-
-  
-
-  
-  
+  console.log(email, randomPassword);
 }
 
 exports.findId = async (req, res, next) => {
@@ -222,9 +216,8 @@ exports.findMemberByNo = async (req, res, next) => {
   console.log(memberNo);
 
   const result = await MemberService.findMemberByNo(memberNo);
-
-  return res.status(HttpStatus.OK)
-            .json(
+  console.log(res);
+  return res.send(
               {
                 status: HttpStatus.OK,
                 message: '프로필 조회 성공',

@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { request } = require('express');
 const { database } = require('../../config/db-config');
+const httpStatus = require('http-status');
 
 exports.login = async (req, res) => {
 
@@ -210,8 +211,8 @@ exports.findMemberByNo = (memberNo) => {
     const connection = getConnection();
 
     const participationResult = await MemberRepository.selectChallengeByMemberNo(connection, memberNo);
-    const completedResult = await MemberRepository.selectCompletedChallengeByMemberNo(connection, memberNo);
     console.log('service')
+    console.log(participationResult)
     resolve(participationResult);
     
   })

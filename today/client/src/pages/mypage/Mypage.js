@@ -13,6 +13,12 @@ function Mypage() {
   const mypage = useSelector(state => state.mypageReducer);
   const navigate = useNavigate();
 
+  // function dispatchState(challengeInfo) {
+  //   return async (dispatch, getState) => {
+  //     console.log(dispatch)
+  //     dispatch({type: CHALLENGE_INFO, payload: challengeInfo});
+  //   }
+  // }
 
   useEffect(() => {
     console.log(mypage)
@@ -57,11 +63,11 @@ function Mypage() {
           <div className={MyPageCSS.challengeNumBox}>
             <div className={MyPageCSS.engagingBox}>
               <h4>참가중</h4>
-              <h4>{mypage.challengeNum}</h4>
+              <h4>{mypage.participatingChallengeNum}</h4>
             </div>
             <div className={MyPageCSS.completeBox}>
               <h4>완료</h4>
-              <h4></h4>
+              <h4>{mypage.completedChallengeNum}</h4>
             </div>
             <div className={MyPageCSS.openBox}>
               <h4>개설</h4>

@@ -163,6 +163,23 @@ exports.participateChallenge = (data) => {
                 console.log('동작하니')
                 const insertResult = await ChallengeRepo.insertParticipateMemberInChallenge(connection, data)
                 console.log(insertResult);
+                if(insertResult != null) {
+                    let today = new Date();
+
+                    let year = today.getFullYear();
+                    let month = ('0' + (today.getMonth() + 1)).slice(-2);
+                    let day = ('0' + today.getDate()).slice(-2);
+
+                    let hours = ('0' + today.getHours()).slice(-2);
+                    let minutes = ('0' + today.getMinutes()).slice(-2);
+                    let seconds = ('0' + today.getSeconds()).slice(-2);
+
+                    let date = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+                    console.log(date);
+                    const participateNo = insertResult.insertId;
+                    const participateHistoryResult = await ChallengeRepo.insertParticipationHistory(connection, {no: participateNo, categoryNo: 1, date: date})
+
+                }
                 const returnData = {
                     status: HttpStatus.CREATED,
                     message: '참여 성공',
@@ -178,11 +195,7 @@ exports.participateChallenge = (data) => {
                 resolve(returnData);
             }
         });
-        
-
-        connection.end();
-
-        
+        connection.end();     
     })
 }
 

@@ -6,10 +6,9 @@ export function mypageInfoAPI(memberNo) {
     console.log('마이페이지 API')
 
     await axios.get('http://localhost:8888/members', {params: {memberNo: memberNo}})
-                              .then((res) => {
-                                resolve(res)
-
-                              });
+    .then((res) => {
+      resolve(res);
+    });
 
   });
                               

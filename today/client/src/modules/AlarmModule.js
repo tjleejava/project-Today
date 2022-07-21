@@ -47,6 +47,7 @@ const alarmReducer = handleActions(
       state.modalState = modalState;
       info && (state.modalInfo = info)
 
+      console.log(modalState);
       return {...state};
     }
   },initialState

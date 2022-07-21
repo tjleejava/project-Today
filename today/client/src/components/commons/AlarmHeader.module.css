@@ -1,0 +1,10 @@
+.area {
+  display: inline-block;
+}
+
+.header {
+  width: 23px;
+  height: 23px;
+  margin-left: 20PX;
+  color: black;
+}

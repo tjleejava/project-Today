@@ -1,12 +1,21 @@
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { putAlarmCheckYNAPI } from '../../../apis/AlarmAPICAll';
+import { getAlarmsAPI, putAlarmCheckYNAPI } from '../../../apis/AlarmAPICAll';
 import { CHANGE_MODAL_STATE } from '../../../modules/AlarmModule';
 import AlarmModalCSS from './AlarmModal.module.css';
+import jwt_decode from "jwt-decode";
+import {Cookies} from 'react-cookie'
 
 
 function AlarmModal() {
 
+  const cookies = new Cookies();
+  const token = cookies.get('token');
+  let memberNo = 1;
+  if(token) {
+    const decoded = jwt_decode(token);
+    memberNo = decoded.no;
+  }
 
   const modalStyle = {
     overlay: {
@@ -34,16 +43,22 @@ function AlarmModal() {
   };
 
   const dispatch = useDispatch();
-  const {modalState, modalInfo} = useSelector(state => state.alarmReducer);
+  const {modalState, modalInfo, readPageInfo, unreadPageInfo} = useSelector(state => state.alarmReducer);
 
+  const getAlarms = () => {
+    dispatch(getAlarmsAPI({ memberNo: memberNo, readPageInfo: readPageInfo, unreadPageInfo: unreadPageInfo }));
+  };
+  
   const moveHandler = () => {
-    modalInfo.checkYn == 'N' && dispatch(putAlarmCheckYNAPI(modalInfo.alarmNo));
+    modalInfo.checkYn == 'N' && putAlarmCheckYNAPI(modalInfo.alarmNo);
     dispatch({type: CHANGE_MODAL_STATE, payload: !modalState});
   };  
   
   const closeHandler = () => {
-    modalInfo.checkYn == 'N' && dispatch(putAlarmCheckYNAPI(modalInfo.alarmNo));
+    console.log('modalInfo.checkYn : ', modalInfo.checkYn)
+    modalInfo.checkYn == 'N' && putAlarmCheckYNAPI(modalInfo.alarmNo);
     dispatch({type: CHANGE_MODAL_STATE, payload: !modalState});
+    getAlarms();
   };
   
   return (

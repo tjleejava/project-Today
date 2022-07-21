@@ -26,7 +26,8 @@ function MainUser() {
       
     <NavLink to="/registchallenge">
       <div className={ MainUserCSS.openchl }>
-        <button>챌린지 개설하기</button>
+      { token? <button>챌린지 개설하기</button> : null }
+        
       </div>
     </NavLink>
       

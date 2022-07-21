@@ -3,6 +3,7 @@ import HeaderCSS from "./Header.module.css";
 import { Cookies } from 'react-cookie';
 import { setCookie, getCookie} from '../../cookies/cookie';
 import { logoutAPI } from '../../apis/MemberAPICalls';
+import AlarmHeader from './AlarmHeader';
 
 function Header() {
 
@@ -27,12 +28,15 @@ function Header() {
             <div className={ HeaderCSS.area}>
                 <img onClick={ goMainHandler }src="/images/header/todaylogo.png" className={ HeaderCSS.logo }/>
                 <div className={ HeaderCSS.body}>
-                    <NavLink style={{ textDecoration: 'none' }} to="/mypage/following"><img src="/images/header/heart.png" className={ HeaderCSS.header } /></NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} to="/mypage/alarm"><img src="/images/header/bell.png" className={ HeaderCSS.header } /></NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} to="/mypage/profile"><span className={ HeaderCSS.text }>마이페이지</span></NavLink>
                     {(getCookie('token') != undefined && getCookie('token')!= null)?
-                    <button onClick={ onClickHandler } className={ HeaderCSS.btnText }>로그아웃</button>:
-                    <NavLink to="/sign/login"><span className={ HeaderCSS.text }>로그인</span></NavLink>}
+                    <div>
+                        <NavLink style={{ textDecoration: 'none' }} to="/mypage/following"><img src="/images/header/heart.png" className={ HeaderCSS.header } /></NavLink>
+                        <NavLink style={{ textDecoration: 'none' }} to="/mypage/alarm"><AlarmHeader/></NavLink>
+                        <NavLink style={{ textDecoration: 'none' }} to="/mypage/profile"><span className={ HeaderCSS.text }>마이페이지</span></NavLink>
+                        <button onClick={ onClickHandler } className={ HeaderCSS.btnText }>로그아웃</button>
+                    </div>:
+                    
+                    <NavLink style={{ textDecoration: 'none' }} to="/sign/login"><span className={ HeaderCSS.text }>로그인</span></NavLink>}
                     {/* <NavLink to="/sign/login"><span className={ HeaderCSS.text }>로그인</span></NavLink> */}
 
                 </div>

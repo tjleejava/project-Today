@@ -31,7 +31,26 @@ exports.findAlarms = ({memberNo, readPageInfo, unreadPageInfo}) => {
 
 exports.checkAlarm = ({alarmNo}) => {
 
-  return new Promise((resolve, reject) => {
+  return new Promise( async (resolve, reject) => {
+    const connection = getConnection();
+
+    const result = await AlarmRepo.modifyAlarmReadState(connection, alarmNo);
+    connection.end();
+
+    resolve(result);
+  });
+}
+
+exports.checkAlarmExist = (memberNo) => {
+
+  return new Promise( async (resolve, reject) => {
+
+    const connection = getConnection();
+
+    const result = await AlarmRepo.selectAlarmExixt(connection, memberNo);
     
+    connection.end();
+
+    resolve({count : result});
   });
 }

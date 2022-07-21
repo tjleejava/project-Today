@@ -1,5 +1,6 @@
 const AlarmService = require('../../services/alarm/alarm-service');
 const HttpStatus = require('http-status');
+const { RESET_CONTENT } = require('http-status');
 
 exports.findAlarms = async (req, res, next) => {
   
@@ -12,4 +13,13 @@ exports.findAlarms = async (req, res, next) => {
 exports.checkAlarm = async (req, res, next) => {
 
   const result = await AlarmService.checkAlarm(req.body);
+
+  res.send(result);
+};
+
+exports.checkAlarmExist = async (req, res, next) => {
+
+  const result = await AlarmService.checkAlarmExist(JSON.parse(req.query.memberNo));
+
+  res.send(result);
 };

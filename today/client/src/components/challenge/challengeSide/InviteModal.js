@@ -16,9 +16,16 @@ function InviteModal() {
     dispatch(checkUserEmailAPI(inviteEmail));
   };
 
-  const inviteHandler =  () => {
-    dispatch(postInviteAPI({memberNo: inviteInfo.memberNo, challengeInfo: challengeInfo, date: getTime.getDateAndTime()}));
+  const inviteHandler =  async () => {
+    const result = await postInviteAPI({memberNo: inviteInfo.memberNo, challengeInfo: challengeInfo, date: getTime.getDateAndTime()});
+    console.log('invite result : ', result);
+    if( result > 0 ) {
+      alert('이미 회원에게 초대를 발송했습니다.');
+    } else {
+      alert('초대를 전송했습니다.');
+    }
     dispatch({type: CHANGE_INVITE_MODAL, payload: !isInviteModalOpen});
+
   };
 
   const modalCloseHandler = () => {
@@ -84,7 +91,7 @@ function InviteModal() {
         <button onClick={modalCloseHandler}>뒤로가기</button>
       </div>
       
-      {isInviteSuccess == 0 ? alert('초대를 전송했습니다.'): isInviteSuccess == 1? alert('해당 회원에게 이미 초대를 보냈습니다.'): null}
+      
     </Modal>
   );
 };

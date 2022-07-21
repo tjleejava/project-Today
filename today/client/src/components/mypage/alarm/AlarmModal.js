@@ -1,6 +1,6 @@
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAlarmsAPI, putAlarmCheckYNAPI } from '../../../apis/AlarmAPICAll';
+import { getAlarmExistAPI, getAlarmsAPI, putAlarmCheckYNAPI } from '../../../apis/AlarmAPICAll';
 import { CHANGE_MODAL_STATE } from '../../../modules/AlarmModule';
 import AlarmModalCSS from './AlarmModal.module.css';
 import jwt_decode from "jwt-decode";
@@ -52,6 +52,8 @@ function AlarmModal() {
   const moveHandler = () => {
     modalInfo.checkYn == 'N' && putAlarmCheckYNAPI(modalInfo.alarmNo);
     dispatch({type: CHANGE_MODAL_STATE, payload: !modalState});
+    
+    dispatch(getAlarmExistAPI(memberNo));
   };  
   
   const closeHandler = () => {
@@ -59,6 +61,8 @@ function AlarmModal() {
     modalInfo.checkYn == 'N' && putAlarmCheckYNAPI(modalInfo.alarmNo);
     dispatch({type: CHANGE_MODAL_STATE, payload: !modalState});
     getAlarms();
+    
+    dispatch(getAlarmExistAPI(memberNo));
   };
   
   return (

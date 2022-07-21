@@ -1,5 +1,4 @@
 .area {
-  border: 1px solid limegreen;
   width: 70%;
   margin-left: 15%;
   height: 760px;
@@ -15,8 +14,21 @@
 
 .textinput {
   margin-left: 1%;
-  margin-top: 1%;
+  margin-top: 1.3%;
   margin-bottom: 2%;
+  width: 400px;
+  height: 24px;
+  font-size: 1em;
+}
+
+.textAreaInput {
+
+  margin-left: 1%;
+  margin-top: 1.5%;
+  margin-bottom: 2%;
+  width: 400px;
+  height: 140px;
+  font-size: 1.2em;
 }
 
 .checkinput > div{
@@ -25,6 +37,9 @@
   margin-bottom: 2%;
 }
 
+.timeLabel {
+  font-size: 1em;
+}
 
 .timeinput > div{
   margin-left: 1%;
@@ -32,18 +47,27 @@
   margin-bottom: 2%;
 }
 
+.timeInputBox {
+  margin-left: 40px;
+}
+
+.dateInputBox {
+  width: 150px;
+  height: 30px;
+}
 
 .title {
   margin-top: 2%;
-  font-size: 1.3em;
+  font-size: 1.9em;
   font-weight: 900;
-  margin-left: 1%;
 }
 
 .subtitle {
-  font-size: 1em;
-  font-weight: 700;
+  font-size: 1.2em;
+  font-weight: 800;
   margin-left: 1%;
+  margin-top: 15px;
+  display: inline-block;
 }
 
 .description {
@@ -77,24 +101,29 @@
   cursor: pointer;
 }
 
-.descriptarea {
+.challengeDescriptarea {
   margin-left: 1%;
+  margin-top: 100px;
 }
-.descriptarea > label {
-  
-  font-size: 1em;
+.challengeDescriptarea > label{
+
+  font-size: 1.2em;
   font-weight: 600;
 }
 
-.descriptarea > textarea {
-  width: 30%;
-  height: 200px;
+.challengeDescriptarea > textarea {
+  margin-top: 20px;
+  width: 500px;
+  height: 150px;
+  font-size: 1.3em;
+  padding: 10px;
 }
 
 .registbtnarea {
   text-align: right;
-  margin-right: 10%;
-  margin-bottom:  40px;
+  margin-right: 13%;
+  margin-top:  40px;
+  margin-bottom:  100px;
 }
 .registbtnarea > button {
   border: none;

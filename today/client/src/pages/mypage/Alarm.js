@@ -89,11 +89,6 @@ function Alarm() {
         </div>
 
       </div>
-      
-      {
-      }
-
-
       <div className={AlarmCSS.pagearea}>
         <div className={AlarmCSS.btnarea}>
           <div className={AlarmCSS.btnbox}>

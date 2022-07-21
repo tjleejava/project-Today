@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import Pagination from 'react-js-pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { getAlarmsAPI } from '../../../apis/AlarmAPICAll';
+import { getAlarmExistAPI, getAlarmsAPI } from '../../../apis/AlarmAPICAll';
 import jwt_decode from "jwt-decode";
 import {Cookies} from 'react-cookie'
 import { CHANGE_PAGE } from '../../../modules/AlarmModule';

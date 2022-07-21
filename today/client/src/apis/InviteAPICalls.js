@@ -13,16 +13,14 @@ export function checkUserEmailAPI(email) {
   };
 };
 
-export function postInviteAPI(inviteInfo) {
+export async function postInviteAPI(inviteInfo) {
   
   const POST_INVITE_URL = 'http://localhost:8888/invites';
   
-  return async function postInvite(dispatch, getState) {
 
     const result = await axios.post(POST_INVITE_URL, inviteInfo).catch(err => console.log(err));
 
-    dispatch({ type: POST_INVITE, payload: result.data });
-  };
+    return result.data.checkResult;
 };
 
 export function getInvitesAPI(findInfo) {

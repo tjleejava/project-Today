@@ -36,6 +36,7 @@ function RegistChallenge() {
     let result = false;
 
     fileCheck[0] && fileCheck[1] && fileCheck[2] && fileCheck[3] && (description) && (freq !== 0) && (term) && (startDate) && 
+    (startDate > getTime.getDateAndTime()) && (startTime < endTime) &&
     (scope) && (startTime) && (endTime) && (info) && checkAuthDay() && (title) && (category !== 0) && ( result = true ) 
 
     return result;
@@ -63,7 +64,7 @@ function RegistChallenge() {
 
   const onClickHandler = async () => {
       const checkResult = checkInputValue();
-
+      
       if(checkResult) {
         await dispatch({type: SET_REGIST_TIME, payload: getTime.getDateAndTime()});
         for(let i = 0; i < inputFiles.length; i++) {
@@ -127,7 +128,7 @@ function RegistChallenge() {
         <div>
           <label className={ RegistChallengeCSS.subtitle }>인증방법 입력</label><br/>
           <label className={ RegistChallengeCSS.description }>실천여부를 알 수 있도록 구체적으로 적어주세요.</label><br/>
-          <input className={ RegistChallengeCSS.textinput} value={ description } 
+          <textarea className={ RegistChallengeCSS.textAreaInput} value={ description } 
             onChange={ e => dispatch({type: SET_DESCRIPTION, payload: e.target.value }) }/><br/>
         </div>
         <div className={ RegistChallengeCSS.checkinput}>
@@ -149,14 +150,18 @@ function RegistChallenge() {
         <div className={ RegistChallengeCSS.timeinput}>
           <label className={ RegistChallengeCSS.subtitle }>인증 가능 시간</label><br/>
           <div>
-            <label>시작 시간<input type="time" onChange={ e => dispatch({type:SET_START_TIME, payload: e.target.value}) } value={ startTime }/></label>
-            <label>종료 시간<input type="time" onChange={ e => dispatch({type:SET_END_TIME, payload: e.target.value}) } value={ endTime }/></label>
+            <label className={RegistChallengeCSS.timeLabel}>시작 시간<input className={ RegistChallengeCSS.timeInputBox} type="time" onChange={ e => dispatch({type:SET_START_TIME, payload: e.target.value}) } value={ startTime }/></label><br/><br/>
+            <label className={RegistChallengeCSS.timeLabel}>종료 시간<input className={ RegistChallengeCSS.timeInputBox} type="time" onChange={ e => dispatch({type:SET_END_TIME, payload: e.target.value}) } value={ endTime }/></label>
           </div>
         </div>
         <div className={ RegistChallengeCSS.timeinput}>
           <label className={ RegistChallengeCSS.subtitle }>챌린지 시작일</label><br/>
           <div>
-            <input onChange={  e => dispatch({type:SET_START_DATE, payload: e.target.value}) } value={ startDate } type="date"/>
+            <input 
+              className={ RegistChallengeCSS.dateInputBox}
+              onChange={  e => dispatch({type:SET_START_DATE, payload: e.target.value}) } 
+              value={ startDate } type="date"
+            />
           </div>
         </div>
         <div className={ RegistChallengeCSS.checkinput}>
@@ -182,7 +187,7 @@ function RegistChallenge() {
         <RegistImage title='나쁜인증샷 예시 등록' imageInput={ imageInput4 } index={index3}/>
 
         <br/>
-        <div className={ RegistChallengeCSS.descriptarea}>
+        <div className={ RegistChallengeCSS.challengeDescriptarea}>
           <label>챌린지 소개</label><br/>
           <textarea value={info} onChange={ (e) => dispatch({type: SET_INFO, payload: e.target.value})}/>
         </div>

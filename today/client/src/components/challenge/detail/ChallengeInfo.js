@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 function ChallengeInfo() {
 
     const {challengeInfo, attachmentInfo} = useSelector(state => state.challengesReducer);
-
+    console.log(challengeInfo.challengeAuthExplan);
     return (
         <div className={ ChallengeInfoCSS.infoArea }>
             <span className={ ChallengeInfoCSS.infoTitle }>{challengeInfo.challengeInfo}</span>
@@ -24,6 +24,10 @@ function ChallengeInfo() {
                 <div className={ ChallengeInfoCSS.infoSubArea }>
                     <span className={ ChallengeInfoCSS.infoSubTitle }>진행상태</span>
                     <span className={ ChallengeInfoCSS.infoSubContent }>{challengeInfo.challengeStatusName}</span>
+                </div>
+                <div className={ ChallengeInfoCSS.infoSubArea }>
+                    <span className={ ChallengeInfoCSS.infoSubTitle }>인증방법</span>
+                    <span className={ ChallengeInfoCSS.infoSubContent }>{challengeInfo.challengeAuthExplan}</span>
                 </div>
                 <div className={ ChallengeInfoCSS.infoImgArea }>
                     <span className={ ChallengeInfoCSS.infoSubImgTitle }>좋은 인증샷 예시</span>

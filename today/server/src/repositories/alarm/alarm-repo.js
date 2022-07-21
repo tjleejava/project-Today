@@ -35,3 +35,32 @@ exports.selectAlarmCount = (connection, {memberNo, checkYn}) => {
     });
   });
 };
+
+exports.modifyAlarmReadState = (connection, alarmNo) => {
+
+  return new Promise((resolve, reject) => {
+
+    connection.query(AlarmQuery.modifyAlarmReadState(), [alarmNo], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
+    });
+  });
+};
+
+exports.selectAlarmExixt = (connection, memberNo) => {
+  
+  return new Promise((resolve, reject) => {
+
+    connection.query(AlarmQuery.selectAlarmExixt(), [memberNo], (err, result, fields) => {
+
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result[0].count);
+    });
+  });
+};

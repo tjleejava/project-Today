@@ -28,3 +28,23 @@ exports.selectAlarmCount = () => {
          AND CHECK_YN = ?
   `;
 }
+
+exports.modifyAlarmReadState = () => {
+
+  return `
+      UPDATE
+             TBL_ALARM
+         SET CHECK_YN = 'Y'
+       WHERE ALARM_NO = ?
+  `;
+};
+
+exports.selectAlarmExixt = () => {
+  return `
+      SELECT 
+             COUNT(*) AS count
+        FROM TBL_ALARM
+       WHERE MEMBER_NO = ?
+         AND CHECK_YN = 'N'
+  `;
+};

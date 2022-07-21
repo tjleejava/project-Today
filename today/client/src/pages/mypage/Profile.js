@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import { mypageInfoAPI } from '../../apis/MypageAPICalls'
 import {Cookies} from 'react-cookie'
 import { CHALLENGE_INFO } from '../../modules/MypageModule'
+import ChallengeTable from '../../components/challenge/challenge-table/ChallengeTable'
 
 function Profile() {
   const dispatch = useDispatch();
@@ -13,12 +14,7 @@ function Profile() {
   const mypage = useSelector(state => state.mypageReducer);
   const navigate = useNavigate();
 
-  // function dispatchState(challengeInfo) {
-  //   return async (dispatch, getState) => {
-  //     console.log(dispatch)
-  //     dispatch({type: CHALLENGE_INFO, payload: challengeInfo});
-  //   }
-  // }
+  let participatedChallengeList = [];
 
   useEffect(() => {
     console.log(mypage)
@@ -35,7 +31,13 @@ function Profile() {
         console.log(res)
         const challengeInfo = res.data.response;
         console.log(challengeInfo)
-        dispatch({type: CHALLENGE_INFO, payload: challengeInfo});
+        const payload = {challengeInfo: challengeInfo, memberNo: memberNo}
+        dispatch({type: CHALLENGE_INFO, payload: payload});
+        console.log(mypage.participatedChallenges);
+        const participatedChallenges = mypage.participatedChallenges;
+        participatedChallengeList = participatedChallenges.map((challenge) => {
+        <ChallengeTable key={challenge.challengeNo} challengeInfo={challenge}/>
+      })
         
       });
     }
@@ -71,6 +73,7 @@ function Profile() {
             </div>
             <div className={ProfileCSS.openBox}>
               <h4>개설</h4>
+              <h4>{mypage.openChallengeNum}</h4>
             </div>
           </div>
         </div>
@@ -86,19 +89,7 @@ function Profile() {
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>임시1</td>
-              <td>임시1</td>
-              <td>임시1</td>
-              <td>임시1</td>
-
-            </tr>
-            <tr>
-              <td>임시1</td>
-              <td>임시1</td>
-              <td>임시1</td>
-              <td>임시1</td>
-            </tr>
+              {participatedChallengeList}
             </tbody>
           </table>
         </div>

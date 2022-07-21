@@ -93,8 +93,10 @@ exports.selectChallengeByMemberNo = () => {
           , A.CHALLENGE_FREQUENCY
           , A.CHALLENGE_START_TIME
           , A.CHALLENGE_END_TIME
+          , C.NICKNAME
   from tbl_challenge A
   join tbl_participation B on A.CHALLENGE_NO = B.CHALLENGE_NO
+  join tbl_member C on A.MEMBER_NO = C.MEMBER_NO
   where B.MEMBER_NO = ?;
   `
 }

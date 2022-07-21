@@ -1,0 +1,44 @@
+
+.body {
+  padding: 50px;
+}
+
+.date, .title, .contentarea {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+.date {
+}
+
+.title{
+  width: 200px;
+  display: inline-block;
+  font-size: 1.2em;
+  height: 50px;
+}
+
+.textarea {
+  width: 500px;
+  display: inline-block;
+}
+
+.contentarea {
+  height: 250px;
+}
+
+.btnarea {
+  width: 100%;
+  text-align: right;
+}
+
+.btnarea > button {
+  
+  width: 100px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #A49A93;
+  color: white;
+  cursor: pointer;
+}

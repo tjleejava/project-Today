@@ -56,7 +56,7 @@ export function checkEmail(email) {
 
   return async function getDuplicateResult(dispatch, getState) {
 
-    ("http://localhost:8888/members/idcheck", {params: {email: email}})
+    axios.get("http://localhost:8888/members/idcheck", {params: {email: email}})
     .then((res) => {
     console.log(res);
 

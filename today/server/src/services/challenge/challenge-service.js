@@ -1,10 +1,11 @@
+const fs = require('fs');
 const getConnection = require('../../database/connection');
 const ChallengeRepo = require('../../repositories/challenge/challenge-repo');
+const HttpStatus = require('http-status');
 
 exports.findChallenges = (pageInfo) => {
 
     const { searchValue, category } = pageInfo;
-    console.log(pageInfo);
     let challenges;
     return new Promise(async (resolve, reject) => {
         const connection = getConnection();
@@ -46,7 +47,6 @@ exports.findChallengeByNo = (challengeNo) => {
   return new Promise( async (resolve, reject) => {
         
     const connection = getConnection();
-
     const challengeResults = await ChallengeRepo.selectChallengeByNo(connection, challengeNo);
     const authDayResults = await ChallengeRepo.selectAuthDayByChallengeNo(connection, challengeNo);
     const attachmentResults = await ChallengeRepo.selectAttachmentByChallengeNo(connection, challengeNo);
@@ -83,11 +83,42 @@ exports.checkChallengeAuthByMemberNo = (authInfo) => {
 
 exports.modifyChallenge = (modifyInfo) => {
 
-
+    const {challenge, attachments} = modifyInfo;
     return new Promise( async (resolve, reject) => {
         const connection = getConnection();
 
+        //챌린지 정보 수정
+        const modifyResult = await ChallengeRepo.modifyChallenge(connection, challenge);
+
+        //챌린지 사진정보 수정
+        for(let i = 0; i < attachments.length; i++) {
+
+            if(attachments[i].type) {
+
+                //수정된 기존 파일 삭제
+                const attachmentInfo = await ChallengeRepo.selectChallengeAtachment(connection, {challengeNo: challenge.challengeNo, typeNo: attachments[i].type });
+
+                const {savedName, savedPath} = attachmentInfo;
+
+                fs.unlink(`${__dirname}/../../../public/${savedPath}/${savedName}.png`, err => {
+                    console.log(err);
+                });
+
+                //새로운 업로드 파일정보로 기존 경로 수정
+                ChallengeRepo.updateChallengeAttachment(
+                    connection, 
+                    {
+                        challengeNo: challenge.challengeNo,
+                        typeNo: attachments[i].type,
+                        fileInfo: attachments[i].fileInfo
+                    }
+                );
+            }
+        }
+        
         connection.end();
+
+        resolve(modifyResult);
     });
 };
 
@@ -118,7 +149,6 @@ exports.registChallenge = (registInfo) => {
             
             fileInfos[i].challengeNo = challengeNo;
             fileInfos[i].type= i + 1;
-            console.log('fileInfos[i] : ', fileInfos[i]);
             ChallengeRepo.insertChallengeAttachment(connection, fileInfos[i]);
         }
 
@@ -151,5 +181,97 @@ exports.findByCategoryNo = (categoryNo) => {
         connection.end();
 
         resolve(results);
+    });
+};
+
+exports.participateChallenge = (data) => {
+    const NOT_PARTICIPATE = null;
+    console.log('서비스')
+    return new Promise( async (resolve, reject) => {
+        const connection = getConnection();
+        await ChallengeRepo.findChallengeParticipation(connection, data)
+        .then(async(res) => {
+            if(res === NOT_PARTICIPATE) {
+                console.log('동작하니')
+                const insertResult = await ChallengeRepo.insertParticipateMemberInChallenge(connection, data)
+                console.log(insertResult);
+                if(insertResult != null) {
+                    let today = new Date();
+
+                    let year = today.getFullYear();
+                    let month = ('0' + (today.getMonth() + 1)).slice(-2);
+                    let day = ('0' + today.getDate()).slice(-2);
+
+                    let hours = ('0' + today.getHours()).slice(-2);
+                    let minutes = ('0' + today.getMinutes()).slice(-2);
+                    let seconds = ('0' + today.getSeconds()).slice(-2);
+
+                    let date = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+                    console.log(date);
+                    const participateNo = insertResult.insertId;
+                    const participateHistoryResult = await ChallengeRepo.insertParticipationHistory(connection, {no: participateNo, categoryNo: 1, date: date})
+
+                }
+                const returnData = {
+                    status: HttpStatus.CREATED,
+                    message: '참여 성공',
+                    response: insertResult
+                }
+                resolve(returnData);
+            } else {
+                const returnData = {
+                    status: HttpStatus.ACCEPTED,
+                    message: '이미 참여하고 있습니다.',
+                    response: res
+                  }
+                resolve(returnData);
+            }
+        });
+        connection.end();     
+    })
+}
+
+exports.removeChallenge = ({challengeNo, date, categoryNo}) => {
+
+    return new Promise( async (resolve, reject,) => {
+
+        const connection = getConnection();
+
+        //챌린지 상태 변경
+        const challengeStatusResult = await ChallengeRepo.deleteChallengeByAdmin(connection, challengeNo, categoryNo);
+
+        //챌린지 참여인원 조회
+        const participations = await ChallengeRepo.selectParticipations(connection, challengeNo);
+
+        for(let i = 0; i < participations.length; i++) {
+            //챌린지 참여인원 상태 변경
+            //챌린지 참여인원 이력 추가
+            ChallengeRepo.updateParticipationStatus(connection, {no: participations[i].participationNo, statusNo: categoryNo});
+            ChallengeRepo.insertParticipationHistory(connection, {no: participations[i].participationNo, date: date, categoryNo: categoryNo});
+            //알림에 추가
+            let content = (categoryNo == 5) ? '관리자' : '개설자';
+            content += '에 의해 챌린지가 취소되었습니다.';
+            ChallengeRepo.insertAlarm(connection, {memberNo: participations[i].memberNo, categoryNo: 4, content: content, date: date});
+        }
+
+        connection.end();
+
+        resolve(challengeStatusResult);
+    });
+};
+
+exports.secessionChallenge = (secessionInfo) => {
+
+    return new Promise( async (resolve, reject) => {
+
+        const connection = getConnection();
+
+        const participationNo = await ChallengeRepo.selectParticipationByMemberNoAndChallengeNo(connection, secessionInfo);
+        const participationResult = await ChallengeRepo.updateParticipationStatus(connection, {no: participationNo, statusNo: 3});
+        const participateHistoryResult = await ChallengeRepo.insertParticipationHistory(connection, {no: participationNo, categoryNo: 3, date: secessionInfo.date})
+
+        connection.end();
+
+        resolve({});
     });
 };

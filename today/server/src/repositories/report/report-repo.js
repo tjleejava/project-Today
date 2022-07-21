@@ -35,7 +35,6 @@ exports.selectChallengeReportAccept = (connection, reportNo) => {
       if(err) {
         reject(err);
       }
-      console.log(result);
       resolve(result);
     });
   });
@@ -90,7 +89,6 @@ exports.selectChallengeReports = (connection, pageInfo) => {
         reject(err);
       } 
       const reports = [];
-      console.log('result.length : ' + result.length);
       for(let i = 0; i < result.length; i++) {
         reports.push(new ReportDTO(result[i]));
       }
@@ -115,16 +113,16 @@ exports.insertReport = (connection, registDTO) => {
   });
 }
 
-exports.selectChallengeReport = (connection, checkInfo) => {
+exports.selectChallengeReport = (connection, {memberNo, challengeNo}) => {
 
   return new Promise((resolve, reject) => {
     
-    connection.query(ReportQuery.selectChallengeReportbyNo(), [3, 1], (err, result, fields) => {
+    connection.query(ReportQuery.selectChallengeReportbyNo(), [memberNo, challengeNo], (err, result, fields) => {
       if(err) {
         reject(err);
       }
 
-      resolve(result);
+      resolve(result[0].COUNT);
     });
   });
 };
@@ -184,7 +182,6 @@ exports.updateReportStatus = (connection, updateInfo) => {
   return new Promise((resolve, reject) => {
 
     const {reportNo, statusNo} = updateInfo;
-    console.log(updateInfo);
     connection.query(ReportQuery.updateReportStatus(), [statusNo, reportNo], (err, result, fields) => {
       if(err) {
         reject(err);
@@ -207,6 +204,18 @@ exports.insertAlarm = (connection, insertInfo) => {
       }
 
       resolve(err);
+    });
+  });
+};
+
+exports.updatePariticipationStatus = (connection, {no, statusNo}) => {
+  return new Promise((resolve, reject) => {
+    connection.query(ReportQuery.updatePariticipationStatus(), [statusNo, no], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
     });
   });
 };

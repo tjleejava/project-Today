@@ -58,6 +58,47 @@ export async function registChallengeImagesAPI({inputFile}) {
 
     const result = await axios.post(POST_CHALLENGE_IMAGE_URL, inputFile).catch(err => console.log(err));
     
-    return result.data;
+    return result;
 };
 
+export async function participatingChallengeAPI(memberNo, challengeNo) {
+
+    const data = {
+        memberNo: memberNo,
+        challengeNo: challengeNo
+    }
+
+    return new Promise(async(resolve, reject) => {
+        console.log('challengeAPI 호출');
+        const url = 'http://localhost:8888/challenges/' + challengeNo ;
+
+        const result = await axios.post(url, data);
+        console.log(result);
+        resolve(result);
+    })
+};
+
+export async function removeChallengeAPI(challengeNo) {
+    const DELETE_CHALLENGE_URL = 'http://localhost:8888/challenges';
+    
+    const result = await axios.delete(DELETE_CHALLENGE_URL, {params : {removeInfo: challengeNo}}).catch(err => console.log(err));
+
+    return result;
+};
+
+export async function modifyChallengeAPI(modifyInfo) {
+    const MODIFY_CHALLENGE_URL = 'http://localhost:8888/challenges';
+
+    const result = await axios.put(MODIFY_CHALLENGE_URL, modifyInfo)
+                            .catch(err => console.log(err));
+
+    return result;
+};
+
+export async function secessionChallengeAPI(secessionInfo) {
+    const CHALLENGE_SECESSION_URL = 'http://localhost:8888/challenges/secession';
+
+    const result = await axios.put(CHALLENGE_SECESSION_URL, secessionInfo).catch(err => console.log(err));
+
+    return result;
+};

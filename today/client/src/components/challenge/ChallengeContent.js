@@ -8,6 +8,8 @@ import {callGetChallengeInfoAPI} from '../../apis/ChallengeAPICalls';
 import {CHANGE_CHALLENGE_DETAIL_PRESENTTAB} from '../../modules/ChallengesModule';
 import moment from 'moment';
 import axios from 'axios';
+import ChallengeInfo from './detail/ChallengeInfo';
+import Participation from './detail/Participation';
 
 export default function ChallengeContent({challengeInfo, authDayInfo, attachmentInfo, presentTab, challengeNo}) {
 
@@ -34,9 +36,9 @@ export default function ChallengeContent({challengeInfo, authDayInfo, attachment
 
     return (
         <div className={ ChallengeContentCSS.content }>
-            <span className={ ChallengeContentCSS.title }>{challengeInfo.challengeName}</span>
+            <label className={ ChallengeContentCSS.title }>{challengeInfo.challengeName}</label>
             <label className={ ChallengeContentCSS.host }>개설자 </label>
-            <span className={ ChallengeContentCSS.hostname }>{challengeInfo.nickname}</span>
+            <label className={ ChallengeContentCSS.hostname }>{challengeInfo.nickname}</label>
             <br/>
             {   attachmentInfo[0] && attachmentInfo[0].hasOwnProperty('savedPath')
                 ?<img src={ 'http://localhost:8888' + attachmentInfo[0].savedPath + '/'+ attachmentInfo[0].savedName + '.png' } className={ ChallengeContentCSS.banner }/>
@@ -53,40 +55,7 @@ export default function ChallengeContent({challengeInfo, authDayInfo, attachment
                 (
                     presentTab === "1" 
                     &&
-                    <div className={ ChallengeContentCSS.infoArea }>
-                        <span className={ ChallengeContentCSS.infoTitle }>{challengeInfo.challengeInfo}</span>
-                        <div className={ ChallengeContentCSS.infoContent }>
-                            <div className={ ChallengeContentCSS.infoSubArea }>
-                                <span className={ ChallengeContentCSS.infoSubTitle }>카테고리</span>
-                                <span className={ ChallengeContentCSS.infoSubContent }>{challengeInfo.challengeCategoryName}</span>
-                            </div>
-                            <div className={ ChallengeContentCSS.infoSubArea }>
-                                <span className={ ChallengeContentCSS.infoSubTitle }>인증기간</span>
-                                <span className={ ChallengeContentCSS.infoSubContent }>시작일 : {challengeInfo.challengeStartDate} ({challengeInfo.challengeTerm}주 진행)</span>
-                            </div>
-                            <div className={ ChallengeContentCSS.infoSubArea }>
-                                <span className={ ChallengeContentCSS.infoSubTitle }>모집방식</span>
-                                <span className={ ChallengeContentCSS.infoSubContent }>{challengeInfo.challengeScope == 'public'? '공개': '비공개'}</span>
-                            </div>
-                            <div className={ ChallengeContentCSS.infoSubArea }>
-                                <span className={ ChallengeContentCSS.infoSubTitle }>진행상태</span>
-                                <span className={ ChallengeContentCSS.infoSubContent }>{challengeInfo.challengeStatusName}</span>
-                            </div>
-                            <div className={ ChallengeContentCSS.infoImgArea }>
-                                <span className={ ChallengeContentCSS.infoSubImgTitle }>좋은 인증샷 예시</span>
-                                {   attachmentInfo[2] && attachmentInfo[2].hasOwnProperty('savedPath')
-                                    ?<img src={ 'http://localhost:8888' + attachmentInfo[2].savedPath + '/'+ attachmentInfo[2].savedName + '.png' } className={ ChallengeContentCSS.infoExample }/>
-                                    :null
-                                }
-                                <span className={ ChallengeContentCSS.infoSubImgTitle }>나쁜 인증샷 예시</span>
-                                {   attachmentInfo[3] && attachmentInfo[3].hasOwnProperty('savedPath')
-                                    ?<img src={ 'http://localhost:8888' + attachmentInfo[3].savedPath + '/'+ attachmentInfo[3].savedName + '.png' } className={ ChallengeContentCSS.infoExample }/>
-                                    :null
-                                }
-
-                            </div>
-                        </div>
-                    </div>
+                    <ChallengeInfo/>
                 ) 
                 ||
                 (
@@ -130,9 +99,7 @@ export default function ChallengeContent({challengeInfo, authDayInfo, attachment
                 (
                     presentTab === "4"
                     &&
-                    <div>
-                        4
-                    </div>
+                    <Participation/>
                 )
             }
         </div>

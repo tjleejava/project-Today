@@ -48,7 +48,8 @@ exports.selectChallengeReportAccept = () => {
              A.PENALTY_DATE AS penaltyDate
            , A.CHALLENGE_CANCEL_DATE AS challengeCancelDate
         FROM TBL_REPORT_EXAMINE_HISTORY A
-       WHERE A.REPORT_NO IN (SELECT B.REPORT_NO 
+       WHERE A.REPORT_EXAMINE_CATEGORY = '승인'
+         AND A.REPORT_NO IN (SELECT B.REPORT_NO 
                                FROM TBL_REPORT B 
                               WHERE B.CHALLENGE_NO = (SELECT A.CHALLENGE_NO
                                                         FROM TBL_REPORT A
@@ -230,7 +231,15 @@ exports.insertAlarm = () => {
       , CHECK_YN
       ) 
       VALUES(?, ?, ?, ?, 'N')
+  `;
+};
 
+exports.updatePariticipationStatus = () => {
+  return `
+      UPDATE
+             TBL_PARTICIPATION
+         SET PARTICIPATION_STATUS_NO = ?
+       WHERE PARTICIPATION_NO = ?
   `;
 };
 

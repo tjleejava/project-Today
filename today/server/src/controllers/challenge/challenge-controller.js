@@ -2,10 +2,12 @@ const HttpStatus = require('http-status');
 const uuid = require('react-uuid');
 const ChallengeService = require('../../services/challenge/challenge-service');
 const RegistChallengeDTO = require('../../dto/challenge/challenge-regist-dto');
+const { request } = require('express');
 
 exports.findChallenges = async (req, res, next) => {
+
     const results = await ChallengeService.findChallenges(JSON.parse(req.query.pageInfo));
-    console.log(results);
+
     res.send(results);
 };
 
@@ -66,10 +68,8 @@ exports.findRankings = async (req, res, next) => {
 
 exports.checkChallengeAuthByMemberNo = async (req, res, next) => {
 
-    console.log(JSON.parse(req.query.authInfo));
     const result = await ChallengeService.checkChallengeAuthByMemberNo(JSON.parse(req.query.authInfo));
 
-    console.log(result);
     res.send(result);
 };
 
@@ -93,4 +93,30 @@ exports.findByCategoryNo = async (req, res, next) => {
     const results = await ChallengeService.findByCategoryNo(categoryNo);
     
     res.send(results);
+};
+
+exports.participateChallenge = async (req, res) => {
+    console.log(req.body);
+    const data = req.body;
+
+    const result = await ChallengeService.participateChallenge(data);
+    console.log('controller 받은 result');
+    console.log(result);
+    return res.send(result);
+
+}
+
+exports.removeChallenge = async (req, res, next) => {
+    const removeInfo = JSON.parse(req.query.removeInfo);
+
+    const result = await ChallengeService.removeChallenge(removeInfo);
+
+    res.send(result);
+};
+
+exports.secessionChallenge = async (req, res, next) => {
+    
+    const result = await ChallengeService.secessionChallenge(req.body);
+
+    res.send(result);
 };

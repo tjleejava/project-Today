@@ -1,8 +1,8 @@
 import ModifyAttachmentsCSS from './ModifyAttachments.module.css';
 import { useDispatch } from 'react-redux';
+import { MODIFY_ATTACHMENT } from '../../../modules/ChallengesModule';
 
 function ModifyAttachments({index, inputFile,  pathInfo, title, modifyFile}) {
-  const MODIFY_ATTACHMENT = 'challenges/MODIFY_ATTACHMENT';
   const dispatch = useDispatch();
 
   const onClickUpload = () => {
@@ -19,7 +19,7 @@ function ModifyAttachments({index, inputFile,  pathInfo, title, modifyFile}) {
     dispatch({type: MODIFY_ATTACHMENT, payload: { index: index, path: URL.createObjectURL(e.target.files[0]), formData: formData }});
   }
   return (
-    <div>
+    <div className={ ModifyAttachmentsCSS.area }>
       <div className={ ModifyAttachmentsCSS.imageinputarea }>
         <label>{ title }</label><br/>
         <div className={ ModifyAttachmentsCSS.imageinputbox }>

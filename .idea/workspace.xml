@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6515a50-7c62-4ca1-a0ac-4da66aa4700b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/today/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/client/src/apis/PlatformInquiryAPICalls.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/apis/PlatformInquiryAPICalls.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/client/src/components/commons/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/components/commons/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/client/src/layouts/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/layouts/Layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/client/src/modules/PlatformQnaModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/modules/PlatformQnaModule.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/server/src/controllers/platform-inquiry/platform-inquiry-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/server/src/controllers/platform-inquiry/platform-inquiry-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today/server/src/routes/platform-inquiries-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/server/src/routes/platform-inquiries-route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today/client/src/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/modules/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today/client/src/pages/mypage/Alarm.js" beforeDir="false" afterPath="$PROJECT_DIR$/today/client/src/pages/mypage/Alarm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +42,7 @@
       <workItem from="1656749131516" duration="1000" />
       <workItem from="1656923309205" duration="3000" />
       <workItem from="1657093299129" duration="31000" />
+      <workItem from="1658391970613" duration="38000" />
     </task>
     <servers />
   </component>

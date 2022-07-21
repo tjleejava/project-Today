@@ -1,5 +1,5 @@
 .content {
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-left: 2rem;
 }
 
@@ -7,24 +7,32 @@
     font-size: 3rem;
     font-weight: bold;
     color: #A49A93;
+    width: 900px;
+    display: inline-block;
 }
 
 .host {
     color: #A49A93;
     font-size: 1rem;
     font-weight: bold;
-    margin-left: 24rem;
+    width: 100px;
+    margin-left: 2rem;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .hostname {
+    vertical-align: top;
+    width: 150px;
     color: #A49A93;
     font-size: 1rem;
     margin-left: 2rem;
+    display: inline-block;
 }
 
 .tabArea {
     margin-top: 1.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .tab, .standard {
@@ -41,37 +49,6 @@
 .standard {
     border-bottom: solid 3px #A49A93;
     padding-bottom: 0.5rem;
-}
-
-.infoArea {
-    margin-left: 7px;
-}
-
-.infoTitle {
-    color: #A49A93;
-    background-color: rgb(255, 228, 179);
-    font-weight: bold;
-    font-size: 1.3rem;
-    display: inline
-}
-
-.infoContent {
-    margin-top: 1rem;
-}
-
-.infoSubArea, .infoImgArea {
-    margin-bottom: 0.5rem;
-}
-
-.infoSubTitle {
-    color: #A49A93;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    margin-right: 80px;
-}
-
-.infoSubContent {
-    color: #A49A93;
 }
 
 .authArea, .authCount {
@@ -110,20 +87,6 @@
 }
 
 .banner {
-    width: 1310px;
-    height: 220px;
-}
-
-.infoImgArea {
-    margin-top: 10px;
-    display: flex;
-}
-
-.infoImgArea > img {
-    padding-right: 20%;
-}
-
-.infoExample {
-    width: 160px;
-    height: 120px;
+    width: 1300px;
+    height: 150px;
 }

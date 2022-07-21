@@ -17,7 +17,7 @@ export default function ChallengeSideInfo({challengeNo}) {
     const cookies = new Cookies();
 
     let isAdmin = false;
-    let memberNo = 3;
+    let memberNo = 0;
     const token = cookies.get('token');
     if(token) {
         const decoded = jwt_decode(token);
@@ -30,7 +30,7 @@ export default function ChallengeSideInfo({challengeNo}) {
     const [reportModalState , setReportModalState] = useState(false);
 
     const { registInfo, isAlreadyReported } = useSelector(state => state.reportReducer);
-    const { isHost, partCount, challengeInfo} = useSelector(state => state.challengesReducer);
+    const { isHost, partCount, challengeInfo } = useSelector(state => state.challengesReducer);
 
 
     const dispatch = useDispatch();

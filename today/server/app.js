@@ -23,7 +23,9 @@ const platformInquiryRouter =  require('./src/routes/platform-inquiries-route');
 const challengeRouter = require('./src/routes/challenge-route');
 const reportRouter = require('./src/routes/report-route');
 const inviteRouter = require('./src/routes/invite-route');
+const alarmRouter = require('./src/routes/alarm-route');
 
+app.use('/alarms', alarmRouter);
 app.use('/menus', menuRouter);
 app.use('/members', memberRouter);
 app.use('/challenges', challengeRouter);
@@ -38,6 +40,7 @@ app.get('/logout',(req,res)=>{
 app.get('/',(req, res) => {
   console.log("Cookies : ", req.cookies);
 });
+
 
 
 app.listen(PORT, () => console.log('listening on port 8888...'));

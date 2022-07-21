@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { request } = require('express');
 const { database } = require('../../config/db-config');
+const httpStatus = require('http-status');
 
 exports.login = async (req, res) => {
 
@@ -205,11 +206,14 @@ exports.checkEmail = (email) => {
 };
 
 exports.findMemberByNo = (memberNo) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(async(resolve, reject) => {
 
     const connection = getConnection();
 
-    MemberRepository.selectEngagingChallengeByNo(connection, memberNo);
-
+    const participationResult = await MemberRepository.selectChallengeByMemberNo(connection, memberNo);
+    console.log('service')
+    console.log(participationResult)
+    resolve(participationResult);
+    
   })
 };

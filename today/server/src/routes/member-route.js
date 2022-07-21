@@ -21,6 +21,8 @@ router.get('/checkEmail', MemberController.checkEmailExist);
 
 router.get('/check',verifyToken, MemberController.check);
 
-router.post('/reset-pwd', MemberController.resetPassword)
+router.post('/reset-pwd', MemberController.resetPassword);
+
+router.get('/challenges', MemberController.findChallenges);
 
 module.exports = router;

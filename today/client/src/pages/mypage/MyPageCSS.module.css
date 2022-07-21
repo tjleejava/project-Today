@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto:wght@300&display=swap');
+.container {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  flex-wrap : wrap;
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
+  margin-left: 6%;
+  width: 90%;
+  height: 520px;
+}

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { NavLink as Link } from 'react-router-dom';
+import { NavLink as MypageLink } from 'react-router-dom';
 
-export const NavLink = styled(Link) `
+export const MypageNavLink = styled(MypageLink) `
   color: #844F15;
   cursor: pointer;
 

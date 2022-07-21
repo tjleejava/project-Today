@@ -242,3 +242,15 @@ exports.checkEmailExist = async (req, res, next) => {
     });
   }
 };
+
+exports.findChallenges = async (req, res, next) => {
+  const memberNo = req.query.memberNo;
+  const result = await MemberService.findChallenges(memberNo);
+
+  return res.send(
+    {
+      status: HttpStatus.OK,
+      message: '마이페이지 챌린지 조회 성공',
+      response: result
+    })
+}

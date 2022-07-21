@@ -217,3 +217,13 @@ exports.findMemberByNo = (memberNo) => {
     
   })
 };
+
+exports.findChallenges = (memberNo) => {
+  return new Promise(async(resolve, reject) => {
+
+    const connection = getConnection();
+    const result = await MemberRepository.selectChallengesByMemberNo(connection, memberNo);
+    console.log('SERVICE');
+    resolve(result);
+  })
+}

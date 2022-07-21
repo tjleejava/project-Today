@@ -1,5 +1,5 @@
 import MypageNavbarCSS from './MypageNavbar.module.css';
-import {NavLink} from './mypageNavbarElements';
+import {MypageNavLink} from './mypageNavbarElements';
 
 function MypageNavbar() {
 
@@ -7,76 +7,77 @@ function MypageNavbar() {
     <div className={ MypageNavbarCSS.area }>
       <div><br/><br/><br/></div>
       <div className={ MypageNavbarCSS.tabArea }>
-        <NavLink 
+        <MypageNavLink 
         style={{ textDecoration: 'none' }}
         className={ MypageNavbarCSS.tab } 
         to="/mypage/profile"
         >
             프로필
-        </NavLink>
+        </MypageNavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink 
+          <MypageNavLink
+          style={{ textDecoration: 'none' }}
           className={ MypageNavbarCSS.tab } 
           to="/mypage/challenges"
           >
             챌린지 내역
-        </NavLink>
+        </MypageNavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-            <NavLink 
+            <MypageNavLink 
             style={{ textDecoration: 'none' }} 
             className={ MypageNavbarCSS.tab } 
-            to="">
+            to="/mypage/penalty">
                 패널티 내역
-            </NavLink>
+            </MypageNavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink 
+          <MypageNavLink 
           style={{ textDecoration: 'none' }}
           className={ MypageNavbarCSS.tab } 
           to="qna">문의 내역
-          </NavLink>
+          </MypageNavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink 
+          <MypageNavLink 
           style={{ textDecoration: 'none' }}
           className={ MypageNavbarCSS.tab } 
           to="alarm">
             알림
-          </NavLink>
+          </MypageNavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink 
+          <MypageNavLink 
           style={{ textDecoration: 'none' }}
           className={ MypageNavbarCSS.tab } 
           to="/mypage/following">
             팔로잉 목록
-          </NavLink>
+          </MypageNavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink 
+          <MypageNavLink 
           style={{ textDecoration: 'none' }}
           className={ MypageNavbarCSS.tab } 
           to="/mypage/invites">
             초대 내역
-          </NavLink>
+          </MypageNavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink 
+          <MypageNavLink 
           style={{ textDecoration: 'none' }}
           className={ MypageNavbarCSS.tab } 
-          to="">
+          to="/members/pwd">
             비밀번호 변경
-          </NavLink>
+          </MypageNavLink>
       </div>
       <div className={ MypageNavbarCSS.tabArea }>
-          <NavLink 
+          <MypageNavLink 
           style={{ textDecoration: 'none' }}
           className={ MypageNavbarCSS.tab } 
-          to="">
+          to="/members/quitaccount">
             계정탈퇴
-          </NavLink>
+          </MypageNavLink>
       </div>
     </div>
   );

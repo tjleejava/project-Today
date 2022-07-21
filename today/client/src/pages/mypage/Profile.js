@@ -12,9 +12,15 @@ function Profile() {
   const dispatch = useDispatch();
   const cookies = new Cookies();
   const mypage = useSelector(state => state.mypageReducer);
+  const {participatedChallenges} = mypage;
   const navigate = useNavigate();
 
-  let participatedChallengeList = [];
+  console.log('11', participatedChallenges);
+  let participatedChallengeList = 
+  participatedChallenges.map((challenge) => 
+     <ChallengeTable key={challenge.challengeNo} challengeInfo={challenge}/>
+    
+  );
 
   useEffect(() => {
     console.log(mypage)
@@ -34,10 +40,6 @@ function Profile() {
         const payload = {challengeInfo: challengeInfo, memberNo: memberNo}
         dispatch({type: CHALLENGE_INFO, payload: payload});
         console.log(mypage.participatedChallenges);
-        const participatedChallenges = mypage.participatedChallenges;
-        participatedChallengeList = participatedChallenges.map((challenge) => {
-        <ChallengeTable key={challenge.challengeNo} challengeInfo={challenge}/>
-      })
         
       });
     }
@@ -47,7 +49,7 @@ function Profile() {
     }
     
   },[]
-  )
+  );
 
   return (
     <>

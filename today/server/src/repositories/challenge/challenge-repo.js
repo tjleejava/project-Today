@@ -497,3 +497,15 @@ exports.selectChallengeAtachment = (connection, {challengeNo, typeNo}) => {
     });
   });
 };
+
+exports.selectParticipationByMemberNoAndChallengeNo = (connection, {challengeNo, memberNo}) => {
+  return new Promise((resolve,reject) => {
+    connection.query(challengeQuery.selectParticipationByMemberNoAndChallengeNo(), [challengeNo, memberNo], (err, result, fields) =>{
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result[0].PARTICIPATION_NO);
+    });
+  });
+};  

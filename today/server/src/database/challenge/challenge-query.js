@@ -58,6 +58,7 @@ exports.selectParticipationByMemberNo = () => {
         FROM TBL_PARTICIPATION 
        WHERE MEMBER_NO = ?
          AND CHALLENGE_NO = ?
+         AND PARTICIPATION_STATUS_NO = 1
   `;
 };
 
@@ -346,6 +347,7 @@ exports.findChallengeParticipation = () => {
       FROM tbl_participation
      WHERE MEMBER_NO = ?
        AND CHALLENGE_NO = ?
+       AND PARTICIPATION_STATUS_NO = 1
   `
 }
 
@@ -377,20 +379,6 @@ exports.updateParticipationStatus = () => {
              TBL_PARTICIPATION
          SET PARTICIPATION_STATUS_NO = ?
        WHERE PARTICIPATION_NO = ?
-  `;
-};
-
-exports.insertParticipationHistory = () => {
-
-  return `
-      INSERT
-        INTO TBL_PARTICIPATION_HISTORY 
-      (
-        PARTICIPATION_NO
-      , CATEGORY_NO
-      , HISTORY_DATE
-      ) 
-      VALUES(?, ?, ?);
   `;
 };
 
@@ -448,5 +436,33 @@ exports.selectChallengeAtachment = () => {
         FROM TBL_CHALLENGE_ATTACHMENT
        WHERE CHALLENGE_NO = ?
          AND FILE_TYPE_NO = ?
+  `;
+};
+
+
+exports.insertParticipationHistory = () => {
+
+  return `
+      INSERT
+        INTO TBL_PARTICIPATION_HISTORY 
+      (
+        PARTICIPATION_NO
+      , CATEGORY_NO
+      , HISTORY_DATE
+      ) 
+      VALUES(?, ?, ?);
+  `;
+};
+
+exports.selectParticipationByMemberNoAndChallengeNo = () => {
+
+  return `
+      SELECT
+             PARTICIPATION_NO
+        FROM TBL_PARTICIPATION
+       WHERE CHALLENGE_NO = ?
+         AND MEMBER_NO = ?
+       ORDER BY PARTICIPATION_NO DESC
+       LIMIT 0,1
   `;
 };

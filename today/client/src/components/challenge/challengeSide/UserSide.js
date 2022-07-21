@@ -1,26 +1,38 @@
 import UserSideCSS from './UserSide.module.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {Cookies} from 'react-cookie'
 import { useEffect } from 'react';
 import jwt_decode from "jwt-decode";
 import { useParams } from 'react-router-dom';
-import { participatingChallengeAPI } from '../../../apis/ChallengeAPICalls'
+import { participatingChallengeAPI, secessionChallengeAPI } from '../../../apis/ChallengeAPICalls'
+import { getDateAndTime } from '../../../util/getTime';
 
 function UserSide({setReportModalState, isAlreadyReported}) {
-  const { challengeInfo, isPartIn } = useSelector(state => state.challengesReducer);
-  const cookies = new Cookies();
 
+  const cookies = new Cookies();
+  const { challengeInfo, isPartIn } = useSelector(state => state.challengesReducer);
+  const token = cookies.get('token');
+  let memberNo = 1;
+  if(token) {
+    const decoded = jwt_decode(token);
+    memberNo = decoded.no;
+  }
   const {challengeNo} = useParams();
 
   useEffect(() => {
     console.log(challengeNo);
 
   })
+
+  const challengeSecessionHandler = () => {
+    
+    const result = secessionChallengeAPI({memberNo: memberNo, challengeNo: challengeNo, date: getDateAndTime()});
+    alert('챌린지를 탈퇴했습니다');
+    window.location.reload();
+  };
+  
   const onClickHandler = async() => {
 
-    const token = cookies.get('token');
-    const decoded = jwt_decode(token);
-    const memberNo = decoded.no;
 
     await participatingChallengeAPI(memberNo, challengeNo)
     .then((res) => {
@@ -29,6 +41,7 @@ function UserSide({setReportModalState, isAlreadyReported}) {
         alert('참여중인 챌린지 입니다.');
       } else if(res.data.status == 201) {
         alert('참여가 완료되었습니다.');
+        window.location.reload();
       };
     });
   }
@@ -41,7 +54,7 @@ function UserSide({setReportModalState, isAlreadyReported}) {
       { isPartIn?
       <div className={ UserSideCSS.content }>
           <button className={ UserSideCSS.authBtn }>챌린지 인증</button><br/><br/>
-          <button className={ UserSideCSS.authBtn }>챌린지 탈퇴</button>
+          <button onClick={ challengeSecessionHandler } className={ UserSideCSS.authBtn }>챌린지 탈퇴</button>
       </div>
       :
       

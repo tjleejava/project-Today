@@ -6,9 +6,9 @@ import {checkUserEmailAPI, postInviteAPI} from '../../../apis/InviteAPICalls';
 import getTime from '../../../util/getTime';
 
 function InviteModal() {
-
-  const { isInviteModalOpen, inviteEmail, isExists, inviteInfo , isCheck, isInviteSuccess}  = useSelector(state => state.inviteReducer);
-  const {challengeInfo} = useSelector(state => state.challengesReducer);
+  const { registInfo } = useSelector(state => state.inviteReducer);
+  const { isInviteModalOpen, inviteEmail, isExists, inviteInfo , isCheck, isInviteSuccess} = registInfo;
+  const { challengeInfo } = useSelector(state => state.challengesReducer);
 
   const dispatch = useDispatch();
 

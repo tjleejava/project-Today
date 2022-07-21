@@ -1,0 +1,59 @@
+.header {
+  width: 100%;
+}
+hr {
+  border-color: #844F15 !important;
+}
+.container {
+  margin-left: 5%;
+  width: 80%;
+}
+
+.contentContainer {
+  flex-direction: column;
+  
+}
+.img {
+  position: relative;
+  left: 50%;
+}
+
+.challengeNumBox {
+  
+  border: 1px solid #844F15;
+  border-radius: 10px;
+  display: flex;
+  width: 80%;
+  text-align: center;
+  margin: auto;
+}
+
+.engagingBox {
+  border-right: solid 1px;
+  border-color: #844F15;
+  width:33%
+}
+
+.completeBox {
+  border-right: solid 1px;
+  border-color: #844F15;
+  width:33%
+}
+
+.openBox {
+  width:33%
+}
+
+.challengeListBox {
+  border: 1px solid #844F15;
+  border-radius: 10px;
+  width: 60%;
+  height: 100%;
+  margin: auto;
+}
+
+table {
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}

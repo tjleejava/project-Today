@@ -69,7 +69,7 @@ function RegistChallenge() {
         for(let i = 0; i < inputFiles.length; i++) {
 
          const result = await registChallengeImagesAPI({inputFile: inputFiles[i], index: i});
-         await dispatch({type: SET_FILE_INFO, payload: {data: result, index: i}});
+         await dispatch({type: SET_FILE_INFO, payload: {data: result.data, index: i}});
         }
 
         await dispatch(registChallengeAPI(registInfo));

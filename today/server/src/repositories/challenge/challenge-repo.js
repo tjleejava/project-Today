@@ -337,7 +337,7 @@ exports.selectChallengeBySearchValue = (connection, pageInfo) => {
       for(let i = 0; i< results.length; i++) {
         challenges.push(new ChallengeListDTO(results[i]));
       }
-
+      
       resolve(challenges);
     });
   }); 
@@ -452,3 +452,60 @@ exports.insertAlarm = (connection, { memberNo, categoryNo, content, date }) => {
   });
 };
 
+
+exports.modifyChallenge = (connection, challenge) => {
+  
+  const { challengeAuthExplan, challengeInfo, startTime, endTime, challengeNo } = challenge;
+ 
+  return new Promise((resolve, reject) => {
+    
+    connection.query(challengeQuery.modifyChallenge(), [ challengeAuthExplan, challengeInfo, startTime, endTime, challengeNo ], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
+    });
+  });
+};
+
+exports.updateChallengeAttachment = (connection, {challengeNo, typeNo, fileInfo}) => {
+  
+  const {originalName, savedName, savedPath } = fileInfo;
+
+  return new Promise((resolve, reject) => {
+
+    connection.query(challengeQuery.updateChallengeAttachment(), [originalName, savedName, savedPath, challengeNo, typeNo], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result);
+    });
+  });
+};
+
+exports.selectChallengeAtachment = (connection, {challengeNo, typeNo}) => {
+
+  return new Promise((resolve,reject) => {
+    connection.query(challengeQuery.selectChallengeAtachment(), [challengeNo, typeNo], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(new AttachmentDTO(result[0]));
+    });
+  });
+};
+
+exports.selectParticipationByMemberNoAndChallengeNo = (connection, {challengeNo, memberNo}) => {
+  return new Promise((resolve,reject) => {
+    connection.query(challengeQuery.selectParticipationByMemberNoAndChallengeNo(), [challengeNo, memberNo], (err, result, fields) =>{
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result[0].PARTICIPATION_NO);
+    });
+  });
+};  

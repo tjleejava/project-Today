@@ -58,6 +58,7 @@ exports.selectParticipationByMemberNo = () => {
         FROM TBL_PARTICIPATION 
        WHERE MEMBER_NO = ?
          AND CHALLENGE_NO = ?
+         AND PARTICIPATION_STATUS_NO = 1
   `;
 };
 
@@ -346,6 +347,7 @@ exports.findChallengeParticipation = () => {
       FROM tbl_participation
      WHERE MEMBER_NO = ?
        AND CHALLENGE_NO = ?
+       AND PARTICIPATION_STATUS_NO = 1
   `
 }
 
@@ -380,6 +382,64 @@ exports.updateParticipationStatus = () => {
   `;
 };
 
+exports.insertAlarm = () => {
+  return`
+      INSERT 
+        INTO TBL_ALARM 
+      (
+        ALARM_CATEGORY_NO
+      , MEMBER_NO
+      , ALARM_CONTENT
+      , ALARM_DATE
+      , CHECK_YN
+      ) 
+      VALUES(?, ?, ?, ?, 'N')
+  `;
+};
+
+exports.modifyChallenge = () => {
+  
+  return `
+      UPDATE 
+             TBL_CHALLENGE
+         SET CHALLENGE_AUTH_EXPLAN = ?
+           , CHALLENGE_INFO = ?
+           , CHALLENGE_START_TIME = ?
+           , CHALLENGE_END_TIME = ?
+       WHERE CHALLENGE_NO = ?
+  `;
+};
+
+exports.updateChallengeAttachment = () => {
+
+  return `
+      UPDATE
+             TBL_CHALLENGE_ATTACHMENT
+         SET ORIGINAL_NAME = ?
+           , SAVED_NAME = ?
+           , SAVED_PATH = ?
+       WHERE CHALLENGE_NO = ?
+         AND FILE_TYPE_NO = ?
+  `;
+};
+
+exports.selectChallengeAtachment = () => {
+
+  return `
+      SELECT 
+             FILE_NO
+           , FILE_TYPE_NO
+           , ORIGINAL_NAME
+           , SAVED_NAME
+           , SAVED_PATH
+           , CHALLENGE_NO 
+        FROM TBL_CHALLENGE_ATTACHMENT
+       WHERE CHALLENGE_NO = ?
+         AND FILE_TYPE_NO = ?
+  `;
+};
+
+
 exports.insertParticipationHistory = () => {
 
   return `
@@ -394,17 +454,15 @@ exports.insertParticipationHistory = () => {
   `;
 };
 
-exports.insertAlarm = () => {
-  return`
-      INSERT 
-        INTO TBL_ALARM 
-      (
-        ALARM_CATEGORY_NO
-      , MEMBER_NO
-      , ALARM_CONTENT
-      , ALARM_DATE
-      , CHECK_YN
-      ) 
-      VALUES(?, ?, ?, ?, 'N')
+exports.selectParticipationByMemberNoAndChallengeNo = () => {
+
+  return `
+      SELECT
+             PARTICIPATION_NO
+        FROM TBL_PARTICIPATION
+       WHERE CHALLENGE_NO = ?
+         AND MEMBER_NO = ?
+       ORDER BY PARTICIPATION_NO DESC
+       LIMIT 0,1
   `;
 };

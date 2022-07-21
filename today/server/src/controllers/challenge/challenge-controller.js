@@ -2,6 +2,7 @@ const HttpStatus = require('http-status');
 const uuid = require('react-uuid');
 const ChallengeService = require('../../services/challenge/challenge-service');
 const RegistChallengeDTO = require('../../dto/challenge/challenge-regist-dto');
+const { request } = require('express');
 
 exports.findChallenges = async (req, res, next) => {
 
@@ -109,6 +110,13 @@ exports.removeChallenge = async (req, res, next) => {
     const removeInfo = JSON.parse(req.query.removeInfo);
 
     const result = await ChallengeService.removeChallenge(removeInfo);
+
+    res.send(result);
+};
+
+exports.secessionChallenge = async (req, res, next) => {
+    
+    const result = await ChallengeService.secessionChallenge(req.body);
 
     res.send(result);
 };

@@ -30,6 +30,7 @@ import ReportDetail from './components/report/ReportDetail';
 import Challenges from './pages/mypage/Challenges';
 import Following from './pages/mypage/Following';
 import Invite from './pages/mypage/Invite';
+import Profile from './pages/mypage/Profile';
 
 
 function App() {
@@ -50,8 +51,9 @@ function App() {
               </Route>
             </Route>
           </Route> 
-          <Route path="mypage" element={ <MypageLayout/> }>
-            <Route index element={ <Mypage/> } />
+          <Route path="/mypage" element={ <MypageLayout/> }>
+            <Route index element={ <Mypage/>}/>
+            <Route path="profile" element={ <Profile/> } />
             <Route path="alarm" element={ <Alarm/> } />
             <Route path="following" element={ <Following/> } />
             <Route path="invites" element={ <Invite/> } />

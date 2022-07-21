@@ -27,10 +27,11 @@ import AdminReport from './pages/report/AdminReport';
 import AdminUserReport from './pages/report/AdminUserReport';
 import AdminChallengeReport from './pages/report/AdminChallengeReport';
 import ReportDetail from './components/report/ReportDetail';
-import Challenges from './pages/mypage/Challenges';
+import Challenges from './pages/mypage/MypageChallenges';
 import Following from './pages/mypage/Following';
 import Invite from './pages/mypage/Invite';
 import Profile from './pages/mypage/Profile';
+import MypageChallenges from './pages/mypage/MypageChallenges';
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
           <Route path="/mypage" element={ <MypageLayout/> }>
             <Route index element={ <Mypage/>}/>
             <Route path="profile" element={ <Profile/> } />
+            <Route path="challenges" element={<MypageChallenges/>}/>
             <Route path="alarm" element={ <Alarm/> } />
             <Route path="following" element={ <Following/> } />
             <Route path="invites" element={ <Invite/> } />

@@ -8,7 +8,8 @@ import {Cookies} from 'react-cookie'
 import { CHALLENGE_INFO } from '../../modules/MypageModule'
 
 function Mypage() {
- window.location.replace('/mypage/profile');
+  window.location.replace('/mypage/profile');
+
 
   return (
     <>

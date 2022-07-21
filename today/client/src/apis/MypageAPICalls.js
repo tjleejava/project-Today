@@ -7,6 +7,7 @@ export function mypageInfoAPI(memberNo) {
 
     await axios.get('http://localhost:8888/members', {params: {memberNo: memberNo}})
     .then((res) => {
+      console.log('mypageAPI')
       resolve(res);
     });
 

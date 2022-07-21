@@ -141,16 +141,3 @@ exports.selectChallengeByMemberNo = (connection, memberNo) => {
   })
 }
 
-exports.selectCompletedChallengeByMemberNo = (connection, memberNo) => {
-
-  return new Promise((resolve, reject) => {
-    connection.query(memberQuery.selectCompletedChallengeByMemberNo(), [memberNo],
-    (err, results) => {
-      if(err) {
-        reject(err);
-      }
-
-      
-    })
-  })
-}

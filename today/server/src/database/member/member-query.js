@@ -120,3 +120,24 @@ exports.selectCompletedChallengeByMemberNo = () => {
    WHERE B.MEMBER_NO = ?;
   `
 }
+
+exports.selectOpenChallengeByMemberNo = () => {
+  return `
+  SELECT A.CHALLENGE_NO
+       , A.CHALLENGE_NAME
+       , A.CHALLENGE_START_DATE
+       , A.CHALLENGE_TERM
+       , A.CHALLENGE_SCOPE
+       , A.CHALLENGE_CATEGORY_NO
+       , A.MEMBER_NO
+       , A.CHALLENGE_MAX_AMOUNT
+       , A.CHALLENGE_STATUS_NO
+       , A.CHALLENGE_AUTH_EXPLAN
+       , A.CHALLENGE_INFO
+       , A.CHALLENGE_FREQUENCY
+       , A.CHALLENGE_START_TIME
+       , A.CHALLENGE_END_TIME
+    FROM tbl_challenge A
+   WHERE MEMBER_NO = ?
+  `
+}

@@ -216,7 +216,6 @@ exports.findMemberByNo = async (req, res, next) => {
   console.log(memberNo);
 
   const result = await MemberService.findMemberByNo(memberNo);
-  console.log(res);
   return res.send(
               {
                 status: HttpStatus.OK,

@@ -211,6 +211,7 @@ exports.findMemberByNo = (memberNo) => {
     const connection = getConnection();
 
     const participationResult = await MemberRepository.selectChallengeByMemberNo(connection, memberNo);
+    const openChallengeResult = await MemberRepository.selectOpenChallengeByMemberNo(connection, memberNo);
     console.log('service')
     console.log(participationResult)
     resolve(participationResult);

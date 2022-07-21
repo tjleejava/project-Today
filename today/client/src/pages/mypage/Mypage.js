@@ -36,8 +36,8 @@ function Mypage() {
         const challengeInfo = res.data.response;
         console.log(challengeInfo)
         dispatch({type: CHALLENGE_INFO, payload: challengeInfo});
-        
       });
+      
     }
     else {
       alert('로그인 후 이용 가능합니다');

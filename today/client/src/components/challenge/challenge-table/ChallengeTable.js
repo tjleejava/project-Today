@@ -1,5 +1,5 @@
 function ChallengeTable(props){
-  console.log(props)
+  console.log('111111111111111');
 
   return (
     <tr>

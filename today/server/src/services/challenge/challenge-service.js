@@ -259,3 +259,19 @@ exports.removeChallenge = ({challengeNo, date, categoryNo}) => {
         resolve(challengeStatusResult);
     });
 };
+
+exports.secessionChallenge = (secessionInfo) => {
+
+    return new Promise( async (resolve, reject) => {
+
+        const connection = getConnection();
+
+        const participationNo = await ChallengeRepo.selectParticipationByMemberNoAndChallengeNo(connection, secessionInfo);
+        const participationResult = await ChallengeRepo.updateParticipationStatus(connection, {no: participationNo, statusNo: 3});
+        const participateHistoryResult = await ChallengeRepo.insertParticipationHistory(connection, {no: participationNo, categoryNo: 3, date: secessionInfo.date})
+
+        connection.end();
+
+        resolve({});
+    });
+};

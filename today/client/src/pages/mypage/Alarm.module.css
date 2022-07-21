@@ -1,0 +1,71 @@
+.area {
+  width: 80%;
+  margin-left: 5%;
+}
+
+.head {
+  margin: 3%;
+}
+.head > label {
+  font-size: 1.3em;
+  font-weight: 800;
+  padding-right: 85%;
+}
+
+.body {
+  margin: 3%;
+  height: 500px;
+}
+.notRead ,.read{
+  width: 50%;
+  height: 500px;
+  display: inline-flex;
+  vertical-align: top;
+}
+
+.alarmarea {
+  width: 80%;
+  position: relative;
+  margin-left: 10%;
+}
+.tablehead {
+  height: 60px;
+  font-size: 1.1em;
+  font-weight: 800;
+  background-color: aquamarine;
+}
+
+.tabledata {
+  height: 40px;
+  font-size: 1.1em;
+}
+
+.pagearea {
+  margin: 3%;
+  width: 94%;
+}
+
+.btnarea {
+  display: inline-flex;
+  width: 49.2%;
+}
+
+.btnbox {
+  margin-left: 35%;
+}
+
+
+.alarm {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 22px;
+  color: #535312;
+  font-weight: 700;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.alarmtitle {
+  font-size: 1.2em;
+  font-weight: 700;
+}

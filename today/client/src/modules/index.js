@@ -11,6 +11,7 @@ import reportReducer from './ReportModuls';
 import reportExamineReducer from './ReportExamineModule';
 import mainpageReducer from './MainpageModule';
 import mypageReducer from './MypageModule';
+import alarmReducer from './AlarmModule';
 
 const rootReducer = combineReducers({
     menuReducer,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
     reportReducer,
     reportExamineReducer,
     mainpageReducer,
-    mypageReducer
+    mypageReducer,
+    alarmReducer
 });
 
 export default rootReducer;

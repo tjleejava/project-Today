@@ -2,7 +2,7 @@ const memberQuery = require('../../database/member/member-query');
 const ChallengeArrayDTO = require('../../dto/challenge/challengeArray-dto');
 const MemberDTO1 = require('../../dto/member/member-dto');
 const MemberDTO = require('../../dto/member/member-response-dto');
-const ParticipationDTO = require('../../dto/participation/participation-dto');
+const MypageChallengeDTO = require('../../dto/mypage/mypage-challenge-dto');
 
 
 exports.selectMemberById = async(connection, id) => {
@@ -140,4 +140,29 @@ exports.selectChallengeByMemberNo = (connection, memberNo) => {
     })
   })
 }
+
+exports.selectChallengesByMemberNo = (connection, memberNo) => {
+  
+  return new Promise((resolve, reject) => {
+    connection.query(memberQuery.selectChallengesByMemberNo(), [memberNo],
+    (err, results) => {
+      if(err) {
+        reject(err);
+      }
+
+      console.log('REPO')
+      const allChallengeInfo = [];
+      if(results !== undefined) {
+        for(i = 0; i < results.length; i++) {
+          const challenge = new MypageChallengeDTO(results[i]);
+          allChallengeInfo.push(challenge);
+          
+      }
+      console.log(allChallengeInfo)
+      resolve(allChallengeInfo);
+    }
+  })
+  })
+
+  }
 

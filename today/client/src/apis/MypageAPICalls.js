@@ -15,3 +15,14 @@ export function mypageInfoAPI(memberNo) {
                               
 
 }
+
+export function mypageChallenges(memberNo) {
+  return new Promise(async (resolve, reject) => {
+
+    await axios.get('http://localhost:8888/members/challenges', {params: {memberNo: memberNo}})
+    .then((res) => {
+      console.log('API')
+      resolve(res);
+    })
+  })
+}

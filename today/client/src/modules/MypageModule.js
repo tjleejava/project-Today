@@ -7,14 +7,17 @@ const initialState =
   participatingChallengeNum: 0,
   completedChallengeNum: 0,
   openChallengeNum: 0,
+  allChallengeInfo:[],
 
 }
 
 export const CHALLENGE_INFO = 'mypage/CHALLENGE_INFO';
+export const ALL_CHALLENGE_INFO = 'mypage/ALL_CHALLENGE_INFO';
 
 const actions = createActions(
   {
   [CHALLENGE_INFO]: () => {},
+  [ALL_CHALLENGE_INFO]: () => {}
 });
 
 const mypageReducer = handleActions(
@@ -47,6 +50,11 @@ const mypageReducer = handleActions(
     console.log(state);
     
     state.participatedChallenges = partChallenge;
+    return {...state};
+  },
+  [ALL_CHALLENGE_INFO]: (state, { payload }) => {
+    state.allChallengeInfo = payload.allChallengeInfo;
+
     return {...state};
   }
 }, initialState

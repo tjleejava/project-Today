@@ -17,8 +17,8 @@ function Profile() {
 
   console.log('11', participatedChallenges);
   let participatedChallengeList = 
-  participatedChallenges.map((challenge) => 
-     <ChallengeTable key={challenge.challengeNo} challengeInfo={challenge}/>
+  participatedChallenges.map(challenge => 
+    <ChallengeTable key={challenge.challengeNo} challengeInfo={challenge}/>
     
   );
 

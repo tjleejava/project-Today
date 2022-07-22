@@ -1,4 +1,10 @@
 import { createActions, handleActions } from 'redux-actions';
+const ALL = '0';
+const STAND_BY = '1';
+const PARTICIPATING = '2';
+const COMPLETE = '3';
+const CANCEL = '4';
+const DELETE = '5';
 
 const initialState = 
 {
@@ -13,11 +19,13 @@ const initialState =
 
 export const CHALLENGE_INFO = 'mypage/CHALLENGE_INFO';
 export const ALL_CHALLENGE_INFO = 'mypage/ALL_CHALLENGE_INFO';
+export const SET_CHALLENGE_STATUS = '/mypage/SET_CHALLENGE_STATUS';
 
 const actions = createActions(
   {
   [CHALLENGE_INFO]: () => {},
-  [ALL_CHALLENGE_INFO]: () => {}
+  [ALL_CHALLENGE_INFO]: () => {},
+  [SET_CHALLENGE_STATUS]: () => {}
 });
 
 const mypageReducer = handleActions(
@@ -56,8 +64,35 @@ const mypageReducer = handleActions(
     state.allChallengeInfo = payload.allChallengeInfo;
 
     return {...state};
+  },
+  [SET_CHALLENGE_STATUS]: async(state, { payload }) => {
+    let newAllChallengeInfo = [];
+    //버튼 클릭하기 전 챌린지 정보
+    let allChallengeInfo = state.allChallengeInfo;
+    //클릭한 버튼 정보
+    const buttonValue = payload;
+    console.log('buttonValue', buttonValue);
+    console.log(state.allChallengeInfo);
+    //challenge statusNo이랑 받아온 클릭 No 비교해서 일치하는 경우 새로운 배열 생성
+    for(let i = 0; i < allChallengeInfo.length; i++) {
+      let challnegeStatusNo = allChallengeInfo[i].challengeStatusNo;
+      if(buttonValue == challnegeStatusNo) {
+        newAllChallengeInfo = makeNewAllChallengeInfo(allChallengeInfo[i]);
+      }
+    }
+    state.allChallengeInfo = newAllChallengeInfo;
+    console.log(state);
+
+    return {...state};
   }
 }, initialState
 );
+
+function makeNewAllChallengeInfo (allChallenges) {
+  let newAllChallengeInfo = [];
+  newAllChallengeInfo.push(allChallenges);
+  console.log(newAllChallengeInfo);
+  return newAllChallengeInfo;
+}
 
 export default mypageReducer;

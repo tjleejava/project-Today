@@ -1,0 +1,12 @@
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #C2A894;
+  border: none;
+  border-radius: 7px;
+  padding: 3px;
+  margin: 5px;
+  font-size: 14px;
+  color: white;
+}

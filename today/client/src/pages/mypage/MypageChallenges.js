@@ -2,11 +2,12 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MypageCSS from './MyPageCSS.module.css';
 import jwt_decode from "jwt-decode";
-import { mypageChallenges } from '../../apis/MypageAPICalls'
+import { mypageChallenges } from '../../apis/MypageAPICalls';
 import {Cookies} from 'react-cookie'
 import { useNavigate } from 'react-router-dom';
-import { ALL_CHALLENGE_INFO } from '../../modules/MypageModule'
-import ChallengeList from '../../components/challenge/challengelist/ChallengeList'
+import { ALL_CHALLENGE_INFO } from '../../modules/MypageModule';
+import ChallengeList from '../../components/challenge/challengelist/ChallengeList';
+import ChallengeBtn from '../../components/mypage/button/ChallengeBtn';
 
 function MypageChallenges() {
 
@@ -39,7 +40,10 @@ function MypageChallenges() {
 
   return(
     <div className={MypageCSS.container}>
-      {allChallengeInfo.map( challenge => <ChallengeList challenge={challenge} key={challenge.challengeNo}/> )}
+      <ChallengeBtn/>
+      <div className={MypageCSS.content}>
+        {allChallengeInfo && allChallengeInfo.map( challenge => <ChallengeList challenge={challenge} key={challenge.challengeNo}/> )}
+      </div>
     </div>
   )
 }

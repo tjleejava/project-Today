@@ -32,12 +32,12 @@ function ChallengeInfo() {
                 <div className={ ChallengeInfoCSS.infoImgArea }>
                     <span className={ ChallengeInfoCSS.infoSubImgTitle }>좋은 인증샷 예시</span>
                     {   attachmentInfo[2] && attachmentInfo[2].hasOwnProperty('savedPath')
-                        ?<img src={ 'http://localhost:8888' + attachmentInfo[2].savedPath + '/'+ attachmentInfo[2].savedName + '.png' } className={ ChallengeInfoCSS.infoExample }/>
+                        ?<img src={ 'http://todaychallenges:8888' + attachmentInfo[2].savedPath + '/'+ attachmentInfo[2].savedName + '.png' } className={ ChallengeInfoCSS.infoExample }/>
                         :null
                     }
                     <span className={ ChallengeInfoCSS.infoSubImgTitle }>나쁜 인증샷 예시</span>
                     {   attachmentInfo[3] && attachmentInfo[3].hasOwnProperty('savedPath')
-                        ?<img src={ 'http://localhost:8888' + attachmentInfo[3].savedPath + '/'+ attachmentInfo[3].savedName + '.png' } className={ ChallengeInfoCSS.infoExample }/>
+                        ?<img src={ 'http://todaychallenges:8888' + attachmentInfo[3].savedPath + '/'+ attachmentInfo[3].savedName + '.png' } className={ ChallengeInfoCSS.infoExample }/>
                         :null
                     }
                 </div>

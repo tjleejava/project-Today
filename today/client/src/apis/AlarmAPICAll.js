@@ -4,7 +4,7 @@ import { CHECK_ALARM_EXIST } from "../modules/RealTimeModule";
 
 export function getAlarmsAPI(findInfo) {
 
-  const GET_ALARMS_URL = 'http://localhost:8888/alarms';
+  const GET_ALARMS_URL = 'http://todaychallenges:8888/alarms';
 
   return async function getAlarms(dispatch, getState) {
 
@@ -16,7 +16,7 @@ export function getAlarmsAPI(findInfo) {
 };
 
 export async function putAlarmCheckYNAPI(alarmNo) {
-  const PUT_ALARM_STATE_URL = 'http://localhost:8888/alarms/check';
+  const PUT_ALARM_STATE_URL = 'http://todaychallenges:8888/alarms/check';
 
   const result = await axios.put(PUT_ALARM_STATE_URL, {alarmNo: alarmNo}).catch(err => console.log(err));
 
@@ -27,7 +27,7 @@ export async function putAlarmCheckYNAPI(alarmNo) {
 
 export function getAlarmExistAPI(memberNo) {
 
-  const GET_ALARM_EXIST_URL = 'http://localhost:8888/alarms/check';
+  const GET_ALARM_EXIST_URL = 'http://todaychallenges:8888/alarms/check';
 
   
   return async function getAlarmExist(dispatch, getState) {

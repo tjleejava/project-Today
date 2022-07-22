@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto:wght@300&display=swap');
 
+.challengeListBox {
+  border: 1px solid #844F15;
+  border-radius: 10px;
+  width: 60%;
+  height: 100%;
+  margin: auto;
+}
+
 .container {
-  width: 100vw;
+  width: 100%;
   font-family: 'Noto Sans KR', sans-serif !important;
 }
-.content {
-  display: flex;
-  align-items: left;
-  justify-content: left;
-  flex-wrap : wrap;
-  font-family: 'Noto Sans KR', sans-serif !important;
-  
-  width: 100%;
-  
+
+.headerCategory {
+  margin-left: 50px;
 }

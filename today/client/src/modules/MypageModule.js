@@ -47,7 +47,9 @@ const mypageReducer = handleActions(
     console.log('memberNo: ', memberNo);
     state.challengeInfo = payload.challengeInfo;
     console.log(state.challengeInfo.length);
-
+    let participateNum = 0;
+    let completeNum = 0;
+    let openNum = 0;
     const partChallenge=[];
     
     for(let i = 0; i < state.challengeInfo.length; i++) {
@@ -56,12 +58,16 @@ const mypageReducer = handleActions(
       console.log('statusNo: ' , statusNo);
       console.log('findMemberNo: ', findMemberNo);
       if(statusNo == 2) {
-        state.participatingChallengeNum += 1;
+        participateNum += 1;
+        console.log('participateNum: ', participateNum);
+        state.participatingChallengeNum = participateNum;
         partChallenge.push(state.challengeInfo[i]);
       } else if( statusNo == 3) {
-        state.completedChallengeNum += 1;
+        completeNum += 1;
+        state.completedChallengeNum = completeNum;
       } else if( findMemberNo == memberNo) {
-        state.openChallengeNum += 1;
+        openNum += 1;
+        state.openChallengeNum = openNum;
       }
     }
     console.log(state);

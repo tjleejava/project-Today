@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto:wght@300&display=swap');
+
 .header {
   width: 100%;
 }
@@ -7,6 +9,7 @@
 .container {
   margin-left: 5%;
   width: 80%;
+  font-family: 'Noto Sans KR', sans-serif !important;
 }
 
 .contentContainer {

@@ -14,6 +14,7 @@ import Participation from './detail/Participation';
 export default function ChallengeContent({challengeInfo, authDayInfo, attachmentInfo, presentTab, challengeNo}) {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     const [value, setValue] = useState(new Date());
     const [status, setStatus] = useState(false);
@@ -21,6 +22,10 @@ export default function ChallengeContent({challengeInfo, authDayInfo, attachment
 
     const onClickHandler = (tabNo) => {
         dispatch({type: CHANGE_CHALLENGE_DETAIL_PRESENTTAB, payload:tabNo});
+        if(tabNo == 3) {
+            const inquiryUrl = '/challenges/' + challengeNo + '/inquiry';
+            navigate(inquiryUrl);
+        }
     };
 
     const fomatDate = moment(value).format("YYYY-MM-DD");

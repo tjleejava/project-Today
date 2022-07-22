@@ -6,7 +6,7 @@ import { mypageChallenges } from '../../apis/MypageAPICalls';
 import {Cookies} from 'react-cookie'
 import { useNavigate } from 'react-router-dom';
 import { ALL_CHALLENGE_INFO } from '../../modules/MypageModule';
-import ChallengeList from '../../components/challenge/challengelist/ChallengeList';
+import MyPageChallengeList from '../../components/mypage/challenges/MyPageChallengeList';
 import ChallengeBtn from '../../components/mypage/button/ChallengeBtn';
 
 function MypageChallenges() {
@@ -14,7 +14,7 @@ function MypageChallenges() {
   const dispatch = useDispatch();
   const cookies = new Cookies();
   const mypage = useSelector(state => state.mypageReducer);
-  const {allChallengeInfo} = mypage;
+  const {allChallengeInfo, allChallengeInfoByStatusNo} = mypage;
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -42,7 +42,7 @@ function MypageChallenges() {
     <div className={MypageCSS.container}>
       <ChallengeBtn/>
       <div className={MypageCSS.content}>
-        {allChallengeInfo && allChallengeInfo.map( challenge => <ChallengeList challenge={challenge} key={challenge.challengeNo}/> )}
+        {allChallengeInfoByStatusNo && allChallengeInfoByStatusNo.map( challenge => <MyPageChallengeList challenge={challenge} key={challenge.challengeNo}/> )}
       </div>
     </div>
   )

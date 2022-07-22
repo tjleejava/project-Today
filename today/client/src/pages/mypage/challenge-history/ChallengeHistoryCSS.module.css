@@ -1,0 +1,95 @@
+.container {
+  width:100%;
+}
+.header {
+  color: #844F15;
+  font-weight: 500;
+}
+.line {
+  border: none;
+  height: 1px;
+  background-color: #844F15;
+}
+
+.headerBox {
+  margin-left: 15px;
+}
+
+.contentBox {
+  
+}
+
+.box {
+  width: 50%;
+  margin-top: 5vh;
+  margin-left: 25vw;
+}
+
+.thumbnailBox {
+  display: flex;
+}
+
+.progressBox {
+  margin-top: 25px;
+}
+
+.thumbnailContentBox {
+  margin-left: 20px;
+}
+
+.progress {
+  appearance: none;
+  width: 35vw;
+  margin-right: 40px;
+}
+.progress::-webkit-progress-bar {
+  margin-left: 30px;
+  background:#f0f0f0;
+  border-radius:5px;
+  box-shadow: inset 3px 3px 10px #ccc;
+}
+.progress::-webkit-progress-value {
+  border-radius:5px;
+  background: #E2D0C1;
+  background: -webkit-linear-gradient(to right, #c7b59f, #E2D0C1);
+  background: linear-gradient(to right, #c7b59f, #E2D0C1);
+
+}
+
+.challengeAuthNumBox {
+  border: 1px solid #844F15;
+  border-radius: 10px;
+  display: flex;
+  width: 80%;
+  text-align: center;
+  margin: auto;
+  margin-top: 15px;
+}
+
+.successAuthNum {
+  border-right: solid 1px;
+  border-color: #844F15;
+  width:33%
+}
+
+.failAuthNum {
+  border-right: solid 1px;
+  border-color: #844F15;
+  width:33%
+}
+
+.remainAuthNum {
+  width:33%
+}
+
+.achieveAvgRateBox {
+  background-color: #F5F1EE;
+  height: 10vh;
+
+}
+
+.engageInfoBox {
+  margin-top: 20px;
+  background-color: #F5F1EE;
+  height: 15vh;
+}

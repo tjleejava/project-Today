@@ -56,9 +56,8 @@ function Profile() {
     <div className={ProfileCSS.container}>
       <div className={ProfileCSS.header}>
         <h3>마이페이지</h3>
-        <hr/>
+        <hr className={ProfileCSS.line}/>
       </div>
-
       <div className={ProfileCSS.contentContainer}>
         <h4>프로필</h4>
         <img className={ProfileCSS.img} src={'/images/mypage/profile.jpg'} width="150" height="150"/>

@@ -31,8 +31,7 @@ import Following from './pages/mypage/Following';
 import Invite from './pages/mypage/Invite';
 import Profile from './pages/mypage/Profile';
 import MypageChallenges from './pages/mypage/MypageChallenges';
-import ChallengeListComponent from './components/challenge/challengelist/ChallengeListComponent';
-
+import ChallengeHistory from './pages/mypage/challenge-history/ChallengeHistory';
 
 
 function App() {
@@ -57,7 +56,7 @@ function App() {
             <Route index element={ <Mypage/>}/>
             <Route path="profile" element={ <Profile/> } />
             <Route path="challenges" element={<MypageChallenges/>}/>
-            <Route path="challenges/:challengeNo" element={<ChallengeListComponent/>}/>
+            <Route path="challenges/:challengeNo" element={<ChallengeHistory/>}/>
             <Route path="alarm" element={ <Alarm/> } />
             <Route path="following" element={ <Following/> } />
             <Route path="invites" element={ <Invite/> } />

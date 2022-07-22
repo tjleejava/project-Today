@@ -41,10 +41,10 @@ function ChallengeBtn() {
   return (
     <>
       <div>
-        <Button onClick={onClickHandler} value="0">전체</Button>
-        <Button onClick={onClickHandler} value="1">진행예정</Button>
-        <Button onClick={onClickHandler} value="2">참여중</Button>
-        <Button onClick={onClickHandler} value="3,4,5">종료</Button>
+        <Button className={ChallengeCSS.challengeStatusButton} onClick={onClickHandler} value="0">전체</Button>
+        <Button className={ChallengeCSS.challengeStatusButton} onClick={onClickHandler} value="1">진행예정</Button>
+        <Button className={ChallengeCSS.challengeStatusButton} onClick={onClickHandler} value="2">참여중</Button>
+        <Button className={ChallengeCSS.challengeStatusButton} onClick={onClickHandler} value="3,4,5">종료</Button>
       </div>
     </>
   )

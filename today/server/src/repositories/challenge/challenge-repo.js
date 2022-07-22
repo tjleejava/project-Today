@@ -84,6 +84,7 @@ exports.selectChallengeByNo = (connection, challengeNo) => {
       if(err) {
         reject(err);
       }
+      console.log(result)
       const value = new ChallengeDTO(result);
       resolve(value);
     });

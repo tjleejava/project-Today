@@ -26,3 +26,12 @@ export function mypageChallenges(memberNo) {
     })
   })
 }
+
+export function mypageChallengeDetailAPI(challengeNoObj) {
+  const challengeNo = challengeNoObj.challengeNo;
+  const url = 'http://localhost:8888/challenges/' + challengeNo;
+  return new Promise(async (resolve, reject) => {
+    await axios.get(url)
+    .then((res) => {resolve(res.data.result)})
+  })
+}

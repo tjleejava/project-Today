@@ -14,18 +14,27 @@ const initialState =
   completedChallengeNum: 0,
   openChallengeNum: 0,
   allChallengeInfo:[],
+  allChallengeInfoByStatusNo: [],
+  attachmentInfo: {},
+  imgUrl: '',
+  challengeDetailInfo: {},
+  challengeName:'',
+  challengeExplain:'',
+
 
 }
 
 export const CHALLENGE_INFO = 'mypage/CHALLENGE_INFO';
 export const ALL_CHALLENGE_INFO = 'mypage/ALL_CHALLENGE_INFO';
 export const SET_CHALLENGE_STATUS = '/mypage/SET_CHALLENGE_STATUS';
+export const GET_CHALLENGE_DETAIL = '/mypage/GET_CHALLENGE_DETAIL';
 
 const actions = createActions(
   {
   [CHALLENGE_INFO]: () => {},
   [ALL_CHALLENGE_INFO]: () => {},
-  [SET_CHALLENGE_STATUS]: () => {}
+  [SET_CHALLENGE_STATUS]: () => {},
+  [GET_CHALLENGE_DETAIL]: () => {},
 });
 
 const mypageReducer = handleActions(
@@ -62,10 +71,11 @@ const mypageReducer = handleActions(
   },
   [ALL_CHALLENGE_INFO]: (state, { payload }) => {
     state.allChallengeInfo = payload.allChallengeInfo;
+    state.allChallengeInfoByStatusNo = payload.allChallengeInfo;
 
     return {...state};
   },
-  [SET_CHALLENGE_STATUS]: async(state, { payload }) => {
+  [SET_CHALLENGE_STATUS]: (state, { payload }) => {
     let newAllChallengeInfo = [];
     //버튼 클릭하기 전 챌린지 정보
     let allChallengeInfo = state.allChallengeInfo;
@@ -77,19 +87,37 @@ const mypageReducer = handleActions(
     for(let i = 0; i < allChallengeInfo.length; i++) {
       let challnegeStatusNo = allChallengeInfo[i].challengeStatusNo;
       if(buttonValue == challnegeStatusNo) {
-        newAllChallengeInfo = makeNewAllChallengeInfo(allChallengeInfo[i]);
+        newAllChallengeInfo = makeNewAllChallengeInfo(newAllChallengeInfo, allChallengeInfo[i]);
+      } else if(buttonValue == 0) {
+        state.allChallengeInfoByStatusNo = state.allChallengeInfo;
+        return {...state};
       }
     }
-    state.allChallengeInfo = newAllChallengeInfo;
+    state.allChallengeInfoByStatusNo = newAllChallengeInfo;
     console.log(state);
 
     return {...state};
+  },
+  [GET_CHALLENGE_DETAIL]: (state, { payload }) => {
+    console.log(payload)
+    state.attachmentsInfo = payload.attachments;
+    let attachmentInfo = state.attachmentsInfo;
+    let savedPath = attachmentInfo.savedPath;
+    let savedName = attachmentInfo.savedName;
+    state.imgUrl = 'http://localhost:8888' + savedPath + '/'+ savedName + '.png';
+    state.challengeDetailInfo = payload.challengeDetailInfo;
+    state.challengeName = payload.challengeDetailInfo.challengeInfo.challengeName;
+    state.challengeExplain = payload.challengeDetailInfo.challengeInfo.challengeInfo;
+    console.log(state.challengeDetailInfo);
+    console.log(state.imgUrl);
+
+    return{...state}
   }
 }, initialState
 );
 
-function makeNewAllChallengeInfo (allChallenges) {
-  let newAllChallengeInfo = [];
+function makeNewAllChallengeInfo (newAllChallengeInfo, allChallenges) {
+  
   newAllChallengeInfo.push(allChallenges);
   console.log(newAllChallengeInfo);
   return newAllChallengeInfo;

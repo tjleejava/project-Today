@@ -89,7 +89,7 @@ exports.findChallengeByNo = async (req, res, next) => {
 exports.findByCategoryNo = async (req, res, next) => {
 
     const categoryNo = req.params.categoryNo;
-    
+    console.log(req.url);
     const results = await ChallengeService.findByCategoryNo(categoryNo);
     
     res.send(results);

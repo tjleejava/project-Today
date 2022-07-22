@@ -6,7 +6,7 @@ class MypageChallengeDTO {
   challengeScope;
   challengeCategoryNo;
   memberNo;
-  challengeMaxAmount;
+  maxAmount;
   challengeStatusNo;
   challengeAuthExplan;
   challengeInfo;
@@ -26,7 +26,7 @@ class MypageChallengeDTO {
     this.challengeScope = data.CHALLENGE_SCOPE;
     this.challengeCategoryNo = data.CHALLENGE_CATEGORY_NO;
     this.memberNo = data.MEMBER_NO;
-    this.challengeMaxAmount = data.CHALLENGE_MAX_AMOUNT;
+    this.maxAmount = data.CHALLENGE_MAX_AMOUNT;
     this.challengeStatusNo = data.CHALLENGE_STATUS_NO;
     this.challengeAuthExplan = data.CHALLENGE_AUTH_EXPLAN;
     this.challengeInfo = data.CHALLENGE_INFO;

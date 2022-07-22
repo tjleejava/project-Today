@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import HeaderCSS from "./Header.module.css";
 import { Cookies } from 'react-cookie';
-import { setCookie, getCookie} from '../../cookies/cookie';
+import { setCookie, getCookie, removeCookie} from '../../cookies/cookie';
 import { logoutAPI } from '../../apis/MemberAPICalls';
 import AlarmHeader from './AlarmHeader';
 
@@ -18,8 +18,11 @@ function Header() {
 
 
     const onClickHandler = async (e) => {
-			await logoutAPI(token);
-			// navigate('/');
+		// await logoutAPI(token);
+		removeCookie('token');
+        window.location.replace("/")
+        const token2 = getCookie('token');
+        console.log(token2)
 
     };  
     
@@ -28,7 +31,7 @@ function Header() {
             <div className={ HeaderCSS.area}>
                 <img onClick={ goMainHandler }src="/images/header/todaylogo.png" className={ HeaderCSS.logo }/>
                 <div className={ HeaderCSS.body}>
-                    {(getCookie('token') != undefined && getCookie('token')!= null)?
+                    {(getCookie('token') != undefined && getCookie('token')!= '')?
                     <div>
                         <NavLink style={{ textDecoration: 'none' }} to="/mypage/following"><img src="/images/header/heart.png" className={ HeaderCSS.header } /></NavLink>
                         <NavLink style={{ textDecoration: 'none' }} to="/mypage/alarm"><AlarmHeader/></NavLink>

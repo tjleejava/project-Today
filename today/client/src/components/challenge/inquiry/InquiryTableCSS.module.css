@@ -7,3 +7,24 @@
   font-family: 'Noto Sans KR', sans-serif !important;
 
 }
+
+.tableHeader {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 1000;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.registBtn {
+  
+  background-color: #A49A93;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  right: 0;
+  cursor: pointer;
+
+}

@@ -15,6 +15,7 @@ export default function ChallengeContent({challengeInfo, authDayInfo, attachment
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const challengeNum = useParams();
     
     const [value, setValue] = useState(new Date());
     const [status, setStatus] = useState(false);
@@ -23,7 +24,8 @@ export default function ChallengeContent({challengeInfo, authDayInfo, attachment
     const onClickHandler = (tabNo) => {
         dispatch({type: CHANGE_CHALLENGE_DETAIL_PRESENTTAB, payload:tabNo});
         if(tabNo == 3) {
-            const inquiryUrl = '/challenges/' + challengeNo + '/inquiry';
+            console.log(challengeNum)
+            const inquiryUrl = '/challenges/' + challengeNum.challengeNo + '/inquiry';
             navigate(inquiryUrl);
         }
     };

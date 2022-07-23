@@ -509,4 +509,39 @@ exports.selectParticipationByMemberNoAndChallengeNo = (connection, {challengeNo,
       resolve(result[0].PARTICIPATION_NO);
     });
   });
-};  
+};
+
+exports.selectParticipationNo = (connection, challengeNo, memberNo) => {
+
+  return new Promise((resolve,reject) => {
+    connection.query(challengeQuery.selectParticipationNo(), [challengeNo, memberNo], (err, result) => {
+      if(err) {
+        reject(err);
+      }
+
+      resolve(result[0].PARTICIPATION_NO);
+    })
+  })
+}
+
+exports.insertInquiry = (connection, registInfo) => {
+
+  return new Promise((resolve,reject) => {
+    connection.query(challengeQuery.insertInquiry(), [registInfo.title, registInfo.content, registInfo.participationNo],(err, result) => {
+      if(err) {
+        reject(err);
+      }
+
+      console.log(result);
+      if(result.affectedRows == 1) {
+        const data={
+          status: 200,
+          message: 'successfully insert inquiry',
+          result: result.insertId
+        }
+        resolve(data);
+      }
+    }
+    )
+  })
+}

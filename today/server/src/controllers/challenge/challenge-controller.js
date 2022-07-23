@@ -120,3 +120,10 @@ exports.secessionChallenge = async (req, res, next) => {
 
     res.send(result);
 };
+
+exports.registInquiry = async (req, res) => {
+    console.log(req.body);
+    console.log('실행되니');
+    const result = await ChallengeService.registInquiry(req.body);
+    res.send(result);
+}

@@ -1,10 +1,26 @@
 import InquiryTableCSS from './InquiryTableCSS.module.css';
+import {useNavigate, useParams} from 'react-router-dom';
 
 function InquiryTable() {
+
+  const navigate = useNavigate();
+  const params = useParams();
+
+  console.log(params);
+  const challengeNo = params.challengeNo;
+  const registURL = '/challenges/' + challengeNo + '/inquiry/regist'
+
+  const onClickHandler = () => {
+    navigate(registURL);
+
+  }
   return(
     <div className={InquiryTableCSS.container}>
       <div>
-        <h3>문의게시판</h3>
+        <div className={InquiryTableCSS.tableHeader}>
+          <span>문의게시판</span>
+          <button onClick={ onClickHandler } className={InquiryTableCSS.registBtn}>작성하기</button>
+        </div>
         <hr></hr>
       </div>
       <div>

@@ -466,3 +466,36 @@ exports.selectParticipationByMemberNoAndChallengeNo = () => {
        LIMIT 0,1
   `;
 };
+
+exports.selectParticipationNo = () => {
+  return`
+    SELECT
+           PARTICIPATION_NO
+      FROM TBL_PARTICIPATION
+     WHERE CHALLENGE_NO =?
+       AND MEMBER_NO = ?
+  `
+}
+
+exports.insertInquiry = () => {
+  return `
+    INSERT
+      INTO tbl_challenge_inquiry
+    (
+      CHALLENGE_INQUIRY_TITLE
+    , CHALLENGE_INQUIRY_CONTENT
+    , PARTICIPATION_NO
+    , DEL_YN
+    , CHALLENGE_INQUIRY_DATE
+    )
+    VALUES
+    (
+      ?
+    , ?
+    , ?
+    , 'N'
+    , NOW()
+    )
+
+  `
+}

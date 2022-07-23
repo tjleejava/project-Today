@@ -102,3 +102,24 @@ export async function secessionChallengeAPI(secessionInfo) {
 
     return result;
 };
+
+export async function registChallengeInquiryAPI(title, content, memberNo, challengeNo) {
+    const data = {
+        title: title,
+        content: content,
+        memberNo: memberNo,
+        challengeNo: challengeNo
+    }
+
+    console.log(data);
+
+    const CHALLENGE_INQUIRY_REGIST_URL = 'http://localhost:8888/challenges/'+ challengeNo + '/inquiries';
+
+    return new Promise((resolve, reject) => {
+        axios.post(CHALLENGE_INQUIRY_REGIST_URL, data)
+        .then((res) => {
+            resolve(res)
+        });
+    })
+
+}

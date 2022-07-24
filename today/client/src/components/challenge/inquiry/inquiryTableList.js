@@ -3,9 +3,11 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 function InquiryTableList(props) {
 
   const navigate = useNavigate();
-
+  const detailURL = `/challenges/${props.inquiryInfo.challengeNo}/inquiry/${props.inquiryInfo.challengeInquiryNo}`;
+  
   const onClickHandler = () => {
-    navigate(`/challenges/${props.inquiryInfo.challengeNo}/inquiry/${props.inquiryInfo.challengeInquiryNo}`);
+    console.log(props.inquiryInfo);
+    navigate(detailURL, { state: props.inquiryInfo });
   }
   return (
     <tr onClick={onClickHandler}>

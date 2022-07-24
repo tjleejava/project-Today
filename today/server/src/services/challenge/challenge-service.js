@@ -289,3 +289,26 @@ exports.registInquiry = (inquiryInfo) => {
         resolve(insertResult);
     })
 }
+
+exports.findInquiries = (challengeNo) => {
+    
+    return new Promise(async(resolve, reject) => {
+        const connection = getConnection();
+        const selectResult = await ChallengeRepo.selectInquiries(connection, challengeNo);
+        try{
+            const resolveData = {
+                status: HttpStatus.OK,
+                message: '조회 성공',
+                result: selectResult
+            }
+            resolve(resolveData);
+        } catch {
+            const rejectData = {
+                status: HttpStatus.NO_CONTENT,
+                message: '값이 없습니다.'
+            }
+            reject(rejectData);
+        }
+        
+    })
+}

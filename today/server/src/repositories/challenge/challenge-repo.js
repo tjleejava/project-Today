@@ -5,6 +5,7 @@ const ChallengeDTO = require('../../dto/challenge/challenge-dto');
 const AttachmentDTO = require('../../dto/challenge/challenge-attachment-dto');
 const ChallengeListDTO = require('../../dto/challenge/ranking-dto');
 const ParticipationDTO = require('../../dto/report/participation-dto');
+const ChallengeInquiryDTO = require('../../dto/challenge/challenge-inquiry/challenge-inquiry-dto');
 
 exports.selectAttachmentByChallengeNo = (connection, challengeNo) => {
 
@@ -543,5 +544,24 @@ exports.insertInquiry = (connection, registInfo) => {
       }
     }
     )
+  })
+}
+
+exports.selectInquiries = (connection, challengeNo) => {
+
+  return new Promise((resolve, reject) => {
+    connection.query(challengeQuery.selectInquiries(), [challengeNo], (err, result) => {
+      if(err) {
+        reject(err);
+      }
+
+      console.log(result);
+      const challengeInquiries = [];
+      for(let i = 0; i < result.length; i++) {
+        challengeInquiries.push(new ChallengeInquiryDTO(result[i]));
+      }
+      console.log(challengeInquiries);
+      resolve(challengeInquiries);
+    })
   })
 }

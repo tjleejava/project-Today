@@ -35,6 +35,7 @@ import ChallengeHistory from './pages/mypage/challenge-history/ChallengeHistory'
 import PenaltyHistory from './pages/mypage/penalty/PenaltyHistory';
 import ChallengeInquiry from './pages/challenge/challengeInquiry/ChallengeInquiry';
 import InquiryRegistForm from './pages/challenge/challengeInquiry/InquiryRegistForm';
+import ChallengeInquiryDetail from './pages/challenge/challengeInquiry/ChallengeInquiryDetail';
 
 
 function App() {
@@ -53,10 +54,8 @@ function App() {
                 <Route index element={ <AuthList/> } />
                 <Route path=":authNo" element={ <AuthDetail/> } />
               </Route>
-              <Route path="inquiry" element={<ChallengeInquiry/>}>
-                <Route path=":inquiryNo" />
-                
-              </Route>
+              <Route path="inquiry" element={<ChallengeInquiry/>}></Route>
+              <Route path="inquiry/:inquiryNo" element={<ChallengeInquiryDetail/>}/>
               <Route path="inquiry/regist" element={<InquiryRegistForm/>}/>
             </Route>
           </Route> 

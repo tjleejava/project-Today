@@ -127,3 +127,16 @@ exports.registInquiry = async (req, res) => {
     const result = await ChallengeService.registInquiry(req.body);
     res.send(result);
 }
+
+exports.findChallengeInquiries = async (req, res) => {
+    console.log(req.query.challengeNo);
+    const challengeNo= req.query.challengeNo;
+    const result = await ChallengeService.findInquiries(challengeNo);
+    
+    if(result.status == 200) {
+        res.send(result);
+    } else {
+        res.send(result);
+    }
+    
+}

@@ -13,6 +13,7 @@ import mainpageReducer from './MainpageModule';
 import mypageReducer from './MypageModule';
 import alarmReducer from './AlarmModule';
 import realTimeReducer from './RealTimeModule';
+import challengeInquiryReducer from './challenge-inquiry-module/ChallengeInquiryModule';
 
 const rootReducer = combineReducers({
     menuReducer,
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
     mainpageReducer,
     mypageReducer,
     alarmReducer,
-    realTimeReducer
+    realTimeReducer,
+    challengeInquiryReducer
 });
 
 export default rootReducer;

@@ -123,3 +123,19 @@ export async function registChallengeInquiryAPI(title, content, memberNo, challe
     })
 
 }
+
+export async function findChallengeInquiryListAPI(challengeNo) {
+
+    
+
+    const CHALLENGE_LIST_URL = 'http://localhost:8888/challenges/' + challengeNo + '/inquiries';
+
+    return new Promise((resolve, reject) => {
+
+        axios.get(CHALLENGE_LIST_URL, {params : { challengeNo: challengeNo}})
+        .then((res) => {
+            resolve(res);
+        })
+
+    })
+}

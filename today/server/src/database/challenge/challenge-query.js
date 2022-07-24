@@ -499,3 +499,23 @@ exports.insertInquiry = () => {
 
   `
 }
+
+exports.selectInquiries = () => {
+  return `
+    SELECT
+            A.CHALLENGE_INQUIRY_NO
+          , A.CHALLENGE_INQUIRY_TITLE
+          , A.CHALLENGE_INQUIRY_CONTENT
+          , A.PARTICIPATION_NO
+          , A.DEL_YN
+          , A.CHALLENGE_INQUIRY_DATE
+          , B.MEMBER_NO
+          , B.CHALLENGE_NO
+          , C.NICKNAME
+      FROM tbl_challenge_inquiry A
+      JOIN tbl_participation B ON (A.PARTICIPATION_NO = B.PARTICIPATION_NO)
+      JOIN tbl_member C ON (B.MEMBER_NO = C.MEMBER_NO)
+     WHERE DEL_YN = 'N'
+       AND B.CHALLENGE_NO = ?
+  `
+}

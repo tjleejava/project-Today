@@ -565,3 +565,17 @@ exports.selectInquiries = (connection, challengeNo) => {
     })
   })
 }
+
+exports.updateChallengeInquiry = (connection, data) => {
+
+  return new Promise((resolve, reject) => {
+    connection.query(challengeQuery.updateChallengeInquiry(), [data.title, data.content, data.inquiryNo], (err, result) => {
+      if(err) {
+        reject(err);
+      }
+      console.log(result);
+      resolve(result);
+      
+    })
+  })
+}

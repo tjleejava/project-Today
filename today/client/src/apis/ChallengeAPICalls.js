@@ -139,3 +139,22 @@ export async function findChallengeInquiryListAPI(challengeNo) {
 
     })
 }
+
+export async function modifyChallengeInquiryAPI(title, content, challengeNo, inquiryNo) {
+
+    const data = {
+        title: title,
+        content: content,
+        challengeNo: challengeNo,
+        inquiryNo: inquiryNo
+    }
+
+    const CHALLENGE_INQUIRY_MODIFY_URL = 'http://localhost:8888/challenges/' + challengeNo + '/inquiries/' + inquiryNo;
+
+    return new Promise((resolve, reject) => {
+        axios.put(CHALLENGE_INQUIRY_MODIFY_URL, data)
+        .then((res) => {
+            resolve(res.data);
+        })
+    })
+}

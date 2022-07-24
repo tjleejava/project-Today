@@ -36,6 +36,7 @@ import PenaltyHistory from './pages/mypage/penalty/PenaltyHistory';
 import ChallengeInquiry from './pages/challenge/challengeInquiry/ChallengeInquiry';
 import InquiryRegistForm from './pages/challenge/challengeInquiry/InquiryRegistForm';
 import ChallengeInquiryDetail from './pages/challenge/challengeInquiry/ChallengeInquiryDetail';
+import ChallengeInquiryModify from './pages/challenge/challengeInquiry/ChallengeInquiryModify';
 
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
               </Route>
               <Route path="inquiry" element={<ChallengeInquiry/>}></Route>
               <Route path="inquiry/:inquiryNo" element={<ChallengeInquiryDetail/>}/>
+              <Route path="inquiry/:inquiryNo/modify" element={<ChallengeInquiryModify/>}/>
               <Route path="inquiry/regist" element={<InquiryRegistForm/>}/>
             </Route>
           </Route> 

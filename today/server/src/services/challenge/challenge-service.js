@@ -312,3 +312,29 @@ exports.findInquiries = (challengeNo) => {
         
     })
 }
+
+exports.modifyChallengeInquiry = (data) => {
+    console.log(data);
+
+    return new Promise(async(resolve, reject) => {
+        const connection = getConnection();
+        const modifyResult = await ChallengeRepo.updateChallengeInquiry(connection, data);
+        console.log(modifyResult.changedRows)
+        if(modifyResult.changedRows > 0) {
+            const data = {
+                status: HttpStatus.OK,
+                message: '수정 성공',
+                result: modifyResult
+            }
+
+            resolve(data);
+        } else {
+            const data = {
+                status: HttpStatus.CONFLICT,
+                message: '수정 실패',
+                result: modifyResult
+            }
+            resolve(data);
+        }
+    })
+}

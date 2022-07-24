@@ -1,6 +1,6 @@
 import InquiryDetailCSS from './InquiryDetailCSS.module.css';
 import { useLocation } from "react-router-dom";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import {Cookies} from 'react-cookie'
 import jwt_decode from "jwt-decode";
 
@@ -8,8 +8,10 @@ function InquiryContent() {
 
   const { state } = useLocation();
   const navigate = useNavigate();
+  const params = useParams();
 
   console.log(state);
+  console.log(params);
   const writer = state.nickname;
   const registedDate = state.challengeInquiryDate;
   const content = state.challengeInquiryContent;
@@ -18,6 +20,13 @@ function InquiryContent() {
   const token = cookies.get('token');
   const decoded = jwt_decode(token);
   const memberNo = decoded.no;
+  const challengeNo = params.challengeNo;
+  const inquiryNo = params.inquiryNo;
+  const modifyURL = '/challenges/' + challengeNo + '/inquiry/' + inquiryNo +'/modify';
+
+  const modifyContent = () => {
+    navigate(modifyURL, {state: state});
+  }
 
   return(
     <div className={InquiryDetailCSS.container}>
@@ -37,7 +46,7 @@ function InquiryContent() {
       </div>
       <div className={InquiryDetailCSS.btnArea}>
         <button onClick={() => {navigate(-1)} }className={InquiryDetailCSS.btn}>뒤로가기</button>
-        <button className={InquiryDetailCSS.btn}>수정</button>
+        {(memberNo == state.memberNo)?<button onClick={modifyContent} className={InquiryDetailCSS.btn}>수정</button>: null}
         {(memberNo == state.memberNo)?<button className={InquiryDetailCSS.deleteBtn}>삭제</button>: null}
       </div>
     </div>

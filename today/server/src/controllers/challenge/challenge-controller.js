@@ -140,3 +140,12 @@ exports.findChallengeInquiries = async (req, res) => {
     }
     
 }
+
+exports.modifyChallengeInquiry = async (req, res) => {
+    const result = await ChallengeService.modifyChallengeInquiry(req.body);
+    if(result.status == 200) {
+        res.send(result);
+    } else {
+        res.send(result);
+    }
+}

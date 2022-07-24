@@ -519,3 +519,12 @@ exports.selectInquiries = () => {
        AND B.CHALLENGE_NO = ?
   `
 }
+
+exports.updateChallengeInquiry = () => {
+  return `
+    UPDATE tbl_challenge_inquiry
+       SET CHALLENGE_INQUIRY_TITLE = ?
+         , CHALLENGE_INQUIRY_CONTENT =?
+     WHERE CHALLENGE_INQUIRY_NO = ?
+  `
+}

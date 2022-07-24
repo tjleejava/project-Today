@@ -3,7 +3,7 @@ import { POST_ACCEPT_CHALLENGE, CHECK_CHALLENGE_REPORT_ACCEPTED } from '../modul
 
 export function registChallengeReportAccept(acceptInfo) {
 
-  const REGIST_ACCEPT_URL = 'http://todaychallenges:8888/reports/accept';
+  const REGIST_ACCEPT_URL = 'http://127.0.0.1:8888/reports/accept';
   return async function registAccept(dispatch, getState) {
 
     const result = await axios.post(REGIST_ACCEPT_URL , acceptInfo).catch(err => console.log(err));
@@ -14,7 +14,7 @@ export function registChallengeReportAccept(acceptInfo) {
 
 export function checkReportExamineAlreadyAcceptedAPI(reportNo) {
 
-  const CHECK_CHELLENGE_REPORT_ACCEPTED_URL = 'http://todaychallenges:8888/reports/acceptedcheck';
+  const CHECK_CHELLENGE_REPORT_ACCEPTED_URL = 'http://127.0.0.1:8888/reports/acceptedcheck';
   return async function checkReportExamineAlreadyAccepted(dispatch, getState) {
     const {data} = await axios.get(CHECK_CHELLENGE_REPORT_ACCEPTED_URL, {params: {reportNo: reportNo}}).catch(err => console.log(err));
     const {result, response, message} = data;

@@ -140,7 +140,7 @@ exports.modifyPassword = (data) => {
         console.log('성공했다')
         const success = {
           status: 200,
-          message: '비밀번호 초기화 성공',
+          message: '비밀번호 수정 성공',
           response: res
         }
         resolve(success);
@@ -225,5 +225,83 @@ exports.findChallenges = (memberNo) => {
     const result = await MemberRepository.selectChallengesByMemberNo(connection, memberNo);
     console.log('SERVICE');
     resolve(result);
+  })
+}
+
+exports.findPassword = async(data) => {
+
+  const connection = getConnection();
+  const hashPassword = await bcrypt.hash(data.pwd, 12);
+
+  const hashedData = {
+    ...data, hashPwd: hashPassword
+  }
+  console.log(hashedData)
+
+  return new Promise(async(resolve, reject) => {
+
+    const result = await MemberRepository.selectPassword(connection, data);
+
+    const match = await bcrypt.compare(data.pwd, result.MEMBER_PWD);
+
+    console.log(match);
+
+    if(match == true) {
+      const data = {
+        status: httpStatus.OK,
+        message: '비밀번호 일치'
+      }
+      resolve(data);
+    } else if(match == false) {
+      const data = {
+        status: httpStatus.NO_CONTENT,
+        message: '비밀번호 불일치'
+      }
+      resolve(data);
+    }
+
+  });
+}
+
+exports.modifyPasswordByMemberNo = (data) => {
+
+  return new Promise( async (resolve, reject) => {
+
+    const connection = getConnection();
+
+    const hashPassword = await bcrypt.hash(data.pwd, 12);
+
+    const hashedData = {
+      ...data, hashPwd: hashPassword
+    }
+
+    console.log(hashPassword);
+
+    MemberRepository.updatePasswordByMemberNo(connection, hashedData)
+    .then((res) => {
+      console.log(`ResetPwd Service Result : ${JSON.stringify(res)}`)
+      let resetResult = parseInt(res.changedRows);
+
+      if(resetResult === 1) {
+        console.log('성공했다')
+        const success = {
+          status: httpStatus.OK,
+          message: '비밀번호 수정 성공',
+          response: res
+        }
+        resolve(success);
+        } else {
+          const fail = {
+            status: httpStatus.CONFLICT,
+            message: '비밀번호 수정 실패',
+            response: res
+          }
+          resolve(fail);
+      }
+    });
+
+    
+    connection.end();
+
   })
 }

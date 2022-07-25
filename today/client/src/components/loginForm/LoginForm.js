@@ -44,29 +44,33 @@ function LoginForm() {
   return (
     <>
       <div className={LoginFormCSS.container}>
-        <div className={LoginFormCSS.header}>오늘 하루</div>
-        <div className={LoginFormCSS.content}>
-          <div className={LoginFormCSS.idInput}>
-            <label>이메일</label>
-            <input onChange={ onChangeHandler } name="id" type="text" value={user.id} placeholder='아이디 입력'/>
+        <div>
+          <div className={LoginFormCSS.header}>오늘 하루</div>
+          <div className={LoginFormCSS.content}>
+            <div className={LoginFormCSS.idInput}>
+              <label>이메일</label>
+              <input onChange={ onChangeHandler } name="id" type="text" value={user.id} placeholder='아이디 입력'/>
+            </div>
+            <div className={LoginFormCSS.pwdInput}>
+              <label>비밀번호</label>
+              <input onChange={ onChangeHandler } name="password" type='password' value={user.password} placeholder='비밀번호 입력'/>
+            </div>
+            <div className={LoginFormCSS.loginBtnArea}>
+              <button onClick={ onClickHandler } className={LoginFormCSS.loginBtn}>로그인</button>
+            </div>
+            <div className={LoginFormCSS.signUpArea}>
+              <Link to="/sign/signup">
+                <button className={LoginFormCSS.signUpBtn}>회원가입</button>
+              </Link>
+              <Link to="/sign/id">
+                <button className={LoginFormCSS.findIdBtn}>아이디 찾기</button>
+              </Link>
+            </div> 
           </div>
-          <div className={LoginFormCSS.pwdInput}>
-            <label>비밀번호</label>
-            <input onChange={ onChangeHandler } name="password" type='password' value={user.password} placeholder='비밀번호 입력'/>
-          </div>
-          <div className={LoginFormCSS.loginBtnArea}>
-            <button onClick={ onClickHandler } className={LoginFormCSS.loginBtn}>로그인</button>
-          </div>
-          <div className={LoginFormCSS.signUpArea}>
-            <Link to="/sign/signup">
-              <button className={LoginFormCSS.signUpBtn}>회원가입</button>
-            </Link>
-            <Link to="/sign/id">
-              <button className={LoginFormCSS.findIdBtn}>아이디 찾기</button>
-            </Link>
-          </div> 
         </div>
-        
+        <div className={LoginFormCSS.homeBtnBox}>
+          <button onClick={ () => { navigate('/')}} className={LoginFormCSS.homeBtn}>홈으로</button>
+        </div>
       </div>
     </>
   );

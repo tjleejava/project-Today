@@ -50,7 +50,6 @@ function SignUpForm() {
       ...form,
       [e.target.name]: e.target.value
     });
-
   }
 
   //닉네임 채워져있기, 비밀번호 둘이 맞아야됨, 둘다 채워져있어야됨

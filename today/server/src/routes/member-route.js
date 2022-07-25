@@ -25,4 +25,8 @@ router.post('/reset-pwd', MemberController.resetPassword);
 
 router.get('/challenges', MemberController.findChallenges);
 
+router.post('/pwd', MemberController.findPassword);
+
+router.put('/pwd', MemberController.modifyPassword);
+
 module.exports = router;

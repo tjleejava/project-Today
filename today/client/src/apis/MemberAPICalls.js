@@ -148,3 +148,34 @@ export function findId(id) {
     .catch((err) => {console.log(err);})
   }
 }
+
+export function confirmPwdAPI(memberNo, pwd) {
+
+  const data = {
+    memberNo: memberNo,
+    pwd: pwd
+  }
+  return new Promise((resolve, reject) => {
+    axios.post('http://localhost:8888/members/pwd', data)
+    .then((res) => {
+      resolve(res.data);
+    })
+
+  })
+}
+
+export function changePwdAPI(memberNo, pwd) {
+
+  const data = {
+    memberNo: memberNo,
+    pwd: pwd
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.put('http://localhost:8888/members/pwd', data)
+    .then((res) => {
+      resolve(res.data);
+    })
+  })
+
+}

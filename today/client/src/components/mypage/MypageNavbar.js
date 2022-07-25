@@ -67,7 +67,7 @@ function MypageNavbar() {
           <MypageNavLink 
           style={{ textDecoration: 'none' }}
           className={ MypageNavbarCSS.tab } 
-          to="/members/pwd">
+          to="/mypage/pwd">
             비밀번호 변경
           </MypageNavLink>
       </div>

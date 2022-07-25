@@ -74,7 +74,14 @@ exports.resetPassword = () => {
        SET MEMBER_PWD = ?
      WHERE MEMBER_ID = ?
   `
-  
+}
+
+exports.updatePasswordByMemberNo = () => {
+  return `
+    UPDATE tbl_member
+       SET MEMBER_PWD = ?
+     WHERE MEMBER_NO = ?
+  `
 }
 
 exports.selectChallengeByMemberNo = () => {
@@ -172,5 +179,14 @@ exports.selectChallengesByMemberNo = () => {
       WHERE A.CHALLENGE_STATUS_NO IN (1, 2)
         AND C.FILE_TYPE_NO = 2
         AND E.MEMBER_NO = ?
+  `
+}
+
+exports.selectPassword = () => {
+  return `
+  SELECT
+         MEMBER_PWD
+    FROM tbl_member
+   WHERE MEMBER_NO = ?
   `
 }

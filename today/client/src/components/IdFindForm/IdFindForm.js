@@ -64,6 +64,8 @@ function IdFindForm() {
       {/* <Link to={`/sign/result/${resultNo.resultNo}`}> */}
         <button onClick={ onClickHandler } className={IdFindFormCSS.idFindBtn}>확인</button>
       {/* </Link> */}
+      <br></br>
+      <button onClick={ () => {navigate('/sign/login')} } className={IdFindFormCSS.idFindBtn}>뒤로가기</button>
     </div>
   );
 };

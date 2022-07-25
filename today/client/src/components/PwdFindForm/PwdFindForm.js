@@ -71,6 +71,8 @@ function PwdFindForm() {
         </pre>
         <input onChange={ onChangeHandler } name="id" type="text" value={user.id} className={PwdFindFormCSS.pwdFindEmailInput} placeholder='이메일 입력'/><br/>
         <button onClick={ onClickHandler } className={PwdFindFormCSS.pwdFindBtn}>확인</button>
+        <br></br>
+        <button onClick={ () => {navigate('/sign/login')} } className={PwdFindFormCSS.pwdFindBtn}>뒤로가기</button>
       </div>
     </>
   );

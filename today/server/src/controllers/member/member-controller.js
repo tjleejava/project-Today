@@ -254,3 +254,19 @@ exports.findChallenges = async (req, res, next) => {
       response: result
     })
 }
+
+exports.findPassword = async (req, res) => {
+
+  console.log(req.body);
+  const result = await MemberService.findPassword(req.body);
+  res.send(result);
+}
+
+exports.modifyPassword = async (req, res) => {
+  console.log(req.body);
+  const result = await MemberService.modifyPasswordByMemberNo(req.body);
+  console.log('controller')
+  console.log(result);
+  res.send(result);
+
+}

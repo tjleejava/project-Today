@@ -166,3 +166,28 @@ exports.selectChallengesByMemberNo = (connection, memberNo) => {
 
   }
 
+exports.selectPassword = (connection, data) => {
+
+  return new Promise((resolve, reject) => {
+    connection.query(memberQuery.selectPassword(), [data.memberNo], (err, result) => {
+      if(err) {
+        reject(err);
+      }
+      console.log(result[0]);
+      resolve(result[0]);
+    })
+  })
+}
+
+exports.updatePasswordByMemberNo = (connection, data) => {
+  return new Promise((resolve, reject) => {
+    connection.query(memberQuery.updatePasswordByMemberNo(), [data.hashPwd, data.memberNo], (err, results, fields) => {
+      if (err) {
+        reject(err);
+      }
+
+      resolve(results);
+    });
+  })
+}
+

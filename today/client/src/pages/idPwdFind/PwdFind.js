@@ -4,10 +4,10 @@ import PwdFindForm from '../../components/pwdFindForm/PwdFindForm';
 function PwdFind() {
 
   return(
-    <>
+    <div style={{height: "63vh"}}>
       <IdPwdNavbar/>
       <PwdFindForm/>
-    </>
+    </div>
   );
 };
 

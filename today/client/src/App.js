@@ -37,6 +37,8 @@ import ChallengeInquiry from './pages/challenge/challengeInquiry/ChallengeInquir
 import InquiryRegistForm from './pages/challenge/challengeInquiry/InquiryRegistForm';
 import ChallengeInquiryDetail from './pages/challenge/challengeInquiry/ChallengeInquiryDetail';
 import ChallengeInquiryModify from './pages/challenge/challengeInquiry/ChallengeInquiryModify';
+import ConfirmPwd from './pages/mypage/change-pwd/ConfirmPwd';
+import PwdModify from './pages/mypage/change-pwd/PwdModify';
 
 
 function App() {
@@ -74,6 +76,7 @@ function App() {
               <Route path="regist" element={ <RegistQna/>}/>
               <Route path=":inquiryNo" element={ <UserQnaDetail/>}/>
             </Route>
+            <Route path="pwd" element={ <ConfirmPwd/> }/>
             <Route path="penalty" element={<PenaltyHistory/>}></Route>
           </Route>
         </Route>
@@ -100,6 +103,7 @@ function App() {
           <Route path="id" element={<IdFind/>}/>
           <Route path="result/:resultNo" element={<IdFindResult/>}/>
           <Route path="pwd" element={<PwdFind/>}/>
+          <Route path="pwd/modify" element={<PwdModify/>}/>
         </Route>
         
       </Routes>

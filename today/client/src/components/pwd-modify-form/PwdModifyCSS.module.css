@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto:wght@300&display=swap');
-
 .container {
-  height: 58vh;
   margin-top: 10vh;
   display: grid;
   justify-content: center;
@@ -11,7 +9,7 @@
 }
 
 .header {
-  width: 30vw;
+  width: 35vw;
   height: 4vh;
   background-color: #E2DDD3;
   color: #844F15;
@@ -35,13 +33,19 @@
 .idInput {
   display: grid;
   margin-top: 50px;
-  grid-template-columns: 20% 50%;
+  grid-template-columns: 20% 40% 10% 10%;
 }
 
-.pwdInput {
+.pwdInput, .repwdInput {
   margin-top: 30px;
   display: grid;
   grid-template-columns: 20% 50%;
+}
+
+.nicknameInput, .authInput {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 20% 40% 10%;
 }
 
 .idInput > input {
@@ -50,6 +54,24 @@
 }
 
 .idInput > label {
+  margin-left: 20px;
+}
+
+.authInput > input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+.authInput > label {
+  margin-left: 20px;
+}
+
+.nicknameInput > input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+.nicknameInput > label {
   margin-left: 20px;
 }
 
@@ -62,14 +84,23 @@
   margin-left: 20px;
 }
 
-.loginBtnArea {
+.repwdInput > input {
+  width: 300px;
+  margin-left: 30px;
+}
+
+.repwdInput > label {
+  margin-left: 20px;
+}
+
+.signUpBtnArea {
   display: flex;
   justify-content: flex-end;
-  margin-top: 30px;
+  margin-top: 70px;
   margin-right: 20px;
 }
 
-.loginBtn {
+.signUpBtn, .duplicateBtn, .backBtn {
   background-color: #C2A894;
   border: none;
   border-radius: 3px;
@@ -77,43 +108,47 @@
   padding-right: 10px;
   color: white;
   font-size: 16px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
-.signUpArea {
+.emailAuthBtn {
+  background-color: #C2A894;
+  border: none;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+.authBtn {
+  background-color: #C2A894;
+  border: none;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.sign-up {
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
   margin-right: 20px;
 }
 
-.signUpBtn, .findIdBtn {
-
+/* .signUpBtnArea > button {
   background-color: white;
   border: none;
   cursor: pointer;
   font-size: 16px;
   font-family: 'Noto Sans KR', sans-serif !important;
   font-family: 'Roboto', sans-serif !important;
-}
-
-.homeBtnBox {
-  height: 10vh;
-  display: flex;
-  justify-content: center;
-}
-
-.homeBtn {
-  width: 10vw;
-  background-color: #E2DDD3;
-  border: none;
-  border-radius: 3px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: black;
-  font-size: 16px;
-  cursor: pointer;
-  margin: auto;
-}
+} */

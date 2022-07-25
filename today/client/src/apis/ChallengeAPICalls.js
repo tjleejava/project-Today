@@ -158,3 +158,13 @@ export async function modifyChallengeInquiryAPI(title, content, challengeNo, inq
         })
     })
 }
+
+export async function removeInquiryAPI(challengeNo, inquiryNo) {
+    const CHALLENGE_INQUIRY_DELETE_URL = 'http://localhost:8888/challenges/' + challengeNo + '/inquiries/' + inquiryNo;
+    return new Promise((resolve, reject) => {
+        axios.delete(CHALLENGE_INQUIRY_DELETE_URL,{params : {chalengeInquiryNo: inquiryNo}})
+        .then((res) => {
+            resolve(res.data);
+        })
+    })
+}

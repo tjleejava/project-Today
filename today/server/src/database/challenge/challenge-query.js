@@ -528,3 +528,11 @@ exports.updateChallengeInquiry = () => {
      WHERE CHALLENGE_INQUIRY_NO = ?
   `
 }
+
+exports.deleteChallengeInquiry = () => {
+  return `
+    UPDATE tbl_challenge_inquiry
+       SET DEL_YN = 'Y'
+     WHERE CHALLENGE_INQUIRY_NO = ? 
+  `
+}

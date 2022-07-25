@@ -16,4 +16,5 @@ router.post('/:challengeNo', ChallengeController.participateChallenge);
 router.post('/:challengeNo/inquiries', ChallengeController.registInquiry);
 router.get('/:challengeNo/inquiries', ChallengeController.findChallengeInquiries);
 router.put('/:challengeNo/inquiries/:inquiryNo', ChallengeController.modifyChallengeInquiry);
+router.delete('/:challengeNo/inquiries/:inquiryNo', ChallengeController.deleteChallengeInquiry);
 module.exports = router;

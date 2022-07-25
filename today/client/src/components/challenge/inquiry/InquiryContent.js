@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {Cookies} from 'react-cookie'
 import jwt_decode from "jwt-decode";
+import { removeInquiryAPI } from '../../../apis/ChallengeAPICalls';
 
 function InquiryContent() {
 
@@ -23,9 +24,19 @@ function InquiryContent() {
   const challengeNo = params.challengeNo;
   const inquiryNo = params.inquiryNo;
   const modifyURL = '/challenges/' + challengeNo + '/inquiry/' + inquiryNo +'/modify';
+  const inquiryListURL = '/challenges/' + challengeNo + '/inquiry/';
 
   const modifyContent = () => {
     navigate(modifyURL, {state: state});
+  }
+
+  const deleteInquiry = () => {
+    removeInquiryAPI(challengeNo, inquiryNo)
+    .then((res) => {
+      console.log(res);
+      alert('문의가 삭제되었습니다.')
+      navigate(inquiryListURL);
+    })
   }
 
   return(
@@ -47,7 +58,7 @@ function InquiryContent() {
       <div className={InquiryDetailCSS.btnArea}>
         <button onClick={() => {navigate(-1)} }className={InquiryDetailCSS.btn}>뒤로가기</button>
         {(memberNo == state.memberNo)?<button onClick={modifyContent} className={InquiryDetailCSS.btn}>수정</button>: null}
-        {(memberNo == state.memberNo)?<button className={InquiryDetailCSS.deleteBtn}>삭제</button>: null}
+        {(memberNo == state.memberNo)?<button onClick={deleteInquiry} className={InquiryDetailCSS.deleteBtn}>삭제</button>: null}
       </div>
     </div>
   )

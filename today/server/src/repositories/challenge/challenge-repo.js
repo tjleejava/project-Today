@@ -579,3 +579,16 @@ exports.updateChallengeInquiry = (connection, data) => {
     })
   })
 }
+
+exports.deleteChallengeInquiry = (connection, inquiryNo) => {
+
+  return new Promise((resolve, reject) => {
+    connection.query(challengeQuery.deleteChallengeInquiry(), [inquiryNo], (err, result) => {
+      if(err) {
+        reject(err);
+      }
+      console.log(result);
+      resolve(result);
+    })
+  })
+} 

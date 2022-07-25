@@ -149,3 +149,13 @@ exports.modifyChallengeInquiry = async (req, res) => {
         res.send(result);
     }
 }
+
+exports.deleteChallengeInquiry = async(req, res) => {
+    const inquiryNo = req.query.chalengeInquiryNo;
+    const result = await ChallengeService.deleteChallengeInquiry(inquiryNo);
+    if(result.status == 200) {
+        res.send(result);
+    } else {
+        res.send(result);
+    }
+}

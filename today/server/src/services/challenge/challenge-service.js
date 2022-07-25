@@ -338,3 +338,27 @@ exports.modifyChallengeInquiry = (data) => {
         }
     })
 }
+
+exports.deleteChallengeInquiry = (inquiryNo) => {
+
+    return new Promise(async(resolve, reject) => {
+        const connection = getConnection();
+        const deleteResult = await ChallengeRepo.deleteChallengeInquiry(connection, inquiryNo);
+        console.log(deleteResult);
+        if(deleteResult.changedRows > 0)  {
+            const data = {
+                status: HttpStatus.OK,
+                message: '삭제 성공',
+                result: deleteResult
+            }
+            resolve(data);
+        } else {
+            const data = {
+                status: HttpStatus.CONFLICT,
+                message: '삭제 실패',
+                result: deleteResult
+            }
+            resolve(data);
+        }
+    })
+}

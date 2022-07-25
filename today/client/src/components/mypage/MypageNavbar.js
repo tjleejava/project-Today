@@ -71,14 +71,14 @@ function MypageNavbar() {
             비밀번호 변경
           </MypageNavLink>
       </div>
-      <div className={ MypageNavbarCSS.tabArea }>
+      {/* <div className={ MypageNavbarCSS.tabArea }>
           <MypageNavLink 
           style={{ textDecoration: 'none' }}
           className={ MypageNavbarCSS.tab } 
           to="/members/quitaccount">
             계정탈퇴
           </MypageNavLink>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -12,6 +12,8 @@ import reportExamineReducer from './ReportExamineModule';
 import mainpageReducer from './MainpageModule';
 import mypageReducer from './MypageModule';
 import alarmReducer from './AlarmModule';
+import participationModule from './ParticipationModule';
+import challengeAuthReducer from './ChallengeAuthModule';
 
 const rootReducer = combineReducers({
     menuReducer,
@@ -26,7 +28,9 @@ const rootReducer = combineReducers({
     reportExamineReducer,
     mainpageReducer,
     mypageReducer,
-    alarmReducer
+    alarmReducer,
+    participationModule,
+    challengeAuthReducer
 });
 
 export default rootReducer;

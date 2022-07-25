@@ -466,3 +466,14 @@ exports.selectParticipationByMemberNoAndChallengeNo = () => {
        LIMIT 0,1
   `;
 };
+
+exports.selectParticipationByChallengeNo = () => {
+
+  return `
+      SELECT
+             A.NICKNAME
+        FROM TBL_MEMBER A
+        JOIN TBL_PARTICIPATION B ON (A.MEMBER_NO = B.MEMBER_NO)
+       WHERE B.CHALLENGE_NO = ?
+  `;
+}

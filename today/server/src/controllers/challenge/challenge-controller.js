@@ -120,3 +120,21 @@ exports.secessionChallenge = async (req, res, next) => {
 
     res.send(result);
 };
+
+exports.getParticipation = async (req, res, next) => {
+
+    const challengeNo = req.params.challengeNo;
+
+    const result = await ChallengeService.getParticipation(challengeNo);
+
+    res.send(result);
+}
+
+exports.getChallengeAuth = async (req, res, next) => {
+
+    const challengeNo = req.params.challengeNo;
+
+    const result = await ChallengeService.getChallengeAuth(challengeNo);
+
+    res.send(result);
+}

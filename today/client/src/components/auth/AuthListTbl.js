@@ -109,29 +109,7 @@ export default function AuthListTbl() {
                     />
             </PaginationBox>
             
-            <Modal isOpen={ modalIsOpen } onRequestClose={ () => setModalIsOpen(false) }>
-                {/* 비동기로 인증 상세 데이터 불러와서 표시 */}
-                <h2 className={ AuthListTblCSS.modalTitle }>
-                    <span>{ moment(new Date()).format("YYYY-MM-DD") }&nbsp;&nbsp;</span>
-                    <span>홍부장</span>
-                </h2>
-                <hr/>
-                <div>
-                    <div className={ AuthListTblCSS.modalContent }>
-                        <img src={'/images/challenge/auth1.png'} width="500rem" />
-                        <div>
-                            <input className={ AuthListTblCSS.authorInput } type="text" value={`홍부장 님 인증`} readOnly/>
-                            <br/>
-                            <textarea className={ AuthListTblCSS.textArea } type="text" value={`오늘도 나는 테니스공을 친다...`} readOnly/>
-                        </div>
-                    </div>
-                    <div className={ AuthListTblCSS.modalBtnArea }>
-                        <button className={ AuthListTblCSS.acceptBtn }>승인</button>
-                        <button className={ AuthListTblCSS.refuseBtn }>거절</button>
-                    </div>
-                    <button className={ AuthListTblCSS.backBtn } onClick={ () => setModalIsOpen(false) }>뒤로가기</button>
-                </div>
-            </Modal>
+            
         </div>
     );
 }

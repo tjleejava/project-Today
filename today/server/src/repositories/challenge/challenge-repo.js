@@ -4,7 +4,7 @@ const AuthDayDTO = require('../../dto/challenge/challenge-auth-freq-dto');
 const ChallengeDTO = require('../../dto/challenge/challenge-dto');
 const AttachmentDTO = require('../../dto/challenge/challenge-attachment-dto');
 const ChallengeListDTO = require('../../dto/challenge/ranking-dto');
-const ParticipationDTO = require('../../dto/report/participation-dto');
+const ParticipationDTO = require('../../dto/participation/participation-dto');
 
 exports.selectAttachmentByChallengeNo = (connection, challengeNo) => {
 
@@ -509,3 +509,21 @@ exports.selectParticipationByMemberNoAndChallengeNo = (connection, {challengeNo,
     });
   });
 };  
+
+exports.selectParticipationByChallengeNo = (connection, {challengeNo}) => {
+
+  return new Promise((resolve, reject) => {
+    connection.query(challengeQuery.selectParticipationByChallengeNo(), [challengeNo], (err, result, fields) => {
+      if(err) {
+        reject(err);
+      }
+
+      const participations = [];
+      for(let participation of results) {
+        participations.push(new ParticipationDTO(participation));
+      }
+
+      resolve(participations);
+    });
+  });
+}

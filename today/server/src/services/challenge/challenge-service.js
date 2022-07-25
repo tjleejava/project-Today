@@ -275,3 +275,30 @@ exports.secessionChallenge = (secessionInfo) => {
         resolve({});
     });
 };
+
+exports.getParticipation = (challengeNo) => {
+
+    return new Promise( async (resolve, reject) => {
+        
+        const connection = getConnection();
+
+        const participations = await ChallengeRepo.selectParticipationByMemberNoAndChallengeNo(connection, challengeNo);
+
+        connection.end();
+
+        resolve({});
+    });
+}
+
+exports.getChallengeAuth = (challengeNo) => {
+
+    return new Promise( async (resolve, reject) => {
+        
+        const connection = getConnection();
+        const auths = await ChallengeRepo.selectChallengeAuth(connection, challengeNo);
+
+        connection.end();
+
+        resolve({});
+    });
+}

@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import { useParams } from 'react-router-dom';
 import { participatingChallengeAPI, secessionChallengeAPI } from '../../../apis/ChallengeAPICalls'
 import { getDateAndTime } from '../../../util/getTime';
+import AuthModal from './AuthModal';
 
 function UserSide({setReportModalState, isAlreadyReported}) {
 
@@ -30,6 +31,11 @@ function UserSide({setReportModalState, isAlreadyReported}) {
     alert('챌린지를 탈퇴했습니다');
     window.location.reload();
   };
+
+  const openChallengeAuthModalHandler = () => {
+
+    return <AuthModal/>;
+  };
   
   const onClickHandler = async() => {
 
@@ -53,7 +59,7 @@ function UserSide({setReportModalState, isAlreadyReported}) {
       </div>
       { isPartIn?
       <div className={ UserSideCSS.content }>
-          <button className={ UserSideCSS.authBtn }>챌린지 인증</button><br/><br/>
+          <button onClick={ openChallengeAuthModalHandler } className={ UserSideCSS.authBtn }>챌린지 인증</button><br/><br/>
           <button onClick={ challengeSecessionHandler } className={ UserSideCSS.authBtn }>챌린지 탈퇴</button>
       </div>
       :

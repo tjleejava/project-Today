@@ -11,13 +11,15 @@ import axios from 'axios';
 import ChallengeInfo from './detail/ChallengeInfo';
 import Participation from './detail/Participation';
 
-export default function ChallengeContent({challengeInfo, authDayInfo, attachmentInfo, presentTab, challengeNo}) {
+export default function ChallengeContent({challengeInfo, authDayInfo, attachmentInfo, presentTab}) {
 
     const dispatch = useDispatch();
     
     const [value, setValue] = useState(new Date());
     const [status, setStatus] = useState(false);
+    const { challengeNo } = useParams();
 
+    // console.log('>>>>>>>>>>>> from ChallengeContent : ', challengeNo);
 
     const onClickHandler = (tabNo) => {
         dispatch({type: CHANGE_CHALLENGE_DETAIL_PRESENTTAB, payload:tabNo});

@@ -13,4 +13,6 @@ router.put('/secession', ChallengeController.secessionChallenge);
 router.get('/category/:categoryNo', ChallengeController.findByCategoryNo);
 router.get('/:challengeNo', ChallengeController.findChallengeByNo);
 router.post('/:challengeNo', ChallengeController.participateChallenge);
+router.get('/:challengeNo/participations', ChallengeController.getParticipation);
+router.get('/:challengeNo/auth', ChallengeController.getChallengeAuth);
 module.exports = router;

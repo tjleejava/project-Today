@@ -12,7 +12,7 @@ function HotChallengeList({ranking}) {
     <div className={ HotChallengeListCSS.rankarea } onClick={ onClickHandler}>
       <div className={ HotChallengeListCSS.rankbox }>
         <div>
-          <img src={ 'http://127.0.0.1:8888' + savedPath + '/'+ savedName + '.png' } className={ HotChallengeListCSS.imgarea }/>
+          <img src={ 'http://3.38.13.222:8888' + savedPath + '/'+ savedName + '.png' } className={ HotChallengeListCSS.imgarea }/>
         </div>
         <div className={ HotChallengeListCSS.contentarea}>
           <label className={HotChallengeListCSS.title}>{challengeTitle}</label><br/><br/>

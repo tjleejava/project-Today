@@ -5,7 +5,7 @@ import { POST_CHALLENGE, SET_FILE_INFO } from "../modules/ChallengeRegistModule"
 
 export function callGetChallengeInfoAPI(challengeNo) {
     
-    let FIND_CHALLENGE_INFO_URL = 'http://127.0.0.1:8888/challenges/' + challengeNo;
+    let FIND_CHALLENGE_INFO_URL = 'http://3.38.13.222:8888/challenges/' + challengeNo;
 
     
     return async function getChallenge(dispatch, getState) {
@@ -20,7 +20,7 @@ export function callGetChallengeInfoAPI(challengeNo) {
 
 export function checkChallengeAuthByMemberNoAPI(authInfo) {
 
-    let CHECK_AUTH_URL = 'http://127.0.0.1:8888/challenges/checkAuth';
+    let CHECK_AUTH_URL = 'http://3.38.13.222:8888/challenges/checkAuth';
 
     return async function checkAuth(dispatch, getState) {
         const result = await axios.get(CHECK_AUTH_URL, { params: {authInfo: authInfo}}).catch(err => console.log(err));
@@ -30,7 +30,7 @@ export function checkChallengeAuthByMemberNoAPI(authInfo) {
 };
 
 export function getChallengeList(pageInfo) {
-    const GET_CHALLENGE_LIST_URL = 'http://127.0.0.1:8888/challenges';
+    const GET_CHALLENGE_LIST_URL = 'http://3.38.13.222:8888/challenges';
 
     return async function getChallengeListByCategory(dispatch, getState) {
         const results = await axios.get(GET_CHALLENGE_LIST_URL, {params : { pageInfo: pageInfo}})
@@ -41,7 +41,7 @@ export function getChallengeList(pageInfo) {
 }
 
 export function registChallengeAPI(registInfo) {
-    const POST_CHALLENGE_URL = 'http://127.0.0.1:8888/challenges';
+    const POST_CHALLENGE_URL = 'http://3.38.13.222:8888/challenges';
 
     return async function registChallenge(dispatch, getState) {
 
@@ -54,7 +54,7 @@ export function registChallengeAPI(registInfo) {
 
 export async function registChallengeImagesAPI({inputFile}) {
 
-    const POST_CHALLENGE_IMAGE_URL = 'http://127.0.0.1:8888/challenges/upload';
+    const POST_CHALLENGE_IMAGE_URL = 'http://3.38.13.222:8888/challenges/upload';
 
     const result = await axios.post(POST_CHALLENGE_IMAGE_URL, inputFile).catch(err => console.log(err));
     
@@ -70,7 +70,7 @@ export async function participatingChallengeAPI(memberNo, challengeNo) {
 
     return new Promise(async(resolve, reject) => {
         console.log('challengeAPI 호출');
-        const url = 'http://127.0.0.1:8888/challenges/' + challengeNo ;
+        const url = 'http://3.38.13.222:8888/challenges/' + challengeNo ;
 
         const result = await axios.post(url, data);
         console.log(result);
@@ -79,7 +79,7 @@ export async function participatingChallengeAPI(memberNo, challengeNo) {
 };
 
 export async function removeChallengeAPI(challengeNo) {
-    const DELETE_CHALLENGE_URL = 'http://127.0.0.1:8888/challenges';
+    const DELETE_CHALLENGE_URL = 'http://3.38.13.222:8888/challenges';
     
     const result = await axios.delete(DELETE_CHALLENGE_URL, {params : {removeInfo: challengeNo}}).catch(err => console.log(err));
 
@@ -87,7 +87,7 @@ export async function removeChallengeAPI(challengeNo) {
 };
 
 export async function modifyChallengeAPI(modifyInfo) {
-    const MODIFY_CHALLENGE_URL = 'http://127.0.0.1:8888/challenges';
+    const MODIFY_CHALLENGE_URL = 'http://3.38.13.222:8888/challenges';
 
     const result = await axios.put(MODIFY_CHALLENGE_URL, modifyInfo)
                             .catch(err => console.log(err));
@@ -96,7 +96,7 @@ export async function modifyChallengeAPI(modifyInfo) {
 };
 
 export async function secessionChallengeAPI(secessionInfo) {
-    const CHALLENGE_SECESSION_URL = 'http://127.0.0.1:8888/challenges/secession';
+    const CHALLENGE_SECESSION_URL = 'http://3.38.13.222:8888/challenges/secession';
 
     const result = await axios.put(CHALLENGE_SECESSION_URL, secessionInfo).catch(err => console.log(err));
 

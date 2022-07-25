@@ -2,12 +2,12 @@ version: "3"
 
 services:
   webapp:
-    image: h99www/today-react-server
+    image: h99www/react
     ports:
       - "80:80"
     depends_on:
       - app
   app:
-    image: h99www/today-express-server
+    image: h99www/express
     ports:
       - "8888:8888"

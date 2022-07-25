@@ -28,7 +28,7 @@ function ModifyAttachments({index, inputFile,  pathInfo, title, modifyFile}) {
             ?<img src={ modifyFile[index - 1].path } className={ ModifyAttachmentsCSS.imgarea }/>
             : 
               pathInfo && pathInfo.hasOwnProperty('savedPath') 
-                ? <img src={ 'http://127.0.0.1:8888' + pathInfo.savedPath + '/'+ pathInfo.savedName + '.png' } className={ ModifyAttachmentsCSS.imgarea }/>
+                ? <img src={ 'http://3.38.13.222:8888' + pathInfo.savedPath + '/'+ pathInfo.savedName + '.png' } className={ ModifyAttachmentsCSS.imgarea }/>
                 : null
         }
           <br/>

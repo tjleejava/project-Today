@@ -11,7 +11,7 @@ function MainChallengeList({challenge}) {
   };
   return (
     <div className={ MainChallengeListCSS.challengebox } onClick={onClickHandler}>
-      <img src={ 'http://127.0.0.1:8888' + savedPath + '/'+ savedName + '.png' } className={ MainChallengeListCSS.imgbox}/>
+      <img src={ 'http://3.38.13.222:8888' + savedPath + '/'+ savedName + '.png' } className={ MainChallengeListCSS.imgbox}/>
       <div className={ MainChallengeListCSS.titlebox }>
         <label>{challengeTitle}</label>
       </div>

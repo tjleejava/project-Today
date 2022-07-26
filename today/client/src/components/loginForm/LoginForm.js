@@ -30,8 +30,8 @@ function LoginForm() {
       if(generatedToken != undefined && generatedToken != null) {
         setCookie('token', generatedToken, {
           path:"/",
-            secure:true,
-            sameSite:'none',
+            // secure:true,
+            // sameSite:'none',
         })
         navigate('/');
       } else {

@@ -3,7 +3,7 @@ import { GET_RANKINGS, GET_CHALLENGE_LIST_BY_CATEGORY } from '../modules/Mainpag
 
 export function getRankingsAPI() {
 
-  const GET_RANKINGS_URL = 'http://localhost:8888/challenges/rankings';
+  const GET_RANKINGS_URL = 'http://3.39.29.186:8888/challenges/rankings';
 
   return async function getRankings(dispatch, getState) {
 
@@ -15,7 +15,7 @@ export function getRankingsAPI() {
 
 export function getMainLayoutChallengeListAPI(categoryNo) {
 
-  const GET_CHALLENGE_LIST_BY_CATEGORY_URL = 'http://localhost:8888/challenges/category/' + categoryNo;
+  const GET_CHALLENGE_LIST_BY_CATEGORY_URL = 'http://3.39.29.186:8888/challenges/category/' + categoryNo;
 
   return async function getChallengeListByCategory(dispatch, getState) {
 

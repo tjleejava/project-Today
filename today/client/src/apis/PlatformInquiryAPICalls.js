@@ -2,7 +2,7 @@ import { PUT_REPLY, POST_INQUIRY,GET_INQUIRIES, GET_INQUIRY,GET_INQUIRIES_ADMIN 
 import axios from 'axios';
 
 export function callPostInquiryAPI(registInfo) {
-    let REGIST_INQUIRY_URL = 'http://localhost:8888/inquiries';
+    let REGIST_INQUIRY_URL = 'http://3.39.29.186:8888/inquiries';
 
     return async function postInquiry(dispatch, getState) {
       
@@ -15,7 +15,7 @@ export function callPostInquiryAPI(registInfo) {
 
 export function callGetInquiriesAPI({memberNo, pageInfo}) {
 
-  let GET_INQUIRIES_API_URL = 'http://localhost:8888/inquiries';
+  let GET_INQUIRIES_API_URL = 'http://3.39.29.186:8888/inquiries';
 
   return async function getInquiries(dispatch, getState) {
 
@@ -30,7 +30,7 @@ export function callGetInquiriesAPI({memberNo, pageInfo}) {
 
 export function callGetInquiryAPI(inquiryNo) {
 
-  let GET_INQUIRY_API_URL = `http://localhost:8888/inquiries/${inquiryNo}`;
+  let GET_INQUIRY_API_URL = `http://3.39.29.186:8888/inquiries/${inquiryNo}`;
 
   return async function getInquiry(dispatch, getState) {
     const result = await axios.get(GET_INQUIRY_API_URL)
@@ -41,7 +41,7 @@ export function callGetInquiryAPI(inquiryNo) {
 
 export function callAdminGetInquiriesAPI(pageInfo) {
 
-  let GET_INQUIRIES_API_URL = 'http://localhost:8888/inquiries/all';
+  let GET_INQUIRIES_API_URL = 'http://3.39.29.186:8888/inquiries/all';
   return async function getInquiries(dispatch, getState) {
     const result = await axios.get(GET_INQUIRIES_API_URL, { params: { pageInfo: pageInfo}})
     .catch(err => console.log(err));
@@ -50,7 +50,7 @@ export function callAdminGetInquiriesAPI(pageInfo) {
 };
 
 export function callPutReplyAPI(reply) {
-  let PUT_REPLY_API_URL = 'http://localhost:8888/inquiries/reply';
+  let PUT_REPLY_API_URL = 'http://3.39.29.186:8888/inquiries/reply';
   
   return async function putReply(dispatch, getState) {
     console.log(reply);
@@ -64,7 +64,7 @@ export function callPutReplyAPI(reply) {
 
 export function callPostReplyAPI(inquiryInfo) {
 
-  let POST_REPLY_API_URL = 'http://localhost:8888/inquiries/reply';
+  let POST_REPLY_API_URL = 'http://3.39.29.186:8888/inquiries/reply';
 
   return async function postReply(dispatch, getState) {
 

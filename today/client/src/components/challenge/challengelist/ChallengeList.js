@@ -12,7 +12,7 @@ function ChallengeList({challenge}) {
 
   return (
     <div className={ChallengeListCSS.challengeContainer} onClick={ onClickHandler }>
-      <img src={ 'http://localhost:8888' + savedPath + '/'+ savedName + '.png'} width="300px" height="180px"/>
+      <img src={ 'http://3.39.29.186:8888' + savedPath + '/'+ savedName + '.png'} width="300px" height="180px"/>
       <div className={ChallengeListCSS.challengeTitleArea}> 
         <div className={ChallengeListCSS.challengeStatus}>
           {statusName}

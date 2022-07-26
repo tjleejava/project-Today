@@ -3,7 +3,7 @@ import { DELETE_INVITE, GET_INVITES, GET_USER_EMAIL, POST_INVITE } from '../modu
 
 export function checkUserEmailAPI(email) {
 
-  const GET_USER_EMAIL_URL = 'http://localhost:8888/members/checkEmail';
+  const GET_USER_EMAIL_URL = 'http://3.39.29.186:8888/members/checkEmail';
 
   return async function checkUserEmail(dispatch, getState) {
 
@@ -15,7 +15,7 @@ export function checkUserEmailAPI(email) {
 
 export async function postInviteAPI(inviteInfo) {
   
-  const POST_INVITE_URL = 'http://localhost:8888/invites';
+  const POST_INVITE_URL = 'http://3.39.29.186:8888/invites';
   
 
     const result = await axios.post(POST_INVITE_URL, inviteInfo).catch(err => console.log(err));
@@ -25,7 +25,7 @@ export async function postInviteAPI(inviteInfo) {
 
 export function getInvitesAPI(findInfo) {
 
-  const GET_INVITES_URL = 'http://localhost:8888/invites';
+  const GET_INVITES_URL = 'http://3.39.29.186:8888/invites';
 
   return async function getInvites(dispatch, getState) {
 
@@ -37,7 +37,7 @@ export function getInvitesAPI(findInfo) {
 
 export function deleteInviteAPI(inviteNo) {
 
-  const DELETE_INVITE_URL = 'http://localhost:8888/invites';
+  const DELETE_INVITE_URL = 'http://3.39.29.186:8888/invites';
 
   return async function deleteInvite(dispatch, getState) {
     const result = await axios.delete(DELETE_INVITE_URL, {params: {inviteNo: inviteNo}})

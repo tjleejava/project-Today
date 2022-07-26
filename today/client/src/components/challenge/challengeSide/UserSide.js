@@ -19,10 +19,10 @@ function UserSide({setReportModalState, isAlreadyReported}) {
   }
   const {challengeNo} = useParams();
 
-  useEffect(() => {
-    console.log(challengeNo);
+  // useEffect(() => {
+  //   console.log(challengeNo);
 
-  })
+  // })
 
   const challengeSecessionHandler = () => {
     

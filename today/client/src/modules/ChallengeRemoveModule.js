@@ -32,6 +32,7 @@ const challengeRemoveReducer = handleActions(
     },
     [SET_MODAL_STATUS]: (state, {payload}) => {
       state.isModalOpen = payload;
+      console.log(payload);
 
       return {...state};
     }

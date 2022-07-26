@@ -14,7 +14,7 @@ function AdminSide() {
     <div className={ AdminSideCSS.content }>
       {
         challengeInfo.challengeStatusNo < 3 ?
-        <button className={ AdminSideCSS.authBtn } onClick={ dispatch({type: SET_MODAL_STATUS, payload: !isModalOpen}) }>챌린지 삭제</button>:
+        <button className={ AdminSideCSS.authBtn } onClick={ () => dispatch({type: SET_MODAL_STATUS, payload: !isModalOpen}) }>챌린지 삭제</button>:
         null
       }
       <ChallengeRemoveModal removeCategory={ 5 }/>

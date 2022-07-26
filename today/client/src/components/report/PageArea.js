@@ -46,7 +46,7 @@ function PageArea() {
 
 const PaginationBox = styled.div`
   .pagination { display: flex; justify-content: center; margin-top: 15px;}
-  ul { list-style: none; padding: 0; }
+  ul { list-style: none; padding: 0;padding-bottom: 87px; }
   ul.pagination li {
     display: inline-block;
     width: 30px;

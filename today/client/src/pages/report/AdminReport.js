@@ -20,9 +20,9 @@ function AdminReport() {
       </div>
       <div className={AdminReportCSS.selectarea}>
         
-        <div onClick={ userReportOnClickHandler } className={AdminReportCSS.selectbox}>
+        {/* <div onClick={ userReportOnClickHandler } className={AdminReportCSS.selectbox}>
           <label>사용자 신고</label>
-        </div>
+        </div> */}
         <div onClick={ challengeReportOnClickHandler } className={AdminReportCSS.selectbox}>
           <label>챌린지 신고</label>
         </div>

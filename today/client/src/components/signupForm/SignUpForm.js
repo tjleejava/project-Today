@@ -138,37 +138,39 @@ function SignUpForm() {
   return (
     <>
       <div className={SignUpFormCSS.container}>
-        <div className={SignUpFormCSS.header}>회원가입</div>
-        <div className={SignUpFormCSS.content}>
-          <div id="emailInputArea" className={SignUpFormCSS.idInput}>
-            <label>이메일</label>
-            <input onChange={ onChangeHandler } id='email' name="id" type="text" value={id} placeholder='아이디 입력'/>
-            <button id="emailDuplicateBtn" onClick={ onClickDuplicate } className={SignUpFormCSS.duplicateBtn}>중복확인</button>
-            <button style={members.isDuplicate ? {display: 'none'} : {display:'inline-block'}} id="authenticationBtn" onClick={ sendEmail }  className={SignUpFormCSS.emailAuthBtn}>인증하기</button>
-          </div>
-          <div style={ members.isSendEmailSuccess ? {display: 'grid'} : {display:'none'}} id="authInputArea" className={SignUpFormCSS.authInput}>
-            <label>인증번호</label>
-            <input onChange={ onChangeHandler } name="inputAuthNum" type="number" value={inputAuthNum} placeholder='인증번호 입력'/>
-            <button id="authenticationBtn" onClick={ compareAuthNum }  className={SignUpFormCSS.authBtn}>인증하기</button>
-          </div>
-          <div className={SignUpFormCSS.nicknameInput}>
-            <label>닉네임</label>
-            <input onChange={ onChangeHandler } name="nickname" type="text" value={nickname} placeholder='닉네임 입력'/>
-            {/* <button className={SignUpFormCSS.duplicateBtn}>중복확인</button> */}
-          </div>
-          <div className={SignUpFormCSS.pwdInput}>
-            <label>비밀번호</label>
-            <input onChange={ onChangeHandler } name="password" type='password' value={password} placeholder='비밀번호 입력'/>
-          </div>
-          <div className={SignUpFormCSS.repwdInput}>
-            <label>비밀번호 확인</label>
-            <input onChange={ onChangeHandler } name="passwordConfirm" type='password' value={passwordConfirm} placeholder='비밀번호 확인 입력'/>
-          </div>
-          <div className={SignUpFormCSS.signUpBtnArea}>
-            <input id='registBtn' type="button" onClick={ onClickHandler } className={SignUpFormCSS.signUpBtn} disabled={members.isDisabled} value='회원가입'/>
-            <Link to="/sign/login">
-              <button className={SignUpFormCSS.backBtn}>뒤로가기</button>
-            </Link>
+        <div>
+          <div className={SignUpFormCSS.header}>회원가입</div>
+          <div className={SignUpFormCSS.content}>
+            <div id="emailInputArea" className={SignUpFormCSS.idInput}>
+              <label>이메일</label>
+              <input onChange={ onChangeHandler } id='email' name="id" type="text" value={id} placeholder='아이디 입력'/>
+              <button id="emailDuplicateBtn" onClick={ onClickDuplicate } className={SignUpFormCSS.duplicateBtn}>중복확인</button>
+              <button style={members.isDuplicate ? {display: 'none'} : {display:'inline-block'}} id="authenticationBtn" onClick={ sendEmail }  className={SignUpFormCSS.emailAuthBtn}>인증하기</button>
+            </div>
+            <div style={ members.isSendEmailSuccess ? {display: 'grid'} : {display:'none'}} id="authInputArea" className={SignUpFormCSS.authInput}>
+              <label>인증번호</label>
+              <input onChange={ onChangeHandler } name="inputAuthNum" type="number" value={inputAuthNum} placeholder='인증번호 입력'/>
+              <button id="authenticationBtn" onClick={ compareAuthNum }  className={SignUpFormCSS.authBtn}>인증하기</button>
+            </div>
+            <div className={SignUpFormCSS.nicknameInput}>
+              <label>닉네임</label>
+              <input onChange={ onChangeHandler } name="nickname" type="text" value={nickname} placeholder='닉네임 입력'/>
+              {/* <button className={SignUpFormCSS.duplicateBtn}>중복확인</button> */}
+            </div>
+            <div className={SignUpFormCSS.pwdInput}>
+              <label>비밀번호</label>
+              <input onChange={ onChangeHandler } name="password" type='password' value={password} placeholder='비밀번호 입력'/>
+            </div>
+            <div className={SignUpFormCSS.repwdInput}>
+              <label>비밀번호 확인</label>
+              <input onChange={ onChangeHandler } name="passwordConfirm" type='password' value={passwordConfirm} placeholder='비밀번호 확인 입력'/>
+            </div>
+            <div className={SignUpFormCSS.signUpBtnArea}>
+              <input id='registBtn' type="button" onClick={ onClickHandler } className={SignUpFormCSS.signUpBtn} disabled={members.isDisabled} value='회원가입'/>
+              <Link to="/sign/login">
+                <button className={SignUpFormCSS.backBtn}>뒤로가기</button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

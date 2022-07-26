@@ -4,6 +4,7 @@ import Header from '../components/commons/Header';
 import AdminHeader from '../components/commons/AdminHeader';
 import jwt_decode from "jwt-decode";
 import {Cookies} from 'react-cookie'
+import LayoutCSS from './LayoutCSS.module.css';
 
 
 function Layout() {
@@ -21,21 +22,21 @@ function Layout() {
     if(isAdmin) {
 
         return (
-            <div>
+            <div className={LayoutCSS.wrapper}>
                 <AdminHeader/>
                 <Outlet/>
-                <Footer/>
+                <Footer className={LayoutCSS.footer}/>
             </div>
         );
     } else {
 
         return (
             <div>
-                <div>
+                <div className={LayoutCSS.wrapper}>
                     <Header/>
                     <Outlet/>
+                    <Footer className={LayoutCSS.footer}/>
                 </div>
-                <Footer/>
             </div>
         );
     }

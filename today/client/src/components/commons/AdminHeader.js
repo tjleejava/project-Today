@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import AdminHeaderCSS from "./AdminHeader.module.css";
-import { setCookie, getCookie} from '../../cookies/cookie';
+import { setCookie, getCookie, removeCookie} from '../../cookies/cookie';
 import { logoutAPI } from '../../apis/MemberAPICalls';
 
 function Header() {
@@ -8,9 +8,10 @@ function Header() {
     const token = getCookie('token');
 
     const onClickHandler = async (e) => {
-        await logoutAPI(token);
-        // navigate('/');
-
+        removeCookie('token');
+        window.location.replace("/")
+        const token2 = getCookie('token');
+        console.log(token2)
 };
 
     return (

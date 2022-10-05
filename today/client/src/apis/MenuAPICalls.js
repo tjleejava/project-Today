@@ -2,7 +2,7 @@ import { GET_MENUS } from "../modules/MenuModule";
 
 export function callGetMenuAPI(url) {
 
-    const requestURL = url || 'http://3.39.29.186:8888/menus';
+    const requestURL = url || '/menus';
 
     return async function getMenus(dispatch, getState) {
         

@@ -1,29 +1,6 @@
 import axios from 'axios';
 import { POST_MEMBER, GET_EMAIL, CHECK_AUTH_NUMBER, CHECK_ID, RESET_PWD, RESET_PWD_ID_EXIST } from '../modules/MemberModule';
 
-export async function loginAPI(id, password) {
-
-  const data = {
-    id: id,
-    pwd: password
-  }
-  return await axios.post('http://3.39.29.186:8888/members/login', data)
-    
-    // .then(json => {
-    //   sessionStorage.setItem('accessToken', json.accessToken);
-    //   localStorage.setItem('accessToken', json.accessToken);
-    //   window.cookieStore.get('accessToken')
-    //   .then(obj => obj.value)
-    //   .then(token => console.log('cookieStore accessToken: ' + token));
-    // });
-}
-
-export function logoutAPI(data) {
-  console.log('오냐?');
-  console.log('api', data)
-  return axios.get('http://3.39.29.186:8888/logout', {params: {token: data}})
-}
-
 export function signUpDB(id, password, nickname) {
 
   const data = {
@@ -34,7 +11,7 @@ export function signUpDB(id, password, nickname) {
 
   console.log(data);
 
-  axios.post("http://3.39.29.186:8888/members", data)
+  axios.post("/members", data)
   .then((res) => {
     console.log(res.data.result);
   })
@@ -56,7 +33,7 @@ export function checkEmail(email) {
 
   return async function getDuplicateResult(dispatch, getState) {
 
-    axios.get("http://3.39.29.186:8888/members/idcheck", {params: {email: email}})
+    axios.get("/members/idcheck", {params: {email: email}})
     .then((res) => {
     console.log(res);
 
@@ -87,7 +64,7 @@ export function sendEmailAPI(email) {
 
   return async function checkAuthNumber(dispatch, getState) {
 
-    axios.get("http://3.39.29.186:8888/members/email", {params: {email: email}})
+    axios.get("/members/email", {params: {email: email}})
     .then((res) => {
       console.log(res);
       const authNumber = parseInt(res.data.response.number);
@@ -113,7 +90,7 @@ export function resetPwdAPI(email) {
       email: email
     }
 
-    axios.post('http://3.39.29.186:8888/members/reset-pwd', data)
+    axios.post('/members/reset-pwd', data)
     .then((result) => {
       console.log(`resetPwd api Result ${JSON.stringify(result)}`)
       const status = parseInt(result.status);
@@ -132,7 +109,7 @@ export function findId(id) {
 
   console.log(id);
   return async function checkId(dispatch, getState) {
-    axios.get('http://3.39.29.186:8888/members/idcheck', {params: {email: id}})
+    axios.get('/members/idcheck', {params: {email: id}})
     .then((res) => {
       console.log(res.data.results);
       const resultNo = res.data.results;
@@ -156,7 +133,7 @@ export function confirmPwdAPI(memberNo, pwd) {
     pwd: pwd
   }
   return new Promise((resolve, reject) => {
-    axios.post('http://3.39.29.186:8888/members/pwd', data)
+    axios.post('/members/pwd', data)
     .then((res) => {
       resolve(res.data);
     })
@@ -172,7 +149,7 @@ export function changePwdAPI(memberNo, pwd) {
   }
 
   return new Promise((resolve, reject) => {
-    axios.put('http://3.39.29.186:8888/members/pwd', data)
+    axios.put('/members/pwd', data)
     .then((res) => {
       resolve(res.data);
     })

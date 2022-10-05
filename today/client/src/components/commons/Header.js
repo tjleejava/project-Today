@@ -1,28 +1,50 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import HeaderCSS from "./Header.module.css";
-import { Cookies } from 'react-cookie';
+import  Cookies  from 'universal-cookie';
 import { setCookie, getCookie, removeCookie} from '../../cookies/cookie';
-import { logoutAPI } from '../../apis/MemberAPICalls';
 import AlarmHeader from './AlarmHeader';
+import { checkAPI, logoutAPI } from '../../apis/AuthAPICalls';
+import { useEffect, useState } from 'react'
 
 function Header() {
+  let user;
+  const [loginStatus, setLoginStatus] = useState(false);
+
+useEffect(() => {
+    async function loginCheck() {
+      await checkAPI()
+      .then((res) => {
+        console.log(res)
+        if(res.status == 200) {
+          setLoginStatus(true);
+          console.log(res.data.user);
+          user = res.data.user;
+        }
+      })
+    }
+    loginCheck();
+},[loginStatus])
 
     const navigate = useNavigate();
     const goMainHandler = () => {
-        navigate('/');
+      navigate('/');
     };
 
-    const cookies = new Cookies();
-
-	const token = getCookie('token');
-
-
     const onClickHandler = async (e) => {
-		// await logoutAPI(token);
-		removeCookie('token');
-        window.location.replace("/")
-        const token2 = getCookie('token');
-        console.log(token2)
+		await logoutAPI()
+    .then((res) => {
+      console.log(res);
+      if(res.status == 204) {
+        console.log('동작')
+        setLoginStatus(false);
+        navigate('/');
+      }
+    })
+    
+		// removeCookie('token');
+    //     window.location.replace("/")
+    //     const token2 = getCookie('token');
+    //     console.log(token2)
 
     };  
     
@@ -31,7 +53,7 @@ function Header() {
             <div className={ HeaderCSS.area}>
                 <img onClick={ goMainHandler }src="/images/header/todaylogo.png" className={ HeaderCSS.logo }/>
                 <div className={ HeaderCSS.body}>
-                    {(getCookie('token') != undefined && getCookie('token')!= '')?
+                    {(loginStatus == true)?
                     <div>
                         <NavLink style={{ textDecoration: 'none' }} to="/mypage/following"><img src="/images/header/heart.png" className={ HeaderCSS.header } /></NavLink>
                         <NavLink style={{ textDecoration: 'none' }} to="/mypage/alarm"><AlarmHeader/></NavLink>

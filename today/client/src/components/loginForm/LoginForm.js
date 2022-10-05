@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import LoginFormCSS from'./LoginFormCSS.module.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { loginAPI } from '../../apis/MemberAPICalls';
+import { loginAPI } from '../../apis/AuthAPICalls';
 import { setCookie, getCookie} from '../../cookies/cookie';
 
 function LoginForm() {
@@ -26,20 +26,12 @@ function LoginForm() {
     await loginAPI(id, password)
     .then((res) => {
       console.log(res);
-      const generatedToken = res.data.token
-      if(generatedToken != undefined && generatedToken != null) {
-        setCookie('token', generatedToken, {
-          path:"/",
-            // secure:true,
-            // sameSite:'none',
-        })
+      if(res.status == 200) {
         navigate('/');
-      } else {
-        alert('이메일과 비밀번호를 확인해 주세요.')
       }
     })
     
-  };
+  }
 
   return (
     <>

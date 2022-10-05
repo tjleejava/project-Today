@@ -1,19 +1,21 @@
 import ProfileCSS from './Profile.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import jwt_decode from "jwt-decode";
 import { mypageInfoAPI } from '../../apis/MypageAPICalls'
 import {Cookies} from 'react-cookie'
 import { CHALLENGE_INFO } from '../../modules/MypageModule'
 import ChallengeTable from '../../components/challenge/challenge-table/ChallengeTable'
+import { checkAPI } from '../../apis/AuthAPICalls';
 
 function Profile() {
   const dispatch = useDispatch();
-  const cookies = new Cookies();
   const mypage = useSelector(state => state.mypageReducer);
   const {participatedChallenges} = mypage;
   const navigate = useNavigate();
+
+  const [loginStatus, setLoginStatus] = useState(false);
 
   console.log('11', participatedChallenges);
   let participatedChallengeList = 
@@ -21,34 +23,42 @@ function Profile() {
     <ChallengeTable key={challenge.challengeNo} challengeInfo={challenge}/>
     
   );
-
+  let user;
   useEffect(() => {
-    console.log(mypage)
-    const token = cookies.get('token');
-    console.log(token);
-    if(token) {
-      const decoded = jwt_decode(token);
-      console.log(decoded);
-      const memberNo = decoded.no;
-      console.log(memberNo);
-      mypageInfoAPI(memberNo)
-      .then((res) => {
-        console.log('프론트')
+    async function loginCheck() {
+      await checkAPI().then((res) => {
         console.log(res)
-        const challengeInfo = res.data.response;
-        console.log(challengeInfo)
-        const payload = {challengeInfo: challengeInfo, memberNo: memberNo}
-        dispatch({type: CHALLENGE_INFO, payload: payload});
-        console.log(mypage.participatedChallenges);
-        
-      });
+        if(res.status == 200) {
+          setLoginStatus(true);
+          console.log(res.data.user);
+          user = res.data.user;
+          console.log(loginStatus);
+        if(loginStatus == true) {
+          const memberNo = user.no;
+          console.log(memberNo);
+          mypageInfoAPI(memberNo)
+          .then((res) => {
+            console.log('프론트')
+            console.log(res)
+            const challengeInfo = res.data.response;
+            console.log(challengeInfo)
+            const payload = {challengeInfo: challengeInfo, memberNo: memberNo}
+            dispatch({type: CHALLENGE_INFO, payload: payload});
+            console.log(mypage.participatedChallenges);
+            
+          });
+        }
+        else {
+          alert('로그인 후 이용 가능합니다');
+          // navigate('/sign/login');
+        }
+        }
+      })
     }
-    else {
-      alert('로그인 후 이용 가능합니다');
-      navigate('/sign/login');
-    }
+    loginCheck();
     
-  },[]
+    
+  }
   );
 
   return (

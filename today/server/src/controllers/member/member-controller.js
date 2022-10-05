@@ -1,5 +1,4 @@
 require("dotenv").config();
-const axios = require('axios');
 const {smtpTransport} = require('../../config/email');
 const MemberService = require('../../services/member/member-service');
 const HttpStatus = require('http-status');
@@ -36,8 +35,11 @@ exports.login = async(req, res) => {
 
   await console.log('controller : ', response);
 
-  res.cookie('token', response, {})
-  console.log(res.cookie('token'))
+  res.cookie('access_token', response, {
+    maxAge: 1000 * 60 * 60 * 3,   //3시간
+    httpOnly: true,
+  });
+
   return res.status(200).json({
     code: 200,
     message: "토큰이 정상입니다.",

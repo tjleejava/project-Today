@@ -15,29 +15,12 @@ exports.login = async (req, res) => {
   console.log(req.id);
   console.log(req.password);
 
-  const connection = getConnection();
-  // ===========================안쓰는 중 ==================================
-  // access token을 secret key 기반으로 생성
-  const generateAccessToken = (id) => {
-    return jwt.sign({
-      id
-    }, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: "30m",
-    });
-  };
+  const match = await bcrypt.compare(pwd, DBPwd);
+  console.log(match);
 
-  // refersh token을 secret key  기반으로 생성
-  const generateRefreshToken = (id) => {
-    return jwt.sign({
-      id
-    }, process.env.REFRESH_TOKEN_SECRET, {
-      expiresIn: "180 days",
-    });
-  };
-  // =======================================================================
-  const member = await (MemberRepository.selectMemberById(connection, id));
+  const connection = getConnection();
+  // const member = await (MemberRepository.selectMemberById(connection, id));
   const memberNo = member.memberNo;
-  console.log('서비스다')
 
   console.log(member);
 
@@ -51,37 +34,12 @@ exports.login = async (req, res) => {
     console.log(pwd);
 
     //첫번째 매개변수가 사용자가 입력한 패스워드
-    const match = await bcrypt.compare(pwd, DBPwd);
 
-    console.log(match);
 
-    const generateToken = new Promise((resolve, reject) => {
-      jwt.sign({
-          type: "JWT",
-          no: member.memberNo,
-          id: member.memberId,
-          nickname: member.nickname,
-          enrollDate: member.enrollDate,
-          memberRole: member.memberRole
-        },
-        process.env.ACCESS_TOKEN_SECRET, {
-          expiresIn: '30m',
-          issuer: 'today'
-        }, (err, token) => {
-          if (err) reject(err)
-          resolve(token)
-        });
-    })
     // respond the token
     if (match === true) {
       const newToken = await generateToken
       await console.log('token :', newToken);
-      // const tokenData = {
-      //   memberNo: memberNo,
-      //   token: newToken
-      // }
-      // MemberRepository.insertToken(connection, tokenData)
-      // .then(console.log);
       
       return newToken
 
